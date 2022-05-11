@@ -2,16 +2,23 @@ import './App.css';
 
 //-------DELETE IF DO NOT NEED--------------------------------
 import { useState } from 'react';
-import { useRegisterNewUserMutation ,useLogOutUserMutation, useLogInUserMutation} from '../../redux/auth/authOperation';
+import {
+  useRegisterNewUserMutation,
+  useLogOutUserMutation,
+  useLogInUserMutation,
+} from '../../redux/auth/authOperation';
 import { useNavigate, NavLink } from 'react-router-dom';
-import { useCreateContactMutation, useGetContactsQuery } from '../../redux/Example_DELET/contact-operation';
+import {
+  useCreateContactMutation,
+  useGetContactsQuery,
+} from '../../redux/Example_DELET/contact-operation';
 //--------------------------------------------
 
 import React, { useEffect } from 'react';
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 import { useCurrentUserQuery } from '../../redux/auth/authOperation';
 import { useSelector } from 'react-redux';
-import { getIsLoggedIn,getUserName } from '../../redux/auth/authSelectors';
+import { getIsLoggedIn, getUserName } from '../../redux/auth/authSelectors';
 
 export default function App() {
   const { refetch } = useCurrentUserQuery();
@@ -23,7 +30,7 @@ export default function App() {
   return (
     <>
       <header>
-        <NavigationBar /> 
+        <NavigationBar />
       </header>
       <main>
         {/* так виглядає switch у 6 версії */}
@@ -58,21 +65,19 @@ function useAuth() {
   return logget;
 }
 
-
-
 //------------ALL FILE UNDER, MUST BE DELETE LATER-------------------------------------------------------------
 // домашня сторінка
- function Home() {
+function Home() {
   return <h1>Phonebook</h1>;
 }
 //контакти
- function Contacts() {
+function Contacts() {
   return (
     <>
-      <section >
+      <section>
         <Form />
-        <div >
-          <h2 >My Contacts</h2>
+        <div>
+          <h2>My Contacts</h2>
           {/* <Filter /> */}
           <ContactList />
         </div>
@@ -81,7 +86,7 @@ function useAuth() {
   );
 }
 //форма
- function Form() {
+function Form() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [addContact] = useCreateContactMutation();
@@ -91,8 +96,8 @@ function useAuth() {
     e.preventDefault();
 
     if (checkName(name)) {
-      console.log(name,'is already in contacts.');
-      return 
+      console.log(name, 'is already in contacts.');
+      return;
     }
     addContact({ name, number });
     setName('');
@@ -100,15 +105,16 @@ function useAuth() {
   };
 
   const checkName = newName => {
-    return data.find(({ name }) => name.toLowerCase() === newName.toLowerCase());
+    return data.find(
+      ({ name }) => name.toLowerCase() === newName.toLowerCase(),
+    );
   };
 
   return (
     <>
-      <form onSubmit={handleSubmitt} >
+      <form onSubmit={handleSubmitt}>
         <label>
           <input
-           
             type="text"
             name="name"
             value={name}
@@ -121,7 +127,6 @@ function useAuth() {
         </label>
         <label>
           <input
-            
             type="tel"
             name="number"
             value={number}
@@ -133,15 +138,13 @@ function useAuth() {
           />
         </label>
 
-        <button type="submit" >
-          Add contact
-        </button>
+        <button type="submit">Add contact</button>
       </form>
     </>
   );
 }
 //Список контактів
- function ContactList() {
+function ContactList() {
   const { data, refetch } = useGetContactsQuery();
   useEffect(() => {
     refetch();
@@ -150,32 +153,31 @@ function useAuth() {
   return (
     <>
       {data && (
-        <ul >
+        <ul>
           {data.map(({ id, name, number }) => (
-    <li key={id} >
-      <div>
-        <span >{name}</span>
-        <span >{number}</span>
-        <button
-          id={id}
-          type="button"
-          onClick={() => {
-            console.log('удалил');
-          }}
-        >
-          Delete
-        </button>
-      </div>
-    </li>
-  ))}
+            <li key={id}>
+              <div>
+                <span>{name}</span>
+                <span>{number}</span>
+                <button
+                  id={id}
+                  type="button"
+                  onClick={() => {
+                    console.log('удалил');
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            </li>
+          ))}
         </ul>
       )}
-
     </>
   );
 }
 //логін
- function Login() {
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -197,10 +199,9 @@ function useAuth() {
 
   return (
     <>
-      <form onSubmit={handleSubmitt} >
+      <form onSubmit={handleSubmitt}>
         <label>
           <input
-           
             type="text"
             name="email"
             value={email}
@@ -212,7 +213,6 @@ function useAuth() {
         </label>
         <label>
           <input
-
             type="password"
             name="password"
             value={password}
@@ -224,15 +224,13 @@ function useAuth() {
           />
         </label>
 
-        <button type="submit" >
-          Sign in
-        </button>
+        <button type="submit">Sign in</button>
       </form>
     </>
   );
 }
 //форма регістрації
-  function Register() {
+function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -250,7 +248,7 @@ function useAuth() {
       // NotificationSuccess('success!', ' registration success!');
       navigate('/contacts', { replace: true });
     } catch (error) {
-      console.log('error',error)
+      console.log('error', error);
       // NotificationError(error?.status, error?.data?._message);
     }
   };
@@ -260,7 +258,7 @@ function useAuth() {
       <form onSubmit={handleSubmitt} /* className={s.form} */>
         <label>
           <input
-           /*  className={s.name} */
+            /*  className={s.name} */
             type="text"
             name="name"
             value={name}
@@ -272,7 +270,7 @@ function useAuth() {
         </label>
         <label>
           <input
-           /*  className={s.name} */
+            /*  className={s.name} */
             type="email"
             name="email"
             value={email}
@@ -283,7 +281,7 @@ function useAuth() {
         </label>
         <label>
           <input
-           /*  className={s.number} */
+            /*  className={s.number} */
             type="password"
             name="password"
             value={password}
@@ -293,9 +291,7 @@ function useAuth() {
             required
           />
         </label>
-        <button type="submit" /* className={s.button} */>
-          Join
-        </button>
+        <button type="submit" /* className={s.button} */>Join</button>
       </form>
     </>
   );
@@ -304,12 +300,10 @@ function useAuth() {
 function NavigationBar() {
   const logget = useSelector(getIsLoggedIn);
   return (
-    <nav >
+    <nav>
       <div>
         {/* <NavLink to="/" className={({ isActive }) => s.link + ' ' + (isActive ? s.activeL : '')}> */}
-        <NavLink to="/">
-          HomePage
-        </NavLink>
+        <NavLink to="/">HomePage</NavLink>
 
         {logget && (
           <NavLink
@@ -329,27 +323,21 @@ function NavigationBar() {
 function NavigationAuth() {
   return (
     <div>
-      <NavLink
-        to="/register"
-      >
-        register
-      </NavLink>
-      <NavLink to="/login" >
-        login
-      </NavLink>
+      <NavLink to="/register">register</NavLink>
+      <NavLink to="/login">login</NavLink>
     </div>
   );
 }
 // юзер меню
- function UserMenu() {
+function UserMenu() {
   const userName = useSelector(getUserName);
   const [out] = useLogOutUserMutation();
   const navigate = useNavigate();
 
   return (
     <>
-      <div >
-        <h2 >{userName}</h2>
+      <div>
+        <h2>{userName}</h2>
         <button
           type="button"
           onClick={() => {
