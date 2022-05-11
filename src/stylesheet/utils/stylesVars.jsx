@@ -2,8 +2,8 @@
 // Fonts
  export const poppinsFont = 'Poppins, sans-serif';
  export const circleFont = 'Circe, Manrope, sans-serif';
-// Colors
 
+// Colors
 export const accentBgCl =  '#ffffff';
 export const accentTextCl = '#000000';
 export const accentPositiveCl = '#24cca7';
@@ -18,7 +18,7 @@ export const bgTabletCl = '#E7EAF2';
 export const bgTabletWalletCl = 'rgba(255, 255, 255, 0.4)';
 export const duration = '250ms';
 
-/// timingFunc можливо не працює, перевіритч формат  запису
+/// timingFunc
 export const timingFunc = 'cubic-bezier(0.4, 0, 0.2, 1)';
 
 //breakpoints 
