@@ -2,3 +2,27 @@
   --poppins-font: 'Poppins', sans-serif;
   --circle-font: 'Circe', 'Manrope', sans-serif;
 }
+
+@font-face {
+  font-family: Poppins;
+  src: url('../../assets/fonts/segoeui.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Poppins;
+  src: url('../../assets/fonts/segoeuib.ttf') format('truetype');
+  font-weight: Bold;
+}
+
+@font-face {
+  font-family: Circe;
+  src: url('../../assets/fonts/Circe-Regular.otf') format('opentype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Circe;
+  src: url('../../assets/fonts/Circe-Bold.otf') format('opentype');
+  font-weight: Bold;
+}
