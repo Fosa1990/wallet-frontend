@@ -1,4 +1,5 @@
 import './App.css';
+import Loader from '../Loader'
 
 //-------DELETE IF DO NOT NEED--------------------------------
 import { useState } from 'react';
@@ -33,6 +34,7 @@ export default function App() {
         <NavigationBar />
       </header>
       <main>
+       <Loader/>
         {/* так виглядає switch у 6 версії */}
         <Routes>
           <Route path="/" element={<Home />} />
@@ -325,7 +327,7 @@ function NavigationAuth() {
     <div>
       <NavLink to="/register">register</NavLink>
       <NavLink to="/login">login</NavLink>
-    </div>
+
   );
 }
 // юзер меню

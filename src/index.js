@@ -7,12 +7,14 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import './index.css';
 import './stylesheet/base.css';
+import Global from './globalStyles';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
+         <Global />
           <App />
         </BrowserRouter>
       </PersistGate>
