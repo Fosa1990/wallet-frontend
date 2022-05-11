@@ -15,7 +15,7 @@ export const axiosBaseQuery =
       };
     }
   };
-// функція добавляє токен до запроса якщо він є 
+// функція добавляє токен до запитів якщо він є 
 function setToken(url, token) {
   if (url === '/users/login' || url === '/users/signup') {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
