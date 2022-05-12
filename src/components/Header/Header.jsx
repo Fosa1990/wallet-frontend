@@ -1,18 +1,38 @@
 import styled from 'styled-components';
+import Media from 'react-media';
+import { NavLink } from 'react-router-dom';
 import { accentTextCl, textPlcholderCl, poppinsFont, circleFont,  size } from '../../stylesheet/utils/stylesVars';
-import { NavLink, Link } from 'react-router-dom'
+import authSelectors from '../../redux/auth/authSelectors';
+import { useDispatch, useSelector } from 'react-redux';
 
 const StyledHeader = styled.div`
     display:flex ;
     justify-content: space-between;
+     width: 100%;
+    height: 60px;
+    padding: 15px 20px;
+    ${size.tablet}{
+    height: 80px; 
+      padding: 20px 32px ;
+    }
+    ${size.desktop}{
+      padding: 20px 16px ;   
+    }
 `
 const Logo = styled.div`
     display: flex;
 `
+///TO DO   Logo   =  NavLink  to  / (Home)  
+
+// const Logo = styled(NavLink)`
+//     display: flex;
+// `
+
 const  Title =  styled.div`
 font-family: ${poppinsFont};
   font-size: 25px;
   font-weight: 700;
+  color: ${props => props.color || accentTextCl}; 
 
   ${size.tablet}{
     font-size: 30px;
@@ -24,39 +44,28 @@ const LogoIcon = styled.img`
 
 const UserInfo = styled.div`
 display: flex ;
+justify-content: ${props => props.justify || 'center'};
+align-items: ${props=> props.align || 'center'};
 font-family: ${circleFont};
 font-size: 18px;
 line-height: 1,47;
-color: ${props => props.color || textPlcholderCl};
-
-${size.tablet}{
-    margin-top: 25px ;
-    margin-bottom: 25px;
-    margin-right: 32px;
-}
-${size.desktop}{
-    margin-right: 16px;
-}
-   
+color: ${props => props.color || textPlcholderCl};  
 `
 const LogoutBtn = styled.button`
 cursor: pointer;
-width: 18px;
-height: 18px;
+display: flex;
+
+/* width: 18px;
+height: 18px; */
 font-size: 18px;
 line-height: 1,47;
-margin-left: 8px;
 color: ${props => props.color || textPlcholderCl};
 background-color: transparent;
+border:none;
 padding-left: 12px;
 
 ${size.tablet}{
-    /* width: 77px; */
-    border: none; 
-/* height: 30px;
-margin-left: 12px;
 border: none; 
-/* border-left: 1px  solid  ${textPlcholderCl} ; */ */
 }
 `
 const LogoutIcon = styled.img`
@@ -65,20 +74,22 @@ height: 18px;
 margin-right: 8px;`
 
 const UserName = styled.p`
-/* color: ${props => props.color || textPlcholderCl}; */
-/* font-family: ${circleFont};
-font-size: 18px;
-line-height: 1,47;
-color: ${textPlcholderCl} */
-${size.tablet}{padding: 6px 12px 6px 0;
-    border-right: 1px solid #bdbdbd;
-    margin-right: 12px;} 
-
-
-  
+color: ${textPlcholderCl} ;
+${size.tablet}
+{padding: 6px 12px 6px 0;
+    border-right: 1px solid ${textPlcholderCl};
+    margin-right: 12px;}
 `
-
 export default function Header() {
+    // const isModalLogoutOpen =  useSelector(modalSelectors.getLogoutOpen)
+    const userName = useSelector(authSelectors.getUserName)
+    const dispatch = useDispatch()
+    const handleClick = () => {
+    //     dispatch(
+    //        action  which  sets isModalLogoutOpen =  true 
+    //    )
+    }
+    
   return (
       <StyledHeader >
           <Logo>
@@ -86,10 +97,14 @@ export default function Header() {
               <Title>Wallet</Title>
           </Logo>
           <UserInfo>
-              <UserName>Hello </UserName>
-              <LogoutBtn><LogoutIcon/>Вийти</LogoutBtn >
+              <UserName>{userName || 'User'} </UserName>
+              <LogoutBtn type='button' onClick={handleClick}>
+                  <LogoutIcon />
+                  <Media query="(min-width: 768px)" render={() =>
+                    (<span>Logout</span>)}/>
+              </LogoutBtn >
           </UserInfo>
-         
+          {/* {isModalLogoutOpen && <ModalLogout/>} */}
     </StyledHeader>
   )
 } 
