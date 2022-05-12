@@ -1,6 +1,8 @@
 import logo from '../../images/svg/logo.svg';
 import './App.css';
 import Loader from '../Loader'
+import Header from '../Header'
+
 
 export default function App() {
   return (
@@ -19,7 +21,9 @@ export default function App() {
           Learn React
         </a>
     //  </header> */}
-   <Loader/>
+      
+      <Loader />
+      <Header />
     </div>
   );
 }
