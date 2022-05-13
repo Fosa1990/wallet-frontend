@@ -8,6 +8,7 @@ import {
   circleFont,
 } from '../../stylesheet/utils/stylesVars';
 
+
 const Table = styled.table`
   background-color: ${iconBgValueCl};
   border-radius: 30px 30px 30px 30px;
@@ -19,12 +20,14 @@ const Table = styled.table`
   }
   ${size.tablet} {
     width: 336px;
-    height: 182px;
+    // height: 182px;
+     height: 146px;
   }
   ${size.desktop} {
     width: 393px;
-    height: 347px;
-  }
+    // height: 347px;
+    height: 299px;
+    }
 `;
 
 const Thead = styled.thead`
@@ -41,7 +44,9 @@ const Thead = styled.thead`
   }
 `;
 
-const Tr = styled.tr``;
+const Tr = styled.tr`
+
+`;
 
 const Th = styled.th`
   font: ${poppinsFont};
@@ -57,7 +62,15 @@ const Th = styled.th`
     border-radius: 0 30px 0 0;
   }
 `;
-// почему не работает цвет текста из переменной
+
+const Tbody = styled.tbody`
+
+
+${size.desktop} {
+    vertical-align: top;
+  }
+`
+
 
 const Td = styled.td`
   font: ${circleFont};
@@ -65,7 +78,9 @@ const Td = styled.td`
   font-weight: 400;
   line-height: 23px;
   color: white;
-  padding: 0 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
 
   :not(:first-child) {
     text-align: center;
@@ -83,7 +98,7 @@ export default function Currency() {
             <Th>Sell</Th>
           </Tr>
         </Thead>
-        <tbody>
+        <Tbody>
           <tr>
             <Td>USD</Td>
             <Td>33.50</Td>
@@ -94,8 +109,9 @@ export default function Currency() {
             <Td>37.50</Td>
             <Td>38.50</Td>
           </tr>
-        </tbody>
+        </Tbody>
       </Table>
+      
     </div>
   );
 }
