@@ -97,6 +97,8 @@ export default function Currency() {
     return axios.get(baseUrl).then(res => res.data);
   }
 
+console.log(exchangeRates)
+
     return (
     <div>
       <Table>
@@ -109,18 +111,18 @@ export default function Currency() {
         </Thead>
         <Tbody>
           <tr>
-            <Td>USD/UAN</Td>
+              <Td>{exchangeRates && exchangeRates[0].ccy +`/` +exchangeRates[0].base_ccy}</Td>
             <Td>{exchangeRates && Number(exchangeRates[0].buy).toFixed(2)}
               </Td>
             <Td>{exchangeRates && Number(exchangeRates[0].sale).toFixed(2)}</Td>
           </tr>
           <tr>
-            <Td>EUR/UAN</Td>
+            <Td>{exchangeRates && exchangeRates[1].ccy +`/` +exchangeRates[1].base_ccy}</Td>
             <Td>{exchangeRates && Number(exchangeRates[1].buy).toFixed(2)}</Td>
             <Td>{exchangeRates && Number(exchangeRates[1].sale).toFixed(2)}</Td>
           </tr>
           <tr>
-            <Td>BTC/USD</Td>
+            <Td>{exchangeRates && exchangeRates[2].ccy +`/` +exchangeRates[2].base_ccy}</Td>
             <Td>{exchangeRates && Math.round(Number(exchangeRates[2].buy))}</Td>
             <Td>{exchangeRates && Math.round(Number(exchangeRates[2].sale))}</Td>
           </tr>
