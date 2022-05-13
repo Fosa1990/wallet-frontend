@@ -54,9 +54,12 @@ const Th = styled.th`
   font-weight: 700;
   line-height: 26px;
   color: ${accentBgCl};
+padding-left: 20px;
+  padding-right: 20px;
 
   :first-child {
     border-radius: 30px 0 0 0;
+    text-align: left;
   }
   :last-child {
     border-radius: 0 30px 0 0;
@@ -96,8 +99,6 @@ export default function Currency() {
   function getExchangeRates() {
     return axios.get(baseUrl).then(res => res.data);
   }
-
-console.log(exchangeRates)
 
     return (
     <div>
