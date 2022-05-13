@@ -66,7 +66,7 @@ const Td = styled.td`
   color: white;
   padding: 0 20px;
 
-  :not(:first-chil) {
+  :not(:first-child) {
     text-align: center;
   }
 `;
