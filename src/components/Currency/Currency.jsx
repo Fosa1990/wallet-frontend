@@ -8,6 +8,11 @@ import {
   circleFont,
 } from '../../stylesheet/utils/stylesVars';
 
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const baseUrl = `https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5`;
+axios.defaults.baseURL = baseUrl;
 
 const Table = styled.table`
   background-color: ${iconBgValueCl};
@@ -15,19 +20,16 @@ const Table = styled.table`
   border-collapse: collapse;
   ${size.mobile} {
     width: 280px;
-    // height: 174px;
-    height: 138px;
+    height: 174px;
   }
   ${size.tablet} {
     width: 336px;
-    // height: 182px;
-     height: 146px;
+    height: 182px;
   }
   ${size.desktop} {
     width: 393px;
-    // height: 347px;
-    height: 299px;
-    }
+    height: 347px;
+  }
 `;
 
 const Thead = styled.thead`
@@ -44,9 +46,7 @@ const Thead = styled.thead`
   }
 `;
 
-const Tr = styled.tr`
-
-`;
+const Tr = styled.tr``;
 
 const Th = styled.th`
   font: ${poppinsFont};
@@ -64,13 +64,10 @@ const Th = styled.th`
 `;
 
 const Tbody = styled.tbody`
-
-
-${size.desktop} {
+  ${size.desktop} {
     vertical-align: top;
   }
-`
-
+`;
 
 const Td = styled.td`
   font: ${circleFont};
@@ -88,7 +85,19 @@ const Td = styled.td`
 `;
 
 export default function Currency() {
-  return (
+  const [exchangeRates, setExchangeRates] = useState(null);
+
+  useEffect(() => {
+    getExchangeRates().then(data => {
+      return setExchangeRates(data);
+    });
+  }, []);
+
+  function getExchangeRates() {
+    return axios.get(baseUrl).then(res => res.data);
+  }
+
+    return (
     <div>
       <Table>
         <Thead>
@@ -100,18 +109,23 @@ export default function Currency() {
         </Thead>
         <Tbody>
           <tr>
-            <Td>USD</Td>
-            <Td>33.50</Td>
-            <Td>34.50</Td>
+            <Td>USD/UAN</Td>
+            <Td>{exchangeRates && Number(exchangeRates[0].buy).toFixed(2)}
+              </Td>
+            <Td>{exchangeRates && Number(exchangeRates[0].sale).toFixed(2)}</Td>
           </tr>
           <tr>
-            <Td>EUR</Td>
-            <Td>37.50</Td>
-            <Td>38.50</Td>
+            <Td>EUR/UAN</Td>
+            <Td>{exchangeRates && Number(exchangeRates[1].buy).toFixed(2)}</Td>
+            <Td>{exchangeRates && Number(exchangeRates[1].sale).toFixed(2)}</Td>
+          </tr>
+          <tr>
+            <Td>BTC/USD</Td>
+            <Td>{exchangeRates && Math.round(Number(exchangeRates[2].buy))}</Td>
+            <Td>{exchangeRates && Math.round(Number(exchangeRates[2].sale))}</Td>
           </tr>
         </Tbody>
       </Table>
-      
     </div>
   );
 }
