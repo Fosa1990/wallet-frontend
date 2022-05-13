@@ -14,7 +14,8 @@ const Table = styled.table`
   border-collapse: collapse;
   ${size.mobile} {
     width: 280px;
-    height: 174px;
+    // height: 174px;
+    height: 138px;
   }
   ${size.tablet} {
     width: 336px;
@@ -44,8 +45,8 @@ const Tr = styled.tr``;
 
 const Th = styled.th`
   font: ${poppinsFont};
-  font-size: 700;
-  font-weight: 18px;
+  font-size: 18px;
+  font-weight: 700;
   line-height: 26px;
   color: ${accentBgCl};
 
@@ -60,8 +61,8 @@ const Th = styled.th`
 
 const Td = styled.td`
   font: ${circleFont};
-  font-size: 400;
-  font-weight: 16px;
+  font-size: 16px;
+  font-weight: 400;
   line-height: 23px;
   color: white;
   padding: 0 20px;
