@@ -3,7 +3,7 @@ import { size } from '../../stylesheet/utils/stylesVars';
 import {
   iconBgValueCl,
   iconBgCl,
-  accentTextCl,
+  accentBgCl,
   poppinsFont,
   circleFont,
 } from '../../stylesheet/utils/stylesVars';
@@ -47,7 +47,7 @@ const Th = styled.th`
   font-size: 700;
   font-weight: 18px;
   line-height: 26px;
-  color: white;
+  color: ${accentBgCl};
 
   :first-child {
     border-radius: 30px 0 0 0;
@@ -59,14 +59,14 @@ const Th = styled.th`
 // почему не работает цвет текста из переменной
 
 const Td = styled.td`
-  font: circleFont;
+  font: ${circleFont};
   font-size: 400;
   font-weight: 16px;
   line-height: 23px;
   color: white;
   padding: 0 20px;
 
-  :not(:first-child) {
+  :not(:first-chil) {
     text-align: center;
   }
 `;
