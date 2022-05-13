@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 import Media from 'react-media';
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { accentTextCl, textPlcholderCl, poppinsFont, circleFont,  size } from '../../stylesheet/utils/stylesVars';
 import authSelectors from '../../redux/auth/authSelectors';
-import { useDispatch, useSelector } from 'react-redux';
+// import Icon from '../Icon';
+import logo from '../../images/svg/logo.svg';
+import exit from '../../images/svg/exit.svg';
+/// підключити компонент модалки на логаут 
+
 
 const StyledHeader = styled.div`
     display:flex ;
@@ -19,14 +24,13 @@ const StyledHeader = styled.div`
       padding: 20px 16px ;   
     }
 `
-const Logo = styled.div`
-    display: flex;
-`
-///TO DO   Logo   =  NavLink  to  / (Home)  
 
-// const Logo = styled(NavLink)`
-//     display: flex;
-// `
+const Logo = styled(NavLink)`
+    display: flex;
+    cursor: pointer;
+    justify-content: ${props => props.justify || 'center'} ;
+    align-items: ${props=> props.align || 'center'};
+`
 
 const  Title =  styled.div`
 font-family: ${poppinsFont};
@@ -40,6 +44,14 @@ font-family: ${poppinsFont};
   }
 `
 const LogoIcon = styled.img`
+width:30px ;
+height: 30px;
+margin-right: 15px;
+${size.tablet}{
+  width:40px ;
+height: 40px;
+margin-right: 20px;  
+}
  `
 
 const UserInfo = styled.div`
@@ -54,9 +66,6 @@ color: ${props => props.color || textPlcholderCl};
 const LogoutBtn = styled.button`
 cursor: pointer;
 display: flex;
-
-/* width: 18px;
-height: 18px; */
 font-size: 18px;
 line-height: 1,47;
 color: ${props => props.color || textPlcholderCl};
@@ -68,17 +77,18 @@ ${size.tablet}{
 border: none; 
 }
 `
-const LogoutIcon = styled.img`
-width: 18px;
-height: 18px;
-margin-right: 8px;`
+const ExitIcon = styled.img` 
+ width: 18px;
+ height: 18px;
+ margin-right: ${props => props.mRight || '8px'}
+`
 
 const UserName = styled.p`
 color: ${textPlcholderCl} ;
 ${size.tablet}
 {padding: 6px 12px 6px 0;
     border-right: 1px solid ${textPlcholderCl};
-    margin-right: 12px;}
+    }
 `
 export default function Header() {
     // const isModalLogoutOpen =  useSelector(modalSelectors.getLogoutOpen)
@@ -92,14 +102,15 @@ export default function Header() {
     
   return (
       <StyledHeader >
-          <Logo>
-              <LogoIcon />
+          <Logo to="/">
+              <LogoIcon src={logo}/>
               <Title>Wallet</Title>
           </Logo>
           <UserInfo>
               <UserName>{userName || 'User'} </UserName>
               <LogoutBtn type='button' onClick={handleClick}>
-                  <LogoutIcon />
+                  {/* <LogoutIcon /> */}
+                  <ExitIcon src={exit} />
                   <Media query="(min-width: 768px)" render={() =>
                     (<span>Logout</span>)}/>
               </LogoutBtn >

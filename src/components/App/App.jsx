@@ -1,6 +1,7 @@
 import './App.css';
 import Loader from '../Loader';
 import Header from '../Header'
+import Navigation from '../Navigation/Navigation';
 
 //-------DELETE IF DO NOT NEED--------------------------------
 import { useState } from 'react';
@@ -37,6 +38,7 @@ export default function App() {
       </Header>
       <main>
         <Loader />
+        <Navigation/>
         {/* так виглядає switch у 6 версії */}
         <Routes>
           {/* <Route path="/" element={<Home />} /> */}
