@@ -7,6 +7,7 @@ import Loader from '../Loader';
 import Header from '../Header';
 import Navigation from '../Navigation/Navigation';
 import authSelectors from '../../redux/auth';
+import PublicRoute from '../Router/PublicRoute/PublicRoute';
 //import  useFetchCurrentUserQuery  from ///
 //  must  be  lazy  loading
 
@@ -37,7 +38,10 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="diagram/*" element={<Dashboard />} />
-          <Route path="registration" element={<Registration />} />
+          <Route path="registration" element={
+            <PublicRoute redirectTo="/" restricted>
+              <Registration />
+            </PublicRoute>} />
           <Route path="*" element={<Navigate to="/" replace />} />
 
           
