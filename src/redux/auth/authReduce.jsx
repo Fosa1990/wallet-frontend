@@ -27,6 +27,18 @@ export const authApi = createApi({
       invalidatesTags: ['Auth'],
     }),
 
+    loginUser: builder.mutation({
+      queryFn: async (userData, queryApi, extraOptions, baseQuery) => {
+        const res = await baseQuery({
+          url: '/users/login',
+          method: 'POST',
+          body: userData,
+        });
+        return res;
+      },
+      invalidatesTags: ['Auth'],
+    }),
+
     fetchCurrentUser: builder.query({
       queryFn: async (arg, queryApi, extraOptions, baseQuery) => {
         const res = await baseQuery({
@@ -39,4 +51,8 @@ export const authApi = createApi({
   }),
 });
 
-export const { useRegisterUserMutation, useFetchCurrentUserQuery } = authApi;
+export const {
+  useRegisterUserMutation,
+  useLoginUserMutation,
+  useFetchCurrentUserQuery,
+} = authApi;
