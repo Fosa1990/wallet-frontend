@@ -1,11 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Formik, Form} from 'formik';
 import { TextField } from './TextField';
 import * as Yup from 'yup'
+import { useRegisterUserMutation } from '../../redux/auth/authReduce';
 
 
 export default function RegistrationForm() {
-  const validate = Yup.object().shape({
+
+   const [register] = useRegisterUserMutation();
+
+    const validate = Yup.object({
     email: Yup.string()
       .email('E-mail is invalid')
       .required('E-mail required'),
@@ -20,88 +25,38 @@ export default function RegistrationForm() {
       .min(1, 'Name must be at least 1 character')
       .max(12, 'Must be 12 characters or less')
       .required('Required')
-  })
+    })
 
   return (
-    <Formik initialValues={{
+    <>
+      <Formik
+      initialValues={{
       email: '',
       password: '',
       confirmPassword: '',
       name: '',
     }}
       validationSchema={validate}
-      onSubmit={values => {
+      onSubmit={(values, onSubmitProps) => {
         console.log(values)
-      }}
+        register(values)
+        onSubmitProps.resetForm()     }}
     >
       {formik => (
         <div>
-          {/* {console.log(formik.values)} */}
+          {/* {console.log('formik.values', formik.values)} */}
           <Form>
             <TextField label="E-mail" name="email" type="email" />
             <TextField label="Пароль" name="password" type="password" />
             <TextField label="Подтвердите пароль" name="confirmPassword" type="password" />
             <TextField label="Ваше имя" name="name" type="text" />
-            <button type="submit">Регистрация</button>
-            <button type="submit">Вход</button>
+              <button type="submit">Регистрация</button>
+              <Link to="/login">Вход</Link>
           </Form>
         </div>
       )}
-          </Formik>
-  )
-
-  // const formik = useFormik({
-  //    initialValues: {
-  //      email: '',
-  //       password: '',
-  //       confirmPassword: '',
-  //       name: '',
-  //    },
-  //    onSubmit: values => {
-  //      alert(JSON.stringify(values, null, 2));
-  //    },
-  // });
-  
-  // return (
-  //   <>
-  //     <div >Component: RegistrationForm</div>
-  //     <form onSubmit={formik.handleSubmit}>
-  //      <label htmlFor="email">E-mail</label>
-  //      <input
-  //        id="email"
-  //        name="email"
-  //        type="email"
-  //        onChange={formik.handleChange}
-  //        value={formik.values.email}
-  //      />
-  //      <label htmlFor="password">Пароль</label>
-  //      <input
-  //        id="password"
-  //        name="password"
-  //        type="text"
-  //        onChange={formik.handleChange}
-  //        value={formik.values.password}
-  //       />
-  //       <label htmlFor="confirmPassword">Подтвердите пароль</label>
-  //      <input
-  //        id="confirmPassword"
-  //        name="confirmPassword"
-  //        type="text"
-  //        onChange={formik.handleChange}
-  //        value={formik.values.confirmPassword}
-  //      />
-  //      <label htmlFor="name">Ваше имя</label>
-  //      <input
-  //        id="name"
-  //        name="name"
-  //        type="text"
-  //        onChange={formik.handleChange}
-  //        value={formik.values.name}
-  //      />
-  //       <button type="submit">Регистрация</button>
-  //       <button type="submit">Вход</button>
-  //    </form>
-  //   </>
+    </Formik>
     
-  // )
+    </>
+  )
 }
