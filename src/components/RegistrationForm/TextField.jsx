@@ -38,18 +38,3 @@ const Error = styled.div`
   color: red;
   font-size: 1.5rem;
 `
-
-
-// label {
-//   font-size: .7rem;
-// }
-
-// input.form-control, input.form-control:focus {
-//   background: #F0F0FF;
-// }
-
-// .error {
-//   position: absolute;
-//   color: red;
-//   font-size: .6rem;
-// }

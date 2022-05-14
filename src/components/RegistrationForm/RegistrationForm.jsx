@@ -47,11 +47,11 @@ export default function RegistrationForm() {
           {/* {console.log('formik.values', formik.values)} */}
           <Form>
             <TextField label="E-mail" name="email" type="email" />
-            <TextField label="Пароль" name="password" type="password" />
-            <TextField label="Подтвердите пароль" name="confirmPassword" type="password" />
-            <TextField label="Ваше имя" name="name" type="text" />
-              <button type="submit">Регистрация</button>
-              <Link to="/login">Вход</Link>
+            <TextField label="Password" name="password" type="password" />
+            <TextField label="Confirm password" name="confirmPassword" type="password" />
+            <TextField label="Your name" name="name" type="text" />
+              <button type="submit">Sign up</button>
+              <Link to="/login">Login</Link>
           </Form>
         </div>
       )}

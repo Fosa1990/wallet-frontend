@@ -16,8 +16,11 @@ const Login = lazy(() =>
 const Dashboard = lazy(() =>
   import('../../pages/DashBoardPage' /* webpackChunkName: "DashBoard" */),
 );
+// const Registration = lazy(() =>
+//   import('../../pages/RegistrationPage' /* webpackChunkName: "Registration" */),
+// );
 const Registration = lazy(() =>
-  import('../../pages/RegistrationPage' /* webpackChunkName: "Registration" */),
+  import('../RegistrationForm' /* webpackChunkName: "Registration" */),
 );
 
 
@@ -37,10 +40,11 @@ export default function App() {
           <Route path="registration" element={<Registration />} />
           <Route path="*" element={<Navigate to="/" replace />} />
 
-          <Loader />
+          
+        </Routes>
+        <Loader />
           <Header />
           <Navigation />
-        </Routes>
       </Suspense>
     </>
   );
