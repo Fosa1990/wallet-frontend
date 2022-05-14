@@ -1,5 +1,6 @@
-import Table from '../Table/Table';
-import Chart from '../Chart/Chart';
+import Table from '../Table';
+import Chart from '../Chart';
+import Select from '../Select';
 import transactions from '../Table/transactions.json'
 
 
@@ -9,7 +10,8 @@ const colors = transactions.map(transaction => transaction.color);
 const sums = transactions.map(transaction=>transaction.sum)
   return (
     <>
-      <Chart categories={categories} colors={colors} sums={ sums}/>
+      <Chart categories={categories} colors={colors} sums={sums} />
+      <Select/>
       <Table transactions={transactions} />
     </>
   )
