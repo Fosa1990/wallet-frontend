@@ -13,7 +13,6 @@ const StyledButton = styled.button`
   height: 50px;
   border-radius: 20px;
   padding: 13px;
-  /* margin-left: ${({ margin }) => margin || '0'}; */
   font-family: ${circleFont};
   font-weight: 400;
   font-size: 18px;
@@ -41,7 +40,7 @@ const StyledButton = styled.button`
       background: transparent;
       &:hover,
       &:focus {
-        box-shadow: inset 0px 0px 45px rgba(1, 255, 187, 0.711);
+        box-shadow: inset 0px 0px 45px rgba(36, 204, 167, 0.711);
       }
     `}
 
@@ -51,15 +50,10 @@ const StyledButton = styled.button`
 `;
 
 export default function Button(props) {
-  return <StyledButton {...props} />;
+  return <StyledButton type="button" {...props} />;
 }
 
-// Button.defaultProps = {
-//   prop_one: '/',
-// };
-
 Button.propTypes = {
-  children: PropTypes.node,
-  prop_one: PropTypes.string,
-  another_props: PropTypes.any,
+  type: PropTypes.string,
+  props: PropTypes.any,
 };
