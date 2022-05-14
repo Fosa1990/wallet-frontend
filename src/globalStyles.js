@@ -1,4 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
+import ellipseUp from './images/ellipse-up.png';
+import ellipseDown from './images/ellipse-down.png';
 
 export default createGlobalStyle`
    * {
@@ -16,6 +18,21 @@ body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
+  background-color: #e7eaf2;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    background-image: url(${ellipseUp}),
+      url(${ellipseDown});
+    background-repeat: no-repeat, no-repeat;
+    background-position: top right -175px, bottom left;
+  }
+}
+@media screen and (min-width: 1280px) {
+  body {
+    background-position: top right, bottom left;
+  }
 }
 
 img {
