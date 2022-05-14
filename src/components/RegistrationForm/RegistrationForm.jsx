@@ -4,6 +4,7 @@ import { Formik, Form} from 'formik';
 import { TextField } from './TextField';
 import * as Yup from 'yup'
 import { useRegisterUserMutation } from '../../redux/auth/authReduce';
+import {regexName, regexEmail} from '../../helpers/regex'
 
 
 export default function RegistrationForm() {
@@ -12,7 +13,7 @@ export default function RegistrationForm() {
 
     const validate = Yup.object({
     email: Yup.string()
-      .email('E-mail is invalid')
+      .email(regexEmail, 'E-mail is invalid')
       .required('E-mail required'),
     password: Yup.string()
       .min(6, 'Password must be at least 6 characters')
@@ -22,8 +23,8 @@ export default function RegistrationForm() {
       .oneOf([Yup.ref('password'), null], 'Password must match')
       .required('Confirm password is required'),
     name: Yup.string()
-      .min(1, 'Name must be at least 1 character')
-      .max(12, 'Must be 12 characters or less')
+      .min(1, regexName, 'Name must be at least 1 character')
+      .max(12, regexName,  'Must be 12 characters or less')
       .required('Required')
     })
 
