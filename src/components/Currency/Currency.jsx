@@ -128,7 +128,7 @@ export default function Currency() {
   }, []);
 
   function getExchangeRates() {
-    return axios.get(baseUrl).then(res => res.data);
+    return axios.get(baseUrl).then(res => res.data).catch(error=>console.log(error.message));
   }
 
   return (
@@ -170,7 +170,7 @@ export default function Currency() {
             </Td>
           </tr>
           <tr>
-            <td colspan="3">
+            <td colSpan="3">
               <Wave alt="wave" src={wave} />
             </td>
           </tr>
