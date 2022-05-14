@@ -1,7 +1,7 @@
+import React from 'react';
 import './App.css';
 import Loader from '../Loader';
 
-import React from 'react';
 
 export default function App() {
   return (
