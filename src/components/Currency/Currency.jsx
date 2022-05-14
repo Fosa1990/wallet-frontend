@@ -9,6 +9,7 @@ import {
 } from '../../stylesheet/utils/stylesVars';
 
 import wave from '../../images/wave.png';
+import Loader from '../Loader';
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -115,6 +116,8 @@ const Wave = styled.img`
   }
 `;
 
+// поправить позицию лоадера
+
 export default function Currency() {
   const [exchangeRates, setExchangeRates] = useState(null);
 
@@ -130,6 +133,7 @@ export default function Currency() {
 
   return (
     <Wrapper>
+      {!exchangeRates && <Loader />}
       <Table>
         <Thead>
           <Tr>
