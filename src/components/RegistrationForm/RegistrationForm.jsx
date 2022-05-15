@@ -4,7 +4,8 @@ import { Formik, Form} from 'formik';
 import { TextField } from './TextField';
 import * as Yup from 'yup'
 import { useRegisterUserMutation } from '../../redux/auth/authReduce';
-import {regexName, regexEmail} from '../../helpers/regex'
+import { regexName, regexEmail } from '../../helpers/regex'
+import PasswordStrenght from './PasswordStrength';
 
 
 export default function RegistrationForm() {
@@ -45,19 +46,19 @@ export default function RegistrationForm() {
     >
       {formik => (
         <div>
-          {/* {console.log('formik.values', formik.values)} */}
+          {console.log('formik.values', formik.values)}
           <Form>
             <TextField label="E-mail" name="email" type="email" />
             <TextField label="Password" name="password" type="password" />
-            <TextField label="Confirm password" name="confirmPassword" type="password" />
+              <TextField label="Confirm password" name="confirmPassword" type="password"  />
+              <PasswordStrenght password={formik.values.password}/>
             <TextField label="Your name" name="name" type="text" />
               <button type="submit">Sign up</button>
               <Link to="/login">Login</Link>
           </Form>
         </div>
       )}
-    </Formik>
-    
+      </Formik>
     </>
   )
 }
