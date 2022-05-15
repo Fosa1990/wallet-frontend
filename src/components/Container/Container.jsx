@@ -7,14 +7,12 @@ const ContainerWrap = styled.div`
   width: 100vw;
   padding: 0 20px;
   margin: 0 auto;
-  min-height: calc(100vh - 60px);
 
   ${size.mobile} {
     width: 320px;
   }
   ${size.tablet} {
     width: 768px;
-    min-height: calc(100vh - 80px);
     padding: 0 32px;
   }
   ${size.desktop} {

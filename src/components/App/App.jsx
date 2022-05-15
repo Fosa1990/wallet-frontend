@@ -18,16 +18,13 @@ import PublicRoute from '../Router/PublicRoute/PublicRoute';
 import HomeTab from "../HomeTab"
 
 const Login = lazy(() =>
-  import('../LoginForm' /* webpackChunkName: "Login" */),
+  import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
 );
 const Dashboard = lazy(() =>
   import('../../pages/DashBoardPage' /* webpackChunkName: "DashBoard" */),
 );
-// const Registration = lazy(() =>
-//   import('../../pages/RegistrationPage' /* webpackChunkName: "Registration" */),
-// );
 const Registration = lazy(() =>
-  import('../RegistrationForm' /* webpackChunkName: "Registration" */),
+  import('../../pages/RegistrationPage' /* webpackChunkName: "Registration" */),
 );
 
 /// TO  DO  public and protected  routes
@@ -41,7 +38,8 @@ export default function App() {
     <>
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path="/" element={<Login />} />
+          {/* <Route path="/" element={<Login />} /> */}
+          {/* <Route path="/" element={<Registration />} /> */}
           <Route path="diagram/*" element={<Dashboard />} />
           <Route
             path="registration"
