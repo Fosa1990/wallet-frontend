@@ -11,17 +11,20 @@ import PublicRoute from '../Router/PublicRoute/PublicRoute';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
 //  must  be  lazy  loading
 
+// const Login = lazy(() =>
+//   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
+// );
+
+import HomeTab from "../HomeTab"
+
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
 );
 const Dashboard = lazy(() =>
   import('../../pages/DashBoardPage' /* webpackChunkName: "DashBoard" */),
 );
-// const Registration = lazy(() =>
-//   import('../../pages/RegistrationPage' /* webpackChunkName: "Registration" */),
-// );
 const Registration = lazy(() =>
-  import('../RegistrationForm' /* webpackChunkName: "Registration" */),
+  import('../../pages/RegistrationPage' /* webpackChunkName: "Registration" */),
 );
 
 /// TO  DO  public and protected  routes
@@ -36,6 +39,7 @@ export default function App() {
   /// компоненти  по  факту реалізації  потім розставимо  по місцям і  пропишем тут роути
   return (
     <>
+<<<<<<< HEAD
       {isFetching ? (
         <Loader />
       ) : (
@@ -58,6 +62,36 @@ export default function App() {
           <Navigation />
         </Suspense>
       )}
+=======
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          {/* <Route path="/" element={<Login />} /> */}
+          {/* <Route path="/" element={<Registration />} /> */}
+          <Route path="diagram/*" element={<Dashboard />} />
+          <Route
+            path="registration"
+            element={
+              <PublicRoute redirectTo="/" restricted>
+                <Registration />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <PublicRoute redirectTo="/" restricted>
+                <Login />
+              </PublicRoute>
+            }
+          />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+        <Loader />
+        <Header />
+        <Navigation />
+        <HomeTab></HomeTab>
+      </Suspense>
+>>>>>>> dev
     </>
   );
 }
