@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://connections-api.herokuapp.com/',
+    baseUrl: 'http://localhost:8081/api/',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
 
@@ -18,7 +18,7 @@ export const authApi = createApi({
     registerUser: builder.mutation({
       queryFn: async (newUser, queryApi, extraOptions, baseQuery) => {
         const res = await baseQuery({
-          url: '/users/signup',
+          url: 'auth/signup',
           method: 'POST',
           body: newUser,
         });
