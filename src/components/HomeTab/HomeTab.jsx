@@ -96,7 +96,7 @@ export default function HomeTab() {
             <Td>oil</Td>
             <Td>1000</Td>
             <Td>13900</Td>
-          </Tr>{' '}
+          </Tr>
           <Tr>
             <Td>07.01.19</Td>
             <Td>-</Td>
@@ -104,7 +104,7 @@ export default function HomeTab() {
             <Td>vegetables</Td>
             <Td>280</Td>
             <Td>13870</Td>
-          </Tr>{' '}
+          </Tr>
           <Tr>
             <Td>07.01.19</Td>
             <Td>+</Td>

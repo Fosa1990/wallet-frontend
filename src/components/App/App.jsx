@@ -62,8 +62,7 @@ export default function App() {
         <Loader />
         <Header />
         <Navigation />
-        <HomeTab></HomeTab>
-      </Suspense>
+             </Suspense>
     </>
   );
 }
