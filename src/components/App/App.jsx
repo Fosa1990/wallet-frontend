@@ -11,8 +11,12 @@ import PublicRoute from '../Router/PublicRoute/PublicRoute';
 //import  useFetchCurrentUserQuery  from ///
 //  must  be  lazy  loading
 
+// const Login = lazy(() =>
+//   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
+// );
+
 const Login = lazy(() =>
-  import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
+  import('../LoginForm' /* webpackChunkName: "Login" */),
 );
 const Dashboard = lazy(() =>
   import('../../pages/DashBoardPage' /* webpackChunkName: "DashBoard" */),
@@ -23,7 +27,6 @@ const Dashboard = lazy(() =>
 const Registration = lazy(() =>
   import('../RegistrationForm' /* webpackChunkName: "Registration" */),
 );
-
 
 /// TO  DO  public and protected  routes
 
@@ -38,17 +41,27 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="diagram/*" element={<Dashboard />} />
-          <Route path="registration" element={
-            <PublicRoute redirectTo="/" restricted>
-              <Registration />
-            </PublicRoute>} />
+          <Route
+            path="registration"
+            element={
+              <PublicRoute redirectTo="/" restricted>
+                <Registration />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <PublicRoute redirectTo="/" restricted>
+                <Login />
+              </PublicRoute>
+            }
+          />
           <Route path="*" element={<Navigate to="/" replace />} />
-
-          
         </Routes>
         <Loader />
-          <Header />
-          <Navigation />
+        <Header />
+        <Navigation />
       </Suspense>
     </>
   );
