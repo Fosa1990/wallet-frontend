@@ -19,6 +19,7 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
   background-color: #e7eaf2;
+  height: 100vh;
 }
 
 @media screen and (min-width: 768px) {
