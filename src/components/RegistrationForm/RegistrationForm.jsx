@@ -17,14 +17,14 @@ export default function RegistrationForm() {
       .required('E-mail required'),
     password: Yup.string()
       .min(6, 'Password must be at least 6 characters')
-      .max(12, 'Password must be 12 characters or less')
+      .max(16, 'Password must be 16 characters or less')
       .required('Password is required'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Password must match')
       .required('Confirm password is required'),
     name: Yup.string()
       .min(1, regexName, 'Name must be at least 1 character')
-      .max(12, regexName,  'Must be 12 characters or less')
+      .max(12, regexName, 'Must be 12 characters or less')
       .required('Required')
     })
 
