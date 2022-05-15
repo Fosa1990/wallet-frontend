@@ -49,24 +49,12 @@ export default function Select() {
     'November',
     'December',
   ];
-  const years = [
-    '2010',
-    '2011',
-    '2012',
-    '2013',
-    '2014',
-    '2015',
-    '2016',
-    '2017',
-    '2018',
-    '2019',
-    '2020',
-    '2021',
-    '2022',
-    '2023',
-    '2024',
-    '2222',
-  ];
+  let years = [];
+  let yearForSelect = null;
+  for (let i = 1970; i <= 2022; i++) {
+    yearForSelect = i
+    years.push(yearForSelect)
+  }
 
   const optionsMonths = months.map((text, index) => {
     return <option key={index}>{text}</option>;
