@@ -43,6 +43,7 @@ const Th = styled.th`
     // padding-right: 20px;
     border-radius: 0 30px 30px 0;
   }
+
 `;
 
 const Tbody = styled.tbody``;
@@ -67,8 +68,8 @@ export default function HomeTab() {
             <Th>Type</Th>
             <Th>Category</Th>
             <Th>Comment</Th>
-            <Th>Sum</Th>
-            <Th>Balance</Th>
+            <Th>&#8372;&nbsp;Sum</Th>
+            <Th>&#8372;&nbsp;Balance</Th>
           </tr>
         </Thead>
         <Tbody>
@@ -87,7 +88,7 @@ export default function HomeTab() {
             <Td>january bonus</Td>
             <Td>8000</Td>
             <Td>14900</Td>
-          </Tr>{' '}
+          </Tr>
           <Tr>
             <Td>07.01.19</Td>
             <Td>-</Td>
