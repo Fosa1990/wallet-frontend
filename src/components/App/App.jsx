@@ -8,6 +8,7 @@ import Header from '../Header';
 import Navigation from '../Navigation/Navigation';
 import authSelectors from '../../redux/auth';
 import PublicRoute from '../Router/PublicRoute/PublicRoute';
+import ModalAddTransactions from '../ModalAddTransactions/ModalAddTransactions';
 //import  useFetchCurrentUserQuery  from ///
 //  must  be  lazy  loading
 
@@ -62,6 +63,7 @@ export default function App() {
         <Loader />
         <Header />
         <Navigation />
+        <ModalAddTransactions />
       </Suspense>
     </>
   );
