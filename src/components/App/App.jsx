@@ -15,6 +15,8 @@ import PublicRoute from '../Router/PublicRoute/PublicRoute';
 //   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
 // );
 
+import HomeTab from "../HomeTab"
+
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
 );
@@ -60,6 +62,7 @@ export default function App() {
         <Loader />
         <Header />
         <Navigation />
+        <HomeTab></HomeTab>
       </Suspense>
     </>
   );
