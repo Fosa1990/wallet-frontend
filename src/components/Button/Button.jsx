@@ -50,7 +50,7 @@ const StyledButton = styled.button`
 `;
 
 export default function Button(props) {
-  return <StyledButton type="button" {...props} />;
+  return <StyledButton type="submit" {...props} />;
 }
 
 Button.propTypes = {
