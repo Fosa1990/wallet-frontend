@@ -15,7 +15,7 @@ import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
 //   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
 // );
 
-import HomeTab from "../HomeTab"
+import HomeTab from '../HomeTab';
 
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
@@ -39,19 +39,27 @@ export default function App() {
   /// компоненти  по  факту реалізації  потім розставимо  по місцям і  пропишем тут роути
   return (
     <>
-<<<<<<< HEAD
       {isFetching ? (
         <Loader />
       ) : (
         <Suspense fallback={<Loader />}>
           <Routes>
-            <Route path="/" element={<Login />} />
+            {/* <Route path="/" element={<Login />} /> */}
+            {/* <Route path="/" element={<Registration />} /> */}
             <Route path="diagram/*" element={<Dashboard />} />
             <Route
               path="registration"
               element={
                 <PublicRoute redirectTo="/" restricted>
                   <Registration />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <PublicRoute redirectTo="/" restricted>
+                  <Login />
                 </PublicRoute>
               }
             />
@@ -62,36 +70,6 @@ export default function App() {
           <Navigation />
         </Suspense>
       )}
-=======
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          {/* <Route path="/" element={<Login />} /> */}
-          {/* <Route path="/" element={<Registration />} /> */}
-          <Route path="diagram/*" element={<Dashboard />} />
-          <Route
-            path="registration"
-            element={
-              <PublicRoute redirectTo="/" restricted>
-                <Registration />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="login"
-            element={
-              <PublicRoute redirectTo="/" restricted>
-                <Login />
-              </PublicRoute>
-            }
-          />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-        <Loader />
-        <Header />
-        <Navigation />
-        <HomeTab></HomeTab>
-      </Suspense>
->>>>>>> dev
     </>
   );
 }
