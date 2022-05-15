@@ -15,8 +15,6 @@ import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
 //   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
 // );
 
-import HomeTab from '../HomeTab';
-
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
 );
