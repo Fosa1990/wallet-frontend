@@ -6,11 +6,12 @@ import {
   bgTabletWalletCl,
 } from '../../stylesheet/utils/stylesVars';
 
-// убрать цвет фона
+// цвет фона
 
 const Table = styled.table`
-  background-color: lightgrey;
-    border-collapse: collapse;
+  // background-color: lightgrey;
+  background-color: ${bgTabletWalletCl};
+  border-collapse: collapse;
 
   ${size.desktop} {
     width: 715px;
@@ -23,9 +24,9 @@ const Thead = styled.thead`
 `;
 
 const Tr = styled.tr`
-border-bottom: 1px solid #DCDCDF;
-box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);`;
-
+  border-bottom: 1px solid #dcdcdf;
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+`;
 
 const Th = styled.th`
   font: ${circleFont};
@@ -43,7 +44,6 @@ const Th = styled.th`
     // padding-right: 20px;
     border-radius: 0 30px 30px 0;
   }
-
 `;
 
 const Tbody = styled.tbody``;
