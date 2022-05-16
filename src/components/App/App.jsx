@@ -9,6 +9,7 @@ import Navigation from '../Navigation/Navigation';
 import authSelectors from '../../redux/auth';
 import PublicRoute from '../Router/PublicRoute/PublicRoute';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
+import HomeTab from '../HomeTab/HomeTab';
 //  must  be  lazy  loading
 
 // const Login = lazy(() =>
@@ -65,7 +66,8 @@ export default function App() {
           </Routes>
           <Loader />
           <Header />
-          <Navigation />
+            <Navigation />
+            <HomeTab/>
         </Suspense>
       )}
     </>

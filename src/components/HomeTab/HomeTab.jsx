@@ -7,6 +7,7 @@ import {
 } from '../../stylesheet/utils/stylesVars';
 
 import Media from 'react-media';
+import { Fragment } from 'react';
 
 // цвет фона
 
@@ -61,7 +62,8 @@ const Td = styled.td`
 
 export default function HomeTab() {
   return (
-    <div>
+<Media query="(max-width: 768px)">
+      {(matches) => (matches ?  <Fragment><p>Mobile table</p></Fragment> : <Fragment>
       Component: HomeTab
       <Table>
         <Thead>
@@ -116,7 +118,11 @@ export default function HomeTab() {
             <Td>14870</Td>
           </Tr>
         </Tbody>
-      </Table>
-    </div>
+        </Table>
+            </Fragment> )}
+    </Media>
+
+
+        
   );
 }
