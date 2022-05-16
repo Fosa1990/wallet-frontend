@@ -6,6 +6,8 @@ import {
   bgTabletWalletCl,
 } from '../../stylesheet/utils/stylesVars';
 
+import Media from 'react-media';
+
 // цвет фона
 
 const Table = styled.table`
