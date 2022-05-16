@@ -15,36 +15,35 @@ const MainWrap = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  /* padding: 15px 20px; */
-  /* background-color: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(50px); */
-  /* flex-grow: 1; */
-  height: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(50px);
+  flex-grow: 1;
+
   ${size.tablet} {
     padding: 32px 32px;
+    justify-content: start;
   }
   ${size.desktop} {
     padding: 0 16px;
     flex-direction: row;
-    /* position: relative; */
+    position: relative;
   }
 `;
 const SideBar = styled.div`
   ${size.tablet} {
-    /* margin-bottom: 15px; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* align-items: flex-start;
-    justify-content: flex-start; */
+    justify-content: start;
   }
 
   ${size.desktop} {
-    padding-right: 69px;
-    /* margin-bottom: 15px; */
     display: flex;
+    padding-right: 69px;
+    padding-top: 40px;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: start;
+    align-items: flex-start;
     border-right: 1px solid #e7e5f2;
     /* box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
       1px 0px 0px rgba(255, 255, 255, 0.6); */
@@ -52,13 +51,17 @@ const SideBar = styled.div`
 `;
 const TabWrap = styled.div`
   display: flex;
-  justify-content: center;
+  ${size.desktop} {
+    padding-left: 69px;
+    padding-top: 40px;
+  }
 `;
 const MobSidebar = styled.div`
   /* display: flex; */
 `;
 
 const DashboardPage = () => {
+  ///  при загрузці  треба  доставати транзакції щоб їх  рендерити в  Hometab
   return (
     <>
       <Header />
@@ -66,8 +69,8 @@ const DashboardPage = () => {
         <SideBar>
           <MobSidebar>
             <Navigation />
-            <Balance />
-            {/* <Media query="(min-width: 768px)" render={() => <Balance />} /> */}
+            {/* <Balance /> */}
+            <Media query="(min-width: 768px)" render={() => <Balance />} />
           </MobSidebar>
           <Media query="(min-width: 768px)" render={() => <Currency />} />
         </SideBar>
@@ -80,8 +83,16 @@ const DashboardPage = () => {
             <Route
               path="currency"
               element={
-                <Currency />
-                // <Media query="(max-width: 768px)" render={() => <Currency />} />
+                <>
+                  <Media
+                    query="(min-width: 768px)"
+                    render={() => <Navigate to="/dashboard/home" />}
+                  />
+                  <Media
+                    query="(max-width: 767px)"
+                    render={() => <Currency />}
+                  />
+                </>
               }
             />
           </Routes>

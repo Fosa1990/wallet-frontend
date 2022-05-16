@@ -81,7 +81,6 @@ const Link = styled(NavLink)`
   }
   ///change icon  fill on hover  /  active ????
   &.active ${NavIcon} {
-    color: red;
     /* font-weight: 700; */
     /* & path {
     fill: #6e78e8;
@@ -103,7 +102,7 @@ export default function Navigation() {
           render={() => <NavText>Home</NavText>}
         />
       </Link>
-      <Link to="/diagram">
+      <Link to="diagram">
         <NavIcon src={diagram} />
         <Media
           query="(min-width: 768px)"
@@ -113,7 +112,7 @@ export default function Navigation() {
       <Media
         query="(max-width: 767px)"
         render={() => (
-          <Link to="/currency">
+          <Link to="currency">
             <NavIcon src={currency} />
           </Link>
         )}

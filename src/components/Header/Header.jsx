@@ -109,7 +109,7 @@ export default function Header() {
 
   return (
     <StyledHeader>
-      <Logo to="/">
+      <Logo to="/dashboard">
         <LogoIcon src={logo} />
         <Title>Wallet</Title>
       </Logo>
