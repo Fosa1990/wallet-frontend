@@ -2,13 +2,13 @@ import styled from 'styled-components';
 import Media from 'react-media';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { size } from '../stylesheet/utils/stylesVars';
-import Header from '../components/Header';
-import HomeTab from '../components/HomeTab';
-import DiagramTab from '../components/DiagramTab';
-import Currency from '../components/Currency';
-import Navigation from '../components/Navigation';
-import Balance from '../components/Balance';
+import { size } from '../../../stylesheet/utils/stylesVars';
+import Header from '../../Header';
+import HomeTab from '../../HomeTab';
+import DiagramTab from '../../DiagramTab';
+import Currency from '../../Currency';
+import Navigation from '../../Navigation';
+import Balance from '../../Balance';
 
 const MainWrap = styled.div`
   display: flex;
