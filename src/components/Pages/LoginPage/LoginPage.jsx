@@ -6,6 +6,7 @@ import imgLogin from '../../../images/frame-login.png';
 import imgLoginBest from '../../../images/frame-login@2x.png';
 
 export default function LoginPage() {
+  console.log('==LOGIN==');
   return (
     <>
       <ContainerAuth

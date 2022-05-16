@@ -5,6 +5,7 @@ import imgRegisterTabBest from '../../../images/frame-register-tablet@2x.png';
 import imgRegister from '../../../images/frame-register.png';
 import imgRegisterBest from '../../../images/frame-register@2x.png';
 export default function RegistrationPage() {
+  console.log('==REGIN==');
   return (
     <>
       <ContainerAuth

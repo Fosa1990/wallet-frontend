@@ -24,7 +24,8 @@ export default function RegistrationForm() {
 
   const validate = Yup.object({
     email: Yup.string()
-      .email(regexEmail, 'E-mail is invalid')
+      .matches(regexEmail, 'Email is not valid')
+      // .email(regexEmail, 'E-mail is invalid')
       .required('E-mail required'),
     password: Yup.string()
       .min(6, 'Password must be at least 6 characters')

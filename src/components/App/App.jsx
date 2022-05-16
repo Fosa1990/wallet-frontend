@@ -7,8 +7,7 @@ import Loader from '../Loader';
 import Header from '../Header';
 import Navigation from '../Navigation/Navigation';
 import authSelectors from '../../redux/auth';
-import PublicRoute from '../Router/PublicRoute/PublicRoute';
-import PrivateRoute from '../Router/PrivateRoute/PrivateRoute';
+import { PublicRoute, PrivateRoute } from '../Router';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
 
 import HomeTab from '../HomeTab';
@@ -21,6 +20,9 @@ const Dashboard = lazy(() =>
 );
 const Registration = lazy(() =>
   import('../../pages/RegistrationPage' /* webpackChunkName: "Registration" */),
+);
+const HomePage = lazy(() =>
+  import('../../pages/HomePage' /* webpackChunkName: "Registration" */),
 );
 
 /// TO  DO  public and protected  routes
@@ -40,30 +42,37 @@ export default function App() {
       ) : (
         <Suspense fallback={<Loader />}>
           <Routes>
-            <Route
-              path="dashboard/*"
-              element={
-                // <PrivateRoute redirectTo="/">
-                <Dashboard />
-                // </PrivateRoute>
-              }
-            />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/home" element={<HomePage />} />
+
             <Route
               path="registration"
               element={
-                <PublicRoute redirectTo="/" restricted>
+                <PublicRoute redirectTo="/login" restricted>
+                  {/* <PublicRoute redirectTo="/login" restricted> */}
                   <Registration />
                 </PublicRoute>
               }
             />
+
             <Route
-              path="/"
+              path="login"
               element={
-                <PublicRoute redirectTo="/" restricted>
+                <PublicRoute redirectTo="/home" restricted>
                   <Login />
                 </PublicRoute>
               }
             />
+
+            <Route
+              path="dashboard/*"
+              element={
+                <PrivateRoute redirectTo="/login">
+                  <Dashboard />
+                </PrivateRoute>
+              }
+            />
+
             {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
           </Routes>
         </Suspense>

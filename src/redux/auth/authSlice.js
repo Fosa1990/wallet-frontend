@@ -15,18 +15,19 @@ const authSlice = createSlice({
     builder.addMatcher(
       authApi.endpoints.registerUser.matchFulfilled,
       (state, { payload }) => {
-
-        console.log('payload!!!!!', payload);
+        console.log('__registerUser.payload: ', payload);
 
         state.user = payload.payload.user;
-        state.token = payload.payload.token;
-        state.isLoggedIn = true;
+        // state.token = payload.payload.token;
+        // state.isLoggedIn = true;
+        state.isLoggedIn = false;
       },
     );
 
     builder.addMatcher(
       authApi.endpoints.loginUser.matchFulfilled,
       (state, { payload }) => {
+        console.log('__loginUser.payload: ', payload);
         state.user = payload.payload.user;
         state.token = payload.payload.token;
         state.isLoggedIn = true;
@@ -36,6 +37,8 @@ const authSlice = createSlice({
     builder.addMatcher(
       authApi.endpoints.fetchCurrentUser.matchFulfilled,
       (state, { payload }) => {
+        console.log('__fetchCurrentUser.payload: ', payload);
+        state.token = payload.payload.token;
         state.user = payload.payload.user;
         state.isLoggedIn = true;
       },
