@@ -3,11 +3,10 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-<<<<<<< HEAD
+
     baseUrl: 'https://amazing-wallet.herokuapp.com/api/',
-=======
-    baseUrl: 'http://localhost:8081/api/',
->>>>>>> dev
+    // baseUrl: 'http://localhost:8081/api/',
+
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
 
