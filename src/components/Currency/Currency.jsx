@@ -19,6 +19,13 @@ axios.defaults.baseURL = baseUrl;
 
 const Wrapper = styled.div`
   position: relative;
+  margin-top: 32px;
+  ${size.tablet} {
+    margin-top: 0px;
+  }
+  ${size.desktop} {
+    margin-top: 32px;
+  }
 `;
 
 const Table = styled.table`
@@ -128,7 +135,10 @@ export default function Currency() {
   }, []);
 
   function getExchangeRates() {
-    return axios.get(baseUrl).then(res => res.data).catch(error=>console.log(error.message));
+    return axios
+      .get(baseUrl)
+      .then(res => res.data)
+      .catch(error => console.log(error.message));
   }
 
   return (

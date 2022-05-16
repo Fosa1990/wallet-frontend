@@ -15,7 +15,7 @@ import PublicRoute from '../Router/PublicRoute/PublicRoute';
 //   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
 // );
 
-import HomeTab from "../HomeTab"
+import HomeTab from '../HomeTab';
 
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
@@ -38,9 +38,9 @@ export default function App() {
     <>
       <Suspense fallback={<Loader />}>
         <Routes>
-          {/* <Route path="/" element={<Login />} /> */}
-          {/* <Route path="/" element={<Registration />} /> */}
-          <Route path="diagram/*" element={<Dashboard />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Registration />} />
+          <Route path="dashboard/*" element={<Dashboard />} />
           <Route
             path="registration"
             element={
@@ -57,12 +57,12 @@ export default function App() {
               </PublicRoute>
             }
           />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
         </Routes>
-        <Loader />
-        <Header />
+        {/* <Loader /> */}
+        {/* <Header />
         <Navigation />
-        <HomeTab></HomeTab>
+        <HomeTab></HomeTab> */}
       </Suspense>
     </>
   );
