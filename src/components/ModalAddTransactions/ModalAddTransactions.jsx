@@ -24,7 +24,7 @@ const ToggleSwitch = () => {
   return (
     <Label>
       <Span color={!checked ? accentDisableCl : accentPositiveCl}>Доход</Span>
-      <Checkbox
+      <input
         checked={checked}
         type="checkbox"
         onChange={handleChange}
@@ -43,6 +43,9 @@ const ToggleSwitch = () => {
 
 export default function ModalAddTransactions() {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [sumTransaction, setSumTransaction] = useState();
+  const [comment, setComment] = useState();
+  console.log(selectedDate);
 
   const notify = () =>
     toast.error('Error, somesing go wrong', { autoClose: 3000 });
@@ -55,7 +58,16 @@ export default function ModalAddTransactions() {
       <Form>
         <ToggleSwitch />
         <Label>
-          <input type="text" />
+          <Input
+            // type="text"
+            // className={s.name}
+            type="email"
+            name="email"
+            value={sumTransaction}
+            onChange={({ currentTarget: { numb } }) => setSumTransaction(numb)}
+            placeholder="0.00"
+            required
+          />
         </Label>
         <Label>
           <Datetime
@@ -64,8 +76,7 @@ export default function ModalAddTransactions() {
             dateFormat={'DD.MM.YYYY'}
             value={selectedDate}
             className={'datetime-picker__wrapper'}
-            onChange={date => setSelectedDate(date)}
-            // inputProps={inputProps}
+            onChange={date => setSelectedDate(date?._d)}
           />
         </Label>
         <Label>
@@ -120,9 +131,7 @@ const Switch = styled.div`
   padding: 4px;
   transition: 300ms all;
 `;
-
-const Checkbox = styled.input.attrs({ type: 'checkbox' })``;
-
+// const Checkbox = styled.input.attrs({ type: 'checkbox' })``;
 const Svg = styled.svg`
   position: absolute;
   width: 20px;
@@ -137,21 +146,14 @@ const Svg = styled.svg`
     p.checked ? ' translate(0, -50%)' : 'translate(100%, -50%)'};
   background-color: ${p => (p.checked ? accentPositiveCl : accentNegativeCl)};
 `;
+const InputDefault = styled.input`
+  border: none;
+  width: 280px;
+  border-bottom: 1px solid #000000;
+`;
+const Input = styled.input.attrs(props => ({ styled: InputDefault }))``;
 const DatePicker = styled.div`
   .react-datetime-picker__wrapper {
     border: 1px solid red;
   }
 `;
-
-// &:before {
-//   transition: 300ms all;
-//   content: '';
-//   position: absolute;
-//   width: 44px;
-//   height: 44px;
-//   border-radius: 44px;
-//   top: 50%;
-//   left: -4px;
-//   background-color: ${accentPositiveCl};
-//   transform: translate(0, -50%);
-// }
