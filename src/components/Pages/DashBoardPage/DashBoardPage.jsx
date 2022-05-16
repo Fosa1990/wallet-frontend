@@ -55,7 +55,8 @@ export default function DashBoardPage() {
 const MainWrap = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
   width: 100%;
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(50px);
@@ -72,11 +73,14 @@ const MainWrap = styled.div`
   }
 `;
 const SideBar = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
   ${size.tablet} {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    justify-content: start;
+    /* justify-content: start; */
   }
 
   ${size.desktop} {
@@ -93,11 +97,14 @@ const SideBar = styled.div`
 `;
 const TabWrap = styled.div`
   display: flex;
+  justify-content: center;
   ${size.desktop} {
     padding-left: 69px;
     padding-top: 40px;
   }
 `;
 const MobSidebar = styled.div`
-  /* display: flex; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 `;

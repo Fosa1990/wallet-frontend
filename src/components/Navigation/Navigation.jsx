@@ -68,6 +68,7 @@ const NavWrap = styled.div`
   display: flex;
   justify-content: ${props => props.justify || 'space-evenly'};
   margin-top: 15px;
+  margin-bottom: 31px;
   ${size.tablet} {
     flex-direction: column;
     justify-content: ${props => props.justify || 'start'};
