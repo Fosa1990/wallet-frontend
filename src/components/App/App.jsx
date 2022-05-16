@@ -8,13 +8,12 @@ import Header from '../Header';
 import Navigation from '../Navigation/Navigation';
 import authSelectors from '../../redux/auth';
 import PublicRoute from '../Router/PublicRoute/PublicRoute';
+import PrivateRoute from '../Router/PrivateRoute/PrivateRoute';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
 
 //  must  be  lazy  loading
 
-// const Login = lazy(() =>
-//   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
-// );
+import HomeTab from '../HomeTab';
 
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
@@ -43,9 +42,14 @@ export default function App() {
       ) : (
         <Suspense fallback={<Loader />}>
           <Routes>
-            {/* <Route path="/" element={<Login />} /> */}
-            {/* <Route path="/" element={<Registration />} /> */}
-            <Route path="diagram/*" element={<Dashboard />} />
+            <Route
+              path="dashboard/*"
+              element={
+                <PrivateRoute redirectTo="/">
+                  <Dashboard />
+                </PrivateRoute>
+              }
+            />
             <Route
               path="registration"
               element={
@@ -55,15 +59,16 @@ export default function App() {
               }
             />
             <Route
-              path="login"
+              path="/"
               element={
                 <PublicRoute redirectTo="/" restricted>
                   <Login />
                 </PublicRoute>
               }
             />
-            <Route path="*" element={<Navigate to="/" replace />} />
+            {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
           </Routes>
+
           <Loader />
           <Header />
             <Navigation />

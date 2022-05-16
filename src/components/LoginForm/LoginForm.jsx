@@ -5,6 +5,16 @@ import { TextField } from '../RegistrationForm/TextField';
 import * as Yup from 'yup';
 import { useLoginUserMutation } from '../../redux/auth/authReduce';
 import { regexEmail } from '../../helpers/regex';
+import Button from '../Button/Button';
+import styled from 'styled-components';
+import {
+  accentPositiveCl,
+  accentBgCl,
+  borderBtnCl,
+  size,
+  poppinsFont,
+  accentTextCl,
+} from '../../stylesheet/utils/stylesVars';
 
 export default function LoginForm() {
   const [register] = useLoginUserMutation();
@@ -27,7 +37,6 @@ export default function LoginForm() {
       }}
       validationSchema={validate}
       onSubmit={(values, onSubmitProps) => {
-        // console.log(values);
         register(values);
         onSubmitProps.resetForm();
       }}
@@ -37,8 +46,14 @@ export default function LoginForm() {
           <Form>
             <TextField label="E-mail" name="email" type="email" />
             <TextField label="Password" name="password" type="password" />
-            <Link to="/registration">Sign up</Link>
-            <button type="submit">Login</button>
+            {/* <ButtonWrapper> */}
+            <Button primary color={accentBgCl} background={accentPositiveCl}>
+              Login
+            </Button>
+            <Button outlined color={borderBtnCl}>
+              <Link to="/registration">Sign up</Link>
+            </Button>
+            {/* </ButtonWrapper> */}
           </Form>
         </div>
       )}

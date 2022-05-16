@@ -82,15 +82,14 @@ const Td = styled.td`
   color: white;
   padding-left: 20px;
   padding-right: 20px;
-}
 
   :not(:first-child) {
     text-align: center;
   }
 
-    ${size.desktop} {
-  padding-top: 20px;
-  padding-bottom: 4px;
+  ${size.desktop} {
+    padding-top: 20px;
+    padding-bottom: 4px;
   }
 `;
 
@@ -128,7 +127,10 @@ export default function Currency() {
   }, []);
 
   function getExchangeRates() {
-    return axios.get(baseUrl).then(res => res.data).catch(error=>console.log(error.message));
+    return axios
+      .get(baseUrl)
+      .then(res => res.data)
+      .catch(error => console.log(error.message));
   }
 
   return (
