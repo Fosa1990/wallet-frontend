@@ -1,16 +1,11 @@
 import styled from 'styled-components';
 import { size } from '../../stylesheet/utils/stylesVars';
-import {
-  circleFont,
-  accentBgCl,
-  bgTabletWalletCl,
-} from '../../stylesheet/utils/stylesVars';
+import { circleFont, accentBgCl } from '../../stylesheet/utils/stylesVars';
 
 import Media from 'react-media';
 import { Fragment } from 'react';
 
 const Table = styled.table`
-  background-color: ${bgTabletWalletCl};
   border-collapse: collapse;
 
   ${size.tablet} {
@@ -32,7 +27,7 @@ const MobileTable = styled.table`
     width: 280px;
     height: 282px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     border-left: 5px solid blue;
   }
 `;
@@ -55,7 +50,6 @@ const Th = styled.th`
   font: ${circleFont};
   font-size: 18px;
   font-weight: 700;
-  padding: 16px 0 15px;
 
   ${size.mobile} {
     text-align: left;
@@ -63,6 +57,7 @@ const Th = styled.th`
   }
 
   ${size.tablet} {
+    padding: 16px 0 15px;
     text-align: center;
     :first-child {
       border-radius: 30px 0 0 30px;
@@ -138,8 +133,8 @@ export default function HomeTab() {
                   <Th>Type</Th>
                   <Th>Category</Th>
                   <Th>Comment</Th>
-                  <Th>&#8372;&nbsp;Sum</Th>
-                  <Th>&#8372;&nbsp;Balance</Th>
+                  <Th>Sum</Th>
+                  <Th>Balance</Th>
                 </tr>
               </Thead>
               <Tbody>
@@ -191,3 +186,5 @@ export default function HomeTab() {
     </Media>
   );
 }
+
+// &#8372;&nbsp; спецсимвол гривна+пробел
