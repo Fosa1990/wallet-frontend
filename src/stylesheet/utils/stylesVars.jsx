@@ -23,6 +23,8 @@ export const timingFunc = 'cubic-bezier(0.4, 0, 0.2, 1)';
 //breakpoints
 export const size = {
   mobile: '@media screen and (min-width: 320px)',
+  mobileMax: '@media screen and (min-width: 767px)',
   tablet: '@media screen and (min-width: 768px)',
+  tabletMax: '@media screen and (min-width: 1279px)',
   desktop: '@media screen and (min-width: 1280px)',
 };
