@@ -2,13 +2,12 @@ import React from "react"
 import { useField, ErrorMessage } from "formik"
 import styled from "styled-components"
 
-
 export const TextField = ({label, ...props}) => {
     const [field, meta] = useField(props)
-    // console.log(field, meta);
 
 
     return (
+        <>
         <div>
             <Label htmlFor={field.name}>{ label}</Label>
             <Input
@@ -16,8 +15,8 @@ export const TextField = ({label, ...props}) => {
                 {...field}{...props}
                 autoComplete='off' />
             <Error><ErrorMessage className="error" component="div" name={field.name} /></Error>
-            
         </div>
+            </>
     )
 
 }
