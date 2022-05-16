@@ -1,53 +1,78 @@
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Datetime from 'react-datetime';
+import Button from '../Button/Button';
 import {
   accentPositiveCl,
+  accentBgCl,
   size,
   accentNegativeCl,
   accentDisableCl,
 } from '../../stylesheet/utils/stylesVars';
-import styled from 'styled-components';
+import styled, { GlobalStyle } from 'styled-components';
 import sprite from '../../images/svg/sprite.svg';
+import 'react-toastify/dist/ReactToastify.css';
+import 'react-datetime/css/react-datetime.css';
 
 const ToggleSwitch = () => {
   const [checked, setChecked] = useState(false);
 
   const handleChange = e => {
     setChecked(e.target.checked);
-    console.log(e);
   };
 
   return (
     <Label>
-      <AddSpan color={checked ? accentDisableCl : accentPositiveCl}>
-        Доход
-      </AddSpan>
-      <Input checked={checked} type="checkbox" onChange={handleChange} />
-      <Switch />
-      <RemoveSpan color={checked ? accentNegativeCl : accentDisableCl}>
-        Расход
-      </RemoveSpan>
+      <Span color={!checked ? accentDisableCl : accentPositiveCl}>Доход</Span>
+      <Checkbox
+        checked={checked}
+        type="checkbox"
+        onChange={handleChange}
+        className="visually-hidden"
+      />
+      <Switch>
+        <Svg checked={checked}>
+          {checked && <use href={`${sprite}#icon-add`} />}
+          {!checked && <use href={`${sprite}#icon-remove`} />}
+        </Svg>
+      </Switch>
+      <Span color={checked ? accentDisableCl : accentNegativeCl}>Расход</Span>
     </Label>
   );
 };
 
 export default function ModalAddTransactions() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   const notify = () =>
     toast.error('Error, somesing go wrong', { autoClose: 3000 });
+
   return (
     <div>
+      <ToastContainer />
       <Title>Добавить транзакцию</Title>
       {/* <button onClick={notify}>Notify!</button> */}
-      <ToastContainer />
       <Form>
         <ToggleSwitch />
-        <label>
+        <Label>
           <input type="text" />
-        </label>
-        <label>
+        </Label>
+        <Label>
+          <Datetime
+            timeFormat={false}
+            closeOnSelect={true}
+            dateFormat={'DD.MM.YYYY'}
+            value={selectedDate}
+            className={'datetime-picker__wrapper'}
+            onChange={date => setSelectedDate(date)}
+            // inputProps={inputProps}
+          />
+        </Label>
+        <Label>
           <textarea name="" id="" cols="30" rows="10"></textarea>
-        </label>
+        </Label>
+        <Button primary>ДОБАВИТЬ</Button>
+        <Button outlined>ОТМЕНА</Button>
       </Form>
     </div>
   );
@@ -60,70 +85,73 @@ const Title = styled.h2`
   line-height: 36px;
   text-align: center;
   height: 31px;
-  margin-bottom: 40px;
-
-  //  ${size.tablet} {
-  //    right: 40px;
-  //    bottom: 40px;
-  //  }
 `;
 const Form = styled.form`
+  font-family: 'Circe';
+  font-size: 18px;
+  font-style: normal;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Circe';
-  font-style: normal;
+  margin: 40px 0;
 `;
-
 const Label = styled.label`
   display: flex;
   align-items: center;
   gap: 20px;
-  font-weight: 700;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 27px;
   cursor: pointer;
   margin-bottom: 40px;
 `;
-const AddSpan = styled.span`
+const Span = styled.span`
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
   color: ${props => props.color};
 `;
-const RemoveSpan = styled.span`
-  color: ${props => props.color};
-`;
-
 const Switch = styled.div`
   position: relative;
-  width: 60px;
-  height: 28px;
-  background: #b3b3b3;
-  border-radius: 32px;
+  width: 80px;
+  height: 40px;
+  background: ${accentBgCl};
+  border-radius: 30px;
+  border: 1px solid ${accentDisableCl};
   padding: 4px;
   transition: 300ms all;
-
-  &:before {
-    transition: 300ms all;
-    content: '';
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    border-radius: 44px;
-    top: 50%;
-    left: 4px;
-    background: white;
-    transform: translate(0, -50%);
-  }
 `;
 
-const Input = styled.input`
-  opacity: 0;
+const Checkbox = styled.input.attrs({ type: 'checkbox' })``;
+
+const Svg = styled.svg`
   position: absolute;
-
-  &:checked + ${Switch} {
-    background: green;
-
-    &:before {
-      transform: translate(32px, -50%);
-    }
+  width: 20px;
+  height: 20px;
+  padding: 12px;
+  border-radius: 44px;
+  left: -4px;
+  top: 50%;
+  box-sizing: content-box;
+  transition: 300ms transform;
+  transform: ${p =>
+    p.checked ? ' translate(0, -50%)' : 'translate(100%, -50%)'};
+  background-color: ${p => (p.checked ? accentPositiveCl : accentNegativeCl)};
+`;
+const DatePicker = styled.div`
+  .react-datetime-picker__wrapper {
+    border: 1px solid red;
   }
 `;
+
+// &:before {
+//   transition: 300ms all;
+//   content: '';
+//   position: absolute;
+//   width: 44px;
+//   height: 44px;
+//   border-radius: 44px;
+//   top: 50%;
+//   left: -4px;
+//   background-color: ${accentPositiveCl};
+//   transform: translate(0, -50%);
+// }
