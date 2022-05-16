@@ -16,6 +16,38 @@ import logo from '../../images/svg/logo.svg';
 import exit from '../../images/svg/exit.svg';
 /// підключити компонент модалки на логаут
 
+export default function Header() {
+  // const isModalLogoutOpen =  useSelector(modalSelectors.getLogoutOpen)
+  const userName = useSelector(authSelectors.getUserName);
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    //     dispatch(
+    //        action  which  sets isModalLogoutOpen =  true
+    //    )
+  };
+
+  return (
+    <StyledHeader>
+      <Logo to="/dashboard">
+        <LogoIcon src={logo} />
+        <Title>Wallet</Title>
+      </Logo>
+      <UserInfo>
+        <UserName>{userName || 'User'} </UserName>
+        <LogoutBtn type="button" onClick={handleClick}>
+          {/* <LogoutIcon /> */}
+          <ExitIcon src={exit} />
+          <Media
+            query="(min-width: 768px)"
+            render={() => <span>Logout</span>}
+          />
+        </LogoutBtn>
+      </UserInfo>
+      {/* {isModalLogoutOpen && <ModalLogout/>} */}
+    </StyledHeader>
+  );
+}
+
 const StyledHeader = styled.div`
   display: flex;
   justify-content: space-between;
@@ -97,34 +129,3 @@ const UserName = styled.p`
     border-right: 1px solid ${textPlcholderCl};
   }
 `;
-export default function Header() {
-  // const isModalLogoutOpen =  useSelector(modalSelectors.getLogoutOpen)
-  const userName = useSelector(authSelectors.getUserName);
-  const dispatch = useDispatch();
-  const handleClick = () => {
-    //     dispatch(
-    //        action  which  sets isModalLogoutOpen =  true
-    //    )
-  };
-
-  return (
-    <StyledHeader>
-      <Logo to="/dashboard">
-        <LogoIcon src={logo} />
-        <Title>Wallet</Title>
-      </Logo>
-      <UserInfo>
-        <UserName>{userName || 'User'} </UserName>
-        <LogoutBtn type="button" onClick={handleClick}>
-          {/* <LogoutIcon /> */}
-          <ExitIcon src={exit} />
-          <Media
-            query="(min-width: 768px)"
-            render={() => <span>Logout</span>}
-          />
-        </LogoutBtn>
-      </UserInfo>
-      {/* {isModalLogoutOpen && <ModalLogout/>} */}
-    </StyledHeader>
-  );
-}

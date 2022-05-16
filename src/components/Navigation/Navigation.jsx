@@ -13,6 +13,35 @@ import currency from '../../images/svg/currency.svg';
 // import sprite from '../../images/svg/sprite.svg';
 // import Icon from '../Icon';
 
+export default function Navigation() {
+  return (
+    <NavWrap>
+      <Link to="home">
+        <NavIcon src={home} />
+        <Media
+          query="(min-width: 768px)"
+          render={() => <NavText>Home</NavText>}
+        />
+      </Link>
+      <Link to="diagram">
+        <NavIcon src={diagram} />
+        <Media
+          query="(min-width: 768px)"
+          render={() => <NavText>DashBoard</NavText>}
+        />
+      </Link>
+      <Media
+        query="(max-width: 767px)"
+        render={() => (
+          <Link to="currency">
+            <NavIcon src={currency} />
+          </Link>
+        )}
+      />
+    </NavWrap>
+  );
+}
+
 // const StyledIcon = styled(Icon)`
 //       border-radius: 15px;
 //       margin-right: 25px;
@@ -91,32 +120,3 @@ const Link = styled(NavLink)`
     font-weight: 700;
   }
 `;
-
-export default function Navigation() {
-  return (
-    <NavWrap>
-      <Link to="home">
-        <NavIcon src={home} />
-        <Media
-          query="(min-width: 768px)"
-          render={() => <NavText>Home</NavText>}
-        />
-      </Link>
-      <Link to="diagram">
-        <NavIcon src={diagram} />
-        <Media
-          query="(min-width: 768px)"
-          render={() => <NavText>DashBoard</NavText>}
-        />
-      </Link>
-      <Media
-        query="(max-width: 767px)"
-        render={() => (
-          <Link to="currency">
-            <NavIcon src={currency} />
-          </Link>
-        )}
-      />
-    </NavWrap>
-  );
-}
