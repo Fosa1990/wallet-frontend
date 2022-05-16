@@ -10,6 +10,48 @@ import Currency from '../../Currency';
 import Navigation from '../../Navigation';
 import Balance from '../../Balance';
 
+export default function DashBoardPage() {
+  ///  при загрузці  треба  доставати транзакції щоб їх  рендерити в  Hometab
+  return (
+    <>
+      <Header />
+      <MainWrap>
+        <SideBar>
+          <MobSidebar>
+            <Navigation />
+            {/* <Balance /> */}
+            <Media query="(min-width: 768px)" render={() => <Balance />} />
+          </MobSidebar>
+          <Media query="(min-width: 768px)" render={() => <Currency />} />
+        </SideBar>
+
+        <TabWrap>
+          <Routes>
+            <Route index element={<HomeTab />} />
+            <Route path="home" element={<HomeTab />} />
+            <Route path="diagram" element={<DiagramTab />} />
+            <Route
+              path="currency"
+              element={
+                <>
+                  <Media
+                    query="(min-width: 768px)"
+                    render={() => <Navigate to="/dashboard/home" />}
+                  />
+                  <Media
+                    query="(max-width: 767px)"
+                    render={() => <Currency />}
+                  />
+                </>
+              }
+            />
+          </Routes>
+        </TabWrap>
+      </MainWrap>
+    </>
+  );
+}
+
 const MainWrap = styled.div`
   display: flex;
   flex-direction: column;
@@ -59,47 +101,3 @@ const TabWrap = styled.div`
 const MobSidebar = styled.div`
   /* display: flex; */
 `;
-
-const DashboardPage = () => {
-  ///  при загрузці  треба  доставати транзакції щоб їх  рендерити в  Hometab
-  return (
-    <>
-      <Header />
-      <MainWrap>
-        <SideBar>
-          <MobSidebar>
-            <Navigation />
-            {/* <Balance /> */}
-            <Media query="(min-width: 768px)" render={() => <Balance />} />
-          </MobSidebar>
-          <Media query="(min-width: 768px)" render={() => <Currency />} />
-        </SideBar>
-
-        <TabWrap>
-          <Routes>
-            <Route index element={<HomeTab />} />
-            <Route path="home" element={<HomeTab />} />
-            <Route path="diagram" element={<DiagramTab />} />
-            <Route
-              path="currency"
-              element={
-                <>
-                  <Media
-                    query="(min-width: 768px)"
-                    render={() => <Navigate to="/dashboard/home" />}
-                  />
-                  <Media
-                    query="(max-width: 767px)"
-                    render={() => <Currency />}
-                  />
-                </>
-              }
-            />
-          </Routes>
-        </TabWrap>
-      </MainWrap>
-    </>
-  );
-};
-
-export default DashboardPage;
