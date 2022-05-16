@@ -3,7 +3,10 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:8081/api/',
+
+    baseUrl: 'https://amazing-wallet.herokuapp.com/api',
+   // baseUrl: 'http://localhost:8081/api/',
+
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
 
@@ -18,7 +21,7 @@ export const authApi = createApi({
     registerUser: builder.mutation({
       queryFn: async (newUser, queryApi, extraOptions, baseQuery) => {
         const res = await baseQuery({
-          url: 'auth/signup',
+          url: '/auth/signup',
           method: 'POST',
           body: newUser,
         });
@@ -30,7 +33,7 @@ export const authApi = createApi({
     loginUser: builder.mutation({
       queryFn: async (userData, queryApi, extraOptions, baseQuery) => {
         const res = await baseQuery({
-          url: 'auth/signin',
+          url: '/auth/signin',
           method: 'POST',
           body: userData,
         });
@@ -42,7 +45,7 @@ export const authApi = createApi({
     fetchCurrentUser: builder.query({
       queryFn: async (arg, queryApi, extraOptions, baseQuery) => {
         const res = await baseQuery({
-          url: 'users/current',
+          url: '/users/current',
         });
         return res;
       },
