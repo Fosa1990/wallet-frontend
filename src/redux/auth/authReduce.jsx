@@ -4,6 +4,7 @@ export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:8081/api',
+
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
 
