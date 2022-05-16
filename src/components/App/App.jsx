@@ -45,9 +45,9 @@ export default function App() {
             <Route
               path="dashboard/*"
               element={
-                <PrivateRoute redirectTo="/">
-                  <Dashboard />
-                </PrivateRoute>
+                // <PrivateRoute redirectTo="/">
+                <Dashboard />
+                // </PrivateRoute>
               }
             />
             <Route
