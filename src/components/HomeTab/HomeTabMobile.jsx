@@ -14,7 +14,7 @@ const MobileTable = styled.table`
 `;
 
 const Tbody = styled.tbody`
-  vertical-align: super;
+  vertical-align: middle;
   width: 100%;
   padding: 0 20px;
 `;
@@ -31,8 +31,7 @@ const Th = styled.th`
   font-size: 18px;
   font-weight: 700;
   text-align: left;
-  //   padding-right: 20px;
-`;
+  `;
 
 const Td = styled.td`
   font: ${circleFont};
