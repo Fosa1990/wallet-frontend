@@ -1,21 +1,15 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+// import { useEffect } from 'react';
 import Modal from '../Modal/Modal';
 import { selectIsModalLogoutOpen } from '../../redux/globalSelectors';
-// import { useEffect } from 'react';
 import './App.css';
 import Loader from '../Loader';
-import Header from '../Header';
-import Navigation from '../Navigation/Navigation';
 import authSelectors from '../../redux/auth';
 import PublicRoute from '../Router/PublicRoute/PublicRoute';
 import PrivateRoute from '../Router/PrivateRoute/PrivateRoute';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
-
-//  must  be  lazy  loading
-
-import HomeTab from '../HomeTab';
 
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
@@ -36,6 +30,7 @@ export default function App() {
   const { isFetching } = useFetchCurrentUserQuery(token, {
     skip: token === null,
   });
+  console.log(isFetching);
 
   /// компоненти  по  факту реалізації  потім розставимо  по місцям і  пропишем тут роути
   return (
@@ -72,10 +67,6 @@ export default function App() {
               />
               {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
             </Routes>
-
-            <Loader />
-            <Header />
-            <Navigation />
           </Suspense>
           {showModalLogout && <Modal />}
         </>
