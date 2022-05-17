@@ -37,9 +37,13 @@ const authSlice = createSlice({
       authApi.endpoints.fetchCurrentUser.matchFulfilled,
       (state, { payload }) => {
         console.log('__fetchCurrentUser.payload: ', payload);
+        console.log(payload.payload);
+        console.log(payload.payload.user);
+
         state.token = payload.payload.token;
         state.user = payload.payload.user;
         state.isLoggedIn = true;
+        state.isFetchingCurrentUser = false;
       },
     );
   },

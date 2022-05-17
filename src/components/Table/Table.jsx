@@ -5,6 +5,42 @@ import {
   accentPositiveCl,
 } from '../../stylesheet/utils/stylesVars';
 
+export default function Table({ transactions, income = 0, expence = 0 }) {
+  return (
+    <div>
+      <TableMain>
+        <Thead>
+          <tr>
+            <th colSpan={2}>Category</th>
+            <th>Sum</th>
+          </tr>
+        </Thead>
+        <tbody>
+          {transactions.map(({ id, color, category, sum }) => (
+            <TableRow key={id}>
+              <TableData>
+                <ColorBlock style={{ backgroundColor: color }}></ColorBlock>
+              </TableData>
+              <TableData>{category}</TableData>
+              <TableData>{sum}</TableData>
+            </TableRow>
+          ))}
+        </tbody>
+        <TableFoot>
+          <TableFootRow>
+            <td colSpan={2}>Expence:</td>
+            <ExpenceValue>{expence}</ExpenceValue>
+          </TableFootRow>
+          <TableFootRow>
+            <td colSpan={2}>Income:</td>
+            <IncomeValue>{income}</IncomeValue>
+          </TableFootRow>
+        </TableFoot>
+      </TableMain>
+    </div>
+  );
+}
+
 const TableMain = styled.table`
   width: 100%;
   border-collapse: collapse;
@@ -41,12 +77,10 @@ const TableData = styled.td`
     padding-right: 20px;
   }
 `;
-
 const TableRow = styled.tr`
   border-bottom: 1px solid #dcdcdf;
   box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
 `;
-
 const ColorBlock = styled.div`
   height: 24px;
   width: 24px;
@@ -76,39 +110,3 @@ const ExpenceValue = styled.td`
 const IncomeValue = styled.td`
   color: ${accentPositiveCl};
 `;
-
-export default function Table({ transactions, income = 0, expence = 0 }) {
-  return (
-    <div>
-      <TableMain>
-        <Thead>
-          <tr>
-            <th colSpan={2}>Category</th>
-            <th>Sum</th>
-          </tr>
-        </Thead>
-        <tbody>
-          {transactions.map(({ id, color, category, sum }) => (
-            <TableRow key={id}>
-              <TableData>
-                <ColorBlock style={{ backgroundColor: color }}></ColorBlock>
-              </TableData>
-              <TableData>{category}</TableData>
-              <TableData>{sum}</TableData>
-            </TableRow>
-          ))}
-        </tbody>
-        <TableFoot>
-          <TableFootRow>
-            <td colSpan={2}>Expence:</td>
-            <ExpenceValue>{expence}</ExpenceValue>
-          </TableFootRow>
-          <TableFootRow>
-            <td colSpan={2}>Income:</td>
-            <IncomeValue>{income}</IncomeValue>
-          </TableFootRow>
-        </TableFoot>
-      </TableMain>
-    </div>
-  );
-}
