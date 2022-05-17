@@ -1,7 +1,5 @@
 import { Registration } from '../components/Pages';
 
-const RegisterPage = () => {
+export default function RegistrationPage() {
   return <Registration />;
-};
-
-export default RegisterPage;
+}
