@@ -24,7 +24,8 @@ export default function RegistrationForm() {
 
   const validate = Yup.object({
     email: Yup.string()
-      .email(regexEmail, 'E-mail is invalid')
+      .matches(regexEmail, 'Email is not valid')
+      // .email(regexEmail, 'E-mail is invalid')
       .required('E-mail required'),
     password: Yup.string()
       .min(6, 'Password must be at least 6 characters')
@@ -122,21 +123,21 @@ const Title = styled.h1`
   }
 `;
 
-const FromStyle = styled.div`
-  // ${size.mobile} {
-  //   width: 320px;
-  //   padding-top: 32px;
-  //   padding-bottom: 36px;
-  //   margin: 0 auto;
-  // }
-  // ${size.desktop} {
-  //   padding-top: 40px;
-  //   bottom: 50%;
-  //   right: 85px;
-  //   transform: translateY(50%);
-  //   margin: 0;
-  // }
-`;
+// const FromStyle = styled.div`
+// ${size.mobile} {
+//   width: 320px;
+//   padding-top: 32px;
+//   padding-bottom: 36px;
+//   margin: 0 auto;
+// }
+// ${size.desktop} {
+//   padding-top: 40px;
+//   bottom: 50%;
+//   right: 85px;
+//   transform: translateY(50%);
+//   margin: 0;
+// }
+// `;
 
 const ButtonWrapper = styled.div`
   display: flex;
