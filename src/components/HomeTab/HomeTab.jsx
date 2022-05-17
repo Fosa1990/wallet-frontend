@@ -1,7 +1,7 @@
 // import styled from 'styled-components';
 // import { size } from '../../stylesheet/utils/stylesVars';
 // import { circleFont, accentBgCl } from '../../stylesheet/utils/stylesVars';
-import React, { useState, useEffect } from 'react';
+import React, { /* useState,*/ useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchFinances } from '../../redux/finances/financesOperations';
 import getFinances from '../../redux/finances/financesSelectors';
@@ -18,7 +18,7 @@ export default function HomeTab() {
     dispatch(fetchFinances());
   }, [dispatch]);
 
-console.log(finances)
+  console.log(finances);
 
   return (
     <Media query="(max-width: 768px)">
