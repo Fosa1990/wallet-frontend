@@ -2,6 +2,38 @@ import styled from 'styled-components';
 // import { size } from '../../stylesheet/utils/stylesVars';
 import { circleFont, accentBgCl } from '../../stylesheet/utils/stylesVars';
 
+export default function HomeTabMobile() {
+  return (
+    <MobileTable>
+      <Tbody>
+        <Tr>
+          <Th>Date</Th>
+          <Td>04.01.19</Td>
+        </Tr>
+        <Tr>
+          <Th>Type</Th>
+          <Td>-</Td>
+        </Tr>
+        <Tr>
+          <Th>Category</Th>
+          <Td>other spend</Td>
+        </Tr>
+        <Tr>
+          <Th>Comment</Th>
+          <Td>gift</Td>
+        </Tr>
+        <Tr>
+          <Th>Sum</Th>
+          <Td>300</Td>
+        </Tr>
+        <Tr>
+          <Th>Balance</Th>
+          <Td>6900</Td>
+        </Tr>
+      </Tbody>
+    </MobileTable>
+  );
+}
 const MobileTable = styled.table`
   background-color: ${accentBgCl};
   border-collapse: collapse;
@@ -54,36 +86,3 @@ const Td = styled.td`
   padding: 14px 0;
   text-align: right;
 `;
-
-export default function HomeTabMobile() {
-  return (
-    <MobileTable>
-      <Tbody>
-        <Tr>
-          <Th>Date</Th>
-          <Td>04.01.19</Td>
-        </Tr>
-        <Tr>
-          <Th>Type</Th>
-          <Td>-</Td>
-        </Tr>
-        <Tr>
-          <Th>Category</Th>
-          <Td>other spend</Td>
-        </Tr>
-        <Tr>
-          <Th>Comment</Th>
-          <Td>gift</Td>
-        </Tr>
-        <Tr>
-          <Th>Sum</Th>
-          <Td>300</Td>
-        </Tr>
-        <Tr>
-          <Th>Balance</Th>
-          <Td>6900</Td>
-        </Tr>
-      </Tbody>
-    </MobileTable>
-  );
-}
