@@ -4,20 +4,13 @@ import imgRegisterTab from '../../../images/frame-register-tablet.png';
 import imgRegisterTabBest from '../../../images/frame-register-tablet@2x.png';
 import imgRegister from '../../../images/frame-register.png';
 import imgRegisterBest from '../../../images/frame-register@2x.png';
+import { TempNavMenu } from '../';
 export default function RegistrationPage() {
   console.log('==REGIN==');
   return (
     <>
-      <>
-        <h1>RegistrationPage</h1>
-        <a href="/">Home page - opened</a>
-        <br />
-        <a href="/login">Login - publicRestricted</a>
-        <br />
-        <a href="/registration">Registration - publicRestricted</a>
-        <br />
-        <a href="/dashboard">Dashboard - private</a>
-      </>
+      <TempNavMenu pageName="RegistrationPage" />
+
       <ContainerAuth
         imgTab={imgRegisterTab}
         imgTabBest={imgRegisterTabBest}

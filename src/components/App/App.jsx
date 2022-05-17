@@ -54,7 +54,7 @@ export default function App() {
               <Route
                 path="registration"
                 element={
-                  <PublicRoute redirectTo="/login" restricted>
+                  <PublicRoute redirectTo="/dashboard" restricted>
                     {/* <PublicRoute redirectTo="/login" restricted> */}
                     <Registration />
                   </PublicRoute>

@@ -10,20 +10,14 @@ import Currency from '../../Currency';
 import Navigation from '../../Navigation';
 import Balance from '../../Balance';
 
+import { TempNavMenu } from '../';
+
 export default function DashBoardPage() {
   ///  при загрузці  треба  доставати транзакції щоб їх  рендерити в  Hometab
   return (
     <>
-      <>
-        <h1>RegistrationPage</h1>
-        <a href="/">Home page - opened</a>
-        <br />
-        <a href="/login">Login - publicRestricted</a>
-        <br />
-        <a href="/registration">Registration - publicRestricted</a>
-        <br />
-        <a href="/dashboard">Dashboard - private</a>
-      </>
+      <TempNavMenu pageName="DashBoardPage" />
+
       <Header />
       <MainWrap>
         <SideBar>
