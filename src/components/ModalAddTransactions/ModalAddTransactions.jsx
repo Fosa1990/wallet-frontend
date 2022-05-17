@@ -62,31 +62,33 @@ export default function ModalAddTransactions() {
       {/* <button onClick={notify}>Notify!</button> */}
       <Form onSubmit={handleSubmit}>
         <ToggleSwitch />
-        <Label fontWeight={700}>
-          <input
-            // type="text"
-            // className={s.name}
-            type="number"
-            name="email"
-            value={sumTransaction}
-            onChange={({ currentTarget: { numb } }) => setSumTransaction(numb)}
-            placeholder="0.00"
-            required
-          />
-        </Label>
-        <Label>
-          <Datetime
-            timeFormat={false}
-            closeOnSelect={true}
-            dateFormat={'DD.MM.YYYY'}
-            value={selectedDate}
-            className={'datetime-picker__wrapper'}
-            onChange={date => setSelectedDate(date?._d)}
-          />
-          <svg>
-            <use href={`${sprite}#icon-calendar`} />
-          </svg>
-        </Label>
+        <ContainerStyle>
+          <Label fontWeight={700}>
+            <input
+              type="number"
+              name="email"
+              value={sumTransaction}
+              onChange={({ currentTarget: { numb } }) =>
+                setSumTransaction(numb)
+              }
+              placeholder="0.00"
+              required
+            />
+          </Label>
+          <Label>
+            <Datetime
+              timeFormat={false}
+              closeOnSelect={true}
+              dateFormat={'DD.MM.YYYY'}
+              value={selectedDate}
+              className={'datetime-picker__wrapper'}
+              onChange={date => setSelectedDate(date?._d)}
+            />
+            <svg>
+              <use href={`${sprite}#icon-calendar`} />
+            </svg>
+          </Label>
+        </ContainerStyle>
         <Label>
           <Textarea
             spellcheck={true}
@@ -114,6 +116,10 @@ const Title = styled.h2`
   line-height: 36px;
   text-align: center;
   height: 31px;
+  ${size.tablet} {
+    font-size: 30px;
+    line-height: 45px;
+  }
 `;
 
 const Form = styled.form`
@@ -147,6 +153,20 @@ const Label = styled.label`
     right: 20px;
     width: 18px;
     height: 20px;
+  }
+`;
+const ContainerStyle = styled.div`
+  ${size.tablet} {
+    width: 394px;
+    display: flex;
+    justify-content: space-between;
+    input {
+      text-align: center;
+      width: 190px;
+    }
+    svg {
+      right: 11px;
+    }
   }
 `;
 
@@ -185,10 +205,14 @@ const Svg = styled.svg`
 
 const Textarea = styled.textarea`
   font-size: inherit;
-  line-height: inherit;
+  // line-height: inherit;
   border: none;
   width: 280px;
   min-height: 84px;
   padding: 0 20px;
   resize: none;
+  ${size.tablet} {
+    width: 394px;
+    min-height: 32px;
+  }
 `;
