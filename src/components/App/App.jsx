@@ -3,7 +3,7 @@ import { Routes, Route /* , Navigate */ } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // import { useEffect } from 'react';
 import '../../../node_modules/modern-normalize/modern-normalize.css';
-import Modal from '../Modal/Modal';
+import ModalLogout from '../ModalLogout';
 import { selectIsModalLogoutOpen } from '../../redux/globalSelectors';
 import './App.css';
 import Loader from '../Loader';
@@ -82,7 +82,7 @@ export default function App() {
             {/* <Navigation /> */}
             {/* <HomeTab/> */}
           </Suspense>
-          {showModalLogout && <Modal />}
+          {showModalLogout && <ModalLogout />}
         </>
       )}
     </>

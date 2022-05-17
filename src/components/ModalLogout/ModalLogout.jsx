@@ -11,11 +11,18 @@ import {
   poppinsFont,
 } from '../../stylesheet/utils/stylesVars';
 import { closeModalWindow } from '../../redux/globalSlice';
+import { useLogoutUserMutation } from '../../redux/auth/authReduce';
 
 export default function ModalLogout() {
   const dispatch = useDispatch();
+  const [logout] = useLogoutUserMutation();
 
-  const onModalClose = e => {
+  const onLogout = () => {
+    logout();
+    onCancelLogout();
+  };
+
+  const onCancelLogout = e => {
     dispatch(closeModalWindow());
   };
 
@@ -29,6 +36,8 @@ export default function ModalLogout() {
             color={accentBgCl}
             background={accentPositiveCl}
             width="100px"
+            marginBtm="0px"
+            onClick={onLogout}
           >
             Yes
           </Button>
@@ -36,7 +45,7 @@ export default function ModalLogout() {
             outlined
             color={borderBtnCl}
             width="100px"
-            onClick={onModalClose}
+            onClick={onCancelLogout}
           >
             No
           </Button>
@@ -51,7 +60,7 @@ const Wrapper = styled.div`
   text-align: center;
   width: 280px;
   ${size.tablet} {
-    width: 400px;
+    width: 350px;
   }
 `;
 
