@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Media from 'react-media';
 import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { /* useDispatch, */ useSelector } from 'react-redux';
 import {
   accentTextCl,
   textPlcholderCl,
@@ -19,7 +19,7 @@ import exit from '../../images/svg/exit.svg';
 export default function Header() {
   // const isModalLogoutOpen =  useSelector(modalSelectors.getLogoutOpen)
   const userName = useSelector(authSelectors.getUserName);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const handleClick = () => {
     //     dispatch(
     //        action  which  sets isModalLogoutOpen =  true
