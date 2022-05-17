@@ -6,14 +6,14 @@ import * as Yup from 'yup';
 import { useLoginUserMutation } from '../../redux/auth/authReduce';
 import { regexEmail } from '../../helpers/regex';
 import Button from '../Button/Button';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import {
   accentPositiveCl,
   accentBgCl,
   borderBtnCl,
-  size,
-  poppinsFont,
-  accentTextCl,
+  // size,
+  // poppinsFont,
+  // accentTextCl,
 } from '../../stylesheet/utils/stylesVars';
 
 export default function LoginForm() {
