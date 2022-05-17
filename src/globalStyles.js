@@ -26,11 +26,11 @@ body {
 
 
 @media screen and (min-width: 768px) {
-  body {  
+  body {
      background-color: #E7EAF2;
     background-image: url(${ellipseUp}),
       url(${ellipseDown});
-   
+
     background-repeat: no-repeat, no-repeat;
     background-position: top right -175px, bottom left;
   }
