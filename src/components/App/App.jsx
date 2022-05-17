@@ -64,7 +64,7 @@ export default function App() {
               <Route
                 path="login"
                 element={
-                  <PublicRoute redirectTo="/home" restricted>
+                  <PublicRoute redirectTo="/dashboard" restricted>
                     <Login />
                   </PublicRoute>
                 }
