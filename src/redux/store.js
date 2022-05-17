@@ -13,6 +13,7 @@ import {
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { authApi } from './auth/authReduce';
 import authSlice from './auth/authSlice';
+import { globalReducer } from './globalSlice';
 import { rtkQueryErrorLogger } from './auth/midleware';
 import storage from 'redux-persist/lib/storage';
 
@@ -25,6 +26,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authSlice.reducer),
+    global: globalReducer,
     [authApi.reducerPath]: authApi.reducer,
   },
   middleware: getDefaultMiddleware => [
