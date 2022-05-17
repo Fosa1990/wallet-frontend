@@ -14,8 +14,8 @@ import Loader from '../Loader';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const baseUrl = `https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5`;
-axios.defaults.baseURL = baseUrl;
+// const baseUrl = `https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5`;
+// axios.defaults.baseURL = baseUrl;
 
 // поправить позицию лоадера
 
@@ -30,7 +30,7 @@ export default function Currency() {
 
   function getExchangeRates() {
     return axios
-      .get(baseUrl)
+      .get('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
       .then(res => res.data)
       .catch(error => console.log(error.message));
   }
