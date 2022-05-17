@@ -4,7 +4,7 @@ import Media from 'react-media';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { size } from '../../../stylesheet/utils/stylesVars';
 import Header from '../../Header';
-import HomeTab from '../../HomeTab';
+// import HomeTab from '../../HomeTab';
 import DiagramTab from '../../DiagramTab';
 import Currency from '../../Currency';
 import Navigation from '../../Navigation';
@@ -31,8 +31,8 @@ export default function DashBoardPage() {
 
         <TabWrap>
           <Routes>
-            <Route index element={<HomeTab />} />
-            <Route path="home" element={<HomeTab />} />
+            {/* <Route index element={<HomeTab />} />
+            <Route path="home" element={<HomeTab />} /> */}
             <Route path="diagram" element={<DiagramTab />} />
             <Route
               path="currency"
