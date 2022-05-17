@@ -30,11 +30,15 @@ export default function DiagramTab() {
   const colors = transactions.map(transaction => transaction.color);
   const sums = transactions.map(transaction => transaction.sum);
 
+  useEffect(() => {
+    dispatch(getCategories);
+  }, [dispatch]);
+
   return (
     <>
       <ChartWrapper>
         <Balance>
-          &#8372;&nbsp; {transactions.length > 0 ? 'balance' : 0}{' '}
+          &#8372;&nbsp; {transactions.length > 0 ? 'balance' : 0}
         </Balance>
         <Chart categories={categories} colors={colors} sums={sums} />
       </ChartWrapper>

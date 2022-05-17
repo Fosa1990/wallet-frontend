@@ -1,24 +1,29 @@
-import { Rings } from 'react-loader-spinner'
+import { Rings } from 'react-loader-spinner';
 import styled from 'styled-components';
-import { accentPositiveCl,  size } from '../../stylesheet/utils/stylesVars';
+import { accentPositiveCl, size } from '../../stylesheet/utils/stylesVars';
 
-const  StyledLoader = styled.div`
+const StyledLoader = styled.div`
   position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90px;
-    /* zIndex: 99; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px;
+  /* zIndex: 99; */
 
-    ${size.tablet}{ 
-      width: 150px}    
-`
+  ${size.tablet} {
+    width: 150px;
+  }
+`;
 
 export default function Loader() {
   return (
     <StyledLoader>
-      <Rings color={accentPositiveCl} width={150} height={150}
-    ariaLabel='loading' /></StyledLoader>
-  
-  )
+      <Rings
+        color={accentPositiveCl}
+        width={150}
+        height={150}
+        ariaLabel="loading"
+      />
+    </StyledLoader>
+  );
 }

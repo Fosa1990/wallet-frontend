@@ -1,22 +1,15 @@
 import React, { Suspense, lazy } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route /* , Navigate */ } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+// import { useEffect } from 'react';
+import '../../../node_modules/modern-normalize/modern-normalize.css';
 import Modal from '../Modal/Modal';
 import { selectIsModalLogoutOpen } from '../../redux/globalSelectors';
-// import { useEffect } from 'react';
 import './App.css';
 import Loader from '../Loader';
-import Header from '../Header';
-import Navigation from '../Navigation/Navigation';
-import DiagramTab from '../DiagramTab';
 import authSelectors from '../../redux/auth';
-import PublicRoute from '../Router/PublicRoute/PublicRoute';
-import PrivateRoute from '../Router/PrivateRoute/PrivateRoute';
+import { PrivateRoute, PublicRouteLogin, PublicRouteRegin } from '../Router';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
-
-//  must  be  lazy  loading
-
-import HomeTab from '../HomeTab';
 
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
@@ -26,6 +19,9 @@ const Dashboard = lazy(() =>
 );
 const Registration = lazy(() =>
   import('../../pages/RegistrationPage' /* webpackChunkName: "Registration" */),
+);
+const HomePage = lazy(() =>
+  import('../../pages/HomePage' /* webpackChunkName: "Registration" */),
 );
 
 /// TO  DO  public and protected  routes
@@ -37,6 +33,7 @@ export default function App() {
   const { isFetching } = useFetchCurrentUserQuery(token, {
     skip: token === null,
   });
+  // console.log('__isFetching__: ', isFetching);
 
   /// компоненти  по  факту реалізації  потім розставимо  по місцям і  пропишем тут роути
   return (
@@ -47,37 +44,43 @@ export default function App() {
         <>
           <Suspense fallback={<Loader />}>
             <Routes>
-              <Route
-                path="dashboard/*"
-                element={
-                  // <PrivateRoute redirectTo="/">
-                  <Dashboard />
-                  // </PrivateRoute>
-                }
-              />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/home" element={<HomePage />} />
+
               <Route
                 path="registration"
                 element={
-                  <PublicRoute redirectTo="/" restricted>
+                  <PublicRouteRegin redirectTo="/dashboard" restricted>
                     <Registration />
-                  </PublicRoute>
+                  </PublicRouteRegin>
                 }
               />
+
               <Route
                 path="login"
                 element={
-                  <PublicRoute redirectTo="/" restricted>
+                  <PublicRouteLogin redirectTo="/dashboard" restricted>
                     <Login />
-                  </PublicRoute>
+                  </PublicRouteLogin>
                 }
               />
-                {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+
+              <Route
+                path="dashboard/*"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <Dashboard />
+                  </PrivateRoute>
+                }
+              />
+
+              {/* <Route path="*" element={<Navigate to="/" />} /> */}
             </Routes>
 
             {/* <Loader /> */}
-            <Header />
-            <Navigation />
-            <DiagramTab/>
+            {/* <Header /> */}
+            {/* <Navigation /> */}
+            {/* <HomeTab/> */}
           </Suspense>
           {showModalLogout && <Modal />}
         </>
