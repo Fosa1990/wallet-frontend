@@ -25,7 +25,7 @@ export default function DiagramTab() {
     <>
       <ChartWrapper>
         <Balance>
-          &#8372;&nbsp; {transactions.length > 0 ? 'balance' : 0}{' '}
+          &#8372;&nbsp; {transactions.length > 0 ? 'balance' : 0}
         </Balance>
         <Chart categories={categories} colors={colors} sums={sums} />
       </ChartWrapper>
