@@ -75,7 +75,8 @@ export default function App() {
 
             <Loader />
             <Header />
-            <Navigation />
+              <Navigation />
+              <HomeTab/>
           </Suspense>
           {showModalLogout && <Modal />}
         </>
