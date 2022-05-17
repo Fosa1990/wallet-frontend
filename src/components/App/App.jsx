@@ -1,18 +1,18 @@
 import React, { Suspense, lazy } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route /* , Navigate */ } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // import { useEffect } from 'react';
 import './App.css';
 import Loader from '../Loader';
-import Header from '../Header';
-import Navigation from '../Navigation/Navigation';
+// import Header from '../Header';
+// import Navigation from '../Navigation';
 import authSelectors from '../../redux/auth';
 import { PublicRoute, PrivateRoute } from '../Router';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
 
 //  must  be  lazy  loading
 
-import HomeTab from '../HomeTab';
+// import HomeTab from '../HomeTab';
 
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
@@ -78,10 +78,9 @@ export default function App() {
             {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
           </Routes>
 
-          <Loader />
-          <Header />
-            <Navigation />
-   
+          {/* <Loader /> */}
+          {/* <Header /> */}
+          {/* <Navigation /> */}
         </Suspense>
       )}
     </>
