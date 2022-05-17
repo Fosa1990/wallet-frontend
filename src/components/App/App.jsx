@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route /* , Navigate */ } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // import { useEffect } from 'react';
 import Modal from '../Modal/Modal';
@@ -7,8 +7,7 @@ import { selectIsModalLogoutOpen } from '../../redux/globalSelectors';
 import './App.css';
 import Loader from '../Loader';
 import authSelectors from '../../redux/auth';
-import PublicRoute from '../Router/PublicRoute/PublicRoute';
-import PrivateRoute from '../Router/PrivateRoute/PrivateRoute';
+import { PublicRoute, PrivateRoute, PublicRouteLogin } from '../Router';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
 
 const Login = lazy(() =>
@@ -20,6 +19,9 @@ const Dashboard = lazy(() =>
 const Registration = lazy(() =>
   import('../../pages/RegistrationPage' /* webpackChunkName: "Registration" */),
 );
+const HomePage = lazy(() =>
+  import('../../pages/HomePage' /* webpackChunkName: "Registration" */),
+);
 
 /// TO  DO  public and protected  routes
 
@@ -30,7 +32,7 @@ export default function App() {
   const { isFetching } = useFetchCurrentUserQuery(token, {
     skip: token === null,
   });
-  console.log(isFetching);
+  console.log('__isFetching: ', isFetching);
 
   /// компоненти  по  факту реалізації  потім розставимо  по місцям і  пропишем тут роути
   return (
@@ -41,30 +43,36 @@ export default function App() {
         <>
           <Suspense fallback={<Loader />}>
             <Routes>
-              <Route
-                path="dashboard/*"
-                element={
-                  // <PrivateRoute redirectTo="/">
-                  <Dashboard />
-                  // </PrivateRoute>
-                }
-              />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/home" element={<HomePage />} />
+
               <Route
                 path="registration"
                 element={
-                  <PublicRoute redirectTo="/" restricted>
+                  <PublicRoute redirectTo="/dashboard" restricted>
                     <Registration />
                   </PublicRoute>
                 }
               />
+
               <Route
-                path="/"
+                path="login"
                 element={
-                  <PublicRoute redirectTo="/" restricted>
+                  <PublicRouteLogin redirectTo="/dashboard" restricted>
                     <Login />
-                  </PublicRoute>
+                  </PublicRouteLogin>
                 }
               />
+
+              <Route
+                path="dashboard/*"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <Dashboard />
+                  </PrivateRoute>
+                }
+              />
+
               {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
             </Routes>
 

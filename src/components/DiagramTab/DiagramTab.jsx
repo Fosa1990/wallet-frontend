@@ -3,8 +3,8 @@ import Chart from '../Chart';
 import Select from '../Select';
 import styled from 'styled-components';
 import { useEffect } from 'react';
-import { useDispatch, useSelector, useStore } from 'react-redux';
-import {getCategories} from '../../redux/categories/categoriesOperations'
+import { useDispatch /*, useSelector, useStore */ } from 'react-redux';
+import { getCategories } from '../../redux/categories/categoriesOperations';
 import transactions from '../Table/transactions.json';
 
 // баланс в диаграмму подставить когда будет готов компонент баланс
@@ -18,9 +18,9 @@ export default function DiagramTab() {
   const sums = transactions.map(transaction => transaction.sum);
 
   useEffect(() => {
-    dispatch(getCategories)
-  }, [dispatch])
-  
+    dispatch(getCategories);
+  }, [dispatch]);
+
   return (
     <>
       <ChartWrapper>

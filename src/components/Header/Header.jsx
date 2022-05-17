@@ -12,7 +12,7 @@ import {
 } from '../../stylesheet/utils/stylesVars';
 import authSelectors from '../../redux/auth/authSelectors';
 import LogoutButton from '../LogoutButton';
-import { authApi } from '../../redux/auth/authReduce';
+// import { authApi } from '../../redux/auth/authReduce';
 // import Icon from '../Icon';
 import logo from '../../images/svg/logo.svg';
 import exit from '../../images/svg/exit.svg';

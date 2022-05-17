@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Media from 'react-media';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { size } from '../../../stylesheet/utils/stylesVars';
 import Header from '../../Header';
@@ -10,10 +10,14 @@ import Currency from '../../Currency';
 import Navigation from '../../Navigation';
 import Balance from '../../Balance';
 
+import { TempNavMenu } from '..';
+
 export default function DashBoardPage() {
   ///  при загрузці  треба  доставати транзакції щоб їх  рендерити в  Hometab
   return (
     <>
+      <TempNavMenu pageName="DashBoardPage" />
+
       <Header />
       <MainWrap>
         <SideBar>
