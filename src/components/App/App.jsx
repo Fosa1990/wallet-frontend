@@ -7,7 +7,7 @@ import { selectIsModalLogoutOpen } from '../../redux/globalSelectors';
 import './App.css';
 import Loader from '../Loader';
 import authSelectors from '../../redux/auth';
-import { PublicRoute, PrivateRoute } from '../Router';
+import { PublicRoute, PrivateRoute, PublicRouteLogin } from '../Router';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
 
 const Login = lazy(() =>
@@ -32,7 +32,7 @@ export default function App() {
   const { isFetching } = useFetchCurrentUserQuery(token, {
     skip: token === null,
   });
-  console.log(isFetching);
+  console.log('__isFetching: ', isFetching);
 
   /// компоненти  по  факту реалізації  потім розставимо  по місцям і  пропишем тут роути
   return (
@@ -58,9 +58,9 @@ export default function App() {
               <Route
                 path="login"
                 element={
-                  <PublicRoute redirectTo="/dashboard" restricted>
+                  <PublicRouteLogin redirectTo="/dashboard" restricted>
                     <Login />
-                  </PublicRoute>
+                  </PublicRouteLogin>
                 }
               />
 
