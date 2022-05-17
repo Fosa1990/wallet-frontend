@@ -11,39 +11,41 @@ import {
   size,
 } from '../../stylesheet/utils/stylesVars';
 import authSelectors from '../../redux/auth/authSelectors';
+import LogoutButton from '../LogoutButton';
+import { authApi } from '../../redux/auth/authReduce';
 // import Icon from '../Icon';
 import logo from '../../images/svg/logo.svg';
 import exit from '../../images/svg/exit.svg';
+import { openModalLogout } from '../../redux/globalSlice';
+
 /// підключити компонент модалки на логаут
 
-export default function Header() {
+export default function Header({ children, onClick, ...props }) {
   // const isModalLogoutOpen =  useSelector(modalSelectors.getLogoutOpen)
   const userName = useSelector(authSelectors.getUserName);
   const dispatch = useDispatch();
+
   const handleClick = () => {
-    //     dispatch(
-    //        action  which  sets isModalLogoutOpen =  true
-    //    )
+    console.log('click  for logout');
+    dispatch(openModalLogout());
   };
 
   return (
     <StyledHeader>
-      <Logo to="/dashboard">
+      <Logo to="/">
         <LogoIcon src={logo} />
         <Title>Wallet</Title>
       </Logo>
       <UserInfo>
         <UserName>{userName || 'User'} </UserName>
-        <LogoutBtn type="button" onClick={handleClick}>
-          {/* <LogoutIcon /> */}
+        <LogoutButton type="button" onClick={handleClick}>
           <ExitIcon src={exit} />
           <Media
             query="(min-width: 768px)"
             render={() => <span>Logout</span>}
           />
-        </LogoutBtn>
+        </LogoutButton>
       </UserInfo>
-      {/* {isModalLogoutOpen && <ModalLogout/>} */}
     </StyledHeader>
   );
 }
@@ -54,6 +56,7 @@ const StyledHeader = styled.div`
   width: 100%;
   height: 60px;
   padding: 15px 20px;
+
   background: ${accentBgCl};
   ${size.tablet} {
     height: 80px;
@@ -102,20 +105,7 @@ const UserInfo = styled.div`
   line-height: 1, 47;
   color: ${props => props.color || textPlcholderCl};
 `;
-const LogoutBtn = styled.button`
-  cursor: pointer;
-  display: flex;
-  font-size: 18px;
-  line-height: 1, 47;
-  color: ${props => props.color || textPlcholderCl};
-  background-color: transparent;
-  border: none;
-  padding-left: 12px;
 
-  ${size.tablet} {
-    border: none;
-  }
-`;
 const ExitIcon = styled.img`
   width: 18px;
   height: 18px;
