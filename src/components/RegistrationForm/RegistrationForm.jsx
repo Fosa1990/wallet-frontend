@@ -123,21 +123,21 @@ const Title = styled.h1`
   }
 `;
 
-const FromStyle = styled.div`
-  // ${size.mobile} {
-  //   width: 320px;
-  //   padding-top: 32px;
-  //   padding-bottom: 36px;
-  //   margin: 0 auto;
-  // }
-  // ${size.desktop} {
-  //   padding-top: 40px;
-  //   bottom: 50%;
-  //   right: 85px;
-  //   transform: translateY(50%);
-  //   margin: 0;
-  // }
-`;
+// const FromStyle = styled.div`
+// ${size.mobile} {
+//   width: 320px;
+//   padding-top: 32px;
+//   padding-bottom: 36px;
+//   margin: 0 auto;
+// }
+// ${size.desktop} {
+//   padding-top: 40px;
+//   bottom: 50%;
+//   right: 85px;
+//   transform: translateY(50%);
+//   margin: 0;
+// }
+// `;
 
 const ButtonWrapper = styled.div`
   display: flex;
