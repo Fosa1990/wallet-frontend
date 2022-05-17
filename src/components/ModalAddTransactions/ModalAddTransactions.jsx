@@ -9,43 +9,54 @@ import {
   accentNegativeCl,
   accentDisableCl,
 } from '../../stylesheet/utils/stylesVars';
-import styled, { GlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import sprite from '../../images/svg/sprite.svg';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-datetime/css/react-datetime.css';
 
-const ToggleSwitch = () => {
-  const [checked, setChecked] = useState(false);
-
-  const handleChange = e => {
-    setChecked(e.target.checked);
-  };
-
-  return (
-    <Label border>
-      <Span color={!checked ? accentDisableCl : accentPositiveCl}>Доход</Span>
-      <input
-        checked={checked}
-        type="checkbox"
-        onChange={handleChange}
-        className="visually-hidden"
-      />
-      <Switch>
-        <Svg checked={checked}>
-          {checked && <use href={`${sprite}#icon-add`} />}
-          {!checked && <use href={`${sprite}#icon-remove`} />}
-        </Svg>
-      </Switch>
-      <Span color={checked ? accentDisableCl : accentNegativeCl}>Расход</Span>
-    </Label>
-  );
-};
-
 export default function ModalAddTransactions() {
+  const [checked, setChecked] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [sumTransaction, setSumTransaction] = useState();
   const [comment, setComment] = useState();
+  const [select, setSelect] = useState();
   console.log(selectedDate);
+
+  const category = [
+    'Основной',
+    'Еда',
+    'Авто',
+    'Развитие',
+    'Дети',
+    'Дом',
+    'Образование',
+    'Остальные',
+  ];
+
+  const ToggleSwitch = () => {
+    const handleChange = e => {
+      setChecked(e.target.checked);
+    };
+
+    return (
+      <Label border>
+        <Span color={!checked ? accentDisableCl : accentPositiveCl}>Доход</Span>
+        <input
+          checked={checked}
+          type="checkbox"
+          onChange={handleChange}
+          className="visually-hidden"
+        />
+        <Switch>
+          <Svg checked={checked}>
+            {checked && <use href={`${sprite}#icon-add`} />}
+            {!checked && <use href={`${sprite}#icon-remove`} />}
+          </Svg>
+        </Switch>
+        <Span color={checked ? accentDisableCl : accentNegativeCl}>Расход</Span>
+      </Label>
+    );
+  };
 
   const handleSubmit = e => {
     notify();
@@ -58,10 +69,27 @@ export default function ModalAddTransactions() {
   return (
     <div>
       <ToastContainer />
-      <Title>Добавить транзакцию</Title>
-      {/* <button onClick={notify}>Notify!</button> */}
+      <Title>Add transaction</Title>
       <Form onSubmit={handleSubmit}>
         <ToggleSwitch />
+        <Label for="category">
+          {!checked && (
+            <Select
+              id="category"
+              name="category"
+              value={select}
+              onChange={({ target: { value } }) => setSelect(value)}
+            >
+              <option disabled selected>
+                Chose category...
+              </option>
+              {category.map(name => (
+                <option value={name}>{name}</option>
+              ))}
+              {/*<option value="m" selected>Medium</option>*/}
+            </Select>
+          )}
+        </Label>
         <ContainerStyle>
           <Label fontWeight={700}>
             <input
@@ -107,6 +135,47 @@ export default function ModalAddTransactions() {
     </div>
   );
 }
+const Select = styled.select`
+  
+    display: block;
+    font-size: inherit;
+    font-family:inherit;
+    font-weight: 400;
+    line-height: inherit;
+    color: ${accentDisableCl};
+    padding:0 20px 0;
+    width: 280px;
+    border:none;
+    outline: none;
+    margin: 0 ;
+    // border: 1px solid #aaa;
+    // box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+    // border-radius: 0.5em;
+
+    // appearance: none;
+    // background-color: #fff;
+    // background-image: url(${sprite}#icon-arrow-down});
+    // background-repeat: no-repeat, repeat;
+    // background-position: right 0.7em top 50%, 0 0;
+    // background-size: 0.65em auto, 100%;
+  }
+
+  &:hover {
+    border: none;
+  }
+  &:focus {
+    // color: #222;
+    // outline: none;
+    background: rgba(255, 255, 255, 0.7);
+box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(50px);
+border-radius: 20px;
+  } 
+  option{
+    margin-top:10px;
+    color:tomato;
+  }
+`;
 
 const Title = styled.h2`
   font-family: 'Poppins';
@@ -147,6 +216,7 @@ const Label = styled.label`
     border: none;
     font-weight: inherit;
     width: 280px;
+    appearance: none;
   }
   svg {
     position: absolute;
@@ -185,7 +255,6 @@ const Switch = styled.div`
   border-radius: 30px;
   border: 1px solid ${accentDisableCl};
   padding: 4px;
-  transition: 300ms all;
 `;
 
 const Svg = styled.svg`
@@ -201,6 +270,10 @@ const Svg = styled.svg`
   transform: ${p =>
     p.checked ? ' translate(0, -50%)' : 'translate(100%, -50%)'};
   background-color: ${p => (p.checked ? accentPositiveCl : accentNegativeCl)};
+  box-shadow: ${p =>
+    p.checked
+      ? '0px 6px 15px rgba(36, 204, 167, 0.5)'
+      : '0px 6px 15px rgba(255, 101, 150, 0.5)'};
 `;
 
 const Textarea = styled.textarea`
