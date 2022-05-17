@@ -32,6 +32,11 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
       },
     );
+    builder.addMatcher(authApi.endpoints.logoutUser.matchFulfilled, state => {
+      state.user = { name: null, email: null };
+      state.token = null;
+      state.isLoggedIn = false;
+    });
 
     builder.addMatcher(
       authApi.endpoints.fetchCurrentUser.matchFulfilled,
