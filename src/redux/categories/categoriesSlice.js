@@ -1,15 +1,11 @@
 import { getCategories } from './categoriesOperations';
-
 import { createSlice } from '@reduxjs/toolkit';
 
 const categoriesSlice = createSlice({
   name: 'categories',
   initialState: { data: [], isLoading: false, error: null },
   reducers: {
-    [getCategories.fulfilled]: (_, { payload }) => {
-      console.log('payload in Slice', payload);
-      return payload;
-    },
+    [getCategories.fulfilled]: (_, { payload }) => payload,
     [getCategories.pending]: state => ({
       ...state,
       isLoading: true,
@@ -22,4 +18,4 @@ const categoriesSlice = createSlice({
   },
 });
 
-export default categoriesSlice.reducer;
+// export default categoriesSlice.reducer;

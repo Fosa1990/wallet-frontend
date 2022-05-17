@@ -8,6 +8,7 @@ import './App.css';
 import Loader from '../Loader';
 import Header from '../Header';
 import Navigation from '../Navigation/Navigation';
+import DiagramTab from '../DiagramTab';
 import authSelectors from '../../redux/auth';
 import PublicRoute from '../Router/PublicRoute/PublicRoute';
 import PrivateRoute from '../Router/PrivateRoute/PrivateRoute';
@@ -63,19 +64,20 @@ export default function App() {
                 }
               />
               <Route
-                path="/"
+                path="login"
                 element={
                   <PublicRoute redirectTo="/" restricted>
                     <Login />
                   </PublicRoute>
                 }
               />
-              {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+                {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
             </Routes>
 
-            <Loader />
+            {/* <Loader /> */}
             <Header />
             <Navigation />
+            <DiagramTab/>
           </Suspense>
           {showModalLogout && <Modal />}
         </>
