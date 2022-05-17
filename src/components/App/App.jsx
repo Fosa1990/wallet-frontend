@@ -13,6 +13,8 @@ import PublicRoute from '../Router/PublicRoute/PublicRoute';
 import PrivateRoute from '../Router/PrivateRoute/PrivateRoute';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
 
+//  must  be  lazy  loading
+
 import HomeTab from '../HomeTab';
 
 const Login = lazy(() =>
@@ -47,9 +49,9 @@ export default function App() {
               <Route
                 path="dashboard/*"
                 element={
-                  <PrivateRoute redirectTo="/">
-                    <Dashboard />
-                  </PrivateRoute>
+                  // <PrivateRoute redirectTo="/">
+                  <Dashboard />
+                  // </PrivateRoute>
                 }
               />
               <Route
@@ -70,6 +72,10 @@ export default function App() {
               />
               {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
             </Routes>
+
+            <Loader />
+            <Header />
+            <Navigation />
           </Suspense>
           {showModalLogout && <Modal />}
         </>
