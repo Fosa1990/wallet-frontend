@@ -4,6 +4,7 @@ export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://amazing-wallet.herokuapp.com/api',
+    // baseUrl: 'http://localhost:8081/api/',
 
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
