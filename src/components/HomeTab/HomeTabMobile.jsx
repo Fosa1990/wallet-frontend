@@ -7,16 +7,30 @@ const MobileTable = styled.table`
   border-collapse: collapse;
   border-radius: 10px;
   width: 280px;
-  height: 282px;
+  width: 100%;
   display: flex;
   justify-content: center;
-  border-left: 5px solid blue;
+  position: relative;
+
 `;
 
 const Tbody = styled.tbody`
   vertical-align: middle;
   width: 100%;
   padding: 0 20px;
+
+  
+  ::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5%;
+    width: 5px;
+    height: 99%;
+    background-color: aqua;
+    border-top-left-radius: 60px;
+    border-bottom-left-radius: 60px;
+    }
 `;
 
 const Tr = styled.tr`
@@ -24,14 +38,14 @@ const Tr = styled.tr`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const Th = styled.th`
   font: ${circleFont};
   font-size: 18px;
   font-weight: 700;
-  text-align: left;
-  `;
+`;
 
 const Td = styled.td`
   font: ${circleFont};
@@ -39,7 +53,6 @@ const Td = styled.td`
   font-weight: 400;
   padding: 14px 0;
   text-align: right;
-  //   padding-left: 20px;
 `;
 
 export default function HomeTabMobile() {
