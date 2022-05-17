@@ -39,12 +39,26 @@ export const authApi = createApi({
       },
       invalidatesTags: ['Auth'],
     }),
+    //
+    logoutUser: builder.mutation({
+      queryFn: async (arg, queryApi, extraOptions, baseQuery) => {
+        const res = await baseQuery({
+          url: '/users/logout',
+          method: 'POST',
+        });
+        return res;
+      },
+      invalidatesTags: ['Auth'],
+    }),
+
+    //
 
     fetchCurrentUser: builder.query({
       queryFn: async (arg, queryApi, extraOptions, baseQuery) => {
         const res = await baseQuery({
           url: '/users/current',
         });
+        console.log(res);
         return res;
       },
       invalidatesTags: ['Auth'],
@@ -55,5 +69,6 @@ export const authApi = createApi({
 export const {
   useRegisterUserMutation,
   useLoginUserMutation,
+  useLogoutUserMutation,
   useFetchCurrentUserQuery,
 } = authApi;

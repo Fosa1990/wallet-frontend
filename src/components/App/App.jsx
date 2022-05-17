@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import './App.css';
 import Loader from '../Loader';
 import Header from '../Header';
@@ -31,6 +31,7 @@ export default function App() {
   const { isFetching } = useFetchCurrentUserQuery(token, {
     skip: token === null,
   });
+  console.log(isFetching);
 
   /// компоненти  по  факту реалізації  потім розставимо  по місцям і  пропишем тут роути
   return (
@@ -57,7 +58,7 @@ export default function App() {
               }
             />
             <Route
-              path="/"
+              path="login"
               element={
                 <PublicRoute redirectTo="/" restricted>
                   <Login />
