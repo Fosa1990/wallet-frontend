@@ -76,11 +76,10 @@ export default function App() {
               {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
             </Routes>
 
-            <Loader />
-            <Header />
-              <Navigation />
-              <HomeTab/>
-
+            {/* <Loader /> */}
+            {/* <Header /> */}
+            {/* <Navigation /> */}
+            {/* <HomeTab/> */}
           </Suspense>
           {showModalLogout && <Modal />}
         </>
