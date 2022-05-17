@@ -102,4 +102,6 @@ const Button = styled.button`
 
 Modal.propTypes = {
   closeBtn: PropTypes.string,
+  children: PropTypes.node,
+  onClick: PropTypes.func.isRequired,
 };
