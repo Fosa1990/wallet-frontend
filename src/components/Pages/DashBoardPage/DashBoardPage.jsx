@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Media from 'react-media';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { size } from '../../../stylesheet/utils/stylesVars';
 import Header from '../../Header';
@@ -14,6 +14,16 @@ export default function DashBoardPage() {
   ///  при загрузці  треба  доставати транзакції щоб їх  рендерити в  Hometab
   return (
     <>
+      <>
+        <h1>RegistrationPage</h1>
+        <a href="/">Home page - opened</a>
+        <br />
+        <a href="/login">Login - publicRestricted</a>
+        <br />
+        <a href="/registration">Registration - publicRestricted</a>
+        <br />
+        <a href="/dashboard">Dashboard - private</a>
+      </>
       <Header />
       <MainWrap>
         <SideBar>
