@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { Routes, Route /* , Navigate */ } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // import { useEffect } from 'react';
+import '../../../node_modules/modern-normalize/modern-normalize.css';
 import Modal from '../Modal/Modal';
 import { selectIsModalLogoutOpen } from '../../redux/globalSelectors';
 import './App.css';
