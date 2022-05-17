@@ -8,8 +8,6 @@ export default function PrivateRoute({ children, restricted, redirectTo }) {
   const hasToken = useSelector(getToken);
   const hasTokenAndLoggedIn = isLoggedIn && hasToken && children;
 
-  console.log('==PrivateRoute==');
-
   return <>{isLoggedIn ? hasTokenAndLoggedIn : <Navigate to={redirectTo} />}</>;
 }
 

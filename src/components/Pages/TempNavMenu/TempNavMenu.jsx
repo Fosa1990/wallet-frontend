@@ -3,13 +3,13 @@ export default function TempNavMenu({ pageName }) {
     <>
       <h1>{pageName}</h1>
       <br />
-      <a href="/">Home page - Opened</a>
+      <a href="/"> Home page - Opened</a>
       <br />
-      <a href="/login">Login - Public-Restricted</a>
+      <a href="/login"> Login - Public-Restricted</a>
       <br />
-      <a href="/registration">Registration - Public-Restricted</a>
+      <a href="/registration"> Registration - Public-Restricted</a>
       <br />
-      <a href="/dashboard">Dashboard - Private</a>
+      <a href="/dashboard"> Dashboard - Private</a>
     </>
   );
 }
