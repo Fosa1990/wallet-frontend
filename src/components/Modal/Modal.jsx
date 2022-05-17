@@ -28,8 +28,8 @@ export default function Modal({ children, closeBtn }) {
     }
   };
 
-  const handleBackdropClick = event => {
-    if (event.currentTarget === event.target) {
+  const handleBackdropClick = e => {
+    if (e.currentTarget === e.target) {
       onModalClose();
     }
   };
