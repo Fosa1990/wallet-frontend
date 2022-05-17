@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   accentTextCl,
   textPlcholderCl,
+  accentBgCl,
   poppinsFont,
   circleFont,
   size,
@@ -15,7 +16,39 @@ import { authApi } from '../../redux/auth/authReduce';
 // import Icon from '../Icon';
 import logo from '../../images/svg/logo.svg';
 import exit from '../../images/svg/exit.svg';
-// import { openModalLogout } from '../../redux/globalSlice';
+import { openModalLogout } from '../../redux/globalSlice';
+
+/// підключити компонент модалки на логаут
+
+export default function Header({ children, onClick, ...props }) {
+  // const isModalLogoutOpen =  useSelector(modalSelectors.getLogoutOpen)
+  const userName = useSelector(authSelectors.getUserName);
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    console.log('click  for logout');
+    dispatch(openModalLogout());
+  };
+
+  return (
+    <StyledHeader>
+      <Logo to="/">
+        <LogoIcon src={logo} />
+        <Title>Wallet</Title>
+      </Logo>
+      <UserInfo>
+        <UserName>{userName || 'User'} </UserName>
+        <LogoutButton type="button" onClick={handleClick}>
+          <ExitIcon src={exit} />
+          <Media
+            query="(min-width: 768px)"
+            render={() => <span>Logout</span>}
+          />
+        </LogoutButton>
+      </UserInfo>
+    </StyledHeader>
+  );
+}
 
 const StyledHeader = styled.div`
   display: flex;
@@ -23,6 +56,8 @@ const StyledHeader = styled.div`
   width: 100%;
   height: 60px;
   padding: 15px 20px;
+
+  background: ${accentBgCl};
   ${size.tablet} {
     height: 80px;
     padding: 20px 32px;
@@ -70,20 +105,7 @@ const UserInfo = styled.div`
   line-height: 1, 47;
   color: ${props => props.color || textPlcholderCl};
 `;
-// const LogoutBtn = styled.button`
-// cursor: pointer;
-// display: flex;
-// font-size: 18px;
-// line-height: 1,47;
-// color: ${props => props.color || textPlcholderCl};
-// background-color: transparent;
-// border:none;
-// padding-left: 12px;
 
-// ${size.tablet}{
-// border: none;
-// }
-// `
 const ExitIcon = styled.img`
   width: 18px;
   height: 18px;
@@ -97,32 +119,3 @@ const UserName = styled.p`
     border-right: 1px solid ${textPlcholderCl};
   }
 `;
-export default function Header({ children, onClick, ...props }) {
-  // const isModalLogoutOpen =  useSelector(modalSelectors.getLogoutOpen)
-  const userName = useSelector(authSelectors.getUserName);
-  const dispatch = useDispatch();
-
-  const handleClick = () => {
-    // dispatch(openModalLogout());
-  };
-
-  return (
-    <StyledHeader>
-      <Logo to="/">
-        <LogoIcon src={logo} />
-        <Title>Wallet</Title>
-      </Logo>
-      <UserInfo>
-        <UserName>{userName || 'User'} </UserName>
-        <LogoutButton type="button" onClick={handleClick}>
-          <ExitIcon src={exit} />
-          <Media
-            query="(min-width: 768px)"
-            render={() => <span>Logout</span>}
-          />
-        </LogoutButton>
-      </UserInfo>
-      {/* {isModalLogoutOpen && <ModalLogout/>} */}
-    </StyledHeader>
-  );
-}
