@@ -22,7 +22,8 @@ export default function ButtonAddTransactions() {
     box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
     background: ${accentPositiveCl};
 
-    &:hover {
+    &:hover,
+    &:focus {
       background: ${accentNegativeCl};
     }
 

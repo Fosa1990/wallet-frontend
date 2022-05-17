@@ -22,7 +22,7 @@ const ToggleSwitch = () => {
   };
 
   return (
-    <Label>
+    <Label border>
       <Span color={!checked ? accentDisableCl : accentPositiveCl}>Доход</Span>
       <input
         checked={checked}
@@ -47,6 +47,11 @@ export default function ModalAddTransactions() {
   const [comment, setComment] = useState();
   console.log(selectedDate);
 
+  const handleSubmit = e => {
+    notify();
+    e.preventDefault();
+  };
+
   const notify = () =>
     toast.error('Error, somesing go wrong', { autoClose: 3000 });
 
@@ -55,13 +60,13 @@ export default function ModalAddTransactions() {
       <ToastContainer />
       <Title>Добавить транзакцию</Title>
       {/* <button onClick={notify}>Notify!</button> */}
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <ToggleSwitch />
-        <Label>
-          <Input
+        <Label fontWeight={700}>
+          <input
             // type="text"
             // className={s.name}
-            type="email"
+            type="number"
             name="email"
             value={sumTransaction}
             onChange={({ currentTarget: { numb } }) => setSumTransaction(numb)}
@@ -78,16 +83,29 @@ export default function ModalAddTransactions() {
             className={'datetime-picker__wrapper'}
             onChange={date => setSelectedDate(date?._d)}
           />
+          <svg>
+            <use href={`${sprite}#icon-calendar`} />
+          </svg>
         </Label>
         <Label>
-          <textarea name="" id="" cols="30" rows="10"></textarea>
+          <Textarea
+            spellcheck={true}
+            value={comment}
+            onChange={({ target: { value } }) => setComment(value)}
+            name="user-message"
+            class="modal__form-text"
+            placeholder="Комментарий"
+          />
         </Label>
-        <Button primary>ДОБАВИТЬ</Button>
+        <Button primary type="submit">
+          ДОБАВИТЬ
+        </Button>
         <Button outlined>ОТМЕНА</Button>
       </Form>
     </div>
   );
 }
+
 const Title = styled.h2`
   font-family: 'Poppins';
   font-style: normal;
@@ -97,30 +115,48 @@ const Title = styled.h2`
   text-align: center;
   height: 31px;
 `;
+
 const Form = styled.form`
   font-family: 'Circe';
-  font-size: 18px;
   font-style: normal;
+  font-size: 18px;
+  line-height: 27px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 40px 0;
 `;
+
 const Label = styled.label`
+  position: relative;
   display: flex;
   align-items: center;
   gap: 20px;
-  font-size: 16px;
-  line-height: 27px;
   cursor: pointer;
   margin-bottom: 40px;
+  font-weight: ${p => p.fontWeight || '400'};
+  border-bottom: ${p => (!p.border ? `1px solid ${accentDisableCl}` : 'none')};
+  input {
+    padding: 0 20px 4px;
+    border: none;
+    font-weight: inherit;
+    width: 280px;
+  }
+  svg {
+    position: absolute;
+    right: 20px;
+    width: 18px;
+    height: 20px;
+  }
 `;
+
 const Span = styled.span`
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
   color: ${props => props.color};
 `;
+
 const Switch = styled.div`
   position: relative;
   width: 80px;
@@ -131,7 +167,7 @@ const Switch = styled.div`
   padding: 4px;
   transition: 300ms all;
 `;
-// const Checkbox = styled.input.attrs({ type: 'checkbox' })``;
+
 const Svg = styled.svg`
   position: absolute;
   width: 20px;
@@ -146,14 +182,13 @@ const Svg = styled.svg`
     p.checked ? ' translate(0, -50%)' : 'translate(100%, -50%)'};
   background-color: ${p => (p.checked ? accentPositiveCl : accentNegativeCl)};
 `;
-const InputDefault = styled.input`
+
+const Textarea = styled.textarea`
+  font-size: inherit;
+  line-height: inherit;
   border: none;
   width: 280px;
-  border-bottom: 1px solid #000000;
-`;
-const Input = styled.input.attrs(props => ({ styled: InputDefault }))``;
-const DatePicker = styled.div`
-  .react-datetime-picker__wrapper {
-    border: 1px solid red;
-  }
+  min-height: 84px;
+  padding: 0 20px;
+  resize: none;
 `;
