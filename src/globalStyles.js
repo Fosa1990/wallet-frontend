@@ -15,17 +15,22 @@ html {
 }
 
 body {
+   display: flex;
+   flex-direction: column;
   margin: 0;
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
   background-color: #e7eaf2;
-  height: 100vh;
+  min-height: 100vh;
 }
+
 
 @media screen and (min-width: 768px) {
   body {
+     background-color: #E7EAF2;
     background-image: url(${ellipseUp}),
       url(${ellipseDown});
+
     background-repeat: no-repeat, no-repeat;
     background-position: top right -175px, bottom left;
   }
@@ -35,6 +40,13 @@ body {
     background-position: top right, bottom left;
   }
 }
+
+ #root{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-grow: 1;
+  }
 
 img {
   display: block;

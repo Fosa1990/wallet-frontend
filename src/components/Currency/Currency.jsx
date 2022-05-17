@@ -14,11 +14,84 @@ import Loader from '../Loader';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const baseUrl = `https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5`;
-axios.defaults.baseURL = baseUrl;
+// const baseUrl = `https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5`;
+// axios.defaults.baseURL = baseUrl;
+
+// поправить позицию лоадера
+
+export default function Currency() {
+  const [exchangeRates, setExchangeRates] = useState(null);
+
+  useEffect(() => {
+    getExchangeRates().then(data => {
+      return setExchangeRates(data);
+    });
+  }, []);
+
+  function getExchangeRates() {
+    return axios
+      .get('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
+      .then(res => res.data)
+      .catch(error => console.log(error.message));
+  }
+
+  return (
+    <Wrapper>
+      {!exchangeRates && <Loader />}
+      <Table>
+        <Thead>
+          <Tr>
+            <Th>Currency</Th>
+            <Th>Buy</Th>
+            <Th>Sell</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          <tr>
+            <Td>
+              {exchangeRates &&
+                exchangeRates[0].ccy + `/` + exchangeRates[0].base_ccy}
+            </Td>
+            <Td>{exchangeRates && Number(exchangeRates[0].buy).toFixed(2)}</Td>
+            <Td>{exchangeRates && Number(exchangeRates[0].sale).toFixed(2)}</Td>
+          </tr>
+          <tr>
+            <Td>
+              {exchangeRates &&
+                exchangeRates[1].ccy + `/` + exchangeRates[1].base_ccy}
+            </Td>
+            <Td>{exchangeRates && Number(exchangeRates[1].buy).toFixed(2)}</Td>
+            <Td>{exchangeRates && Number(exchangeRates[1].sale).toFixed(2)}</Td>
+          </tr>
+          <tr>
+            <Td>
+              {exchangeRates &&
+                exchangeRates[2].ccy + `/` + exchangeRates[2].base_ccy}
+            </Td>
+            <Td>{exchangeRates && Math.round(Number(exchangeRates[2].buy))}</Td>
+            <Td>
+              {exchangeRates && Math.round(Number(exchangeRates[2].sale))}
+            </Td>
+          </tr>
+          <tr>
+            <td colSpan="3">
+              <Wave alt="wave" src={wave} />
+            </td>
+          </tr>
+        </Tbody>
+      </Table>
+    </Wrapper>
+  );
+}
 
 const Wrapper = styled.div`
   position: relative;
+  ${size.tablet} {
+    margin-top: 0px;
+  }
+  ${size.desktop} {
+    margin-top: 32px;
+  }
 `;
 
 const Table = styled.table`
@@ -82,15 +155,14 @@ const Td = styled.td`
   color: white;
   padding-left: 20px;
   padding-right: 20px;
-}
 
   :not(:first-child) {
     text-align: center;
   }
 
-    ${size.desktop} {
-  padding-top: 20px;
-  padding-bottom: 4px;
+  ${size.desktop} {
+    padding-top: 20px;
+    padding-bottom: 4px;
   }
 `;
 
@@ -115,67 +187,3 @@ const Wave = styled.img`
     height: 134px;
   }
 `;
-
-// поправить позицию лоадера
-
-export default function Currency() {
-  const [exchangeRates, setExchangeRates] = useState(null);
-
-  useEffect(() => {
-    getExchangeRates().then(data => {
-      return setExchangeRates(data);
-    });
-  }, []);
-
-  function getExchangeRates() {
-    return axios.get(baseUrl).then(res => res.data).catch(error=>console.log(error.message));
-  }
-
-  return (
-    <Wrapper>
-      {!exchangeRates && <Loader />}
-      <Table>
-        <Thead>
-          <Tr>
-            <Th>Currency</Th>
-            <Th>Buy</Th>
-            <Th>Sell</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          <tr>
-            <Td>
-              {exchangeRates &&
-                exchangeRates[0].ccy + `/` + exchangeRates[0].base_ccy}
-            </Td>
-            <Td>{exchangeRates && Number(exchangeRates[0].buy).toFixed(2)}</Td>
-            <Td>{exchangeRates && Number(exchangeRates[0].sale).toFixed(2)}</Td>
-          </tr>
-          <tr>
-            <Td>
-              {exchangeRates &&
-                exchangeRates[1].ccy + `/` + exchangeRates[1].base_ccy}
-            </Td>
-            <Td>{exchangeRates && Number(exchangeRates[1].buy).toFixed(2)}</Td>
-            <Td>{exchangeRates && Number(exchangeRates[1].sale).toFixed(2)}</Td>
-          </tr>
-          <tr>
-            <Td>
-              {exchangeRates &&
-                exchangeRates[2].ccy + `/` + exchangeRates[2].base_ccy}
-            </Td>
-            <Td>{exchangeRates && Math.round(Number(exchangeRates[2].buy))}</Td>
-            <Td>
-              {exchangeRates && Math.round(Number(exchangeRates[2].sale))}
-            </Td>
-          </tr>
-          <tr>
-            <td colSpan="3">
-              <Wave alt="wave" src={wave} />
-            </td>
-          </tr>
-        </Tbody>
-      </Table>
-    </Wrapper>
-  );
-}

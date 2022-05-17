@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import logger from 'redux-logger';
+// import logger from 'redux-logger';
 import {
   persistStore,
   persistReducer,
@@ -13,8 +13,10 @@ import {
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { authApi } from './auth/authReduce';
 import authSlice from './auth/authSlice';
+import { globalReducer } from './globalSlice';
 import { rtkQueryErrorLogger } from './auth/midleware';
 import storage from 'redux-persist/lib/storage';
+import financesReducer from './finances/financesReducer';
 
 const authPersistConfig = {
   key: 'auth',
@@ -25,14 +27,17 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authSlice.reducer),
+    global: globalReducer,
     [authApi.reducerPath]: authApi.reducer,
+    finances: financesReducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(logger),
+    }),
+    /* .concat(logger), */
     rtkQueryErrorLogger,
     authApi.middleware,
   ],

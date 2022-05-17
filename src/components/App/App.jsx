@@ -1,17 +1,15 @@
 import React, { Suspense, lazy } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route /* , Navigate */ } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // import { useEffect } from 'react';
+import '../../../node_modules/modern-normalize/modern-normalize.css';
+import Modal from '../Modal/Modal';
+import { selectIsModalLogoutOpen } from '../../redux/globalSelectors';
 import './App.css';
 import Loader from '../Loader';
-import Header from '../Header';
-import Navigation from '../Navigation/Navigation';
 import authSelectors from '../../redux/auth';
-import PublicRoute from '../Router/PublicRoute/PublicRoute';
-import PrivateRoute from '../Router/PrivateRoute/PrivateRoute';
+import { PrivateRoute, PublicRouteLogin, PublicRouteRegin } from '../Router';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
-
-import HomeTab from '../HomeTab';
 
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
@@ -22,15 +20,20 @@ const Dashboard = lazy(() =>
 const Registration = lazy(() =>
   import('../../pages/RegistrationPage' /* webpackChunkName: "Registration" */),
 );
+const HomePage = lazy(() =>
+  import('../../pages/HomePage' /* webpackChunkName: "Registration" */),
+);
 
 /// TO  DO  public and protected  routes
 
 export default function App() {
+  const showModalLogout = useSelector(selectIsModalLogoutOpen);
   const token = useSelector(authSelectors.getToken);
   // const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const { isFetching } = useFetchCurrentUserQuery(token, {
     skip: token === null,
   });
+  // console.log('__isFetching__: ', isFetching);
 
   /// компоненти  по  факту реалізації  потім розставимо  по місцям і  пропишем тут роути
   return (
@@ -38,35 +41,49 @@ export default function App() {
       {isFetching ? (
         <Loader />
       ) : (
-        <Suspense fallback={<Loader />}>
-          <Routes>
-            <Route
-              path="dashboard/*"
-              element={
-                <PrivateRoute redirectTo="/">
-                  <Dashboard />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="registration"
-              element={
-                <PublicRoute redirectTo="/" restricted>
-                  <Registration />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="/"
-              element={
-                <PublicRoute redirectTo="/" restricted>
-                  <Login />
-                </PublicRoute>
-              }
-            />
-            {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
-          </Routes>
-        </Suspense>
+        <>
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/home" element={<HomePage />} />
+
+              <Route
+                path="registration"
+                element={
+                  <PublicRouteRegin redirectTo="/dashboard" restricted>
+                    <Registration />
+                  </PublicRouteRegin>
+                }
+              />
+
+              <Route
+                path="login"
+                element={
+                  <PublicRouteLogin redirectTo="/dashboard" restricted>
+                    <Login />
+                  </PublicRouteLogin>
+                }
+              />
+
+              <Route
+                path="dashboard/*"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <Dashboard />
+                  </PrivateRoute>
+                }
+              />
+
+              {/* <Route path="*" element={<Navigate to="/" />} /> */}
+            </Routes>
+
+            {/* <Loader /> */}
+            {/* <Header /> */}
+            {/* <Navigation /> */}
+            {/* <HomeTab/> */}
+          </Suspense>
+          {showModalLogout && <Modal />}
+        </>
       )}
     </>
   );
