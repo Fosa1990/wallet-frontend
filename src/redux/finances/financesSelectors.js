@@ -1,3 +1,3 @@
-import { createSelector } from '@reduxjs/toolkit';
+const getFinances = state => state.finances.data;
 
-export const getFinances = state => state.finances.data;
+export default getFinances;
