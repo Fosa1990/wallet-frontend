@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const BASE_URL = 'https://amazing-wallet.herokuapp.com/';
+const BASE_URL = 'https://amazing-wallet.herokuapp.com';
 
 axios.defaults.baseURL = BASE_URL;
 
