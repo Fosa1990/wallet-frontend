@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import Media from 'react-media';
 import styled from 'styled-components';
 import { closeModalWindow } from '../../redux/globalSlice';
 import { modalBgCl, accentBgCl, size } from '../../stylesheet/utils/stylesVars';
@@ -13,7 +14,6 @@ export default function Modal({ children, closeBtn }) {
   const dispatch = useDispatch();
 
   const onModalClose = e => {
-    console.log('close');
     dispatch(closeModalWindow());
   };
 
@@ -37,19 +37,24 @@ export default function Modal({ children, closeBtn }) {
   return createPortal(
     <Overlay onClick={handleBackdropClick}>
       <Content>
-        <Button
-          type="button"
-          onClick={onModalClose}
-          aria-label="close Modal Window"
-          closeBtn={closeBtn}
-        >
-          <Icon
-            width="16px"
-            height="16px"
-            stroke="currentColor"
-            iconName="icon-close"
-          />
-        </Button>
+        <Media
+          query="(min-width: 768px)"
+          render={() => (
+            <Button
+              type="button"
+              onClick={onModalClose}
+              aria-label="close Modal Window"
+            >
+              <Icon
+                width="16px"
+                height="16px"
+                stroke="currentColor"
+                iconName="icon-close"
+              />
+            </Button>
+          )}
+        />
+
         {children}
       </Content>
     </Overlay>,
@@ -58,14 +63,12 @@ export default function Modal({ children, closeBtn }) {
 }
 
 const Overlay = styled.div`
-  ${size.tablet} {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: ${modalBgCl};
-  }
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: ${modalBgCl};
 `;
 
 const Content = styled.div`
@@ -73,35 +76,30 @@ const Content = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 320px;
   padding: 20px 10px 56px;
   background-color: ${accentBgCl};
-  border-radius: 20px;
   ${size.tablet} {
     width: 540px;
-    padding: 40px 80px;
+    padding: 40px 73px;
+    border-radius: 20px;
   }
 `;
 
 const Button = styled.button`
-  display: ${props => props.closeBtn || 'none'};
-  ${size.tablet} {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    width: 40px;
-    height: 40px;
-  }
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  width: 40px;
+  height: 40px;
 `;
 
 Modal.propTypes = {
-  closeBtn: PropTypes.string,
   children: PropTypes.node,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
