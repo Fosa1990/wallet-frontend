@@ -14,6 +14,7 @@ import sprite from '../../images/svg/sprite.svg';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-datetime/css/react-datetime.css';
 import SelectCustom from './Select/SelectCustom';
+import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
 
 export default function ModalAddTransactions() {
   const [checked, setChecked] = useState(false);
@@ -33,30 +34,30 @@ export default function ModalAddTransactions() {
     { value: 'Остальные', label: 'Остальные' },
   ];
 
-  const ToggleSwitch = () => {
-    const handleChange = e => {
-      setChecked(e.target.checked);
-    };
+  // const ToggleSwitch = () => {
+  //   const handleChange = e => {
+  //     setChecked(e.target.checked);
+  //   };
 
-    return (
-      <Label border>
-        <Span color={!checked ? accentDisableCl : accentPositiveCl}>Доход</Span>
-        <input
-          checked={checked}
-          type="checkbox"
-          onChange={handleChange}
-          className="visually-hidden"
-        />
-        <Switch>
-          <Svg checked={checked}>
-            {checked && <use href={`${sprite}#icon-add`} />}
-            {!checked && <use href={`${sprite}#icon-remove`} />}
-          </Svg>
-        </Switch>
-        <Span color={checked ? accentDisableCl : accentNegativeCl}>Расход</Span>
-      </Label>
-    );
-  };
+  //   return (
+  //     <Label border>
+  //       <Span color={!checked ? accentDisableCl : accentPositiveCl}>Доход</Span>
+  //       <input
+  //         checked={checked}
+  //         type="checkbox"
+  //         onChange={handleChange}
+  //         className="visually-hidden"
+  //       />
+  //       <Switch>
+  //         <Svg checked={checked}>
+  //           {checked && <use href={`${sprite}#icon-add`} />}
+  //           {!checked && <use href={`${sprite}#icon-remove`} />}
+  //         </Svg>
+  //       </Switch>
+  //       <Span color={checked ? accentDisableCl : accentNegativeCl}>Расход</Span>
+  //     </Label>
+  //   );
+  // };
 
   const handleSubmit = e => {
     notify();
@@ -71,7 +72,9 @@ export default function ModalAddTransactions() {
       <ToastContainer />
       <Title>Add transaction</Title>
       <Form onSubmit={handleSubmit}>
-        <ToggleSwitch />
+        <Label border>
+          <ToggleSwitch check={setChecked} />
+        </Label>
         {!checked && (
           <Label>
             <SelectCustom options={options} select={setSelectedOption} />
@@ -150,11 +153,6 @@ const Form = styled.form`
 
 const Label = styled.label`
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  cursor: pointer;
   margin-bottom: 40px;
   font-weight: ${p => p.fontWeight || '400'};
   border-bottom: ${p => (!p.border ? `1px solid ${accentDisableCl}` : 'none')};
@@ -163,7 +161,6 @@ const Label = styled.label`
     padding: 0 20px 4px;
     border: none;
     font-weight: inherit;
-
     appearance: none;
   }
   svg {
@@ -186,42 +183,6 @@ const ContainerStyle = styled.div`
       right: 11px;
     }
   }
-`;
-
-const Span = styled.span`
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  color: ${props => props.color};
-`;
-
-const Switch = styled.div`
-  position: relative;
-  width: 80px;
-  height: 40px;
-  background: ${accentBgCl};
-  border-radius: 30px;
-  border: 1px solid ${accentDisableCl};
-  padding: 4px;
-`;
-
-const Svg = styled.svg`
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  padding: 12px;
-  border-radius: 44px;
-  left: -4px;
-  top: 50%;
-  box-sizing: content-box;
-  transition: 300ms transform;
-  transform: ${p =>
-    p.checked ? ' translate(0, -50%)' : 'translate(100%, -50%)'};
-  background-color: ${p => (p.checked ? accentPositiveCl : accentNegativeCl)};
-  box-shadow: ${p =>
-    p.checked
-      ? '0px 6px 15px rgba(36, 204, 167, 0.5)'
-      : '0px 6px 15px rgba(255, 101, 150, 0.5)'};
 `;
 
 const Textarea = styled.textarea`
