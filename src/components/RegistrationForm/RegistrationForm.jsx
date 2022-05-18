@@ -8,6 +8,7 @@ import { regexName, regexEmail } from '../../helpers/regex';
 import PasswordStrenght from './PasswordStrength';
 import Button from '../Button/Button';
 import logo from '../../images/svg/logo.svg';
+import { ReactComponent as GoogleIcon } from '../../images/svg/icons-google.svg';
 
 import Icons from '../../images/svg/sprite.svg';
 
@@ -119,8 +120,19 @@ export default function RegistrationForm() {
                 >
                   Sign up
                 </Button>
+                <Button className="ButtonLogin" outlined color={borderBtnCl}>
+                  <Link to="/">Login</Link>
+                </Button>
                 <Button outlined color={borderBtnCl}>
-                  <Link to="/login">Login</Link>
+                  <a
+                    className="IconGoogle"
+                    // href="http://localhost:3000/api/auth/google"
+                    // href="https://amazing-wallet.netlify.app/api/auth/google"
+                    href="https://amazing-wallet.herokuapp.com/api/auth/google"
+                  >
+                    <GoogleIcon width={32} height={28} />
+                    Sign up
+                  </a>
                 </Button>
               </ButtonWrapper>
             </Form>
@@ -201,7 +213,7 @@ const FromStyle = styled.div`
 
   ${size.desktop} {
     width: 533px;
-    height: 616px;
+    // height: 616px;
   }
 
   .Icon {
@@ -213,4 +225,14 @@ const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .ButtonLogin {
+    margin-bottom: 20px;
+  }
+
+  .IconGoogle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;

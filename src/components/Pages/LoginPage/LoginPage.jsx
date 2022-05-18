@@ -5,14 +5,9 @@ import imgLoginTabBest from '../../../images/frame-login-tablet@2x.png';
 import imgLogin from '../../../images/frame-login.png';
 import imgLoginBest from '../../../images/frame-login@2x.png';
 
-import { TempNavMenu } from '../';
-
 export default function LoginPage() {
-  console.log('==LOGIN==');
   return (
     <>
-      <TempNavMenu pageName="LoginPage" />
-
       <ContainerAuth
         imgTab={imgLoginTab}
         imgTabBest={imgLoginTabBest}
