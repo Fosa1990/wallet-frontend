@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route /* , Navigate */ } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import 'react-toastify/dist/ReactToastify.css';
 // import { useEffect } from 'react';
 import '../../../node_modules/modern-normalize/modern-normalize.css';
 import ModalLogout from '../ModalLogout';
@@ -10,6 +11,8 @@ import Loader from '../Loader';
 import authSelectors from '../../redux/auth';
 import { PrivateRoute, PublicRouteLogin, PublicRouteRegin } from '../Router';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
+import NotifyContainer from '../NotifyContainer';
+
 import ButtonAddTransactions from '../ButtonAddTransactions';
 
 const Login = lazy(() =>
@@ -40,6 +43,7 @@ export default function App() {
         <Loader />
       ) : (
         <>
+          <NotifyContainer />
           <Suspense fallback={<Loader />}>
             <Routes>
               <Route
@@ -79,6 +83,7 @@ export default function App() {
             {/* <Navigation /> */}
             {/* <HomeTab/> */}
           </Suspense>
+
           {showModalLogout && <ModalLogout />}
         </>
       )}
