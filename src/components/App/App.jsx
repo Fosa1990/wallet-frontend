@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route /* , Navigate */ } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import 'react-toastify/dist/ReactToastify.css';
 // import { useEffect } from 'react';
 import '../../../node_modules/modern-normalize/modern-normalize.css';
 import ModalLogout from '../ModalLogout';
@@ -11,7 +12,8 @@ import authSelectors from '../../redux/auth';
 import { PrivateRoute, PublicRouteLogin, PublicRouteRegin } from '../Router';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
 import NotifyContainer from '../NotifyContainer';
-import 'react-toastify/dist/ReactToastify.css';
+
+import ButtonAddTransactions from '../ButtonAddTransactions';
 
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
@@ -21,9 +23,6 @@ const Dashboard = lazy(() =>
 );
 const Registration = lazy(() =>
   import('../../pages/RegistrationPage' /* webpackChunkName: "Registration" */),
-);
-const HomePage = lazy(() =>
-  import('../../pages/HomePage' /* webpackChunkName: "Registration" */),
 );
 
 /// TO  DO  public and protected  routes
@@ -47,9 +46,6 @@ export default function App() {
           <NotifyContainer />
           <Suspense fallback={<Loader />}>
             <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/home" element={<HomePage />} />
-
               <Route
                 path="registration"
                 element={
@@ -60,7 +56,7 @@ export default function App() {
               />
 
               <Route
-                path="login"
+                path="/"
                 element={
                   <PublicRouteLogin redirectTo="/dashboard" restricted>
                     <Login />
@@ -71,8 +67,9 @@ export default function App() {
               <Route
                 path="dashboard/*"
                 element={
-                  <PrivateRoute redirectTo="/login">
+                  <PrivateRoute redirectTo="/">
                     <Dashboard />
+                    <ButtonAddTransactions />
                   </PrivateRoute>
                 }
               />

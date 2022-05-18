@@ -15,6 +15,8 @@ import Balance from '../../Balance';
 import { TempNavMenu } from '..';
 import authSelectors from '../../../redux/auth';
 
+import CustomPagination from '../../CustomPagination';
+
 export default function DashBoardPage() {
   const isLoggedin = useSelector(authSelectors.getIsLoggedIn);
 
@@ -63,6 +65,11 @@ export default function DashBoardPage() {
           </Routes>
         </TabWrap>
       </MainWrap>
+      <CustomPagination
+      // page={page}
+      // totalResults={totalResults}
+      // onPageСhange={onPageСhange}
+      />
     </>
   );
 }
