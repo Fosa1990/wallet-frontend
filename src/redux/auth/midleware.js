@@ -3,8 +3,8 @@ import { toast } from 'react-toastify';
 
 export const rtkQueryErrorLogger = api => next => action => {
   if (isRejectedWithValue(action)) {
-    if (action.payload?.status === 400 && action.payload?.data?.message) {
-      toast.error(`${action.payload?.data?.message}`);
+    if (action.payload?.status === 400 && action.payload?.payload?.message) {
+      toast.error(`${action.payload?.payload?.message}`);
     } else if (action.payload?.status === 400) {
       toast.error('Mail and password entered incorrectly');
     } else if (action.payload?.status === 401) {

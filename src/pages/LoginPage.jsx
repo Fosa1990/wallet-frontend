@@ -1,7 +1,5 @@
 import { Login } from '../components/Pages';
 
-const LoginPage = () => {
+export default function LoginPage() {
   return <Login />;
-};
-
-export default LoginPage;
+}

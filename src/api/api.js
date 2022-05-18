@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-//універсальна функція для запиту, теоретично може бути одна на проект якщо постаратись, використовується у парі з rtcQuery 
+//універсальна функція для запиту, теоретично може бути одна на проект якщо постаратись, використовується у парі з rtcQuery
 export const axiosBaseQuery =
   ({ baseUrl } = { baseUrl: '' }) =>
   async ({ url, method, data }) => {
@@ -15,7 +15,7 @@ export const axiosBaseQuery =
       };
     }
   };
-// функція добавляє токен до запитів якщо він є 
+// функція добавляє токен до запитів якщо він є
 function setToken(url, token) {
   if (url === '/users/login' || url === '/users/signup') {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
