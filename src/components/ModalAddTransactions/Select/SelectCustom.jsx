@@ -2,6 +2,7 @@ import {
   accentNegativeCl,
   accentDisableCl,
   accentTextCl,
+  accentBgCl,
 } from '../../../stylesheet/utils/stylesVars';
 import styled from 'styled-components';
 import sprite from '../../../images/svg/sprite.svg';
@@ -91,7 +92,6 @@ const Ul = styled.ul`
   position: absolute;
   left: 0;
   width: 100%;
-  padding: 0 23px 0 20px;
   z-index: 1000;
   background: rgba(255, 255, 255, 0.7);
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
@@ -103,10 +103,18 @@ const Li = styled.li`
   height: 44px;
   display: flex;
   align-items: center;
+  padding: 0 23px 0 20px;
 
   &:hover,
   &:focus {
     cursor: pointer;
     color: ${accentNegativeCl};
+    background: ${accentBgCl};
+    &:last-child {
+      border-radius: 0 0 20px 20px;
+    }
+    &:first-child {
+      border-radius: 20px 20px 0 0;
+    }
   }
 `;
