@@ -10,6 +10,7 @@ import Loader from '../Loader';
 import authSelectors from '../../redux/auth';
 import { PrivateRoute, PublicRouteLogin, PublicRouteRegin } from '../Router';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
+import ButtonAddTransactions from '../ButtonAddTransactions';
 
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
@@ -70,6 +71,7 @@ export default function App() {
                 element={
                   <PrivateRoute redirectTo="/login">
                     <Dashboard />
+                    <ButtonAddTransactions />
                   </PrivateRoute>
                 }
               />
