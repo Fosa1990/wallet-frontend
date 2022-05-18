@@ -25,13 +25,13 @@ export default function ModalAddTransactions() {
   console.log(selectedDate);
 
   const options = [
-    { value: 'Основной', label: 'Основной' },
-    { value: 'Еда', label: 'Еда' },
-    { value: 'Авто', label: 'Авто' },
-    { value: 'Развитие', label: 'Развитие' },
-    { value: 'Дети', label: 'Дети' },
-    { value: 'Образование', label: 'Образование' },
-    { value: 'Остальные', label: 'Остальные' },
+    { value: 'Basic' },
+    { value: 'Food' },
+    { value: 'Car' },
+    { value: 'Development' },
+    { value: 'Children' },
+    { value: 'Education' },
+    { value: 'Other' },
   ];
 
   const handleSubmit = e => {
@@ -105,12 +105,12 @@ const Title = styled.h2`
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
-  line-height: 36px;
+  line-height: 1.5;
   text-align: center;
   height: 31px;
   ${size.tablet} {
     font-size: 30px;
-    line-height: 45px;
+    line-height: 1.5;
   }
 `;
 
@@ -118,7 +118,6 @@ const Form = styled.form`
   font-family: 'Circe';
   font-style: normal;
   font-size: 18px;
-  line-height: 27px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -132,18 +131,22 @@ const Label = styled.label`
   font-weight: ${p => p.fontWeight || '400'};
   border-bottom: ${p => (!p.border ? `1px solid ${accentDisableCl}` : 'none')};
   width: 280px;
-  input {
-    padding: 0 20px 4px;
+  line-height: 0;
+  input,
+  textarea {
+    padding: 0 20px;
     border: none;
     font-weight: inherit;
-    appearance: none;
+    line-height: 1.5;
+    &:focus-visible {
+      border-bottom: 1px solid ${accentPositiveCl};
+    }
   }
   ${size.tablet} {
     width: 394px;
   }
 `;
 const ContainerStyle = styled.div`
-  // border-bottom: 1px solid ${accentDisableCl};
   width: 280px;
   svg {
     position: absolute;
@@ -175,16 +178,14 @@ const ContainerStyle = styled.div`
 
 const Textarea = styled.textarea`
   font-size: inherit;
-  // line-height: inherit;
-  border: none;
   width: 280px;
   min-height: 84px;
   max-height: 150px;
-  padding: 0 20px;
   resize: none;
   ${size.tablet} {
     width: 394px;
     min-height: 32px;
     max-height: 280px;
+    padding: 0 20px;
   }
 `;
