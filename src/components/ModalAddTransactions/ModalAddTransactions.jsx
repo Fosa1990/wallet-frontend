@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import Datetime from 'react-datetime';
 import Button from '../Button/Button';
+import SelectCustom from './Select/SelectCustom';
+import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
 import {
   accentPositiveCl,
   accentBgCl,
@@ -13,8 +15,6 @@ import styled from 'styled-components';
 import sprite from '../../images/svg/sprite.svg';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-datetime/css/react-datetime.css';
-import SelectCustom from './Select/SelectCustom';
-import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
 
 export default function ModalAddTransactions() {
   const [checked, setChecked] = useState(false);
@@ -22,7 +22,6 @@ export default function ModalAddTransactions() {
   const [sumTransaction, setSumTransaction] = useState();
   const [comment, setComment] = useState();
   const [selectedOption, setSelectedOption] = useState(null);
-  console.log(selectedDate);
 
   const options = [
     { value: 'Basic' },
