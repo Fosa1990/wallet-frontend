@@ -1,11 +1,12 @@
 import axios from 'axios';
+import { tokenService } from '../services/tokenService';
 
 //універсальна функція для запиту, теоретично може бути одна на проект якщо постаратись, використовується у парі з rtcQuery
 export const axiosBaseQuery =
   ({ baseUrl } = { baseUrl: '' }) =>
   async ({ url, method, data }) => {
     try {
-      const result = await axios({ url: baseUrl + url, method, data });
+      const result = await axios({ url: `${baseUrl}${url}`, method, data });
       setToken(url, result.data.token);
       return { data: result.data };
     } catch (axiosError) {
@@ -17,10 +18,6 @@ export const axiosBaseQuery =
   };
 // функція добавляє токен до запитів якщо він є
 function setToken(url, token) {
-  if (url === '/users/login' || url === '/users/signup') {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  }
-  if (url === '/users/logout') {
-    axios.defaults.headers.common.Authorization = '';
-  }
+  if (url === '/users/login') tokenService.set(token);
+  if (url === '/users/logout') tokenService.unset();
 }
