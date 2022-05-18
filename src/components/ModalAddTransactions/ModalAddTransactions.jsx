@@ -34,31 +34,6 @@ export default function ModalAddTransactions() {
     { value: 'Остальные', label: 'Остальные' },
   ];
 
-  // const ToggleSwitch = () => {
-  //   const handleChange = e => {
-  //     setChecked(e.target.checked);
-  //   };
-
-  //   return (
-  //     <Label border>
-  //       <Span color={!checked ? accentDisableCl : accentPositiveCl}>Доход</Span>
-  //       <input
-  //         checked={checked}
-  //         type="checkbox"
-  //         onChange={handleChange}
-  //         className="visually-hidden"
-  //       />
-  //       <Switch>
-  //         <Svg checked={checked}>
-  //           {checked && <use href={`${sprite}#icon-add`} />}
-  //           {!checked && <use href={`${sprite}#icon-remove`} />}
-  //         </Svg>
-  //       </Switch>
-  //       <Span color={checked ? accentDisableCl : accentNegativeCl}>Расход</Span>
-  //     </Label>
-  //   );
-  // };
-
   const handleSubmit = e => {
     notify();
     e.preventDefault();
@@ -84,7 +59,7 @@ export default function ModalAddTransactions() {
           <Label fontWeight={700}>
             <input
               type="number"
-              name="email"
+              name="sum"
               value={sumTransaction}
               onChange={({ currentTarget: { numb } }) =>
                 setSumTransaction(numb)
@@ -113,14 +88,13 @@ export default function ModalAddTransactions() {
             value={comment}
             onChange={({ target: { value } }) => setComment(value)}
             name="user-message"
-            class="modal__form-text"
-            placeholder="Комментарий"
+            placeholder="Comment"
           />
         </Label>
         <Button primary type="submit">
-          ДОБАВИТЬ
+          ADD
         </Button>
-        <Button outlined>ОТМЕНА</Button>
+        <Button outlined>CANCEL</Button>
       </Form>
     </div>
   );
@@ -153,6 +127,7 @@ const Form = styled.form`
 
 const Label = styled.label`
   position: relative;
+  display: block;
   margin-bottom: 40px;
   font-weight: ${p => p.fontWeight || '400'};
   border-bottom: ${p => (!p.border ? `1px solid ${accentDisableCl}` : 'none')};
@@ -163,24 +138,37 @@ const Label = styled.label`
     font-weight: inherit;
     appearance: none;
   }
+  ${size.tablet} {
+    width: 394px;
+  }
+`;
+const ContainerStyle = styled.div`
+  // border-bottom: 1px solid ${accentDisableCl};
+  width: 280px;
   svg {
     position: absolute;
+    top: 2px;
     right: 20px;
     width: 18px;
     height: 20px;
   }
-`;
-const ContainerStyle = styled.div`
   ${size.tablet} {
     width: 394px;
     display: flex;
     justify-content: space-between;
-    input {
-      text-align: center;
+    label {
       width: 190px;
+      &:first-child {
+        input {
+          text-align: center;
+        }
+      }
+    }
+    input {
+      width: 100%;
     }
     svg {
-      right: 11px;
+      right: 20px;
     }
   }
 `;
@@ -191,10 +179,12 @@ const Textarea = styled.textarea`
   border: none;
   width: 280px;
   min-height: 84px;
+  max-height: 150px;
   padding: 0 20px;
   resize: none;
   ${size.tablet} {
     width: 394px;
     min-height: 32px;
+    max-height: 280px;
   }
 `;

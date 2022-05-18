@@ -78,7 +78,7 @@ const PlaceholderWraper = styled.div`
 const Div = styled.div`
   position: relative;
   width: 100%;
-  padding: 0 23px 0 20px;
+  padding: 0 20px 0 20px;
 `;
 
 const H2 = styled.h2`
@@ -103,7 +103,7 @@ const Li = styled.li`
   height: 44px;
   display: flex;
   align-items: center;
-  padding: 0 23px 0 20px;
+  padding: 0 20px 0 20px;
 
   &:hover,
   &:focus {
