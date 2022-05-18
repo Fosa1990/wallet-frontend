@@ -43,6 +43,13 @@ export const authApi = createApi({
       invalidatesTags: ['Auth'],
     }),
 
+    logoutUser: builder.mutation({
+      query: () => ({
+        url: '/auth/signout',
+      }),
+      invalidatesTags: ['Auth'],
+    }),
+
     fetchCurrentUser: builder.query({
       queryFn: async (arg, queryApi, extraOptions, baseQuery) => {
         console.log('==REDUX==fetchCurrentUser==');
@@ -59,5 +66,6 @@ export const authApi = createApi({
 export const {
   useRegisterUserMutation,
   useLoginUserMutation,
+  useLogoutUserMutation,
   useFetchCurrentUserQuery,
 } = authApi;
