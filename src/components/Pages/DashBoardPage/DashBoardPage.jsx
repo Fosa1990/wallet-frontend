@@ -12,6 +12,8 @@ import Balance from '../../Balance';
 
 import { TempNavMenu } from '..';
 
+import CustomPagination from '../../CustomPagination';
+
 export default function DashBoardPage() {
   ///  при загрузці  треба  доставати транзакції щоб їх  рендерити в  Hometab
   return (
@@ -52,6 +54,11 @@ export default function DashBoardPage() {
           </Routes>
         </TabWrap>
       </MainWrap>
+      <CustomPagination
+      // page={page}
+      // totalResults={totalResults}
+      // onPageСhange={onPageСhange}
+      />
     </>
   );
 }
