@@ -1,1 +1,1 @@
-export { default } from './authSelectors.jsx';
+export { default } from './authSelectors.js';

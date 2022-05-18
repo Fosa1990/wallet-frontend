@@ -9,8 +9,8 @@ import {
 } from '../../stylesheet/utils/stylesVars';
 
 const StyledButton = styled.button`
-  width: 280px;
-  height: 50px;
+  width: ${props => props.width || '280px'};
+  height: ${props => props.height || '50px'};
   border-radius: 20px;
   padding: 13px;
   font-family: ${circleFont};
@@ -26,7 +26,7 @@ const StyledButton = styled.button`
       color: ${props => props.color || accentBgCl};
       background: ${props => props.background || accentPositiveCl};
       border: none;
-      margin-bottom: 20px;
+      margin-bottom: ${props => props.marginBtm || '20px'};
       &:hover,
       &:focus {
         box-shadow: inset 0px 0px 45px rgba(255, 255, 255, 0.7);
@@ -45,12 +45,12 @@ const StyledButton = styled.button`
     `}
 
   ${size.tablet} {
-    width: 300px;
+    width: ${props => props.width || '300px'};
   }
 `;
 
 export default function Button(props) {
-  return <StyledButton type="button" {...props} />;
+  return <StyledButton type="submit" {...props} />;
 }
 
 Button.propTypes = {
