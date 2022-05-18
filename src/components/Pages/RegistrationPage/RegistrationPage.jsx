@@ -23,6 +23,7 @@ export default function RegistrationPage() {
         widthDes="452px"
         heightDes="412px"
         paddingTop="52px"
+        marginTop="153px"
       >
         <RegistrationForm />
       </ContainerAuth>
