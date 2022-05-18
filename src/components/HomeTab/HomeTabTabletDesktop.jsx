@@ -1,63 +1,35 @@
 import styled from 'styled-components';
 import { size } from '../../stylesheet/utils/stylesVars';
 import { circleFont, accentBgCl } from '../../stylesheet/utils/stylesVars';
+import Moment from 'react-moment';
 
-export default function HomeTabTabletDesktop() {
+export default function HomeTabTabletDesktop({ finances }) {
   return (
-      <Table>
-              <Thead>
-                <tr>
-                  <Th>Date</Th>
-                  <Th>Type</Th>
-                  <Th>Category</Th>
-                  <Th>Comment</Th>
-                  <Th>Sum</Th>
-                  <Th>Balance</Th>
-                </tr>
-              </Thead>
-              <Tbody>
-                <Tr>
-                  <Td>04.01.19</Td>
-                  <Td>-</Td>
-                  <Td>other spend</Td>
-                  <Td>gift</Td>
-                  <Td>300</Td>
-                  <Td>6900</Td>
-                </Tr>
-                <Tr>
-                  <Td>05.01.19</Td>
-                  <Td>+</Td>
-                  <Td>regular income</Td>
-                  <Td>january bonus</Td>
-                  <Td>8000</Td>
-                  <Td>14900</Td>
-                </Tr>
-                <Tr>
-                  <Td>07.01.19</Td>
-                  <Td>-</Td>
-                  <Td>car</Td>
-                  <Td>oil</Td>
-                  <Td>1000</Td>
-                  <Td>13900</Td>
-                </Tr>
-                <Tr>
-                  <Td>07.01.19</Td>
-                  <Td>-</Td>
-                  <Td>food</Td>
-                  <Td>vegetables</Td>
-                  <Td>280</Td>
-                  <Td>13870</Td>
-                </Tr>
-                <Tr>
-                  <Td>07.01.19</Td>
-                  <Td>+</Td>
-                  <Td>unregular income</Td>
-                  <Td>birthday gift</Td>
-                  <Td>1000</Td>
-                  <Td>14870</Td>
-                </Tr>
-              </Tbody>
-            </Table>
+    <Table>
+      <Thead>
+        <tr>
+          <Th>Date</Th>
+          <Th>Type</Th>
+          <Th>Category</Th>
+          <Th>Comment</Th>
+          <Th>Sum</Th>
+          <Th>Balance</Th>
+        </tr>
+      </Thead>
+      <Tbody>
+        {finances &&
+          finances.map(transaction => (
+            <Tr key={transaction._id}>
+              <Td>{<Moment format="DD.MM.YYYY">{transaction.date}</Moment>}</Td>
+              <Td>{transaction.transactionType}</Td>
+              <Td>{transaction.category}</Td>
+              <Td>{transaction.sum}</Td>
+              <Td>{transaction.comment}</Td>
+              <Td>{transaction.balance}</Td>
+            </Tr>
+          ))}
+      </Tbody>
+    </Table>
   );
 }
 
@@ -78,9 +50,9 @@ const Thead = styled.thead`
 `;
 
 const Tr = styled.tr`
-    border-bottom: 1px solid #dcdcdf;
-    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
- `;
+  border-bottom: 1px solid #dcdcdf;
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+`;
 
 const Th = styled.th`
   font: ${circleFont};
@@ -112,4 +84,3 @@ const Td = styled.td`
     text-align: center;
   }
 `;
-
