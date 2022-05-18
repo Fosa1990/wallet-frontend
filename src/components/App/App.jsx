@@ -10,8 +10,7 @@ import Loader from '../Loader';
 import authSelectors from '../../redux/auth';
 import { PrivateRoute, PublicRouteLogin, PublicRouteRegin } from '../Router';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
-import ModalAddTransactions from '../ModalAddTransactions/ModalAddTransactions';
-import ButtonAddTransactions from '../ButtonAddTransactions/ButtonAddTransactions';
+import ButtonAddTransactions from '../ButtonAddTransactions';
 
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
@@ -40,7 +39,6 @@ export default function App() {
   /// компоненти  по  факту реалізації  потім розставимо  по місцям і  пропишем тут роути
   return (
     <>
-      {/* <ModalAddTransactions /> */}
       <ButtonAddTransactions />
       {isFetching ? (
         <Loader />
