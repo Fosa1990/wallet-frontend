@@ -57,6 +57,7 @@ export default function App() {
 
               <Route
                 path="/"
+                // path="login"
                 element={
                   <PublicRouteLogin redirectTo="/dashboard" restricted>
                     <Login />
