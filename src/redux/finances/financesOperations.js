@@ -10,10 +10,10 @@ export const fetchFinances = createAsyncThunk(
       const response = await axios.get(
         'https://amazing-wallet.herokuapp.com/api/transactions',
       );
-      console.log('response', response);
-      console.log(
+     // console.log('response', response);
+     // console.log(
         'response.data.payload/transactions',
-        console.log('last'),
+      //  console.log('last'),
         response.data.payload.transactions,
       );
       return response.data.payload;
