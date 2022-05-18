@@ -54,7 +54,7 @@ const LoginFormWrap = styled.div`
     width: 100%;
     height: 100vh;
     justify-content: center;
-    padding: 136px 91px 0px 107px;
+    // padding: 136px 91px 0px 107px;
     padding-top: ${props => props.paddingTop};
     background-color: ${props => props.color || bgTabletWalletCl};
     backdrop-filter: blur(50px);

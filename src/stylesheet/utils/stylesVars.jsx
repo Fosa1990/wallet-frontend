@@ -12,6 +12,7 @@ export const textPlcholderCl = '#bdbdbd';
 export const iconBgCl = '#6e78e8';
 export const iconBgActiveCl = '#4a56e2';
 export const iconBgValueCl = '#4A56E2';
+export const iconDefaultCl = '#e0e0e0';
 export const modalBgCl = 'rgba(0, 0, 0, 0.25)';
 export const bgTabletCl = '#E7EAF2';
 export const bgTabletWalletCl = 'rgba(255, 255, 255, 0.4)';
