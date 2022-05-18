@@ -13,24 +13,24 @@ import styled from 'styled-components';
 import sprite from '../../images/svg/sprite.svg';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-datetime/css/react-datetime.css';
+import SelectCustom from './Select/SelectCustom';
 
 export default function ModalAddTransactions() {
   const [checked, setChecked] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [sumTransaction, setSumTransaction] = useState();
   const [comment, setComment] = useState();
-  const [select, setSelect] = useState();
+  const [selectedOption, setSelectedOption] = useState(null);
   console.log(selectedDate);
 
-  const category = [
-    'Основной',
-    'Еда',
-    'Авто',
-    'Развитие',
-    'Дети',
-    'Дом',
-    'Образование',
-    'Остальные',
+  const options = [
+    { value: 'Основной', label: 'Основной' },
+    { value: 'Еда', label: 'Еда' },
+    { value: 'Авто', label: 'Авто' },
+    { value: 'Развитие', label: 'Развитие' },
+    { value: 'Дети', label: 'Дети' },
+    { value: 'Образование', label: 'Образование' },
+    { value: 'Остальные', label: 'Остальные' },
   ];
 
   const ToggleSwitch = () => {
@@ -72,24 +72,11 @@ export default function ModalAddTransactions() {
       <Title>Add transaction</Title>
       <Form onSubmit={handleSubmit}>
         <ToggleSwitch />
-        <Label for="category">
-          {!checked && (
-            <Select
-              id="category"
-              name="category"
-              value={select}
-              onChange={({ target: { value } }) => setSelect(value)}
-            >
-              <option disabled selected>
-                Chose category...
-              </option>
-              {category.map(name => (
-                <option value={name}>{name}</option>
-              ))}
-              {/*<option value="m" selected>Medium</option>*/}
-            </Select>
-          )}
-        </Label>
+        {!checked && (
+          <Label>
+            <SelectCustom options={options} select={setSelectedOption} />
+          </Label>
+        )}
         <ContainerStyle>
           <Label fontWeight={700}>
             <input
@@ -135,47 +122,6 @@ export default function ModalAddTransactions() {
     </div>
   );
 }
-const Select = styled.select`
-  
-    display: block;
-    font-size: inherit;
-    font-family:inherit;
-    font-weight: 400;
-    line-height: inherit;
-    color: ${accentDisableCl};
-    padding:0 20px 0;
-    width: 280px;
-    border:none;
-    outline: none;
-    margin: 0 ;
-    // border: 1px solid #aaa;
-    // box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
-    // border-radius: 0.5em;
-
-    // appearance: none;
-    // background-color: #fff;
-    // background-image: url(${sprite}#icon-arrow-down});
-    // background-repeat: no-repeat, repeat;
-    // background-position: right 0.7em top 50%, 0 0;
-    // background-size: 0.65em auto, 100%;
-  }
-
-  &:hover {
-    border: none;
-  }
-  &:focus {
-    // color: #222;
-    // outline: none;
-    background: rgba(255, 255, 255, 0.7);
-box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(50px);
-border-radius: 20px;
-  } 
-  option{
-    margin-top:10px;
-    color:tomato;
-  }
-`;
 
 const Title = styled.h2`
   font-family: 'Poppins';
@@ -206,16 +152,18 @@ const Label = styled.label`
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 20px;
   cursor: pointer;
   margin-bottom: 40px;
   font-weight: ${p => p.fontWeight || '400'};
   border-bottom: ${p => (!p.border ? `1px solid ${accentDisableCl}` : 'none')};
+  width: 280px;
   input {
     padding: 0 20px 4px;
     border: none;
     font-weight: inherit;
-    width: 280px;
+
     appearance: none;
   }
   svg {
