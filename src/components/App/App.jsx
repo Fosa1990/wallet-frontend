@@ -10,6 +10,8 @@ import Loader from '../Loader';
 import authSelectors from '../../redux/auth';
 import { PrivateRoute, PublicRouteLogin, PublicRouteRegin } from '../Router';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
+import NotifyContainer from '../NotifyContainer';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
@@ -42,6 +44,7 @@ export default function App() {
         <Loader />
       ) : (
         <>
+          <NotifyContainer />
           <Suspense fallback={<Loader />}>
             <Routes>
               <Route path="/" element={<HomePage />} />
@@ -82,6 +85,7 @@ export default function App() {
             {/* <Navigation /> */}
             {/* <HomeTab/> */}
           </Suspense>
+
           {showModalLogout && <ModalLogout />}
         </>
       )}
