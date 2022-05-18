@@ -10,6 +10,7 @@ import Loader from '../Loader';
 import authSelectors from '../../redux/auth';
 import { PrivateRoute, PublicRouteLogin, PublicRouteRegin } from '../Router';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
+import ButtonAddTransactions from '../ButtonAddTransactions';
 
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
@@ -19,9 +20,6 @@ const Dashboard = lazy(() =>
 );
 const Registration = lazy(() =>
   import('../../pages/RegistrationPage' /* webpackChunkName: "Registration" */),
-);
-const HomePage = lazy(() =>
-  import('../../pages/HomePage' /* webpackChunkName: "Registration" */),
 );
 
 /// TO  DO  public and protected  routes
@@ -44,9 +42,6 @@ export default function App() {
         <>
           <Suspense fallback={<Loader />}>
             <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/home" element={<HomePage />} />
-
               <Route
                 path="registration"
                 element={
@@ -57,7 +52,8 @@ export default function App() {
               />
 
               <Route
-                path="login"
+                path="/"
+                // path="login"
                 element={
                   <PublicRouteLogin redirectTo="/dashboard" restricted>
                     <Login />
@@ -68,8 +64,9 @@ export default function App() {
               <Route
                 path="dashboard/*"
                 element={
-                  <PrivateRoute redirectTo="/login">
+                  <PrivateRoute redirectTo="/">
                     <Dashboard />
+                    <ButtonAddTransactions />
                   </PrivateRoute>
                 }
               />
