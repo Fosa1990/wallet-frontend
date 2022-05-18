@@ -4,11 +4,10 @@ import Datetime from 'react-datetime';
 import Button from '../Button/Button';
 import SelectCustom from './Select/SelectCustom';
 import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
+import Modal from '../Modal/Modal';
 import {
   accentPositiveCl,
-  accentBgCl,
   size,
-  accentNegativeCl,
   accentDisableCl,
 } from '../../stylesheet/utils/stylesVars';
 import styled from 'styled-components';
@@ -42,60 +41,62 @@ export default function ModalAddTransactions() {
     toast.error('Error, somesing go wrong', { autoClose: 3000 });
 
   return (
-    <div>
-      <ToastContainer />
-      <Title>Add transaction</Title>
-      <Form onSubmit={handleSubmit}>
-        <Label border>
-          <ToggleSwitch check={setChecked} />
-        </Label>
-        {!checked && (
-          <Label>
-            <SelectCustom options={options} select={setSelectedOption} />
+    <Modal>
+      <div>
+        <ToastContainer />
+        <Title>Add transaction</Title>
+        <Form onSubmit={handleSubmit}>
+          <Label border>
+            <ToggleSwitch check={setChecked} />
           </Label>
-        )}
-        <ContainerStyle>
-          <Label fontWeight={700}>
-            <input
-              type="number"
-              name="sum"
-              value={sumTransaction}
-              onChange={({ currentTarget: { numb } }) =>
-                setSumTransaction(numb)
-              }
-              placeholder="0.00"
-              required
+          {!checked && (
+            <Label>
+              <SelectCustom options={options} select={setSelectedOption} />
+            </Label>
+          )}
+          <ContainerStyle>
+            <Label fontWeight={700}>
+              <input
+                type="number"
+                name="sum"
+                value={sumTransaction}
+                onChange={({ currentTarget: { numb } }) =>
+                  setSumTransaction(numb)
+                }
+                placeholder="0.00"
+                required
+              />
+            </Label>
+            <Label>
+              <Datetime
+                timeFormat={false}
+                closeOnSelect={true}
+                dateFormat={'DD.MM.YYYY'}
+                value={selectedDate}
+                className={'datetime-picker__wrapper'}
+                onChange={date => setSelectedDate(date?._d)}
+              />
+              <svg>
+                <use href={`${sprite}#icon-calendar`} />
+              </svg>
+            </Label>
+          </ContainerStyle>
+          <Label>
+            <Textarea
+              spellcheck={true}
+              value={comment}
+              onChange={({ target: { value } }) => setComment(value)}
+              name="user-message"
+              placeholder="Comment"
             />
           </Label>
-          <Label>
-            <Datetime
-              timeFormat={false}
-              closeOnSelect={true}
-              dateFormat={'DD.MM.YYYY'}
-              value={selectedDate}
-              className={'datetime-picker__wrapper'}
-              onChange={date => setSelectedDate(date?._d)}
-            />
-            <svg>
-              <use href={`${sprite}#icon-calendar`} />
-            </svg>
-          </Label>
-        </ContainerStyle>
-        <Label>
-          <Textarea
-            spellcheck={true}
-            value={comment}
-            onChange={({ target: { value } }) => setComment(value)}
-            name="user-message"
-            placeholder="Comment"
-          />
-        </Label>
-        <Button primary type="submit">
-          ADD
-        </Button>
-        <Button outlined>CANCEL</Button>
-      </Form>
-    </div>
+          <Button primary type="submit">
+            ADD
+          </Button>
+          <Button outlined>CANCEL</Button>
+        </Form>
+      </div>
+    </Modal>
   );
 }
 
