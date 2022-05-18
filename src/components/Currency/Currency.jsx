@@ -12,7 +12,7 @@ import wave from '../../images/wave.png';
 import Loader from '../Loader';
 
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 // const baseUrl = `https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5`;
 // axios.defaults.baseURL = baseUrl;
@@ -29,9 +29,11 @@ export default function Currency() {
   }, []);
 
   function getExchangeRates() {
-    return axios
-      .get('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
-      .then(res => res.data)
+    return fetch(
+      'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5',
+    )
+      .then(res => res.json())
+      .then(res => res)
       .catch(error => console.log(error.message));
   }
 
