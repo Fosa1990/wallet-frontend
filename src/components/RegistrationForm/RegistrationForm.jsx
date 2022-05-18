@@ -44,7 +44,7 @@ export default function RegistrationForm() {
   });
 
   return (
-    <WrapperForm>
+    <>
       <Formik
         initialValues={{
           email: '',
@@ -127,15 +127,9 @@ export default function RegistrationForm() {
           </FromStyle>
         )}
       </Formik>
-    </WrapperForm>
+    </>
   );
 }
-
-const WrapperForm = styled.div`
-  ${size.desktop} {
-    padding: 52px 91px 52px 107px;
-  }
-`;
 
 const LogoWrapper = styled.div`
   display: flex;

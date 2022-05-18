@@ -7,6 +7,49 @@ import {
   bgTabletWalletCl,
 } from '../../stylesheet/utils/stylesVars';
 
+export default function ContainerAuth({
+  imgTab,
+  imgTabBest,
+  img,
+  imgBest,
+  sizeDes,
+  sizeTab,
+  widthTab,
+  heightTab,
+  widthDes,
+  heightDes,
+  marginBot,
+  marginTop,
+  paddingTop,
+  children,
+}) {
+  return (
+    <>
+      <Section>
+        <Container>
+          <DivTop marginTop={marginTop}>
+            <Sidebar
+              imgTab={imgTab}
+              imgTabBest={imgTabBest}
+              img={img}
+              imgBest={imgBest}
+              sizeTab={sizeTab}
+              sizeDes={sizeDes}
+              heightTab={heightTab}
+              widthTab={widthTab}
+              heightDes={heightDes}
+              widthDes={widthDes}
+              marginBot={marginBot}
+            />
+            <Text>Finance App</Text>
+          </DivTop>
+          <LoginFormWrap paddingTop={paddingTop}>{children}</LoginFormWrap>
+        </Container>
+      </Section>
+    </>
+  );
+}
+
 const Section = styled.section`
   height: 100vh;
   background: ${props => props.color || accentBgCl};
@@ -18,7 +61,7 @@ const Section = styled.section`
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  // padding: 107px 20px 0;
+  /* padding: 107px 20px 0; */
   ${size.tablet} {
     display: block;
     padding: 60px 20px 0 20px;
@@ -41,7 +84,7 @@ const DivTop = styled.div`
   ${size.desktop} {
     width: 435px;
     flex-direction: column;
-    margin: 150px 38px 0 76px;
+    margin: ${props => props.marginTop || '150px'} 38px 0 76px;
   }
 `;
 
@@ -54,8 +97,9 @@ const LoginFormWrap = styled.div`
     width: 100%;
     height: 100vh;
     justify-content: center;
-    // padding: 136px 91px 0px 107px;
-    padding-top: ${props => props.paddingTop};
+    padding-left: 107px;
+    padding-right: 91px;
+    padding-top: ${props => props.paddingTop || '136px'};
     background-color: ${props => props.color || bgTabletWalletCl};
     backdrop-filter: blur(50px);
   }
@@ -99,53 +143,18 @@ const Text = styled.p`
   }
 `;
 
-export default function ContainerAuth({
-  imgTab,
-  imgTabBest,
-  img,
-  imgBest,
-  sizeDes,
-  sizeTab,
-  widthTab,
-  heightTab,
-  widthDes,
-  heightDes,
-  marginBot,
-  paddingTop,
-  children,
-}) {
-  return (
-    <>
-      <Section>
-        <Container>
-          <DivTop>
-            <Sidebar
-              imgTab={imgTab}
-              imgTabBest={imgTabBest}
-              img={img}
-              imgBest={imgBest}
-              sizeTab={sizeTab}
-              sizeDes={sizeDes}
-              heightTab={heightTab}
-              widthTab={widthTab}
-              heightDes={heightDes}
-              widthDes={widthDes}
-              marginBot={marginBot}
-              paddingTop={paddingTop}
-            />
-            <Text>Finance App</Text>
-          </DivTop>
-          <LoginFormWrap>{children}</LoginFormWrap>
-        </Container>
-      </Section>
-    </>
-  );
-}
-
 ContainerAuth.propTypes = {
   imgTab: PropTypes.string.isRequired,
   imgTabBest: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
   imgBest: PropTypes.string.isRequired,
+  sizeTab: PropTypes.string.isRequired,
+  sizeDes: PropTypes.string.isRequired,
+  heightTab: PropTypes.string.isRequired,
+  widthTab: PropTypes.string.isRequired,
+  heightDes: PropTypes.string.isRequired,
+  widthDes: PropTypes.string.isRequired,
+  marginBot: PropTypes.string,
+  marginTop: PropTypes.string,
   children: PropTypes.node,
 };
