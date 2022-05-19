@@ -1,6 +1,6 @@
-export const BASE_URL = 'http://localhost:3000/';
+const BASE_URL = 'http://localhost:3000/';
 
-export const colors = [
+const colors = [
   { category: 'basic spend', color: '#FED057' },
   { category: 'products', color: '#FFD8D0' },
   { category: 'car', color: '#FD9498' },
@@ -29,4 +29,4 @@ const ROUTES = {
   GOOGLE_AUTH: 'google',
 };
 
-export { BASE_URL, ROUTES };
+export { BASE_URL, ROUTES, colors };
