@@ -1,17 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import axios from 'axios';
+import { tokenService } from '../../services/tokenService';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://amazing-wallet.herokuapp.com/api',
+    // baseUrl: 'http://localhost:8081/api',
 
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
 
       if (token) {
         headers.set('authorization', `Bearer ${token}`);
-        axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+        tokenService.set(token);
         // при логауте надо очистить токен!
       }
       return headers;

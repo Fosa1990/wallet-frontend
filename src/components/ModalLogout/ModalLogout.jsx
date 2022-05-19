@@ -13,6 +13,7 @@ import {
 import authSelectors from '../../redux/auth/authSelectors';
 import { closeModalWindow } from '../../redux/globalSlice';
 import { useLogoutUserMutation } from '../../redux/auth/authReduce';
+import { toast } from 'react-toastify';
 
 export default function ModalLogout() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ export default function ModalLogout() {
   const [logout] = useLogoutUserMutation();
   const onLogout = () => {
     logout();
+    toast.success('You logged out');
     onCancelLogout();
   };
 

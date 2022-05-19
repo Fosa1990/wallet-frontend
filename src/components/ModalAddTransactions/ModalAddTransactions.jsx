@@ -72,7 +72,6 @@ export default function ModalAddTransactions() {
               <Datetime
                 timeFormat={false}
                 closeOnSelect={true}
-                closeOnTab={true}
                 dateFormat={'DD.MM.YYYY'}
                 value={selectedDate}
                 onChange={date => setSelectedDate(date?._d)}
