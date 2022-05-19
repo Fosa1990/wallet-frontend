@@ -16,7 +16,7 @@ export default function Select() {
     'July',
     'August',
     'September',
-    'Oktober',
+    'October',
     'November',
     'December',
   ];
