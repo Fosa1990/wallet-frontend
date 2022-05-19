@@ -38,5 +38,3 @@ const optionModalTransuction = {
 };
 
 export { BASE_URL, ROUTES, colors, optionModalTransuction };
-
-
