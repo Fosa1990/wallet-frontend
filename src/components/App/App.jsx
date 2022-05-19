@@ -5,12 +5,16 @@ import 'react-toastify/dist/ReactToastify.css';
 // import { useEffect } from 'react';
 import '../../../node_modules/modern-normalize/modern-normalize.css';
 import ModalLogout from '../ModalLogout';
-import { selectIsModalLogoutOpen } from '../../redux/globalSelectors';
+import {
+  selectIsModalLogoutOpen,
+  selectIsModalAddTransactionOpen,
+} from '../../redux/globalSelectors';
 import './App.css';
 import Loader from '../Loader';
 import authSelectors from '../../redux/auth';
 import { PrivateRoute, PublicRouteLogin, PublicRouteRegin } from '../Router';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
+import ModalAddTransactions from '../ModalAddTransactions/';
 import NotifyContainer from '../NotifyContainer';
 import ButtonAddTransactions from '../ButtonAddTransactions';
 import { ROUTES } from '../../helpers/constants';
@@ -36,7 +40,9 @@ export default function App() {
     skip: token === null,
   });
   // console.log('__isFetching__: ', isFetching);
-
+  //--------------
+  const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
+  //-------------
   /// компоненти  по  факту реалізації  потім розставимо  по місцям і  пропишем тут роути
   return (
     <>
@@ -85,7 +91,8 @@ export default function App() {
 
               {/* <Route path="*" element={<Navigate to={`/${ROUTES.NOT_FOUND}`} />} /> */}
             </Routes>
-
+            {showModalAddTransactions && <ModalAddTransactions />}
+            <ButtonAddTransactions />
             {/* <Loader /> */}
             {/* <Header /> */}
             {/* <Navigation /> */}

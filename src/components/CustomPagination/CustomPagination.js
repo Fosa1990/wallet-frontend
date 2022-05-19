@@ -1,68 +1,19 @@
 import PropTypes from 'prop-types';
 import { Pagination } from 'react-pagination-bar';
 import { createGlobalStyle } from 'styled-components';
+import {
+  accentBgCl,
+  duration,
+  timingFunc,
+  accentPositiveCl,
+} from '../../stylesheet/utils/stylesVars';
 
-const StylePagination = createGlobalStyle`
-.custom-root {
-  margin-right: auto;
-  margin-left: auto;
-  width: 280px;
-  padding-top: 20px;
-  padding-bottom: 10px;
-}
-
-.custom-root ul {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-
-.custom-item {
-  width: 35px;
-  height: 35px;
-  font-size: 12px;
-  border: none;
-  border-radius: 50%;
-  background-color:#ffffff;
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1); 
-}
-
-.custom-item:hover,
-.custom-item:focus-visible {
-  color: #ffffff;
-  background-color: #24cca7;
-  box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
-  outline: none;
-  cursor: pointer;
-}
-
-.custom-item--active {
-  color: #ffffff;
-  background-color: #24cca7;
-}
-
-.custom-item--disable {
-  opacity: 0.4;
-}
-
-.custom-progress-bar {
-  max-width: 100%;
-  height: 4px;
-  border-radius: 2px;
-  background-color: #24cca7;
-  box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
-  transition: width 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-`;
-
-const CustomPagination = ({
+export default function CustomPagination({
   page,
   itemsPerPage,
   totalResults,
   onPageСhange,
-}) => {
+}) {
   return (
     <>
       <StylePagination />
@@ -87,7 +38,61 @@ const CustomPagination = ({
       />
     </>
   );
-};
+}
+
+const StylePagination = createGlobalStyle`
+.custom-root {
+  margin-right: auto;
+  margin-left: auto;
+  width: 280px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.custom-root ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.custom-item {
+  width: 35px;
+  height: 35px;
+  font-size: 12px;
+  border: none;
+  border-radius: 50%;
+  background-color:${accentBgCl};
+  transition: all ${duration} ${timingFunc}; 
+}
+
+.custom-item:hover,
+.custom-item:focus-visible {
+  color: ${accentBgCl};
+  background-color: ${accentPositiveCl};
+  box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
+  outline: none;
+  cursor: pointer;
+}
+
+.custom-item--active {
+  color: ${accentBgCl};
+  background-color: ${accentPositiveCl};
+}
+
+.custom-item--disable {
+  opacity: 0.4;
+}
+
+.custom-progress-bar {
+  max-width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: ${accentPositiveCl};
+  box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
+  transition: width ${duration} ${timingFunc};
+}
+`;
 
 CustomPagination.propTypes = {
   page: PropTypes.number,
@@ -95,5 +100,3 @@ CustomPagination.propTypes = {
   totalResults: PropTypes.number,
   onPageСhange: PropTypes.func,
 };
-
-export default CustomPagination;

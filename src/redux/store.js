@@ -16,6 +16,7 @@ import authSlice from './auth/authSlice';
 import { globalReducer } from './globalSlice';
 import { rtkQueryErrorLogger } from './auth/midleware';
 import storage from 'redux-persist/lib/storage';
+import categoriesReducer from './categories/categoriesReducer';
 import financesReducer from './finances/financesReducer';
 
 const authPersistConfig = {
@@ -29,6 +30,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authSlice.reducer),
     global: globalReducer,
     [authApi.reducerPath]: authApi.reducer,
+    categories: categoriesReducer,
     finances: financesReducer,
   },
   middleware: getDefaultMiddleware => [

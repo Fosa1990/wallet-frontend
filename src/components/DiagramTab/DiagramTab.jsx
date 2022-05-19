@@ -1,36 +1,53 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import Table from '../Table';
 import Chart from '../Chart';
 import Select from '../Select';
 import styled from 'styled-components';
-import { useEffect } from 'react';
-import { useDispatch /*, useSelector, useStore */ } from 'react-redux';
+import categoriesSelectors from '../../redux/categories/categoriesSelectors';
 import { getCategories } from '../../redux/categories/categoriesOperations';
-import transactions from '../Table/transactions.json';
 
 // баланс в диаграмму подставить когда будет готов компонент баланс
 export default function DiagramTab() {
+  const categories = useSelector(categoriesSelectors.getCategories);
+  // const month = useSelector(categoriesSelectors.getMonth);
+  // const year = useSelector(categoriesSelectors.getYear);
+  // console.log('__month redux', month);
+  // console.log('__year redux', year);
+
+  // console.log('__categories DiagramTab', categories);
+
   const dispatch = useDispatch();
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // console.log('searchParams', searchParams);
-  // Данные для рендера диаграмы из json
-  const categories = transactions.map(transaction => transaction.category);
-  const colors = transactions.map(transaction => transaction.color);
-  const sums = transactions.map(transaction => transaction.sum);
+
+  // 3 передать объект с месяцем и годом
+  const [searchParams, setSearchParams] = useSearchParams({});
+  // console.log(searchParams.get('year'));
+  // console.log(searchParams.get('month'));
 
   useEffect(() => {
-    dispatch(getCategories);
+    dispatch(getCategories());
   }, [dispatch]);
+
+  const onDateSelect = e => {
+    setSearchParams({ year: e.target.value });
+    setSearchParams({ month: e.target.value });
+  };
+  // const onYearSelect = e => {
+  //   setSearchParams({ year: e.target.value });
+  // };
+  // const onMonthSelect = e => {
+  //   setSearchParams({ month: e.target.value });
+  // };
 
   return (
     <>
       <ChartWrapper>
-        <Balance>
-          &#8372;&nbsp; {transactions.length > 0 ? 'balance' : 0}
-        </Balance>
-        <Chart categories={categories} colors={colors} sums={sums} />
+        <Balance>&#8372;&nbsp; {categories.length > 0 ? 'balance' : 0}</Balance>
+        <Chart categories={categories} />
       </ChartWrapper>
-      <Select />
-      <Table transactions={transactions} />
+      <Select onMonthSelect={onDateSelect} onYearSelect={onDateSelect} />
+      <Table categories={categories} />
     </>
   );
 }
