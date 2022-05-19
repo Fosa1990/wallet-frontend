@@ -13,7 +13,6 @@ import Loader from '../Loader';
 import authSelectors from '../../redux/auth';
 import { PrivateRoute, PublicRouteLogin, PublicRouteRegin } from '../Router';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
-import ButtonAddTransactions from '../ButtonAddTransactions';
 import ModalAddTransactions from '../ModalAddTransactions/ModalAddTransactions';
 
 const Login = lazy(() =>
