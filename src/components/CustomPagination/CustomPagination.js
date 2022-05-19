@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Pagination } from 'react-pagination-bar';
 import { createGlobalStyle } from 'styled-components';
 
@@ -7,7 +7,7 @@ const StylePagination = createGlobalStyle`
   margin-right: auto;
   margin-left: auto;
   width: 280px;
-  padding-top: 10px;
+  padding-top: 20px;
   padding-bottom: 10px;
 }
 
@@ -25,8 +25,8 @@ const StylePagination = createGlobalStyle`
   font-size: 12px;
   border: none;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.4);
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color:#ffffff;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1); 
 }
 
 .custom-item:hover,
@@ -58,16 +58,17 @@ const StylePagination = createGlobalStyle`
 `;
 
 const CustomPagination = ({
-  page = 1,
-  totalResults = 300,
-  // onPageChange
+  page,
+  itemsPerPage,
+  totalResults,
+  onPageСhange,
 }) => {
   return (
     <>
       <StylePagination />
       <Pagination
         initialPage={page}
-        itemsPerPage={20}
+        itemsPerPage={itemsPerPage}
         totalItems={totalResults}
         pageNeighbours={1}
         startLabel={'<<'}
@@ -75,9 +76,7 @@ const CustomPagination = ({
         nextLabel={'>'}
         prevLabel={'<'}
         withProgressBar={true}
-        onPageChange={() => {
-          console.log('onPageChange');
-        }}
+        onPageСhange={onPageСhange}
         customClassNames={{
           rpbRootClassName: 'custom-root',
           rpbItemClassName: 'custom-item',
@@ -90,10 +89,11 @@ const CustomPagination = ({
   );
 };
 
-// CustomPagination.propTypes = {
-//   page: PropTypes.number.isRequired,
-//   totalResults: PropTypes.number.isRequired,
-//   onPageСhange: PropTypes.func.isRequired,
-// };
+CustomPagination.propTypes = {
+  page: PropTypes.number,
+  itemsPerPage: PropTypes.number,
+  totalResults: PropTypes.number,
+  onPageСhange: PropTypes.func,
+};
 
 export default CustomPagination;

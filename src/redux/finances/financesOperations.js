@@ -5,10 +5,10 @@ import axios from 'axios';
 
 export const fetchFinances = createAsyncThunk(
   'finances/getFinances',
-  async (_, { rejectWithValue }) => {
+  async (page, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        'https://amazing-wallet.herokuapp.com/api/transactions',
+        `https://amazing-wallet.herokuapp.com/api/transactions?page=${page}`,
       );
       // console.log('response', response);
       // console.log(

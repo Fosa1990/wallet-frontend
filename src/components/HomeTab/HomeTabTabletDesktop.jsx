@@ -23,8 +23,8 @@ export default function HomeTabTabletDesktop({ finances }) {
               <Td>{<Moment format="DD.MM.YYYY">{transaction.date}</Moment>}</Td>
               <Td>{transaction.transactionType}</Td>
               <Td>{transaction.category}</Td>
-              <Td>{transaction.sum}</Td>
               <Td>{transaction.comment}</Td>
+              <Td>{transaction.sum}</Td>
               <Td>{transaction.balance}</Td>
             </Tr>
           ))}
@@ -79,6 +79,7 @@ const Td = styled.td`
   font-size: 16px;
   font-weight: 400;
   padding: 14px 0;
+  text-transform: capitalize;
 
   ${size.tablet} {
     text-align: center;
