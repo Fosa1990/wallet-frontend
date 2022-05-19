@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form } from 'formik';
-import { TextField } from '../RegistrationForm/TextField';
 import * as Yup from 'yup';
+import { TextField } from '../RegistrationForm/TextField';
 import { useLoginUserMutation } from '../../redux/auth/authReduce';
 import { regexEmail } from '../../helpers/regex';
+import { ROUTES } from '../../helpers/constants';
 import Button from '../Button/Button';
 // import Container from '../Container/Container';
 import logo from '../../images/svg/logo.svg';
@@ -25,7 +26,7 @@ export default function LoginForm() {
 
   const validate = Yup.object().shape({
     email: Yup.string()
-      .email(regexEmail, 'E-mail is invalid')
+      .matches(regexEmail, 'E-mail is invalid')
       .required('E-mail is required'),
     password: Yup.string()
       .min(6, 'Password must be at least 6 characters')
@@ -78,7 +79,7 @@ export default function LoginForm() {
                 Login
               </Button>
               <Button outlined color={borderBtnCl}>
-                <Link to="/registration">Sign up</Link>
+                <Link to={`/${ROUTES.REGISTRATION}`}>Sign up</Link>
               </Button>
             </ButtonWrapper>
           </Form>

@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import Media from 'react-media';
+import { useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { size } from '../../../stylesheet/utils/stylesVars';
 import Header from '../../Header';
 // import HomeTab from '../../HomeTab';
@@ -9,10 +12,19 @@ import DiagramTab from '../../DiagramTab';
 import Currency from '../../Currency';
 import Navigation from '../../Navigation';
 import Balance from '../../Balance';
-
+import authSelectors from '../../../redux/auth';
 import CustomPagination from '../../CustomPagination';
+import { ROUTES } from '../../../helpers/constants';
 
 export default function DashBoardPage() {
+  const isLoggedin = useSelector(authSelectors.getIsLoggedIn);
+
+  useEffect(() => {
+    if (isLoggedin) {
+      toast.info('Welcome to  wallet');
+    }
+  }, [isLoggedin]);
+
   ///  при загрузці  треба  доставати транзакції щоб їх  рендерити в  Hometab
   return (
     <>
@@ -31,9 +43,9 @@ export default function DashBoardPage() {
           <Routes>
             {/* <Route index element={<HomeTab />} />
             <Route path="home" element={<HomeTab />} /> */}
-            <Route path="diagram" element={<DiagramTab />} />
+            <Route path={ROUTES.DIAGRAM} element={<DiagramTab />} />
             <Route
-              path="currency"
+              path={ROUTES.CURRENCY}
               element={
                 <>
                   <Media

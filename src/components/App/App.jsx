@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route /* , Navigate */ } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import 'react-toastify/dist/ReactToastify.css';
 // import { useEffect } from 'react';
 import '../../../node_modules/modern-normalize/modern-normalize.css';
 import ModalLogout from '../ModalLogout';
@@ -10,7 +11,10 @@ import Loader from '../Loader';
 import authSelectors from '../../redux/auth';
 import { PrivateRoute, PublicRouteLogin, PublicRouteRegin } from '../Router';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
+import NotifyContainer from '../NotifyContainer';
 import ButtonAddTransactions from '../ButtonAddTransactions';
+import { ROUTES } from '../../helpers/constants';
+import { VerifyPage } from '../Pages/';
 
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
@@ -40,38 +44,46 @@ export default function App() {
         <Loader />
       ) : (
         <>
+          <NotifyContainer />
           <Suspense fallback={<Loader />}>
             <Routes>
               <Route
-                path="registration"
+                path={ROUTES.REGISTRATION}
                 element={
-                  <PublicRouteRegin redirectTo="/dashboard" restricted>
+                  <PublicRouteRegin
+                    redirectTo={`/${ROUTES.DASHBOARD}`}
+                    restricted
+                  >
                     <Registration />
                   </PublicRouteRegin>
                 }
               />
 
               <Route
-                path="/"
-                // path="login"
+                path={ROUTES.LOGIN}
                 element={
-                  <PublicRouteLogin redirectTo="/dashboard" restricted>
+                  <PublicRouteLogin
+                    redirectTo={`/${ROUTES.DASHBOARD}`}
+                    restricted
+                  >
                     <Login />
                   </PublicRouteLogin>
                 }
               />
 
               <Route
-                path="dashboard/*"
+                path={`/${ROUTES.DASHBOARD}/*`}
                 element={
-                  <PrivateRoute redirectTo="/">
+                  <PrivateRoute redirectTo={ROUTES.LOGIN}>
                     <Dashboard />
                     <ButtonAddTransactions />
                   </PrivateRoute>
                 }
               />
 
-              {/* <Route path="*" element={<Navigate to="/" />} /> */}
+              <Route path={ROUTES.VERIFY} element={<VerifyPage />} />
+
+              {/* <Route path="*" element={<Navigate to={`/${ROUTES.NOT_FOUND}`} />} /> */}
             </Routes>
 
             {/* <Loader /> */}
@@ -79,6 +91,7 @@ export default function App() {
             {/* <Navigation /> */}
             {/* <HomeTab/> */}
           </Suspense>
+
           {showModalLogout && <ModalLogout />}
         </>
       )}

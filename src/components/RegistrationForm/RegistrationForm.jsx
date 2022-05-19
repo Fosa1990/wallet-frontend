@@ -1,16 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form } from 'formik';
-import { TextField } from './TextField';
 import * as Yup from 'yup';
+import { TextField } from './TextField';
 import { useRegisterUserMutation } from '../../redux/auth/authReduce';
 import { regexName, regexEmail } from '../../helpers/regex';
+import { ROUTES } from '../../helpers/constants';
 import PasswordStrenght from './PasswordStrength';
 import Button from '../Button/Button';
 import logo from '../../images/svg/logo.svg';
-
 import Icons from '../../images/svg/sprite.svg';
-
 import styled from 'styled-components';
 import {
   accentPositiveCl,
@@ -28,7 +27,6 @@ export default function RegistrationForm() {
   const validate = Yup.object({
     email: Yup.string()
       .matches(regexEmail, 'E-mail is invalid')
-      // .email(regexEmail, 'E-mail is invalid')
       .required('E-mail required'),
     password: Yup.string()
       .min(6, 'Password must be at least 6 characters')
@@ -54,7 +52,7 @@ export default function RegistrationForm() {
         }}
         validationSchema={validate}
         onSubmit={(values, onSubmitProps) => {
-          console.log(values);
+          // console.log(values);
           register(values);
           onSubmitProps.resetForm();
         }}
@@ -120,7 +118,7 @@ export default function RegistrationForm() {
                   Sign up
                 </Button>
                 <Button outlined color={borderBtnCl}>
-                  <Link to="/login">Login</Link>
+                  <Link to={ROUTES.LOGIN}>Login</Link>
                 </Button>
               </ButtonWrapper>
             </Form>

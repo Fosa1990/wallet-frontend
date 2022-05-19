@@ -54,13 +54,13 @@ const StylePagination = createGlobalStyle`
   background-color: #24cca7;
   box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
   transition: width 250ms cubic-bezier(0.4, 0, 0.2, 1);
-} 
+}
 `;
 
 const CustomPagination = ({
   page = 1,
   totalResults = 300,
-  // onPageСhange
+  // onPageChange
 }) => {
   return (
     <>
@@ -75,8 +75,8 @@ const CustomPagination = ({
         nextLabel={'>'}
         prevLabel={'<'}
         withProgressBar={true}
-        onPageСhange={() => {
-          console.log('onPageСhange');
+        onPageChange={() => {
+          console.log('onPageChange');
         }}
         customClassNames={{
           rpbRootClassName: 'custom-root',
