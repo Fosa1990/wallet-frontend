@@ -14,6 +14,8 @@ import styled from 'styled-components';
 import sprite from '../../images/svg/sprite.svg';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-datetime/css/react-datetime.css';
+import { useDispatch } from 'react-redux';
+import { openModalAddTransaction } from '../../redux/globalSlice';
 
 export default function ModalAddTransactions() {
   const [checked, setChecked] = useState(false);
@@ -21,6 +23,8 @@ export default function ModalAddTransactions() {
   const [sumTransaction, setSumTransaction] = useState();
   const [comment, setComment] = useState();
   const [selectedOption, setSelectedOption] = useState(null);
+  const dispatch = useDispatch();
+  console.log(dispatch(openModalAddTransaction()));
 
   const options = [
     { value: 'Basic' },
@@ -33,6 +37,7 @@ export default function ModalAddTransactions() {
   ];
 
   const handleSubmit = e => {
+    console.log(e);
     notify();
     e.preventDefault();
   };
@@ -93,7 +98,12 @@ export default function ModalAddTransactions() {
           <Button primary type="submit">
             ADD
           </Button>
-          <Button outlined>CANCEL</Button>
+          <Button
+            outlined
+            onChange={() => dispatch(openModalAddTransaction(false))}
+          >
+            CANCEL
+          </Button>
         </Form>
       </div>
     </Modal>
