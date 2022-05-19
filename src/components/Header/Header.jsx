@@ -12,6 +12,7 @@ import {
 } from '../../stylesheet/utils/stylesVars';
 import authSelectors from '../../redux/auth/authSelectors';
 import LogoutButton from '../LogoutButton';
+import Avatar from '../Avatar';
 // import { authApi } from '../../redux/auth/authReduce';
 // import Icon from '../Icon';
 import logo from '../../images/svg/logo.svg';
@@ -37,6 +38,7 @@ export default function Header({ children, onClick, ...props }) {
         <Title>Wallet</Title>
       </Logo>
       <UserInfo>
+        <Avatar />
         <UserName>{userName || 'User'} </UserName>
         <LogoutButton type="button" onClick={handleClick}>
           <ExitIcon src={exit} />
