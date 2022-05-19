@@ -8,7 +8,7 @@ export const fetchFinances = createAsyncThunk(
   async (page, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `https://amazing-wallet.herokuapp.com/api/transactions?page=${page}`,
+        `https://amazing-wallet.herokuapp.com/api/transactions?page=${page}&limit=4`,
       );
       // console.log('response', response);
       // console.log(
