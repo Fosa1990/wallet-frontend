@@ -7,13 +7,12 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { size } from '../../../stylesheet/utils/stylesVars';
 import Header from '../../Header';
-// import HomeTab from '../../HomeTab';
+import HomeTab from '../../HomeTab';
 import DiagramTab from '../../DiagramTab';
 import Currency from '../../Currency';
 import Navigation from '../../Navigation';
 import Balance from '../../Balance';
 import authSelectors from '../../../redux/auth';
-import CustomPagination from '../../CustomPagination';
 import { ROUTES } from '../../../helpers/constants';
 
 export default function DashBoardPage() {
@@ -41,8 +40,8 @@ export default function DashBoardPage() {
 
         <TabWrap>
           <Routes>
-            {/* <Route index element={<HomeTab />} />
-            <Route path="home" element={<HomeTab />} /> */}
+            <Route index element={<HomeTab />} />
+            <Route path="home" element={<HomeTab />} />
             <Route path={ROUTES.DIAGRAM} element={<DiagramTab />} />
             <Route
               path={ROUTES.CURRENCY}
@@ -62,11 +61,6 @@ export default function DashBoardPage() {
           </Routes>
         </TabWrap>
       </MainWrap>
-      <CustomPagination
-      // page={page}
-      // totalResults={totalResults}
-      // onPageСhange={onPageСhange}
-      />
     </>
   );
 }
