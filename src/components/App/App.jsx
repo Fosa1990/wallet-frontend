@@ -19,6 +19,7 @@ import NotifyContainer from '../NotifyContainer';
 import ButtonAddTransactions from '../ButtonAddTransactions';
 import { ROUTES } from '../../helpers/constants';
 import { VerifyPage } from '../Pages/';
+import { ErrorPage } from '../Pages/';
 
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
@@ -88,7 +89,7 @@ export default function App() {
               />
 
               <Route path={ROUTES.VERIFY} element={<VerifyPage />} />
-
+              <Route path="*" element={<ErrorPage />} />
               {/* <Route path="*" element={<Navigate to={`/${ROUTES.NOT_FOUND}`} />} /> */}
             </Routes>
             {showModalAddTransactions && <ModalAddTransactions />}
