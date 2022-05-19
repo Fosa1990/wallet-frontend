@@ -1,4 +1,4 @@
-import { colors } from '../../../helpers/constants';
+import { colors, optionModalTransuction } from '../../../helpers/constants';
 import {
   accentNegativeCl,
   accentDisableCl,
@@ -10,12 +10,14 @@ import sprite from '../../../images/svg/sprite.svg';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-export default function SelectCustom({ select, options }) {
+export default function SelectCustom({ select }) {
   const [selectOpen, setSelectOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('Choose categories');
   const [selected, setSelecte] = useState(false);
 
-  const array = options ? options : colors;
+  const array = colors.filter(
+    e => optionModalTransuction.trTypeAdd !== e['category'],
+  );
 
   const handleChange = e => {
     setSelectedOption(e);
