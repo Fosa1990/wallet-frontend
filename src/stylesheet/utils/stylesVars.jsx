@@ -7,6 +7,7 @@ export const accentBgCl = '#ffffff';
 export const accentTextCl = '#000000';
 export const accentPositiveCl = '#24cca7';
 export const accentNegativeCl = '#ff6596';
+export const accentDisableCl = '#E0E0E0;';
 export const balanceCl = '#A6A6A6';
 export const borderBtnCl = '#4a56e2';
 export const textPlcholderCl = '#bdbdbd';
