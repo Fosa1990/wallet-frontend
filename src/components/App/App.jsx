@@ -93,7 +93,7 @@ export default function App() {
               {/* <Route path="*" element={<Navigate to={`/${ROUTES.NOT_FOUND}`} />} /> */}
             </Routes>
             {showModalAddTransactions && <ModalAddTransactions />}
-            <ButtonAddTransactions />
+            {/* <ButtonAddTransactions /> */}
             {/* <Loader /> */}
             {/* <Header /> */}
             {/* <Navigation /> */}
