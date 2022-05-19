@@ -1,45 +1,18 @@
 import { useSelector } from 'react-redux';
 import authSelectors from '../../redux/auth/authSelectors';
 import styled from 'styled-components';
-import { size } from '../../stylesheet/utils/stylesVars';
-import Icon from '../Icon';
-import axios from 'axios';
+import { size, accentBgCl } from '../../stylesheet/utils/stylesVars';
 
-// export const getAvatarURL = state => state.auth.user.avatarURL;  у authSelectors
 export default function Avatar() {
   const userName = useSelector(authSelectors.getUserName);
   const avatar = useSelector(authSelectors.getAvatarURL);
-  const letter = userName.split('')[0].toLocaleUpperCase();
-
-  const avatarChange = e => {
-    const file = e.target.files[0];
-    console.log(e.target.files);
-    const formData = new FormData();
-    formData.append('image', file, file.name);
-
-    axios.post('адресу скаже бекенд', formData).then().catch();
-  };
+  const letter = userName.split('')[0].toUpperCase();
+  const gravatar = avatar.split('.')[1];
 
   return (
     <>
-      {avatar ? (
-        <Div>
-          <AvatarImg src={avatar} alt="Avatar" />
-          {/* <Input
-            accept="image/*"
-            id="icon-button-file"
-            type="file"
-            onChange={avatarChange}
-          />
-          <Label htmlFor="icon-button-file">
-            <Icon
-              width="15px"
-              height="15px"
-              iconName="icon-close"
-              stroke="currentColor"
-            />
-          </Label> */}
-        </Div>
+      {avatar === gravatar ? (
+        <AvatarImg src={avatar} alt="Avatar" />
       ) : (
         <UserAvatarDiv> {letter}</UserAvatarDiv>
       )}
@@ -54,13 +27,14 @@ const UserAvatarDiv = styled.div`
   width: 40px;
   height: 40px;
   background-color: #ddd4d2;
-  color: white;
+  color: ${accentBgCl};
   border-radius: 50%;
-  margin-right: 10px;
-`;
-
-const Div = styled.div`
-  position: relative;
+  margin-right: 5px;
+  ${size.tablet} {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+  }
 `;
 
 const AvatarImg = styled.img`
@@ -74,17 +48,3 @@ const AvatarImg = styled.img`
     margin-right: 15px;
   }
 `;
-
-// const Input = styled.input`
-//   display: none;
-// `;
-// const Label = styled.label`
-//   position: absolute;
-//   top: 35px;
-//   right: 5px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   border: 1px solid green;
-//   border-radius: 50%;
-// `;
