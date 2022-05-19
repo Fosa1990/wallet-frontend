@@ -34,6 +34,14 @@
 //       .then(res => res.data)
 //       .catch(error => console.log(error.message));
 //   }
+// function getExchangeRates() {
+//   return fetch(
+//     'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5',
+//   )
+//     .then(res => res.json())
+//     .then(res => res)
+//     .catch(error => console.log(error.message));
+// }
 
 //   return (
 //     <Wrapper>

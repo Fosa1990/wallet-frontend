@@ -1,3 +1,10 @@
-const getFinances = state => state.finances.data;
+const getFinances = state => state.finances.finances.transactions;
+const getCountDocuments = state => state.finances.finances.countDocuments;
+const getBalance = state => state.finances.balance;
 
-export default getFinances;
+const getFinancesSelectors = {
+  getFinances,
+  getCountDocuments,
+  getBalance,
+};
+export default getFinancesSelectors;

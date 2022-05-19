@@ -45,7 +45,7 @@ const StyledButton = styled.button`
     `}
 
   ${size.tablet} {
-    width: 300px;
+    width: ${props => props.width || '300px'};
   }
 `;
 

@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { tokenService } from '../../services/tokenService';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -11,6 +12,8 @@ export const authApi = createApi({
 
       if (token) {
         headers.set('authorization', `Bearer ${token}`);
+        tokenService.set(token);
+        // при логауте надо очистить токен!
       }
       return headers;
     },
@@ -43,6 +46,13 @@ export const authApi = createApi({
       invalidatesTags: ['Auth'],
     }),
 
+    logoutUser: builder.mutation({
+      query: () => ({
+        url: '/auth/signout',
+      }),
+      invalidatesTags: ['Auth'],
+    }),
+
     fetchCurrentUser: builder.query({
       queryFn: async (arg, queryApi, extraOptions, baseQuery) => {
         console.log('==REDUX==fetchCurrentUser==');
@@ -59,5 +69,6 @@ export const authApi = createApi({
 export const {
   useRegisterUserMutation,
   useLoginUserMutation,
+  useLogoutUserMutation,
   useFetchCurrentUserQuery,
 } = authApi;

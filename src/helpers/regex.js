@@ -5,4 +5,4 @@ const regexEmail =
 
 const regexToken = /(^[A-Za-z0-9-_]*\.[A-Za-z0-9-_]*\.[A-Za-z0-9-_]*$)/g;
 
-module.exports = { regexName, regexEmail, regexToken };
+export { regexName, regexEmail, regexToken };

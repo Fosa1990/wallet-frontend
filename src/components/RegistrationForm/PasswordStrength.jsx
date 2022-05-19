@@ -6,7 +6,7 @@ const PasswordStrenght = ({ password }) => {
 
   const testResult = zxcvbn(password);
   console.log('testResult', testResult);
-  const num = (testResult.score * 100) / 4;
+  const num = (testResult.score * 100) / 3;
   const progressColor = () => {
     console.log('testResult.score', testResult.score);
     switch (testResult.score) {
@@ -45,12 +45,13 @@ const PasswordStrenght = ({ password }) => {
   const changeProgressStyle = () => ({
     width: '100%',
     height: '4px',
-    // marginTop: "-20px",
+    marginTop: '-32px',
   });
 
   const changePasswordColor = () => ({
     width: `${num}%`,
     height: '4px',
+
     background: progressColor(),
     boxShadow: '0px 1px 8px rgba(36, 204, 167, 0.5)',
     borderRadius: '4px',
@@ -61,7 +62,14 @@ const PasswordStrenght = ({ password }) => {
       <div className="progress" style={changeProgressStyle()}>
         <div className="progress_bar" style={changePasswordColor()}></div>
       </div>
-      <p className="text_pr" style={{ color: progressColor() }}>
+      <p
+        className="text_pr"
+        style={{
+          marginTop: '-32px',
+          marginBottom: '52px',
+          color: progressColor(),
+        }}
+      >
         {createPasswordLabel()}
       </p>
     </>
