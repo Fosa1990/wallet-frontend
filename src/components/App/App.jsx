@@ -1,15 +1,24 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route /* , Navigate */ } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import 'react-toastify/dist/ReactToastify.css';
 // import { useEffect } from 'react';
 import '../../../node_modules/modern-normalize/modern-normalize.css';
 import ModalLogout from '../ModalLogout';
-import { selectIsModalLogoutOpen } from '../../redux/globalSelectors';
+import {
+  selectIsModalLogoutOpen,
+  selectIsModalAddTransactionOpen,
+} from '../../redux/globalSelectors';
 import './App.css';
 import Loader from '../Loader';
 import authSelectors from '../../redux/auth';
 import { PrivateRoute, PublicRouteLogin, PublicRouteRegin } from '../Router';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
+import ModalAddTransactions from '../ModalAddTransactions/';
+import NotifyContainer from '../NotifyContainer';
+import ButtonAddTransactions from '../ButtonAddTransactions';
+import { ROUTES } from '../../helpers/constants';
+import { VerifyPage } from '../Pages/';
 
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
@@ -31,7 +40,9 @@ export default function App() {
     skip: token === null,
   });
   // console.log('__isFetching__: ', isFetching);
-
+  //--------------
+  const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
+  //-------------
   /// компоненти  по  факту реалізації  потім розставимо  по місцям і  пропишем тут роути
   return (
     <>
@@ -39,43 +50,55 @@ export default function App() {
         <Loader />
       ) : (
         <>
+          <NotifyContainer />
           <Suspense fallback={<Loader />}>
             <Routes>
               <Route
-                path="registration"
+                path={ROUTES.REGISTRATION}
                 element={
-                  <PublicRouteRegin redirectTo="/" restricted>
+                  <PublicRouteRegin
+                    redirectTo={`/${ROUTES.DASHBOARD}`}
+                    restricted
+                  >
                     <Registration />
                   </PublicRouteRegin>
                 }
               />
 
               <Route
-                path="/"
+                path={ROUTES.LOGIN}
                 element={
-                  <PublicRouteLogin redirectTo="/dashboard" restricted>
+                  <PublicRouteLogin
+                    redirectTo={`/${ROUTES.DASHBOARD}`}
+                    restricted
+                  >
                     <Login />
                   </PublicRouteLogin>
                 }
               />
 
               <Route
-                path="dashboard/*"
+                path={`/${ROUTES.DASHBOARD}/*`}
                 element={
-                  <PrivateRoute redirectTo="/">
+                  <PrivateRoute redirectTo={ROUTES.LOGIN}>
                     <Dashboard />
+                    <ButtonAddTransactions />
                   </PrivateRoute>
                 }
               />
 
-              {/* <Route path="*" element={<Navigate to="/" />} /> */}
-            </Routes>
+              <Route path={ROUTES.VERIFY} element={<VerifyPage />} />
 
+              {/* <Route path="*" element={<Navigate to={`/${ROUTES.NOT_FOUND}`} />} /> */}
+            </Routes>
+            {showModalAddTransactions && <ModalAddTransactions />}
+            <ButtonAddTransactions />
             {/* <Loader /> */}
             {/* <Header /> */}
             {/* <Navigation /> */}
             {/* <HomeTab/> */}
           </Suspense>
+
           {showModalLogout && <ModalLogout />}
         </>
       )}

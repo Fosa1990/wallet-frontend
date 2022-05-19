@@ -4,8 +4,9 @@ import {
   accentNegativeCl,
   accentPositiveCl,
 } from '../../stylesheet/utils/stylesVars';
+import { colors } from '../../helpers/constants';
 
-export default function Table({ transactions, income = 0, expence = 0 }) {
+export default function Table({ categories, income = 0, expence = 0 }) {
   return (
     <div>
       <TableMain>
@@ -16,13 +17,21 @@ export default function Table({ transactions, income = 0, expence = 0 }) {
           </tr>
         </Thead>
         <tbody>
-          {transactions.map(({ id, color, category, sum }) => (
-            <TableRow key={id}>
+          {categories.map(category => (
+            <TableRow key={category._id}>
               <TableData>
-                <ColorBlock style={{ backgroundColor: color }}></ColorBlock>
+                {colors.map(
+                  color =>
+                    color.category === category._id && (
+                      <ColorBlock
+                        key={color.color}
+                        style={{ backgroundColor: color.color }}
+                      ></ColorBlock>
+                    ),
+                )}
               </TableData>
-              <TableData>{category}</TableData>
-              <TableData>{sum}</TableData>
+              <TableData>{category._id}</TableData>
+              <TableData>{category.totalSum}</TableData>
             </TableRow>
           ))}
         </tbody>
@@ -110,3 +119,11 @@ const ExpenceValue = styled.td`
 const IncomeValue = styled.td`
   color: ${accentPositiveCl};
 `;
+
+//  <ColorBlock
+//                     style={{
+//                       color.category === category._id && {
+//                         backgroundColor: color.color,
+//                       }
+//                     }}
+//                   ></ColorBlock>

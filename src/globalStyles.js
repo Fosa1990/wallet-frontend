@@ -91,4 +91,18 @@ li {
   overflow: hidden;
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input:focus-visible {
+    outline: none;
+  }
+
+textarea:focus-visible {
+    outline: none;
+  }
+
 `;

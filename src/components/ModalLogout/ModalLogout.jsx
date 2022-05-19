@@ -1,7 +1,7 @@
 import Modal from '../Modal';
 import Button from '../Button';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   size,
   accentBgCl,
@@ -10,15 +10,18 @@ import {
   borderBtnCl,
   poppinsFont,
 } from '../../stylesheet/utils/stylesVars';
+import authSelectors from '../../redux/auth/authSelectors';
 import { closeModalWindow } from '../../redux/globalSlice';
 import { useLogoutUserMutation } from '../../redux/auth/authReduce';
+import { toast } from 'react-toastify';
 
 export default function ModalLogout() {
   const dispatch = useDispatch();
+  const name = useSelector(authSelectors.getUserName);
   const [logout] = useLogoutUserMutation();
-
   const onLogout = () => {
     logout();
+    toast.success('You logged out');
     onCancelLogout();
   };
 
@@ -29,7 +32,7 @@ export default function ModalLogout() {
   return (
     <Modal>
       <Wrapper>
-        <Text>Are you sure you want to log out?</Text>
+        <Text>{name ?? 'User'} are you sure you want to log out?</Text>
         <ButtonWrap>
           <Button
             primary

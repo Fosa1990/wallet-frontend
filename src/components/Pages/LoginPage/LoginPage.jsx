@@ -7,21 +7,19 @@ import imgLoginBest from '../../../images/frame-login@2x.png';
 
 export default function LoginPage() {
   return (
-    <>
-      <ContainerAuth
-        imgTab={imgLoginTab}
-        imgTabBest={imgLoginTabBest}
-        img={imgLogin}
-        imgBest={imgLoginBest}
-        sizeTab="260px 250px"
-        sizeDes="435px 420px"
-        widthTab="260px"
-        heightTab="250px"
-        widthDes="435px"
-        heightDes="420px"
-      >
-        <LoginForm />
-      </ContainerAuth>
-    </>
+    <ContainerAuth
+      imgTab={imgLoginTab}
+      imgTabBest={imgLoginTabBest}
+      img={imgLogin}
+      imgBest={imgLoginBest}
+      sizeTab="260px 250px"
+      sizeDes="435px 420px"
+      widthTab="260px"
+      heightTab="250px"
+      widthDes="435px"
+      heightDes="420px"
+    >
+      <LoginForm />
+    </ContainerAuth>
   );
 }
