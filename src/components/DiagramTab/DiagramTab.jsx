@@ -16,13 +16,14 @@ export default function DiagramTab() {
   // console.log('__month redux', month);
   // console.log('__year redux', year);
 
-  console.log('__categories DiagramTab', categories);
+  // console.log('__categories DiagramTab', categories);
+
   const dispatch = useDispatch();
 
   // 3 передать объект с месяцем и годом
   const [searchParams, setSearchParams] = useSearchParams({});
-  console.log(searchParams.get('year'));
-  console.log(searchParams.get('month'));
+  // console.log(searchParams.get('year'));
+  // console.log(searchParams.get('month'));
 
   useEffect(() => {
     dispatch(getCategories());
