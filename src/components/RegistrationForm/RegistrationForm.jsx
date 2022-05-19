@@ -21,6 +21,7 @@ import {
   poppinsFont,
   accentTextCl,
   iconDefaultCl,
+  iconBgActiveCl,
 } from '../../stylesheet/utils/stylesVars';
 
 export default function RegistrationForm() {
@@ -29,7 +30,7 @@ export default function RegistrationForm() {
   const validate = Yup.object({
     email: Yup.string()
       .matches(regexEmail, 'E-mail is invalid')
-      .required('E-mail required'),
+      .required('E-mail is required'),
     password: Yup.string()
       .min(6, 'Password must be at least 6 characters')
       .max(16, 'Password must be 16 characters or less')
@@ -119,21 +120,18 @@ export default function RegistrationForm() {
                 >
                   Sign up
                 </Button>
-                <Button className="ButtonLogin" outlined color={borderBtnCl}>
-                  <Link to="/">Login</Link>
-                </Button>
-                <Button outlined color={borderBtnCl}>
-                  <a
-                    className="IconGoogle"
-                    // href="http://localhost:3000/api/auth/google"
-                    // href="https://amazing-wallet.netlify.app/api/auth/google"
-                    href="https://amazing-wallet.herokuapp.com/api/auth/google"
-                  >
-                    <GoogleIcon width={32} height={28} />
-                    Sign up
-                  </a>
-                  <Link to={ROUTES.LOGIN}>Login</Link>
-                </Button>
+                <Link to={ROUTES.LOGIN}>
+                  <Button className="ButtonLogin" outlined color={borderBtnCl}>
+                    Login
+                  </Button>
+                </Link>
+                <a
+                  className="IconGoogle"
+                  href="https://amazing-wallet.herokuapp.com/api/auth/google"
+                >
+                  <GoogleIcon width={32} height={28} />
+                  Sign up
+                </a>
               </ButtonWrapper>
             </Form>
           </FromStyle>
@@ -207,7 +205,7 @@ const FromStyle = styled.div`
 
   ${size.desktop} {
     width: 533px;
-    // height: 616px;
+    height: 666px;
   }
 
   .Icon {
@@ -228,5 +226,18 @@ const ButtonWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 280px;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    padding: 10px 65px 10px 71px;
+    color: ${iconBgActiveCl};
+    text-transform: uppercase;
+    border: 1px solid ${iconBgActiveCl};
+    border-radius: 20px;
+
+    ${size.tablet},${size.desktop} {
+      width: 300px;
+    }
   }
 `;
