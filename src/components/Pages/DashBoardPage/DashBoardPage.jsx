@@ -14,6 +14,7 @@ import Navigation from '../../Navigation';
 import Balance from '../../Balance';
 import authSelectors from '../../../redux/auth';
 import CustomPagination from '../../CustomPagination';
+import { ROUTES } from '../../../helpers/constants';
 
 export default function DashBoardPage() {
   const isLoggedin = useSelector(authSelectors.getIsLoggedIn);
@@ -22,7 +23,7 @@ export default function DashBoardPage() {
     if (isLoggedin) {
       toast.info('Welcome to  wallet');
     }
-  }, []);
+  }, [isLoggedin]);
 
   ///  при загрузці  треба  доставати транзакції щоб їх  рендерити в  Hometab
   return (
@@ -42,9 +43,9 @@ export default function DashBoardPage() {
           <Routes>
             {/* <Route index element={<HomeTab />} />
             <Route path="home" element={<HomeTab />} /> */}
-            <Route path="diagram" element={<DiagramTab />} />
+            <Route path={ROUTES.DIAGRAM} element={<DiagramTab />} />
             <Route
-              path="currency"
+              path={ROUTES.CURRENCY}
               element={
                 <>
                   <Media

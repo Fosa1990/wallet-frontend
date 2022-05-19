@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { tokenService } from '../services/tokenService';
+import { ROUTES } from '../helpers/constants';
 
 //універсальна функція для запиту, теоретично може бути одна на проект якщо постаратись, використовується у парі з rtcQuery
 export const axiosBaseQuery =
@@ -18,6 +19,6 @@ export const axiosBaseQuery =
   };
 // функція добавляє токен до запитів якщо він є
 function setToken(url, token) {
-  if (url === '/users/login') tokenService.set(token);
-  if (url === '/users/logout') tokenService.unset();
+  if (url === `/${ROUTES.USERS}/${ROUTES.LOGIN}`) tokenService.set(token);
+  if (url === `/${ROUTES.USERS}/${ROUTES.LOGOUT}`) tokenService.unset();
 }
