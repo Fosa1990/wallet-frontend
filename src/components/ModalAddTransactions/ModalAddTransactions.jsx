@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
 import Datetime from 'react-datetime';
 import Button from '../Button/Button';
 import SelectCustom from './Select/SelectCustom';
@@ -12,64 +11,60 @@ import {
 } from '../../stylesheet/utils/stylesVars';
 import styled from 'styled-components';
 import sprite from '../../images/svg/sprite.svg';
-import 'react-toastify/dist/ReactToastify.css';
 import 'react-datetime/css/react-datetime.css';
-import { useDispatch } from 'react-redux';
-import { openModalAddTransaction } from '../../redux/globalSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeModalWindow } from '../../redux/globalSlice';
+import { optionModalTransuction } from '../../helpers/constants';
+const { defaultSpend, trTypeAdd, trTypeRemove } = optionModalTransuction;
 
 export default function ModalAddTransactions() {
   const [checked, setChecked] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [sumTransaction, setSumTransaction] = useState();
-  const [comment, setComment] = useState();
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [comment, setComment] = useState('');
+  const [selectedOption, setSelectedOption] = useState(defaultSpend);
   const dispatch = useDispatch();
-  console.log(dispatch(openModalAddTransaction()));
 
-  const options = [
-    { value: 'Basic' },
-    { value: 'Food' },
-    { value: 'Car' },
-    { value: 'Development' },
-    { value: 'Children' },
-    { value: 'Education' },
-    { value: 'Other' },
-  ];
-
-  const handleSubmit = e => {
-    console.log(e);
-    notify();
-    e.preventDefault();
+  // const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
+  const toggleChange = e => {
+    setChecked(e);
+    e ? setSelectedOption('') : setSelectedOption(defaultSpend);
   };
 
-  const notify = () =>
-    toast.error('Error, somesing go wrong', { autoClose: 3000 });
+  const handleSubmit = e => {
+    const StatusType = checked ? trTypeAdd : trTypeRemove;
+    e.preventDefault();
+    console.log({
+      category: selectedOption,
+      comment: comment,
+      sum: sumTransaction,
+      date: selectedDate,
+      transactionType: StatusType,
+    });
+    // dispatch(closeModalWindow());
+  };
 
   return (
     <Modal>
       <div>
-        <ToastContainer />
         <Title>Add transaction</Title>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} onReset={handleSubmit}>
           <Label border>
-            <ToggleSwitch check={setChecked} />
+            <ToggleSwitch check={toggleChange} />
           </Label>
           {!checked && (
             <Label>
-              <SelectCustom options={options} select={setSelectedOption} />
+              <SelectCustom select={setSelectedOption} />
             </Label>
           )}
           <ContainerStyle>
             <Label fontWeight={700}>
               <input
                 type="number"
-                name="sum"
+                name="sumTransaction"
                 value={sumTransaction}
-                onChange={({ currentTarget: { numb } }) =>
-                  setSumTransaction(numb)
-                }
+                onChange={({ target: { value } }) => setSumTransaction(value)}
                 placeholder="0.00"
-                required
               />
             </Label>
             <Label>
@@ -91,7 +86,7 @@ export default function ModalAddTransactions() {
               spellcheck={true}
               value={comment}
               onChange={({ target: { value } }) => setComment(value)}
-              name="user-message"
+              name="Comment"
               placeholder="Comment"
             />
           </Label>
@@ -99,8 +94,9 @@ export default function ModalAddTransactions() {
             ADD
           </Button>
           <Button
+            type="reset"
             outlined
-            onChange={() => dispatch(openModalAddTransaction(false))}
+            onClick={() => dispatch(closeModalWindow())}
           >
             CANCEL
           </Button>

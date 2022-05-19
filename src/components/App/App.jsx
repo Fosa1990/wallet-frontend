@@ -4,7 +4,10 @@ import { useSelector } from 'react-redux';
 // import { useEffect } from 'react';
 import '../../../node_modules/modern-normalize/modern-normalize.css';
 import ModalLogout from '../ModalLogout';
-import { selectIsModalLogoutOpen } from '../../redux/globalSelectors';
+import {
+  selectIsModalLogoutOpen,
+  selectIsModalAddTransactionOpen,
+} from '../../redux/globalSelectors';
 import './App.css';
 import Loader from '../Loader';
 import authSelectors from '../../redux/auth';
@@ -36,11 +39,12 @@ export default function App() {
     skip: token === null,
   });
   // console.log('__isFetching__: ', isFetching);
-
+  //--------------
+  const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
+  //-------------
   /// компоненти  по  факту реалізації  потім розставимо  по місцям і  пропишем тут роути
   return (
     <>
-      <ButtonAddTransactions />
       {isFetching ? (
         <Loader />
       ) : (
@@ -79,7 +83,8 @@ export default function App() {
 
               {/* <Route path="*" element={<Navigate to="/" />} /> */}
             </Routes>
-            <ModalAddTransactions />
+            <ButtonAddTransactions />
+            {showModalAddTransactions && <ModalAddTransactions />}
             {/* <Loader /> */}
             {/* <Header /> */}
             {/* <Navigation /> */}

@@ -8,6 +8,7 @@ import {
 } from '../../../stylesheet/utils/stylesVars';
 import styled from 'styled-components';
 import sprite from '../../../images/svg/sprite.svg';
+import { optionModalTransuction } from '../../../helpers/constants';
 
 export default function ToggleSwitch({ check }) {
   const [checked, setChecked] = useState(false);
@@ -19,7 +20,9 @@ export default function ToggleSwitch({ check }) {
 
   return (
     <ToggleSwitchWraper>
-      <Span color={!checked ? accentDisableCl : accentPositiveCl}>Income</Span>
+      <Span color={!checked ? accentDisableCl : accentPositiveCl}>
+        {optionModalTransuction.add}
+      </Span>
       <input
         checked={checked}
         type="checkbox"
@@ -33,7 +36,7 @@ export default function ToggleSwitch({ check }) {
         </Svg>
       </Switch>
       <Span color={checked ? accentDisableCl : accentNegativeCl}>
-        Consumption
+        {optionModalTransuction.spend}
       </Span>
     </ToggleSwitchWraper>
   );
