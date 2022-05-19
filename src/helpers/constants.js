@@ -16,9 +16,7 @@ const ROUTES = {
   GOOGLE_AUTH: 'google',
 };
 
-export { BASE_URL, ROUTES };
-
-export const colors = [
+const colors = [
   { category: 'basic spend', color: '#FED057' },
   { category: 'products', color: '#FFD8D0' },
   { category: 'car', color: '#FD9498' },
@@ -31,10 +29,14 @@ export const colors = [
   { category: 'income', color: '#3B74B4' },
 ];
 
-export const optionModalTransuction = {
+const optionModalTransuction = {
   add: 'Income',
   spend: 'Basic spend',
   defaultSpend: 'other spend',
   trTypeAdd: 'income',
   trTypeRemove: 'spend',
 };
+
+export { BASE_URL, ROUTES, colors, optionModalTransuction };
+
+
