@@ -83,8 +83,8 @@ export default function App() {
 
               {/* <Route path="*" element={<Navigate to="/" />} /> */}
             </Routes>
-            <ButtonAddTransactions />
             {showModalAddTransactions && <ModalAddTransactions />}
+            {/* <ButtonAddTransactions /> */}
             {/* <Loader /> */}
             {/* <Header /> */}
             {/* <Navigation /> */}

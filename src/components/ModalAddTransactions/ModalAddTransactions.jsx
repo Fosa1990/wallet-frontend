@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import Datetime from 'react-datetime';
 import Button from '../Button/Button';
 import SelectCustom from './Select/SelectCustom';
 import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
 import Modal from '../Modal/Modal';
+import Datetime from 'react-datetime';
 import {
   accentPositiveCl,
   size,
@@ -12,7 +12,7 @@ import {
 import styled from 'styled-components';
 import sprite from '../../images/svg/sprite.svg';
 import 'react-datetime/css/react-datetime.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { closeModalWindow } from '../../redux/globalSlice';
 import { optionModalTransuction } from '../../helpers/constants';
 const { defaultSpend, trTypeAdd, trTypeRemove } = optionModalTransuction;
@@ -62,18 +62,19 @@ export default function ModalAddTransactions() {
               <input
                 type="number"
                 name="sumTransaction"
-                value={sumTransaction}
+                defaultValue={sumTransaction}
                 onChange={({ target: { value } }) => setSumTransaction(value)}
                 placeholder="0.00"
+                required
               />
             </Label>
             <Label>
               <Datetime
                 timeFormat={false}
                 closeOnSelect={true}
+                closeOnTab={true}
                 dateFormat={'DD.MM.YYYY'}
                 value={selectedDate}
-                className={'datetime-picker__wrapper'}
                 onChange={date => setSelectedDate(date?._d)}
               />
               <svg>
