@@ -13,7 +13,8 @@ import Loader from '../Loader';
 import authSelectors from '../../redux/auth';
 import { PrivateRoute, PublicRouteLogin, PublicRouteRegin } from '../Router';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
-import ModalAddTransactions from '../ModalAddTransactions/ModalAddTransactions';
+import ModalAddTransactions from '../ModalAddTransactions/';
+import ButtonAddTransactions from '../ButtonAddTransactions';
 
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
@@ -83,7 +84,7 @@ export default function App() {
               {/* <Route path="*" element={<Navigate to="/" />} /> */}
             </Routes>
             {showModalAddTransactions && <ModalAddTransactions />}
-            {/* <ButtonAddTransactions /> */}
+            <ButtonAddTransactions />
             {/* <Loader /> */}
             {/* <Header /> */}
             {/* <Navigation /> */}
