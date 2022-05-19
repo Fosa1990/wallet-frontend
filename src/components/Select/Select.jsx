@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { size } from '../../stylesheet/utils/stylesVars';
 
-export default function Select() {
+export default function Select({ onMonthSelect, onYearSelect }) {
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
 
@@ -33,9 +33,6 @@ export default function Select() {
   const optionsYears = years.map((text, index) => {
     return <option key={index}>{text}</option>;
   });
-
-  const onYearSelect = e => setYear(e.target.value);
-  const onMonthSelect = e => setMonth(e.target.value);
 
   return (
     <>

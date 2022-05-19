@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import Table from '../Table';
 import Chart from '../Chart';
 import Select from '../Select';
@@ -12,15 +13,31 @@ export default function DiagramTab() {
   const categories = useSelector(categoriesSelectors.getCategories);
   // const month = useSelector(categoriesSelectors.getMonth);
   // const year = useSelector(categoriesSelectors.getYear);
+  // console.log('__month redux', month);
+  // console.log('__year redux', year);
 
   console.log('__categories DiagramTab', categories);
   const dispatch = useDispatch();
 
+  // 3 передать объект с месяцем и годом
+  const [searchParams, setSearchParams] = useSearchParams({});
+  console.log(searchParams.get('year'));
+  console.log(searchParams.get('month'));
+
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // console.log('searchParams', searchParams);
+
+  const onDateSelect = e => {
+    setSearchParams({ year: e.target.value });
+    setSearchParams({ month: e.target.value });
+  };
+  // const onYearSelect = e => {
+  //   setSearchParams({ year: e.target.value });
+  // };
+  // const onMonthSelect = e => {
+  //   setSearchParams({ month: e.target.value });
+  // };
 
   return (
     <>
@@ -28,7 +45,7 @@ export default function DiagramTab() {
         <Balance>&#8372;&nbsp; {categories.length > 0 ? 'balance' : 0}</Balance>
         <Chart categories={categories} />
       </ChartWrapper>
-      <Select />
+      <Select onMonthSelect={onDateSelect} onYearSelect={onDateSelect} />
       <Table categories={categories} />
     </>
   );
