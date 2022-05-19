@@ -12,7 +12,7 @@ import Media from 'react-media';
 import HomeTabMobile from './HomeTabMobile';
 import HomeTabTabletDesktop from './HomeTabTabletDesktop';
 
-function HomeTab() {
+export default function HomeTab() {
   const finances = useSelector(getFinancesSelectors.getFinances);
   const totalDocuments = useSelector(getFinancesSelectors.getCountDocuments);
   const [page, setPage] = useSearchParams({ page: 1 });
@@ -50,8 +50,6 @@ function HomeTab() {
     </Div>
   );
 }
-
-export default HomeTab;
 
 const Div = styled.div`
   display: flex;
