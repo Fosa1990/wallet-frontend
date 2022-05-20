@@ -22,7 +22,7 @@ export default function HomeTabTabletDesktop({ finances }) {
         </tr>
       </Thead>
       <Tbody>
-        {finances &&
+        {finances.length &&
           finances.map(transaction => (
             <Tr key={transaction._id}>
               <Td>{<Moment format="DD.MM.YYYY">{transaction.date}</Moment>}</Td>
@@ -85,7 +85,9 @@ const Th = styled.th`
   }
 `;
 
-const Tbody = styled.tbody``;
+const Tbody = styled.tbody`
+  display: flex;
+`;
 
 const Td = styled.td`
   font: ${circleFont};
