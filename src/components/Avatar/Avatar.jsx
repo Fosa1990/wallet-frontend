@@ -6,15 +6,16 @@ import { size, accentBgCl } from '../../stylesheet/utils/stylesVars';
 export default function Avatar() {
   const userName = useSelector(authSelectors.getUserName);
   const avatar = useSelector(authSelectors.getAvatarURL);
+  console.log(avatar);
   const letter = userName.split('')[0].toUpperCase();
   const gravatar = avatar.split('.')[1];
 
   return (
     <>
-      {avatar === gravatar ? (
-        <AvatarImg src={avatar} alt="Avatar" />
-      ) : (
+      {avatar.includes(gravatar) ? (
         <UserAvatarDiv> {letter}</UserAvatarDiv>
+      ) : (
+        <AvatarImg src={avatar} alt="Avatar" />
       )}
     </>
   );
