@@ -31,8 +31,6 @@ const Registration = lazy(() =>
   import('../../pages/RegistrationPage' /* webpackChunkName: "Registration" */),
 );
 
-/// TO  DO  public and protected  routes
-
 export default function App() {
   const showModalLogout = useSelector(selectIsModalLogoutOpen);
   const token = useSelector(authSelectors.getToken);

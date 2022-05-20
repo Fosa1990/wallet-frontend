@@ -1,5 +1,7 @@
 const BASE_URL = 'http://localhost:3000/';
 const SERVER_BASE_URL = 'https://amazing-wallet.herokuapp.com/api';
+const PRIVAT_API_URL =
+  'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5';
 
 const ROUTES = {
   API: 'api',
@@ -38,4 +40,11 @@ const optionModalTransuction = {
   trTypeRemove: 'spend',
 };
 
-export { BASE_URL, ROUTES, colors, optionModalTransuction, SERVER_BASE_URL };
+export {
+  BASE_URL,
+  ROUTES,
+  colors,
+  optionModalTransuction,
+  SERVER_BASE_URL,
+  PRIVAT_API_URL,
+};
