@@ -31,7 +31,7 @@ export default function Header({ children, onClick, ...props }) {
 
   return (
     <StyledHeader>
-      <Logo to="/" />
+      <Logo to="/home" />
       <UserInfo>
         <UserName>{userName || 'User'} </UserName>
         <LogoutButton type="button" onClick={handleClick}>

@@ -14,9 +14,7 @@ import Loader from '../Loader';
 import authSelectors from '../../redux/auth';
 import { PrivateRoute, PublicRouteLogin, PublicRouteRegin } from '../Router';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
-import ModalAddTransactions from '../ModalAddTransactions/';
 import NotifyContainer from '../NotifyContainer';
-import ButtonAddTransactions from '../ButtonAddTransactions';
 import { ROUTES } from '../../helpers/constants';
 import { VerifyPage } from '../Pages/';
 import { ErrorPage } from '../Pages/';
@@ -83,7 +81,6 @@ export default function App() {
                 element={
                   <PrivateRoute redirectTo={ROUTES.LOGIN}>
                     <Dashboard />
-                    <ButtonAddTransactions />
                   </PrivateRoute>
                 }
               />
@@ -92,7 +89,6 @@ export default function App() {
               <Route path="*" element={<ErrorPage />} />
               {/* <Route path="*" element={<Navigate to={`/${ROUTES.NOT_FOUND}`} />} /> */}
             </Routes>
-            {showModalAddTransactions && <ModalAddTransactions />}
             {/* <ButtonAddTransactions /> */}
             {/* <Loader /> */}
             {/* <Header /> */}

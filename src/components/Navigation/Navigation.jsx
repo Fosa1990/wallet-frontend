@@ -10,9 +10,6 @@ import home from '../../images/svg/home.svg';
 import diagram from '../../images/svg/diagram.svg';
 import currency from '../../images/svg/currency.svg';
 
-// import sprite from '../../images/svg/sprite.svg';
-// import Icon from '../Icon';
-
 export default function Navigation() {
   return (
     <NavWrap>
@@ -41,28 +38,6 @@ export default function Navigation() {
     </NavWrap>
   );
 }
-
-// const StyledIcon = styled(Icon)`
-//       border-radius: 15px;
-//       margin-right: 25px;
-
-// `
-// const svgStyles = ({ width, height, color, activeColor }) => {
-//     return css`
-//         width:  38px;
-//     height: 38px;
-//     border-radius: 6px;
-//     & path {
-//         fill: ${ color || '#6e78e8 ' }
-//     }
-//     &:hover path {
-//         fill: ${ color || 'red ' }
-//     }
-//     `
-// }
-// const Img = styled.img`
-// ${(props =>svgStyles(props) )}
-// `
 
 const NavWrap = styled.div`
   display: flex;

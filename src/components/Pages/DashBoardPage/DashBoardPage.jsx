@@ -14,10 +14,13 @@ import Navigation from '../../Navigation';
 import Balance from '../../Balance';
 import authSelectors from '../../../redux/auth';
 import { ROUTES } from '../../../helpers/constants';
+import ButtonAddTransactions from '../../ButtonAddTransactions';
+import { selectIsModalAddTransactionOpen } from '../../../redux/globalSelectors';
+import ModalAddTransactions from '../../ModalAddTransactions';
 
 export default function DashBoardPage() {
   const isLoggedin = useSelector(authSelectors.getIsLoggedIn);
-
+  const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
   useEffect(() => {
     if (isLoggedin) {
       toast.info('Welcome to  wallet');
@@ -35,7 +38,7 @@ export default function DashBoardPage() {
             {/* <Balance /> */}
             <Media query="(min-width: 768px)" render={() => <Balance />} />
           </MobSidebar>
-          {/* <Media query="(min-width: 768px)" render={() => <Currency />} /> */}
+          <Media query="(min-width: 768px)" render={() => <Currency />} />
         </SideBar>
 
         <TabWrap>
@@ -59,6 +62,8 @@ export default function DashBoardPage() {
               }
             />
           </Routes>
+          <ButtonAddTransactions />
+          {showModalAddTransactions && <ModalAddTransactions />}
         </TabWrap>
       </MainWrap>
     </>
