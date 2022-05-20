@@ -23,7 +23,7 @@ export default function DashBoardPage() {
   const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
   useEffect(() => {
     if (isLoggedin) {
-      toast.info('Welcome to  wallet');
+      toast.info('Welcome to Amazing wallet');
     }
   }, [isLoggedin]);
 
@@ -35,7 +35,6 @@ export default function DashBoardPage() {
         <SideBar>
           <MobSidebar>
             <Navigation />
-            {/* <Balance /> */}
             <Media query="(min-width: 768px)" render={() => <Balance />} />
           </MobSidebar>
           <Media query="(min-width: 768px)" render={() => <Currency />} />
