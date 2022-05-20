@@ -1,9 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// const BASE_URL = 'https://amazing-wallet.herokuapp.com';
-// axios.baseURL = BASE_URL;
-
 export const getCategories = createAsyncThunk(
   'categories/getCategories',
   async ({ year, month }, { rejectWithValue }) => {

@@ -12,8 +12,8 @@ import { size } from '../../stylesheet/utils/stylesVars';
 
 export default function DiagramTab() {
   const [searchParams, setSearchParams] = useSearchParams({
-    year: '2020',
-    month: '01',
+    year: '2022',
+    month: '05',
   });
 
   const categories = useSelector(categoriesSelectors.getCategories);
