@@ -12,10 +12,11 @@ import wave from '../../images/wave.png';
 import Loader from '../Loader';
 
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { PRIVAT_API_URL } from '../../helpers/constants';
 
-const baseUrl = `https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5`;
-axios.defaults.baseURL = baseUrl;
+// import axios from 'axios';
+// const baseUrl = `https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5`;
+// axios.defaults.baseURL = baseUrl;
 
 // поправить позицию лоадера
 
@@ -28,16 +29,15 @@ export default function Currency() {
     });
   }, []);
 
-  function getExchangeRates() {
-    return axios
-      .get(baseUrl)
-      .then(res => res.data)
-      .catch(error => console.log(error.message));
-  }
-  function getExchangeRates() {
-    return fetch(
-      'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5',
-    )
+  // function getExchangeRates() {
+  //   return axios
+  //     .get(baseUrl)
+  //     .then(res => res.data)
+  //     .catch(error => console.log(error.message));
+  // }
+
+  async function getExchangeRates() {
+    return await fetch(PRIVAT_API_URL)
       .then(res => res.json())
       .then(res => res)
       .catch(error => console.log(error.message));
@@ -95,6 +95,9 @@ export default function Currency() {
 const Wrapper = styled.div`
   position: relative;
   ${size.tablet} {
+    margin-top: 0px;
+  }
+  ${size.desktop} {
     margin-top: 32px;
   }
 `;
