@@ -54,7 +54,6 @@ export default function Table({ categories, transactionType }) {
 const TableMain = styled.table`
   width: 280px;
   border-collapse: collapse;
-
   margin: 0 auto;
 
   ${size.tablet} {

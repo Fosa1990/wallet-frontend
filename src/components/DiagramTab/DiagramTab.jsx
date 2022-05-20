@@ -4,11 +4,11 @@ import { useSearchParams } from 'react-router-dom';
 import Table from '../Table';
 import Chart from '../Chart';
 import Select from '../Select';
+import BalanceSum from '../Balance/BalanceSum';
 import styled from 'styled-components';
 import categoriesSelectors from '../../redux/categories/categoriesSelectors';
 import { getCategories } from '../../redux/categories/categoriesOperations';
 import { size } from '../../stylesheet/utils/stylesVars';
-import BalanceSum from '../Balance/BalanceSum';
 
 export default function DiagramTab() {
   const [searchParams, setSearchParams] = useSearchParams({
@@ -18,9 +18,6 @@ export default function DiagramTab() {
 
   const categories = useSelector(categoriesSelectors.getCategories);
   const dispatch = useDispatch();
-  // const month = useSelector(categoriesSelectors.getMonth);
-  // const year = useSelector(categoriesSelectors.getYear);
-  // console.log('__categories DiagramTab', categories[0].category);
 
   useEffect(() => {
     dispatch(
