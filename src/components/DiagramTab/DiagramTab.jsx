@@ -63,7 +63,7 @@ export default function DiagramTab() {
           <DiagramTabHeader>Statistics</DiagramTabHeader>
           <ChartWrapper>
             <Balance>
-              {categories[0]?.category?.length > 0 ? <BalanceSum /> : 0}
+              {categories[0]?.category?.length > 0 && <BalanceSum />}
             </Balance>
             <Chart categories={categories[0]?.category ?? []} />
           </ChartWrapper>
