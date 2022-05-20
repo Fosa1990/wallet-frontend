@@ -26,7 +26,7 @@ export default function HomeTab() {
     setIsLoading(true);
   }, [dispatch, page]);
 
-  const onPageСhange = pageNumber => {
+  const onPageChange = pageNumber => {
     setPage({ page: pageNumber });
   };
 
@@ -48,7 +48,7 @@ export default function HomeTab() {
           page={Number(page.get('page'))}
           itemsPerPage={totalDocuments.limitDocuments}
           totalResults={totalDocuments.totalDocuments}
-          onPageСhange={onPageСhange}
+          onPageChange={onPageChange}
         />
       )}
     </Div>
