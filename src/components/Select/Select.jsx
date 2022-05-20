@@ -51,23 +51,26 @@ const SelectWrap = styled.div`
 
   ${size.mobile} {
     height: 120px;
+    margin-bottom: 20px;
   }
   ${size.tablet} {
     flex-direction: row;
   }
 `;
-
 const SelectField = styled.select`
   width: 280px;
   height: 50px;
   border-radius: 20px;
   font-size: 16px;
   padding: 13px 20px;
+  margin-bottom: 20px;
 
   ${size.tablet} {
     width: 160px;
+    margin-bottom: 0px;
   }
   ${size.desktop} {
     width: 182px;
+    margin-bottom: 0px;
   }
 `;

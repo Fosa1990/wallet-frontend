@@ -10,12 +10,20 @@ export const fetchFinances = createAsyncThunk(
       const response = await axios.get(
         `https://amazing-wallet.herokuapp.com/api/transactions?page=${page}&limit=4`,
       );
-      // console.log('response', response);
       // console.log(
-      //   'response.data.payload/transactions',
-      //   console.log('last'),
-      // response.data.payload.transactions,
+      //   'response.data.payload.transactions',
+      //   response.data.payload.transactions,
       // );
+      // const sortedTransactions = response.data.payload.transactions.sort(
+      //   function (a, b) {
+      //     if (a.date > b.date) {
+      //       return -1;
+      //     } else {
+      //       return 1;
+      //     }
+      //   },
+      // );
+      // console.log('sortedTransactions', sortedTransactions);
       return response.data.payload;
     } catch (error) {
       console.log('error.message', error.message);

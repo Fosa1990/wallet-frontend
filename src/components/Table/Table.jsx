@@ -5,6 +5,7 @@ import {
   accentPositiveCl,
 } from '../../stylesheet/utils/stylesVars';
 import { colors } from '../../helpers/constants';
+import { size } from '../../stylesheet/utils/stylesVars';
 
 export default function Table({ categories, transactionType }) {
   return (
@@ -51,8 +52,13 @@ export default function Table({ categories, transactionType }) {
 }
 
 const TableMain = styled.table`
-  width: 100%;
+  width: 280px;
   border-collapse: collapse;
+  margin: 0 auto;
+
+  ${size.tablet} {
+    width: 336px;
+  }
 `;
 const Thead = styled.thead`
   height: 58px;
@@ -120,11 +126,3 @@ const ExpenceValue = styled.td`
 const IncomeValue = styled.td`
   color: ${accentPositiveCl};
 `;
-
-//  <ColorBlock
-//                     style={{
-//                       color.category === category._id && {
-//                         backgroundColor: color.color,
-//                       }
-//                     }}
-//                   ></ColorBlock>

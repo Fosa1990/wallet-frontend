@@ -1,19 +1,28 @@
 import styled from 'styled-components';
 // import { size } from '../../stylesheet/utils/stylesVars';
-import { circleFont, accentBgCl, accentNegativeCl,accentPositiveCl } from '../../stylesheet/utils/stylesVars';
+import {
+  circleFont,
+  accentBgCl,
+  accentNegativeCl,
+  accentPositiveCl,
+} from '../../stylesheet/utils/stylesVars';
 import Moment from 'react-moment';
 
 export default function HomeTabMobile({ finances }) {
   return finances.map(transaction => (
     <MobileTable key={transaction._id}>
-      <Tbody>
+      <Tbody type={transaction.transactionType}>
         <Tr>
           <Th>Date</Th>
           <Td>{<Moment format="DD.MM.YYYY">{transaction.date}</Moment>}</Td>
         </Tr>
         <Tr>
           <Th>Type</Th>
-          <Td>{transaction.transactionType}</Td>
+          {transaction.transactionType === 'income' ? (
+                <Td>+</Td>
+              ) : (
+                <Td>-</Td>
+              )}
         </Tr>
         <Tr>
           <Th>Category</Th>
@@ -50,10 +59,6 @@ const MobileTable = styled.table`
   }
 `;
 
-
-
-
-
 const Tbody = styled.tbody`
   vertical-align: middle;
   width: 100%;
@@ -66,9 +71,10 @@ const Tbody = styled.tbody`
     top: 0.5%;
     width: 5px;
     height: 99%;
-    background-color: ${accentPositiveCl};
     border-top-left-radius: 60px;
     border-bottom-left-radius: 60px;
+    background-color: ${({ type }) =>
+      type === 'income' ? `${accentPositiveCl}` : `${accentNegativeCl}`};
   }
 `;
 

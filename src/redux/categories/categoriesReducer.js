@@ -1,14 +1,11 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 import { getCategories } from './categoriesOperations';
-// import { getMonth, getYear } from './categoriesActions';
 
 const initialState = {
   data: [],
   loading: false,
   error: null,
-  // month: new Date().getMonth() + 1,
-  // year: new Date().getFullYear(),
 };
 
 const categoriesDataReducer = createReducer(initialState.data, {
@@ -26,18 +23,8 @@ const errorReducer = createReducer(initialState.error, {
   [getCategories.pending]: () => null,
 });
 
-// const monthReducer = createReducer(initialState.categories.month, {
-//   [getMonth.fulfilled]: (_, { payload }) => payload,
-// });
-
-// const yearReducer = createReducer(initialState.categories.year, {
-//   [getYear.fulfilled]: (_, { payload }) => payload,
-// });
-
 export default combineReducers({
   data: categoriesDataReducer,
   loading: loadingReducer,
   error: errorReducer,
-  // month: monthReducer,
-  // year: yearReducer,
 });
