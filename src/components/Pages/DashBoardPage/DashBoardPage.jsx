@@ -81,7 +81,7 @@ const MainWrap = styled.div`
   flex-grow: 1;
 
   ${size.tablet} {
-    padding: 32px 32px;
+    padding: 0px 32px;
     justify-content: start;
   }
   ${size.desktop} {
@@ -93,12 +93,12 @@ const MainWrap = styled.div`
 const SideBar = styled.div`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+
   ${size.tablet} {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* justify-content: start; */
+    margin-bottom: 20px;
   }
 
   ${size.desktop} {
@@ -123,6 +123,6 @@ const TabWrap = styled.div`
 `;
 const MobSidebar = styled.div`
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   flex-direction: column;
 `;

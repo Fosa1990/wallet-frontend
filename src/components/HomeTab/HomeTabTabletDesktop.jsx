@@ -22,7 +22,7 @@ export default function HomeTabTabletDesktop({ finances }) {
         </tr>
       </Thead>
       <Tbody>
-        {finances.length &&
+        {finances &&
           finances.map(transaction => (
             <Tr key={transaction._id}>
               <Td>{<Moment format="DD.MM.YYYY">{transaction.date}</Moment>}</Td>
@@ -71,23 +71,19 @@ const Th = styled.th`
   font: ${circleFont};
   font-size: 18px;
   font-weight: 700;
-
   ${size.tablet} {
     padding: 16px 0 15px;
     text-align: center;
     :first-child {
       border-radius: 30px 0 0 30px;
     }
-
     :last-child {
       border-radius: 0 30px 30px 0;
     }
   }
 `;
 
-const Tbody = styled.tbody`
-  display: flex;
-`;
+const Tbody = styled.tbody``;
 
 const Td = styled.td`
   font: ${circleFont};
@@ -95,7 +91,6 @@ const Td = styled.td`
   font-weight: 400;
   padding: 14px 0;
   text-transform: capitalize;
-
   ${size.tablet} {
     text-align: center;
   }

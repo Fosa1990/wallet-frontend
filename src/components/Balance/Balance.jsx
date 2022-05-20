@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React from 'react';
 import { size } from '../../stylesheet/utils/stylesVars';
 import {
-   circleFont,
+  circleFont,
   accentBgCl,
   balanceCl,
 } from '../../stylesheet/utils/stylesVars';
@@ -26,17 +26,14 @@ const BalanceWrapper = styled.div`
   line-height: 18px;
   text-transform: uppercase;
   color: ${balanceCl};
-  padding: 8px 40px 11px;
+  width: 280px;
+  padding-left: 32px;
 
   ${size.tablet} {
-    width: 395;
+    width: 336px;
+    padding: 8px 40px 11px;
   }
   ${size.desktop} {
-    width: 336px;
+    width: 395;
   }
-  ${size.mobile} {
-    width: 280px;
-    padding-left: 32px;
-  }
-  //
 `;

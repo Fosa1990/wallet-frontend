@@ -79,10 +79,12 @@ const NavText = styled.p`
 const Link = styled(NavLink)`
   display: flex;
   font-weight: 400;
+  line-height: 1.5;
   cursor: pointer;
 
   ${size.tablet} {
     justify-content: ${props => props.justify || 'flex-start'};
+    align-items: center;
     color: ${props => props.color || accentTextCl};
     &:not(:last-child) {
       margin-bottom: 12px;
