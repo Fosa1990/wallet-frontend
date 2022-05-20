@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import categoriesSelectors from '../../redux/categories/categoriesSelectors';
 import { getCategories } from '../../redux/categories/categoriesOperations';
 import { size } from '../../stylesheet/utils/stylesVars';
+import BalanceSum from '../Balance/BalanceSum';
 
 export default function DiagramTab() {
   const [searchParams, setSearchParams] = useSearchParams({
@@ -65,8 +66,7 @@ export default function DiagramTab() {
           <DiagramTabHeader>Statistics</DiagramTabHeader>
           <ChartWrapper>
             <Balance>
-              &#8372;&nbsp;{' '}
-              {categories[0]?.category?.length > 0 ? 'balance' : 0}
+              {categories[0]?.category?.length > 0 ? <BalanceSum /> : 0}
             </Balance>
             <Chart categories={categories[0]?.category ?? []} />
           </ChartWrapper>
