@@ -1,9 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import SelectCustom from './Select/SelectCustom';
 import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
 import Modal from '../Modal/Modal';
 import Datetime from 'react-datetime';
+import { useDispatch } from 'react-redux';
+import { closeModalWindow } from '../../redux/globalSlice';
+import { optionModalTransuction } from '../../helpers/constants';
+import { useCreateTransactionsMutation } from '../../redux/transactions/transactionOperation';
+import NotifyContainer from '../NotifyContainer/NotifyContainer';
+import { toast } from 'react-toastify';
 import {
   accentPositiveCl,
   size,
@@ -12,13 +18,6 @@ import {
 import styled from 'styled-components';
 import sprite from '../../images/svg/sprite.svg';
 import 'react-datetime/css/react-datetime.css';
-import { useDispatch } from 'react-redux';
-import { closeModalWindow } from '../../redux/globalSlice';
-import { optionModalTransuction } from '../../helpers/constants';
-import {
-  useCreateTransactionsMutation,
-  useGetTransactionsQuery,
-} from '../../redux/transactions/transactionOperation';
 
 const { defaultSpend, trTypeAdd, trTypeRemove } = optionModalTransuction;
 
@@ -29,13 +28,20 @@ export default function ModalAddTransactions() {
   const [comment, setComment] = useState('');
   const [selectedOption, setSelectedOption] = useState(defaultSpend);
 
-  const [addTransactions] = useCreateTransactionsMutation();
+  const [addTransactions, { data }] = useCreateTransactionsMutation();
   const dispatch = useDispatch();
 
   const toggleChange = e => {
     setChecked(e);
     e ? setSelectedOption(trTypeAdd) : setSelectedOption(defaultSpend);
   };
+
+  useEffect(() => {
+    if (data?.code === 201) {
+      NotifyContainer(toast(data.payload.message || 'Done!'));
+      dispatch(closeModalWindow());
+    }
+  }, [data]);
 
   const handleSubmit = e => {
     const StatusType = checked ? trTypeAdd : trTypeRemove;
@@ -47,14 +53,6 @@ export default function ModalAddTransactions() {
       date: selectedDate,
       transactionType: StatusType,
     });
-    console.log({
-      category: selectedOption,
-      comment: comment,
-      sum: sumTransaction,
-      date: selectedDate,
-      transactionType: StatusType,
-    });
-    // dispatch(closeModalWindow());
   };
 
   return (
