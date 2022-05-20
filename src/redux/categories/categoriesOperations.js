@@ -6,17 +6,20 @@ import axios from 'axios';
 
 export const getCategories = createAsyncThunk(
   'categories/getCategories',
-  // замість черточки передавати обїект с роком і місяцем
-  async (_, { rejectWithValue }) => {
+  async ({ year, month }, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        'https://amazing-wallet.herokuapp.com/api/categories?year=2022&month=04',
+        `https://amazing-wallet.herokuapp.com/api/categories?year=${year}&month=${month}`,
       );
       // console.log(
       //   '__getCategories categories',
       //   response.data.payload.categories[0].category,
       // );
-      return response.data.payload.categories[0].category;
+      // console.log(
+      //   '---getCategories---',
+      //   response.data.payload.categories,
+      // );
+      return response.data.payload.categories;
     } catch (error) {
       console.log('__getCategories error.message', error.message);
       return rejectWithValue(error.message);
