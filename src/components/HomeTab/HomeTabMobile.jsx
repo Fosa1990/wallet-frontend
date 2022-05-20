@@ -1,38 +1,48 @@
 import styled from 'styled-components';
 // import { size } from '../../stylesheet/utils/stylesVars';
-import { circleFont, accentBgCl } from '../../stylesheet/utils/stylesVars';
+import {
+  circleFont,
+  accentBgCl,
+  accentNegativeCl,
+  accentPositiveCl,
+} from '../../stylesheet/utils/stylesVars';
+import Moment from 'react-moment';
 
-export default function HomeTabMobile() {
-  return (
-    <MobileTable>
-      <Tbody>
+export default function HomeTabMobile({ finances }) {
+  return finances.map(transaction => (
+    <MobileTable key={transaction._id}>
+      <Tbody type={transaction.transactionType}>
         <Tr>
           <Th>Date</Th>
-          <Td>04.01.19</Td>
+          <Td>{<Moment format="DD.MM.YYYY">{transaction.date}</Moment>}</Td>
         </Tr>
         <Tr>
           <Th>Type</Th>
-          <Td>-</Td>
+          {transaction.transactionType === 'income' ? (
+                <Td>+</Td>
+              ) : (
+                <Td>-</Td>
+              )}
         </Tr>
         <Tr>
           <Th>Category</Th>
-          <Td>other spend</Td>
+          <Td>{transaction.category}</Td>
         </Tr>
         <Tr>
           <Th>Comment</Th>
-          <Td>gift</Td>
+          <Td>{transaction.comment}</Td>
         </Tr>
         <Tr>
           <Th>Sum</Th>
-          <Td>300</Td>
+          <Td>{transaction.sum}</Td>
         </Tr>
         <Tr>
           <Th>Balance</Th>
-          <Td>6900</Td>
+          <Td>{transaction.balance}</Td>
         </Tr>
       </Tbody>
     </MobileTable>
-  );
+  ));
 }
 const MobileTable = styled.table`
   background-color: ${accentBgCl};
@@ -44,6 +54,9 @@ const MobileTable = styled.table`
   justify-content: center;
   position: relative;
 
+  :not(:last-child) {
+    margin-bottom: 8px;
+  }
 `;
 
 const Tbody = styled.tbody`
@@ -51,7 +64,6 @@ const Tbody = styled.tbody`
   width: 100%;
   padding: 0 20px;
 
-  
   ::before {
     content: '';
     position: absolute;
@@ -59,10 +71,11 @@ const Tbody = styled.tbody`
     top: 0.5%;
     width: 5px;
     height: 99%;
-    background-color: aqua;
     border-top-left-radius: 60px;
     border-bottom-left-radius: 60px;
-    }
+    background-color: ${({ type }) =>
+      type === 'income' ? `${accentPositiveCl}` : `${accentNegativeCl}`};
+  }
 `;
 
 const Tr = styled.tr`
