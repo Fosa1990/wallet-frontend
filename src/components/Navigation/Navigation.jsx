@@ -1,17 +1,16 @@
 import styled /*, { css } */ from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import Media from 'react-media';
+import SVG from 'react-inlinesvg';
 import {
   accentTextCl,
   poppinsFont,
+  iconBgValueCl,
   size,
 } from '../../stylesheet/utils/stylesVars';
 import home from '../../images/svg/home.svg';
 import diagram from '../../images/svg/diagram.svg';
 import currency from '../../images/svg/currency.svg';
-
-// import sprite from '../../images/svg/sprite.svg';
-// import Icon from '../Icon';
 
 export default function Navigation() {
   return (
@@ -42,28 +41,6 @@ export default function Navigation() {
   );
 }
 
-// const StyledIcon = styled(Icon)`
-//       border-radius: 15px;
-//       margin-right: 25px;
-
-// `
-// const svgStyles = ({ width, height, color, activeColor }) => {
-//     return css`
-//         width:  38px;
-//     height: 38px;
-//     border-radius: 6px;
-//     & path {
-//         fill: ${ color || '#6e78e8 ' }
-//     }
-//     &:hover path {
-//         fill: ${ color || 'red ' }
-//     }
-//     `
-// }
-// const Img = styled.img`
-// ${(props =>svgStyles(props) )}
-// `
-
 const NavWrap = styled.div`
   display: flex;
   justify-content: ${props => props.justify || 'space-evenly'};
@@ -76,11 +53,14 @@ const NavWrap = styled.div`
     margin-bottom: 28px;
   }
 `;
-const NavIcon = styled.img`
+
+const NavIcon = styled(SVG)`
   width: 38px;
   height: 38px;
   border-radius: 6px;
-
+  & path {
+    fill: #6e78e8;
+  }
   ${size.tablet} {
     width: 18px;
     height: 18px;
@@ -99,22 +79,22 @@ const NavText = styled.p`
 const Link = styled(NavLink)`
   display: flex;
   font-weight: 400;
-  /* justify-content: ${props => props.justify || 'space-around'}; */
+  line-height: 1.5;
   cursor: pointer;
 
   ${size.tablet} {
     justify-content: ${props => props.justify || 'flex-start'};
+    align-items: center;
     color: ${props => props.color || accentTextCl};
     &:not(:last-child) {
       margin-bottom: 12px;
     }
   }
-  ///change icon  fill on hover  /  active ????
   &.active ${NavIcon} {
-    /* font-weight: 700; */
-    /* & path {
-    fill: #6e78e8;
- */
+    font-weight: 700;
+    path {
+      fill: ${iconBgValueCl};
+    }
   }
   &:hover,
   &.active ${NavText} {

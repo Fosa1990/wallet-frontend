@@ -14,13 +14,16 @@ import Navigation from '../../Navigation';
 import Balance from '../../Balance';
 import authSelectors from '../../../redux/auth';
 import { ROUTES } from '../../../helpers/constants';
+import ButtonAddTransactions from '../../ButtonAddTransactions';
+import { selectIsModalAddTransactionOpen } from '../../../redux/globalSelectors';
+import ModalAddTransactions from '../../ModalAddTransactions';
 
 export default function DashBoardPage() {
   const isLoggedin = useSelector(authSelectors.getIsLoggedIn);
-
+  const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
   useEffect(() => {
     if (isLoggedin) {
-      toast.info('Welcome to  wallet');
+      toast.info('Welcome to Amazing wallet');
     }
   }, [isLoggedin]);
 
@@ -32,7 +35,6 @@ export default function DashBoardPage() {
         <SideBar>
           <MobSidebar>
             <Navigation />
-            {/* <Balance /> */}
             <Media query="(min-width: 768px)" render={() => <Balance />} />
           </MobSidebar>
           <Media query="(min-width: 768px)" render={() => <Currency />} />
@@ -59,6 +61,8 @@ export default function DashBoardPage() {
               }
             />
           </Routes>
+          <ButtonAddTransactions />
+          {showModalAddTransactions && <ModalAddTransactions />}
         </TabWrap>
       </MainWrap>
     </>
@@ -76,7 +80,7 @@ const MainWrap = styled.div`
   flex-grow: 1;
 
   ${size.tablet} {
-    padding: 32px 32px;
+    padding: 0px 32px;
     justify-content: start;
   }
   ${size.desktop} {
@@ -88,12 +92,12 @@ const MainWrap = styled.div`
 const SideBar = styled.div`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+
   ${size.tablet} {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* justify-content: start; */
+    margin-bottom: 20px;
   }
 
   ${size.desktop} {
@@ -118,6 +122,6 @@ const TabWrap = styled.div`
 `;
 const MobSidebar = styled.div`
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   flex-direction: column;
 `;
