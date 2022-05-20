@@ -28,20 +28,12 @@ export const authApi = createApi({
           method: 'POST',
           body: newUser,
         });
-        // console.log('res.data.code', res.data);
         res.data.code === 201 &&
-          // toast(
-          //   `You need to confirm your ${res.data.payload.user.email} email to access the Amazing Wallet`,
-          //   {
-          //     className: 'black-background',
-          //     bodyClassName: 'Toastify__progress-bar',
-          //     progressClassName: 'fancy-progress-bar',
-          //   },
-          // );
           toast.warn(
             `You need to confirm your ${res.data.payload.user.email} email to access the Amazing Wallet`,
             {
-              position: 'top-center',
+              className: 'Toastify__error',
+              position: 'top-right',
               autoClose: false,
               hideProgressBar: false,
               closeOnClick: true,
