@@ -27,7 +27,6 @@ export const authApi = createApi({
           method: 'POST',
           body: newUser,
         });
-        console.log('==REDUX==registerUser==');
         return res;
       },
       invalidatesTags: ['Auth'],
@@ -40,7 +39,6 @@ export const authApi = createApi({
           method: 'POST',
           body: userData,
         });
-        console.log('==REDUX==loginUser==');
         return res;
       },
       invalidatesTags: ['Auth'],
@@ -55,7 +53,6 @@ export const authApi = createApi({
 
     fetchCurrentUser: builder.query({
       queryFn: async (arg, queryApi, extraOptions, baseQuery) => {
-        console.log('==REDUX==fetchCurrentUser==');
         const res = await baseQuery({
           url: '/users/current',
         });

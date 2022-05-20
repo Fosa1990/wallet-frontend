@@ -83,6 +83,10 @@ export default function LoginForm() {
                   Sign up
                 </Button>
               </Link>
+              {/* <a
+                className="IconGoogle"
+                href="http://localhost:8081/api/auth/google"
+              > */}
               <a
                 className="IconGoogle"
                 href="https://amazing-wallet.herokuapp.com/api/auth/google"
