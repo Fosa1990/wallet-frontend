@@ -12,7 +12,7 @@ export default function CustomPagination({
   page,
   itemsPerPage,
   totalResults,
-  onPageChange,
+  onPageСhange,
 }) {
   return (
     <>
@@ -27,7 +27,7 @@ export default function CustomPagination({
         nextLabel={'>'}
         prevLabel={'<'}
         withProgressBar={true}
-        onPageChange={onPageChange}
+        onPageСhange={onPageСhange}
         customClassNames={{
           rpbRootClassName: 'custom-root',
           rpbItemClassName: 'custom-item',
@@ -63,7 +63,7 @@ const StylePagination = createGlobalStyle`
   border: none;
   border-radius: 50%;
   background-color:${accentBgCl};
-  transition: all ${duration} ${timingFunc}; 
+  transition: all ${duration} ${timingFunc};
 }
 
 .custom-item:hover,
@@ -98,5 +98,5 @@ CustomPagination.propTypes = {
   page: PropTypes.number,
   itemsPerPage: PropTypes.number,
   totalResults: PropTypes.number,
-  onPageChange: PropTypes.func,
+  onPageСhange: PropTypes.func,
 };

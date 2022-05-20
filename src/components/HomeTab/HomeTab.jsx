@@ -1,13 +1,11 @@
 import styled from 'styled-components';
-// import { size } from '../../stylesheet/utils/stylesVars';
-// import { circleFont, accentBgCl } from '../../stylesheet/utils/stylesVars';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { fetchFinances } from '../../redux/finances/financesOperations';
 import getFinancesSelectors from '../../redux/finances/financesSelectors';
 import CustomPagination from '../CustomPagination';
-import { circleFont, size } from '../../stylesheet/utils/stylesVars';
+// import { circleFont, size } from '../../stylesheet/utils/stylesVars';
 
 import Media from 'react-media';
 import Balance from '../Balance';
@@ -26,7 +24,7 @@ export default function HomeTab() {
     setIsLoading(true);
   }, [dispatch, page]);
 
-  const onPageChange = pageNumber => {
+  const onPageСhange = pageNumber => {
     setPage({ page: pageNumber });
   };
 
@@ -47,7 +45,7 @@ export default function HomeTab() {
           page={Number(page.get('page'))}
           itemsPerPage={totalDocuments.limitDocuments}
           totalResults={totalDocuments.totalDocuments}
-          onPageChange={onPageChange}
+          onPageСhange={onPageСhange}
         />
       ) : null}
     </Div>
@@ -59,16 +57,16 @@ const Div = styled.div`
   flex-direction: column;
 `;
 
-const NoInfo = styled.div`
-  font: ${circleFont};
-  margin-top: 30px;
-  font-size: 20px;
-  font-weight: 500;
-  text-align: center;
+// const NoInfo = styled.div`
+//   font: ${circleFont};
+//   margin-top: 30px;
+//   font-size: 20px;
+//   font-weight: 500;
+//   text-align: center;
 
-  ${size.tablet} {
-    font-size: 30px;
-  }
-`;
+//   ${size.tablet} {
+//     font-size: 30px;
+//   }
+// `;
 
 // &#8372;&nbsp; спецсимвол гривна+пробел
