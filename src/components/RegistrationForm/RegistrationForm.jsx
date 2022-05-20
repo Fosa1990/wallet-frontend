@@ -62,7 +62,7 @@ export default function RegistrationForm() {
       >
         {formik => (
           <FromStyle>
-            {/* {console.log('formik.values', formik.values)} */}
+            {console.log('formik.values', formik)}
             <LogoWrapper>
               <LogoIcon src={logo} />
               <Title>Wallet</Title>
@@ -114,9 +114,11 @@ export default function RegistrationForm() {
               />
               <ButtonWrapper>
                 <Button
+                  className="ButtonRegistr"
                   primary
                   color={accentBgCl}
                   background={accentPositiveCl}
+                  disabled={!formik.isValid || formik.isSubmitting}
                 >
                   Sign up
                 </Button>
@@ -217,6 +219,10 @@ const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .ButtonRegistr:disabled {
+    box-shadow: inset 0px 0px 45px rgb(255 255 255 / 70%);
+  }
 
   .ButtonLogin {
     margin-bottom: 20px;
