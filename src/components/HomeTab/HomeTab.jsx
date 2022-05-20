@@ -7,8 +7,10 @@ import { useSearchParams } from 'react-router-dom';
 import { fetchFinances } from '../../redux/finances/financesOperations';
 import getFinancesSelectors from '../../redux/finances/financesSelectors';
 import CustomPagination from '../CustomPagination';
+import { circleFont, size } from '../../stylesheet/utils/stylesVars';
 
 import Media from 'react-media';
+import Balance from '../Balance';
 import HomeTabMobile from './HomeTabMobile';
 import HomeTabTabletDesktop from './HomeTabTabletDesktop';
 
@@ -30,6 +32,7 @@ export default function HomeTab() {
 
   return (
     <Div>
+      <Media query="(max-width: 767px)" render={() => <Balance />} />
       <Media query="(max-width: 768px)">
         {matches =>
           matches ? (
@@ -39,6 +42,7 @@ export default function HomeTab() {
           )
         }
       </Media>
+      <NoInfo>No data</NoInfo>
       {totalDocuments.totalDocuments && isLoading && (
         <CustomPagination
           page={Number(page.get('page'))}
@@ -54,6 +58,18 @@ export default function HomeTab() {
 const Div = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const NoInfo = styled.div`
+  font: ${circleFont};
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+
+  ${size.tablet} {
+    font-size: 30px;
+  }
 `;
 
 // &#8372;&nbsp; спецсимвол гривна+пробел

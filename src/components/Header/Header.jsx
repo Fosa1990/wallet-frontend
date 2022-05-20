@@ -32,7 +32,7 @@ export default function Header({ children, onClick, ...props }) {
 
   return (
     <StyledHeader>
-      <Logo to="/" />
+      <Logo to="/home" />
       <UserInfo>
         <Avatar />
         <UserName>{userName || 'User'} </UserName>
