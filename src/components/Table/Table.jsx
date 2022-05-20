@@ -6,7 +6,7 @@ import {
 } from '../../stylesheet/utils/stylesVars';
 import { colors } from '../../helpers/constants';
 
-export default function Table({ categories, income = 0, expence = 0 }) {
+export default function Table({ categories, transactionType }) {
   return (
     <div>
       <TableMain>
@@ -37,12 +37,12 @@ export default function Table({ categories, income = 0, expence = 0 }) {
         </tbody>
         <TableFoot>
           <TableFootRow>
-            <td colSpan={2}>Expence:</td>
-            <ExpenceValue>{expence}</ExpenceValue>
+            <td colSpan={2}>Income:</td>
+            <IncomeValue>{transactionType[0]?.totalSum ?? 0}</IncomeValue>
           </TableFootRow>
           <TableFootRow>
-            <td colSpan={2}>Income:</td>
-            <IncomeValue>{income}</IncomeValue>
+            <td colSpan={2}>Expence:</td>
+            <ExpenceValue>{transactionType[1]?.totalSum ?? 0}</ExpenceValue>
           </TableFootRow>
         </TableFoot>
       </TableMain>
@@ -76,6 +76,7 @@ const TableData = styled.td`
   padding: 8px 0;
   font-size: 16px;
   line-height: 1.2;
+  text-transform: capitalize;
   :first-child {
     width: 24px;
     padding-left: 20px;

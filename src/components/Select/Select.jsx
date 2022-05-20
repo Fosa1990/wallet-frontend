@@ -1,28 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { size } from '../../stylesheet/utils/stylesVars';
 
-export default function Select({ onMonthSelect, onYearSelect }) {
-  const [month, setMonth] = useState('');
-  const [year, setYear] = useState('');
-
+export default function Select({ year, month, onYear, onMonth }) {
   const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
+    '01',
+    '02',
+    '03',
+    '04',
+    '05',
+    '06',
+    '07',
+    '08',
+    '09',
+    '10',
+    '11',
+    '12',
   ];
   let years = [];
   let yearForSelect = null;
-  for (let i = 2010; i <= 2022; i++) {
+  for (let i = 2020; i <= 2025; i++) {
     yearForSelect = i;
     years.push(yearForSelect);
   }
@@ -35,16 +32,14 @@ export default function Select({ onMonthSelect, onYearSelect }) {
   });
 
   return (
-    <>
-      <SelectWrap>
-        <SelectField value={month} onChange={onMonthSelect}>
-          {optionsMonths}
-        </SelectField>
-        <SelectField value={year} onChange={onYearSelect}>
-          {optionsYears}
-        </SelectField>
-      </SelectWrap>
-    </>
+    <SelectWrap>
+      <SelectField value={month} onChange={onMonth}>
+        {optionsMonths}
+      </SelectField>
+      <SelectField value={year} onChange={onYear}>
+        {optionsYears}
+      </SelectField>
+    </SelectWrap>
   );
 }
 
