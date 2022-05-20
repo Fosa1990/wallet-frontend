@@ -15,6 +15,11 @@ import 'react-datetime/css/react-datetime.css';
 import { useDispatch } from 'react-redux';
 import { closeModalWindow } from '../../redux/globalSlice';
 import { optionModalTransuction } from '../../helpers/constants';
+import {
+  useCreateTransactionsMutation,
+  useGetTransactionsQuery,
+} from '../../redux/transactions/transactionOperation';
+
 const { defaultSpend, trTypeAdd, trTypeRemove } = optionModalTransuction;
 
 export default function ModalAddTransactions() {
@@ -23,17 +28,25 @@ export default function ModalAddTransactions() {
   const [sumTransaction, setSumTransaction] = useState();
   const [comment, setComment] = useState('');
   const [selectedOption, setSelectedOption] = useState(defaultSpend);
+
+  const [addTransactions] = useCreateTransactionsMutation();
   const dispatch = useDispatch();
 
-  // const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
   const toggleChange = e => {
     setChecked(e);
-    e ? setSelectedOption('') : setSelectedOption(defaultSpend);
+    e ? setSelectedOption(trTypeAdd) : setSelectedOption(defaultSpend);
   };
 
   const handleSubmit = e => {
     const StatusType = checked ? trTypeAdd : trTypeRemove;
     e.preventDefault();
+    addTransactions({
+      category: selectedOption,
+      comment: comment,
+      sum: sumTransaction,
+      date: selectedDate,
+      transactionType: StatusType,
+    });
     console.log({
       category: selectedOption,
       comment: comment,

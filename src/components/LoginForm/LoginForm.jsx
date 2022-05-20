@@ -7,9 +7,9 @@ import { useLoginUserMutation } from '../../redux/auth/authReduce';
 import { regexEmail } from '../../helpers/regex';
 import { ROUTES } from '../../helpers/constants';
 import Button from '../Button/Button';
-// import Container from '../Container/Container';
 import logo from '../../images/svg/logo.svg';
 import Icons from '../../images/svg/sprite.svg';
+import { ReactComponent as GoogleIcon } from '../../images/svg/icons-google.svg';
 import styled from 'styled-components';
 import {
   iconDefaultCl,
@@ -19,6 +19,7 @@ import {
   size,
   poppinsFont,
   accentTextCl,
+  iconBgActiveCl,
 } from '../../stylesheet/utils/stylesVars';
 
 export default function LoginForm() {
@@ -47,7 +48,6 @@ export default function LoginForm() {
       }}
     >
       {formik => (
-        // <Container>
         <FormWrapper>
           <Logo>
             <Icon src={logo} />
@@ -78,13 +78,25 @@ export default function LoginForm() {
               <Button primary color={accentBgCl} background={accentPositiveCl}>
                 Login
               </Button>
-              <Button outlined color={borderBtnCl}>
-                <Link to={`/${ROUTES.REGISTRATION}`}>Sign up</Link>
-              </Button>
+              <Link to={`/${ROUTES.REGISTRATION}`}>
+                <Button outlined color={borderBtnCl} className="RegisterButton">
+                  Sign up
+                </Button>
+              </Link>
+              {/* <a
+                className="IconGoogle"
+                href="http://localhost:8081/api/auth/google"
+              > */}
+              <a
+                className="IconGoogle"
+                href="https://amazing-wallet.herokuapp.com/api/auth/google"
+              >
+                <GoogleIcon width={32} height={28} />
+                Login
+              </a>
             </ButtonWrapper>
           </Form>
         </FormWrapper>
-        // </Container>
       )}
     </Formik>
   );
@@ -153,7 +165,7 @@ const FormWrapper = styled.div`
 
   ${size.desktop} {
     width: 533px;
-    height: 468px;
+    height: 518px;
   }
 `;
 
@@ -161,4 +173,24 @@ const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  .IconGoogle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 280px;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    padding: 10px 65px 10px 71px;
+    color: ${iconBgActiveCl};
+    text-transform: uppercase;
+    border: 1px solid ${iconBgActiveCl};
+    border-radius: 20px;
+    ${size.tablet} {
+      width: 300px;
+    }
+  }
+  .RegisterButton {
+    margin-bottom: 20px;
+  }
 `;
