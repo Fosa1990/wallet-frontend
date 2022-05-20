@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { tokenService } from '../../services/tokenService';
+import { toast } from 'react-toastify';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -27,6 +28,29 @@ export const authApi = createApi({
           method: 'POST',
           body: newUser,
         });
+        // console.log('res.data.code', res.data);
+        res.data.code === 201 &&
+          // toast(
+          //   `You need to confirm your ${res.data.payload.user.email} email to access the Amazing Wallet`,
+          //   {
+          //     className: 'black-background',
+          //     bodyClassName: 'Toastify__progress-bar',
+          //     progressClassName: 'fancy-progress-bar',
+          //   },
+          // );
+          toast.warn(
+            `You need to confirm your ${res.data.payload.user.email} email to access the Amazing Wallet`,
+            {
+              position: 'top-center',
+              autoClose: false,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            },
+          );
+
         return res;
       },
       invalidatesTags: ['Auth'],
@@ -39,6 +63,7 @@ export const authApi = createApi({
           method: 'POST',
           body: userData,
         });
+
         return res;
       },
       invalidatesTags: ['Auth'],
