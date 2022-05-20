@@ -75,7 +75,13 @@ export default function LoginForm() {
               type="password"
             />
             <ButtonWrapper>
-              <Button primary color={accentBgCl} background={accentPositiveCl}>
+              <Button
+                primary
+                color={accentBgCl}
+                background={accentPositiveCl}
+                disabled={!formik.isValid || formik.isSubmitting}
+                className="disabledButton"
+              >
                 Login
               </Button>
               <Link to={`/${ROUTES.REGISTRATION}`}>
@@ -165,7 +171,8 @@ const FormWrapper = styled.div`
 
   ${size.desktop} {
     width: 533px;
-    height: 518px;
+    // height: 518px;
+    height: 468px;
   }
 `;
 
@@ -173,24 +180,28 @@ const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  .IconGoogle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 280px;
-    font-size: 18px;
-    line-height: 1.5;
-    text-align: center;
-    padding: 10px 65px 10px 71px;
-    color: ${iconBgActiveCl};
-    text-transform: uppercase;
-    border: 1px solid ${iconBgActiveCl};
-    border-radius: 20px;
-    ${size.tablet} {
-      width: 300px;
-    }
+  .disabledButton:disabled {
+    cursor: not-allowed;
+    box-shadow: inset 0px 0px 45px rgb(255 255 255 / 70%);
   }
-  .RegisterButton {
-    margin-bottom: 20px;
-  }
+  // .IconGoogle {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   width: 280px;
+  //   font-size: 18px;
+  //   line-height: 1.5;
+  //   text-align: center;
+  //   padding: 10px 65px 10px 71px;
+  //   color: ${iconBgActiveCl};
+  //   text-transform: uppercase;
+  //   border: 1px solid ${iconBgActiveCl};
+  //   border-radius: 20px;
+  //   ${size.tablet} {
+  //     width: 300px;
+  //   }
+  // }
+  // .RegisterButton {
+  //   margin-bottom: 20px;
+  // }
 `;
