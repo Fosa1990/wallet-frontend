@@ -12,7 +12,7 @@ export default function CustomPagination({
   page,
   itemsPerPage,
   totalResults,
-  onPageСhange,
+  onPageChange,
 }) {
   return (
     <>
@@ -27,7 +27,7 @@ export default function CustomPagination({
         nextLabel={'>'}
         prevLabel={'<'}
         withProgressBar={true}
-        onPageСhange={onPageСhange}
+        onPageChange={onPageChange}
         customClassNames={{
           rpbRootClassName: 'custom-root',
           rpbItemClassName: 'custom-item',
@@ -98,5 +98,5 @@ CustomPagination.propTypes = {
   page: PropTypes.number,
   itemsPerPage: PropTypes.number,
   totalResults: PropTypes.number,
-  onPageСhange: PropTypes.func,
+  onPageChange: PropTypes.func,
 };

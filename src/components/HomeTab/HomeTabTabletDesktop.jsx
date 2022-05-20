@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { size } from '../../stylesheet/utils/stylesVars';
-import { circleFont, accentBgCl } from '../../stylesheet/utils/stylesVars';
+import {
+  circleFont,
+  accentBgCl,
+  accentNegativeCl,
+  accentPositiveCl,
+} from '../../stylesheet/utils/stylesVars';
 import Moment from 'react-moment';
 
 export default function HomeTabTabletDesktop({ finances }) {
@@ -21,10 +26,18 @@ export default function HomeTabTabletDesktop({ finances }) {
           finances.map(transaction => (
             <Tr key={transaction._id}>
               <Td>{<Moment format="DD.MM.YYYY">{transaction.date}</Moment>}</Td>
-              <Td>{transaction.transactionType}</Td>
+              {transaction.transactionType === 'income' ? (
+                <Td>+</Td>
+              ) : (
+                <Td>-</Td>
+              )}
               <Td>{transaction.category}</Td>
               <Td>{transaction.comment}</Td>
-              <Td>{transaction.sum}</Td>
+              {transaction.transactionType === 'income' ? (
+                <Income>{transaction.sum}</Income>
+              ) : (
+                <Spend>{transaction.sum}</Spend>
+              )}
               <Td>{transaction.balance}</Td>
             </Tr>
           ))}
@@ -37,11 +50,11 @@ const Table = styled.table`
   border-collapse: collapse;
   ${size.tablet} {
     width: 704px;
-    height: 312px;
+    max-height: 312px;
   }
   ${size.desktop} {
     width: 715px;
-    height: 312px;
+    max-height: 312px;
   }
 `;
 
@@ -84,4 +97,11 @@ const Td = styled.td`
   ${size.tablet} {
     text-align: center;
   }
+`;
+
+const Income = styled(Td)`
+  color: ${accentPositiveCl};
+`;
+const Spend = styled(Td)`
+  color: ${accentNegativeCl};
 `;

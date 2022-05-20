@@ -1,20 +1,20 @@
 import styled from 'styled-components';
 import Media from 'react-media';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  accentTextCl,
   textPlcholderCl,
   accentBgCl,
-  poppinsFont,
   circleFont,
   size,
 } from '../../stylesheet/utils/stylesVars';
 import authSelectors from '../../redux/auth/authSelectors';
 import LogoutButton from '../LogoutButton';
+import Avatar from '../Avatar';
+import Logo from '../Logo';
 // import { authApi } from '../../redux/auth/authReduce';
 // import Icon from '../Icon';
-import logo from '../../images/svg/logo.svg';
+// import logo from '../../images/svg/logo.svg';
 import exit from '../../images/svg/exit.svg';
 import { openModalLogout } from '../../redux/globalSlice';
 
@@ -32,11 +32,9 @@ export default function Header({ children, onClick, ...props }) {
 
   return (
     <StyledHeader>
-      <Logo to="/">
-        <LogoIcon src={logo} />
-        <Title>Wallet</Title>
-      </Logo>
+      <Logo to="/" />
       <UserInfo>
+        <Avatar />
         <UserName>{userName || 'User'} </UserName>
         <LogoutButton type="button" onClick={handleClick}>
           <ExitIcon src={exit} />
@@ -67,34 +65,34 @@ const StyledHeader = styled.div`
   }
 `;
 
-const Logo = styled(NavLink)`
-  display: flex;
-  cursor: pointer;
-  justify-content: ${props => props.justify || 'center'};
-  align-items: ${props => props.align || 'center'};
-`;
+// const Logo = styled(NavLink)`
+//   display: flex;
+//   cursor: pointer;
+//   justify-content: ${props => props.justify || 'center'};
+//   align-items: ${props => props.align || 'center'};
+// `;
 
-const Title = styled.div`
-  font-family: ${poppinsFont};
-  font-size: 25px;
-  font-weight: 700;
-  color: ${props => props.color || accentTextCl};
+// const Title = styled.div`
+//   font-family: ${poppinsFont};
+//   font-size: 25px;
+//   font-weight: 700;
+//   color: ${props => props.color || accentTextCl};
 
-  ${size.tablet} {
-    font-size: 30px;
-    line-height: 1, 5;
-  }
-`;
-const LogoIcon = styled.img`
-  width: 30px;
-  height: 30px;
-  margin-right: 15px;
-  ${size.tablet} {
-    width: 40px;
-    height: 40px;
-    margin-right: 20px;
-  }
-`;
+//   ${size.tablet} {
+//     font-size: 30px;
+//     line-height: 1, 5;
+//   }
+// `;
+//  const LogoIcon = styled.img`
+//   width: 30px;
+//   height: 30px;
+//   margin-right: 15px;
+//   ${size.tablet} {
+//     width: 40px;
+//     height: 40px;
+//     margin-right: 20px;
+//   }
+// `;
 
 const UserInfo = styled.div`
   display: flex;

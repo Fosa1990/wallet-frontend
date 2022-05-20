@@ -3,15 +3,13 @@ import { toast } from 'react-toastify';
 
 export const rtkQueryErrorLogger = api => next => action => {
   if (isRejectedWithValue(action)) {
-    if (action.payload?.status === 400 && action.payload?.payload?.message) {
-      toast.error(`${action.payload?.payload?.message}`);
-    } else if (action.payload?.status === 400) {
-      toast.error('Mail and password entered incorrectly');
-    } else if (action.payload?.status === 401) {
-      toast.error('Unauthorized');
-    } else if (action.payload?.status === 500) {
-      toast.error('Server error');
+    if (action.payload?.data?.payload?.message === 'jwt expired') {
+      toast.error('Please login again');
+    } else if (action.payload?.data?.payload?.message) {
+      // console.log(action.payload?.data);
+      toast.error(`${action.payload?.data?.payload?.message}`);
     } else {
+      // console.log(action.payload);
       toast.error('Bad Request');
     }
   }

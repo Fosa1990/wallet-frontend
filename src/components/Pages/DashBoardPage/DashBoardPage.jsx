@@ -35,7 +35,7 @@ export default function DashBoardPage() {
             {/* <Balance /> */}
             <Media query="(min-width: 768px)" render={() => <Balance />} />
           </MobSidebar>
-          {/* <Media query="(min-width: 768px)" render={() => <Currency />} /> */}
+          <Media query="(min-width: 768px)" render={() => <Currency />} />
         </SideBar>
 
         <TabWrap>
