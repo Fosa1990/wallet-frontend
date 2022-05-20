@@ -32,6 +32,7 @@ const Button = styled.button`
 
   &:hover,
   &:focus {
+    cursor: pointer;
     box-shadow: inset 0px 0px 45px rgba(255, 255, 255, 0.7);
   }
 
