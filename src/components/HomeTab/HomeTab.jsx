@@ -39,14 +39,14 @@ export default function HomeTab() {
           )
         }
       </Media>
-      {totalDocuments.totalDocuments && isLoading && (
+      {totalDocuments.totalDocuments && isLoading ? (
         <CustomPagination
           page={Number(page.get('page'))}
           itemsPerPage={totalDocuments.limitDocuments}
           totalResults={totalDocuments.totalDocuments}
           onPageСhange={onPageСhange}
         />
-      )}
+      ):null}
     </Div>
   );
 }
