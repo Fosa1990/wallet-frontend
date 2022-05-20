@@ -38,7 +38,6 @@ export default function HomeTabTabletDesktop({ finances }) {
               ) : (
                 <Spend>{transaction.sum}</Spend>
               )}
-              <Td>{transaction.sum}</Td>
               <Td>{transaction.balance}</Td>
             </Tr>
           ))}
