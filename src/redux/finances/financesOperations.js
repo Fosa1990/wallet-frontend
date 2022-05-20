@@ -41,7 +41,7 @@ export const fetchBalance = createAsyncThunk(
       );
       return response.data.payload.transactions[
         response.data.payload.transactions.length - 1
-      ].balance;
+      ]?.balance;
     } catch (error) {
       console.log('error.message', error.message);
       return rejectWithValue(error.message);
