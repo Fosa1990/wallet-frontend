@@ -10,6 +10,7 @@ import {
 } from '../../stylesheet/utils/stylesVars';
 import authSelectors from '../../redux/auth/authSelectors';
 import LogoutButton from '../LogoutButton';
+import Avatar from '../Avatar';
 import Logo from '../Logo';
 // import { authApi } from '../../redux/auth/authReduce';
 // import Icon from '../Icon';
@@ -33,6 +34,7 @@ export default function Header({ children, onClick, ...props }) {
     <StyledHeader>
       <Logo to="/" />
       <UserInfo>
+        <Avatar />
         <UserName>{userName || 'User'} </UserName>
         <LogoutButton type="button" onClick={handleClick}>
           <ExitIcon src={exit} />
