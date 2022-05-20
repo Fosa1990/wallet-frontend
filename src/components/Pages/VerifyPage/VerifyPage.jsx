@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import Logo from '../../Logo';
 import { circleFont, size } from '../../../stylesheet/utils/stylesVars';
 

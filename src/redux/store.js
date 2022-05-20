@@ -18,6 +18,7 @@ import { rtkQueryErrorLogger } from './auth/midleware';
 import storage from 'redux-persist/lib/storage';
 import categoriesReducer from './categories/categoriesReducer';
 import financesReducer from './finances/financesReducer';
+import { transactionApi } from './transactions/transactionOperation';
 
 const authPersistConfig = {
   key: 'auth',
@@ -27,9 +28,14 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authSlice.reducer),
+    auth: persistReducer(
+      authPersistConfig,
+      authSlice.reducer,
+      // googleSliceReducer,
+    ),
     global: globalReducer,
     [authApi.reducerPath]: authApi.reducer,
+    [transactionApi.reducerPath]: transactionApi.reducer,
     categories: categoriesReducer,
     finances: financesReducer,
   },
@@ -39,6 +45,7 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
+    transactionApi.middleware,
     /* .concat(logger), */
     rtkQueryErrorLogger,
     authApi.middleware,

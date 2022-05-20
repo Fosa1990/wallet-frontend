@@ -1,13 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { authApi } from './authReduce';
-
-const initialState = {
-  user: { name: null, email: null },
-  token: null,
-  isLoggedIn: false,
-  isInBase: false,
-  isFetchingCurrentUser: false,
-};
+import { initialState } from './initialState';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -31,6 +24,7 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
       },
     );
+
     builder.addMatcher(authApi.endpoints.logoutUser.matchFulfilled, state => {
       state.user = { name: null, email: null };
       state.token = null;

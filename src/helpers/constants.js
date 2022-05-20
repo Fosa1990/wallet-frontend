@@ -1,4 +1,5 @@
 const BASE_URL = 'http://localhost:3000/';
+const SERVER_BASE_URL = 'https://amazing-wallet.herokuapp.com/api';
 
 const ROUTES = {
   API: 'api',
@@ -37,4 +38,4 @@ const optionModalTransuction = {
   trTypeRemove: 'spend',
 };
 
-export { BASE_URL, ROUTES, colors, optionModalTransuction };
+export { BASE_URL, ROUTES, colors, optionModalTransuction, SERVER_BASE_URL };
