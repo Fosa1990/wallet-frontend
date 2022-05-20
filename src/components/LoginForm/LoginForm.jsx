@@ -9,7 +9,7 @@ import { ROUTES } from '../../helpers/constants';
 import Button from '../Button/Button';
 import logo from '../../images/svg/logo.svg';
 import Icons from '../../images/svg/sprite.svg';
-import { ReactComponent as GoogleIcon } from '../../images/svg/icons-google.svg';
+// import { ReactComponent as GoogleIcon } from '../../images/svg/icons-google.svg';
 import styled from 'styled-components';
 import {
   iconDefaultCl,
@@ -87,13 +87,13 @@ export default function LoginForm() {
                 className="IconGoogle"
                 href="http://localhost:8081/api/auth/google"
               > */}
-              <a
+              {/* <a
                 className="IconGoogle"
                 href="https://amazing-wallet.herokuapp.com/api/auth/google"
               >
                 <GoogleIcon width={32} height={28} />
                 Login
-              </a>
+              </a> */}
             </ButtonWrapper>
           </Form>
         </FormWrapper>
