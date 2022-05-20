@@ -42,15 +42,14 @@ export default function HomeTab() {
           )
         }
       </Media>
-      <NoInfo>No data</NoInfo>
-      {totalDocuments.totalDocuments && isLoading && (
+      {totalDocuments.totalDocuments && isLoading ? (
         <CustomPagination
           page={Number(page.get('page'))}
           itemsPerPage={totalDocuments.limitDocuments}
           totalResults={totalDocuments.totalDocuments}
           onPageChange={onPageChange}
         />
-      )}
+      ) : null}
     </Div>
   );
 }
