@@ -1,25 +1,26 @@
 import { useEffect, useState } from 'react';
-import Button from '../Button/Button';
-import SelectCustom from './Select/SelectCustom';
-import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
-import Modal from '../Modal/Modal';
-import Datetime from 'react-datetime';
 import { useDispatch } from 'react-redux';
+import { useCreateTransactionsMutation } from '../../redux/transactions/transactionOperation';
+import Datetime from 'react-datetime';
+import { toast } from 'react-toastify';
+import NotifyContainer from '../NotifyContainer/NotifyContainer';
 import {
   closeModalWindow,
   addTransactionSuccess,
 } from '../../redux/globalSlice';
 import { optionModalTransuction } from '../../helpers/constants';
-import { useCreateTransactionsMutation } from '../../redux/transactions/transactionOperation';
-import NotifyContainer from '../NotifyContainer/NotifyContainer';
-import { toast } from 'react-toastify';
+import Button from '../Button/Button';
+import SelectCustom from './Select/SelectCustom';
+import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
+import Modal from '../Modal/Modal';
+import sprite from '../../images/svg/sprite.svg';
 import {
   accentPositiveCl,
+  accentNegativeCl,
   size,
   accentDisableCl,
 } from '../../stylesheet/utils/stylesVars';
 import styled from 'styled-components';
-import sprite from '../../images/svg/sprite.svg';
 import 'react-datetime/css/react-datetime.css';
 
 const { defaultSpend, trTypeAdd, trTypeRemove } = optionModalTransuction;
@@ -32,6 +33,7 @@ export default function ModalAddTransactions() {
   const [selectedOption, setSelectedOption] = useState(defaultSpend);
 
   const [addTransactions, { data }] = useCreateTransactionsMutation();
+
   const dispatch = useDispatch();
 
   const toggleChange = e => {
@@ -80,6 +82,9 @@ export default function ModalAddTransactions() {
                 defaultValue={sumTransaction}
                 onChange={({ target: { value } }) => setSumTransaction(value)}
                 placeholder="0.00"
+                title="0.05, 0.50, 5.55, 50.50"
+                step="0.01"
+                min="0.01"
                 required
               />
             </Label>
@@ -162,6 +167,9 @@ const Label = styled.label`
     &:focus-visible {
       border-bottom: 1px solid ${accentPositiveCl};
     }
+    &:focus:invalid {
+      border-bottom: 1px solid ${accentNegativeCl};
+    }
   }
   ${size.tablet} {
     width: 394px;
@@ -200,12 +208,12 @@ const ContainerStyle = styled.div`
 const Textarea = styled.textarea`
   font-size: inherit;
   width: 280px;
-  min-height: 84px;
+  height: 84px;
   max-height: 150px;
   resize: none;
   ${size.tablet} {
     width: 394px;
-    min-height: 32px;
+    height: 32px;
     max-height: 280px;
     padding: 0 20px;
   }
