@@ -1,3 +1,5 @@
 export const roundToTwoAfterZero = number => {
-  return parseFloat(number).toFixed(2);
+  const normalizedNumber = Number(number).toFixed(2);
+  const intoNumber = Number(normalizedNumber);
+  return intoNumber;
 };
