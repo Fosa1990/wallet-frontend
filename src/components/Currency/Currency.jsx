@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 import { size } from '../../stylesheet/utils/stylesVars';
@@ -12,11 +13,10 @@ import {
 import wave from '../../images/wave.png';
 import Loader from '../Loader';
 
-import { useState, useEffect } from 'react';
+import { useLocaleStorage } from '../../hooks/useLocaleStorage';
 import { TIME_MS, NAMES } from '../../helpers/constants';
 import { roundToTwoAfterZero } from '../../helpers/roundToTwoAfterZero';
 import { getCurrencyRates } from '../../services/currencyService';
-// import { useLocaleStorage } from '../../hooks/useLocaleStorage';
 
 export default function Currency() {
   const [exchangeRates, setExchangeRates] = useState([]);
@@ -32,7 +32,6 @@ export default function Currency() {
       const data = await getCurrencyRates();
       await setExchangeRates(data);
       await setCurrentDate(moment().format('MMM Do YY'));
-      setLocalStorage(exchangeRates, currentDate);
     } catch (error) {
       const currencyFromLocalStorage = JSON.parse(
         localStorage.getItem(NAMES.CURRENCY),
@@ -48,10 +47,10 @@ export default function Currency() {
     }
   };
 
-  const setLocalStorage = (currencyRates, currentDate) => {
-    const localStorageData = { rates: currencyRates, date: currentDate };
-    localStorage.setItem(NAMES.CURRENCY, JSON.stringify(localStorageData));
-  };
+  useLocaleStorage(NAMES.CURRENCY, {
+    rates: exchangeRates,
+    date: currentDate,
+  });
 
   return (
     <Wrapper>
