@@ -13,6 +13,10 @@ import Loader from '../Loader';
 import NoInfo from '../NoInfo';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
 
+import { circleFont, size } from '../../stylesheet/utils/stylesVars';
+import { getIsNewTransaction } from '../../redux/globalSelectors';
+import { reloadTransactionList } from '../../redux/globalSlice';
+
 export default function HomeTab() {
   const finances = useSelector(getFinancesSelectors.getFinances);
   const totalDocuments = useSelector(getFinancesSelectors.getCountDocuments);
@@ -20,11 +24,13 @@ export default function HomeTab() {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const { isFetching } = useFetchCurrentUserQuery();
+  const isNewTransaction = useSelector(getIsNewTransaction);
 
   useEffect(() => {
     dispatch(fetchFinances(page.get('page')));
     setIsLoading(true);
-  }, [dispatch, page]);
+    dispatch(reloadTransactionList());
+  }, [dispatch, page, isNewTransaction]);
 
   const onPageСhange = pageNumber => {
     setPage({ page: pageNumber });

@@ -5,7 +5,10 @@ import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
 import Modal from '../Modal/Modal';
 import Datetime from 'react-datetime';
 import { useDispatch } from 'react-redux';
-import { closeModalWindow } from '../../redux/globalSlice';
+import {
+  closeModalWindow,
+  addTransactionSuccess,
+} from '../../redux/globalSlice';
 import { optionModalTransuction } from '../../helpers/constants';
 import { useCreateTransactionsMutation } from '../../redux/transactions/transactionOperation';
 import NotifyContainer from '../NotifyContainer/NotifyContainer';
@@ -39,6 +42,7 @@ export default function ModalAddTransactions() {
   useEffect(() => {
     if (data?.code === 201) {
       NotifyContainer(toast(data?.payload?.message || 'Done!'));
+      dispatch(addTransactionSuccess());
       dispatch(closeModalWindow());
     }
   }, [data, dispatch]);
