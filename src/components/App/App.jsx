@@ -7,7 +7,7 @@ import '../../../node_modules/modern-normalize/modern-normalize.css';
 import ModalLogout from '../ModalLogout';
 import {
   selectIsModalLogoutOpen,
-  selectIsModalAddTransactionOpen,
+  // selectIsModalAddTransactionOpen,
 } from '../../redux/globalSelectors';
 import './App.css';
 import Loader from '../Loader';
@@ -38,7 +38,7 @@ export default function App() {
   });
   // console.log('__isFetching__: ', isFetching);
   //--------------
-  const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
+  // const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
   //-------------
   /// компоненти  по  факту реалізації  потім розставимо  по місцям і  пропишем тут роути
   return (
