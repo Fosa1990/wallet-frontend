@@ -7,6 +7,7 @@ import {
   accentPositiveCl,
 } from '../../stylesheet/utils/stylesVars';
 import Moment from 'react-moment';
+import Comment from './Comment';
 
 export default function HomeTabMobile({ finances }) {
   return finances.map(transaction => (
@@ -18,11 +19,7 @@ export default function HomeTabMobile({ finances }) {
         </Tr>
         <Tr>
           <Th>Type</Th>
-          {transaction.transactionType === 'income' ? (
-                <Td>+</Td>
-              ) : (
-                <Td>-</Td>
-              )}
+          {transaction.transactionType === 'income' ? <Td>+</Td> : <Td>-</Td>}
         </Tr>
         <Tr>
           <Th>Category</Th>
@@ -30,7 +27,7 @@ export default function HomeTabMobile({ finances }) {
         </Tr>
         <Tr>
           <Th>Comment</Th>
-          <Td>{transaction.comment}</Td>
+          <Td>{<Comment transactionComment={transaction.comment} />}</Td>
         </Tr>
         <Tr>
           <Th>Sum</Th>
@@ -98,4 +95,6 @@ const Td = styled.td`
   font-weight: 400;
   padding: 14px 0;
   text-align: right;
+  max-width: 135px;
+  word-wrap: break-word;
 `;

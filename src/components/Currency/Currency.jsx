@@ -64,13 +64,21 @@ export default function Currency() {
           </Tr>
         </Thead>
         <Tbody>
-          {exchangeRates?.map(
+          {exchangeRates?.filter(item=>item.ccy!=="RUR").map(
             item =>
               item && (
                 <tr key={item.ccy}>
-                  <Td>{item.ccy}</Td>
-                  <Td>{roundToTwoAfterZero(item.buy)}</Td>
-                  <Td>{roundToTwoAfterZero(item.sale)}</Td>
+                  <Td>{item.ccy}/{item.base_ccy}</Td>
+                  {item.ccy !== 'BTC' ? (
+                    <Td>{roundToTwoAfterZero(item.buy)}</Td>
+                  ) : (
+                    <Td>{Number(item.buy).toFixed(0)}</Td>
+                  )}
+                  {item.ccy !== 'BTC' ? (
+                    <Td>{roundToTwoAfterZero(item.sale)}</Td>
+                  ) : (
+                    <Td>{Number(item.sale).toFixed(0)}</Td>
+                  )}
                 </tr>
               ),
           )}

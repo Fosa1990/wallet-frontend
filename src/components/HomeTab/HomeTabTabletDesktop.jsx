@@ -7,6 +7,7 @@ import {
   accentPositiveCl,
 } from '../../stylesheet/utils/stylesVars';
 import Moment from 'react-moment';
+import Comment from './Comment';
 
 export default function HomeTabTabletDesktop({ finances }) {
   return (
@@ -34,7 +35,7 @@ export default function HomeTabTabletDesktop({ finances }) {
                   <Td>-</Td>
                 )}
                 <Td>{transaction.category}</Td>
-                <Td>{transaction.comment}</Td>
+                <Td>{<Comment transactionComment={transaction.comment} />}</Td>
                 {transaction.transactionType === 'income' ? (
                   <Income>{transaction.sum}</Income>
                 ) : (
@@ -93,7 +94,9 @@ const Td = styled.td`
   font-size: 16px;
   font-weight: 400;
   padding: 14px 0;
-  text-transform: capitalize;
+  max-width: 140px;
+  word-wrap: break-word;
+
   ${size.tablet} {
     text-align: center;
   }

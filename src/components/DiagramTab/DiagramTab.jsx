@@ -18,6 +18,7 @@ export default function DiagramTab() {
 
   const categories = useSelector(categoriesSelectors.getCategories);
   const dispatch = useDispatch();
+  console.log("categories", categories)
 
   useEffect(() => {
     dispatch(

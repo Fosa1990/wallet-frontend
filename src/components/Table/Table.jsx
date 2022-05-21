@@ -18,7 +18,7 @@ export default function Table({ categories, transactionType }) {
           </tr>
         </Thead>
         <tbody>
-          {categories.map(category => (
+          {categories.filter(item=>item._id !== 'income').map(category => (
             <TableRow key={category._id}>
               <TableData>
                 {colors.map(
