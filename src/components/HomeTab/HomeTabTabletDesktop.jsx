@@ -22,25 +22,28 @@ export default function HomeTabTabletDesktop({ finances }) {
         </tr>
       </Thead>
       <Tbody>
-        {finances &&
-          finances.map(transaction => (
-            <Tr key={transaction._id}>
-              <Td>{<Moment format="DD.MM.YYYY">{transaction.date}</Moment>}</Td>
-              {transaction.transactionType === 'income' ? (
-                <Td>+</Td>
-              ) : (
-                <Td>-</Td>
-              )}
-              <Td>{transaction.category}</Td>
-              <Td>{transaction.comment}</Td>
-              {transaction.transactionType === 'income' ? (
-                <Income>{transaction.sum}</Income>
-              ) : (
-                <Spend>{transaction.sum}</Spend>
-              )}
-              <Td>{transaction.balance}</Td>
-            </Tr>
-          ))}
+        {finances.length
+          ? finances.map(transaction => (
+              <Tr key={transaction._id}>
+                <Td>
+                  {<Moment format="DD.MM.YYYY">{transaction.date}</Moment>}
+                </Td>
+                {transaction.transactionType === 'income' ? (
+                  <Td>+</Td>
+                ) : (
+                  <Td>-</Td>
+                )}
+                <Td>{transaction.category}</Td>
+                <Td>{transaction.comment}</Td>
+                {transaction.transactionType === 'income' ? (
+                  <Income>{transaction.sum}</Income>
+                ) : (
+                  <Spend>{transaction.sum}</Spend>
+                )}
+                <Td>{transaction.balance}</Td>
+              </Tr>
+            ))
+          : null}
       </Tbody>
     </Table>
   );

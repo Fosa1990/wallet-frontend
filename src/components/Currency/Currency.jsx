@@ -83,7 +83,7 @@ export default function Currency() {
 const Wrapper = styled.div`
   position: relative;
   ${size.tablet} {
-    margin-top: 0px;
+    margin-top: 32px;
   }
   ${size.desktop} {
     margin-top: 32px;
