@@ -19,7 +19,6 @@ const ROUTES = {
   NOT_FOUND: 'not-found',
   SERVER_ERROR: 'server-error',
   GOOGLE_AUTH: 'google',
-  HOME: 'home',
 };
 
 const colors = [
