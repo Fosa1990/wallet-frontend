@@ -67,6 +67,7 @@ export default function HomeTab() {
 const Div = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 // &#8372;&nbsp; спецсимвол гривна+пробел
