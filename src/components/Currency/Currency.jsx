@@ -64,7 +64,7 @@ export default function Currency() {
           </Tr>
         </Thead>
         <Tbody>
-          {exchangeRates?.map(
+          {exchangeRates?.filter(item=>item.ccy!=="RUR").map(
             item =>
               item && (
                 <tr key={item.ccy}>
