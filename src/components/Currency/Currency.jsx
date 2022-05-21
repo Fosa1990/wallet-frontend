@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import moment from 'moment';
 import { size } from '../../stylesheet/utils/stylesVars';
 import {
   iconBgValueCl,
@@ -12,36 +13,45 @@ import wave from '../../images/wave.png';
 import Loader from '../Loader';
 
 import { useState, useEffect } from 'react';
-import { PRIVAT_API_URL } from '../../helpers/constants';
-
-// import axios from 'axios';
-// const baseUrl = `https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5`;
-// axios.defaults.baseURL = baseUrl;
-
-// поправить позицию лоадера
+import { TIME_MS, NAMES } from '../../helpers/constants';
+import { roundToTwoAfterZero } from '../../helpers/roundToTwoAfterZero';
+import { getCurrencyRates } from '../../services/currencyService';
+// import { useLocaleStorage } from '../../hooks/useLocaleStorage';
 
 export default function Currency() {
-  const [exchangeRates, setExchangeRates] = useState(null);
+  const [exchangeRates, setExchangeRates] = useState([]);
+  const [currentDate, setCurrentDate] = useState();
 
   useEffect(() => {
-    getExchangeRates().then(data => {
-      return setExchangeRates(data);
-    });
+    getRates();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // function getExchangeRates() {
-  //   return axios
-  //     .get(baseUrl)
-  //     .then(res => res.data)
-  //     .catch(error => console.log(error.message));
-  // }
+  const getRates = async () => {
+    try {
+      const data = await getCurrencyRates();
+      await setExchangeRates(data);
+      await setCurrentDate(moment().format('MMM Do YY'));
+      setLocalStorage(exchangeRates, currentDate);
+    } catch (error) {
+      const currencyFromLocalStorage = JSON.parse(
+        localStorage.getItem(NAMES.CURRENCY),
+      );
+      if (
+        !currencyFromLocalStorage ||
+        currentDate !== currencyFromLocalStorage.date
+      ) {
+        return setTimeout(getRates, TIME_MS.HOUR);
+      }
 
-  async function getExchangeRates() {
-    return await fetch(PRIVAT_API_URL)
-      .then(res => res.json())
-      .then(res => res)
-      .catch(error => console.log(error.message));
-  }
+      setExchangeRates(currencyFromLocalStorage.data);
+    }
+  };
+
+  const setLocalStorage = (currencyRates, currentDate) => {
+    const localStorageData = { rates: currencyRates, date: currentDate };
+    localStorage.setItem(NAMES.CURRENCY, JSON.stringify(localStorageData));
+  };
 
   return (
     <Wrapper>
@@ -55,37 +65,16 @@ export default function Currency() {
           </Tr>
         </Thead>
         <Tbody>
-          <tr>
-            <Td>
-              {exchangeRates &&
-                exchangeRates[0].ccy + `/` + exchangeRates[0].base_ccy}
-            </Td>
-            <Td>{exchangeRates && Number(exchangeRates[0].buy).toFixed(2)}</Td>
-            <Td>{exchangeRates && Number(exchangeRates[0].sale).toFixed(2)}</Td>
-          </tr>
-          <tr>
-            <Td>
-              {exchangeRates &&
-                exchangeRates[1].ccy + `/` + exchangeRates[1].base_ccy}
-            </Td>
-            <Td>{exchangeRates && Number(exchangeRates[1].buy).toFixed(2)}</Td>
-            <Td>{exchangeRates && Number(exchangeRates[1].sale).toFixed(2)}</Td>
-          </tr>
-          <tr>
-            <Td>
-              {exchangeRates &&
-                exchangeRates[2].ccy + `/` + exchangeRates[2].base_ccy}
-            </Td>
-            <Td>{exchangeRates && Math.round(Number(exchangeRates[2].buy))}</Td>
-            <Td>
-              {exchangeRates && Math.round(Number(exchangeRates[2].sale))}
-            </Td>
-          </tr>
-          <tr>
-            <td colSpan="3">
-              <Wave alt="wave" src={wave} />
-            </td>
-          </tr>
+          {exchangeRates?.map(
+            item =>
+              item && (
+                <tr key={item.ccy}>
+                  <Td>{item.ccy}</Td>
+                  <Td>{roundToTwoAfterZero(item.buy)}</Td>
+                  <Td>{roundToTwoAfterZero(item.sale)}</Td>
+                </tr>
+              ),
+          )}
         </Tbody>
       </Table>
     </Wrapper>
@@ -104,6 +93,10 @@ const Wrapper = styled.div`
 
 const Table = styled.table`
   background-color: ${iconBgValueCl};
+  background-image: url(${wave});
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
   border-radius: 30px 30px 30px 30px;
   border-collapse: collapse;
 
@@ -118,6 +111,7 @@ const Table = styled.table`
   ${size.desktop} {
     width: 393px;
     height: 347px;
+    background-position: center;
   }
 `;
 
@@ -171,27 +165,5 @@ const Td = styled.td`
   ${size.desktop} {
     padding-top: 20px;
     padding-bottom: 4px;
-  }
-`;
-
-const Wave = styled.img`
-  ${size.mobile} {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 280px;
-    height: 93px;
-  }
-  ${size.tablet} {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 336px;
-    height: 119px;
-  }
-  ${size.desktop} {
-    position: static;
-    width: 393px;
-    height: 134px;
   }
 `;
