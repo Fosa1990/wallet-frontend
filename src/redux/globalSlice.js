@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isModalLogoutOpen: false,
   isModalAddTransactionOpen: false,
-  isNewTrunsaction: false,
+  isNewTransaction: false,
 };
 
 const globalSlice = createSlice({
@@ -21,10 +21,10 @@ const globalSlice = createSlice({
       state.isModalAddTransactionOpen = false;
     },
     addTransactionSuccess: (state, _) => {
-      state.isNewTrunsaction = true;
+      state.isNewTransaction = true;
     },
     reloadTransactionList: (state, _) => {
-      state.isNewTrunsaction = false;
+      state.isNewTransaction = false;
     },
   },
 });
