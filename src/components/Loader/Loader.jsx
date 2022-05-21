@@ -8,7 +8,6 @@ const StyledLoader = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90px;
-  /* zIndex: 99; */
 
   ${size.tablet} {
     width: 150px;

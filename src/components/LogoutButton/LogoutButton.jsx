@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { textPlcholderCl, size } from '../../stylesheet/utils/stylesVars';
+import {
+  textPlcholderCl,
+  size,
+  iconBgCl,
+} from '../../stylesheet/utils/stylesVars';
 
 export default function LogoutButton({ children, onClick, ...props }) {
   return <StyledLogoutBtn onClick={onClick}>{children}</StyledLogoutBtn>;
@@ -9,6 +13,8 @@ export default function LogoutButton({ children, onClick, ...props }) {
 const StyledLogoutBtn = styled.button`
   cursor: pointer;
   display: flex;
+  align-items: center;
+  height: 28px;
   font-size: 18px;
   line-height: 1, 47;
   color: ${props => props.color || textPlcholderCl};
@@ -18,6 +24,15 @@ const StyledLogoutBtn = styled.button`
 
   ${size.tablet} {
     border: none;
+    max-width: 100%;
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    height: 30px;
+  }
+  &:hover {
+    border-radius: 6px;
+    box-shadow: inset 0px 0px 18px ${iconBgCl};
   }
 `;
 
