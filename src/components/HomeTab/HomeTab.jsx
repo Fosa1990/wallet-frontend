@@ -31,7 +31,7 @@ export default function HomeTab() {
   return (
     <Div>
       <Media query="(max-width: 767px)" render={() => <Balance />} />
-      <Media query="(max-width: 768px)">
+      <Media query="(max-width: 767px)">
         {matches =>
           matches ? (
             <HomeTabMobile finances={finances} />
