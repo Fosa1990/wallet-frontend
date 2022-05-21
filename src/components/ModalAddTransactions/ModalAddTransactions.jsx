@@ -41,7 +41,7 @@ export default function ModalAddTransactions() {
       NotifyContainer(toast(data.payload.message || 'Done!'));
       dispatch(closeModalWindow());
     }
-  }, [data]);
+  }, [data?.code, data.payload.message, dispatch]);
 
   const handleSubmit = e => {
     const StatusType = checked ? trTypeAdd : trTypeRemove;

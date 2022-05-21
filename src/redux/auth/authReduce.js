@@ -6,8 +6,7 @@ import { BASE_URL } from '../../helpers/constants';
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    // baseUrl: BASE_URL.SERVER,
-    baseUrl: BASE_URL.BACK,
+    baseUrl: BASE_URL.SERVER,
 
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
