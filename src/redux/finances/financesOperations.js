@@ -1,14 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
-// axios.defaults.baseURL = 'https://amazing-wallet.herokuapp.com';
+import { BASE_URL } from '../../helpers/constants';
 
 export const fetchFinances = createAsyncThunk(
   'finances/getFinances',
   async (page, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `https://amazing-wallet.herokuapp.com/api/transactions?page=${page}&limit=4`,
+        `${BASE_URL.SERVER}/api/transactions?page=${page}&limit=4`,
       );
       // console.log(
       //   'response.data.payload.transactions',
@@ -36,9 +35,7 @@ export const fetchBalance = createAsyncThunk(
   'finances/getBalance',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        'https://amazing-wallet.herokuapp.com/api/transactions',
-      );
+      const response = await axios.get(`${BASE_URL.SERVER}/api/transactions`);
       return response.data.payload.transactions[
         response.data.payload.transactions.length - 1
       ]?.balance;

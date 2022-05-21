@@ -2,16 +2,14 @@ import styled from 'styled-components';
 import React, { /* useState,*/ useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchBalance } from '../../redux/finances/financesOperations';
+
 // import financesSelectors from '../../redux/finances/financesSelectors';
-import authSelectors from '../../redux/auth/authSelectors'
-import {
-  poppinsFont,
-  accentTextCl,
-} from '../../stylesheet/utils/stylesVars';
+import authSelectors from '../../redux/auth/authSelectors';
+import { poppinsFont, accentTextCl } from '../../stylesheet/utils/stylesVars';
 
 export default function BalanceSum() {
   // const balance = useSelector(financesSelectors.getBalance);
-   const balance = useSelector(authSelectors.getBalance);
+  const balance = useSelector(authSelectors.getBalance);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,7 +19,7 @@ export default function BalanceSum() {
   return (
     <Sum>
       <span>&#8372;&nbsp;</span>
-      {balance ? balance : 0.00}    
+      {balance ? balance : 0.0}
     </Sum>
   );
 }

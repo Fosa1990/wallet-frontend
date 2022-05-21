@@ -11,6 +11,9 @@ import Media from 'react-media';
 import Balance from '../Balance';
 import HomeTabMobile from './HomeTabMobile';
 import HomeTabTabletDesktop from './HomeTabTabletDesktop';
+import Loader from '../Loader';
+import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
+import { circleFont, size } from '../../stylesheet/utils/stylesVars';
 
 export default function HomeTab() {
   const finances = useSelector(getFinancesSelectors.getFinances);
@@ -18,6 +21,7 @@ export default function HomeTab() {
   const [page, setPage] = useSearchParams({ page: 1 });
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
+  const { isFetching } = useFetchCurrentUserQuery();
 
   useEffect(() => {
     dispatch(fetchFinances(page.get('page')));
@@ -29,26 +33,30 @@ export default function HomeTab() {
   };
 
   return (
-    <Div>
-      <Media query="(max-width: 767px)" render={() => <Balance />} />
-      <Media query="(max-width: 768px)">
-        {matches =>
-          matches ? (
-            <HomeTabMobile finances={finances} />
-          ) : (
-            <HomeTabTabletDesktop finances={finances} />
-          )
-        }
-      </Media>
-      {totalDocuments.totalDocuments && isLoading ? (
-        <CustomPagination
-          page={Number(page.get('page'))}
-          itemsPerPage={totalDocuments.limitDocuments}
-          totalResults={totalDocuments.totalDocuments}
-          onPageСhange={onPageСhange}
-        />
-      ) : null}
-    </Div>
+    <>
+      {isFetching && <Loader />}
+      <Div>
+        <Media query="(max-width: 767px)" render={() => <Balance />} />
+        <Media query="(max-width: 767px)">
+          {matches =>
+            matches ? (
+              <HomeTabMobile finances={finances} />
+            ) : (
+              <HomeTabTabletDesktop finances={finances} />
+            )
+          }
+        </Media>
+        {finances.length === 0 && isFetching && <NoInfo>No data</NoInfo>}
+        {totalDocuments.totalDocuments > 0 && isLoading && (
+          <CustomPagination
+            page={Number(page.get('page'))}
+            itemsPerPage={totalDocuments.limitDocuments}
+            totalResults={totalDocuments.totalDocuments}
+            onPageСhange={onPageСhange}
+          />
+        )}
+      </Div>
+    </>
   );
 }
 
@@ -57,16 +65,16 @@ const Div = styled.div`
   flex-direction: column;
 `;
 
-// const NoInfo = styled.div`
-//   font: ${circleFont};
-//   margin-top: 30px;
-//   font-size: 20px;
-//   font-weight: 500;
-//   text-align: center;
+const NoInfo = styled.div`
+  font: ${circleFont};
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
 
-//   ${size.tablet} {
-//     font-size: 30px;
-//   }
-// `;
+  ${size.tablet} {
+    font-size: 30px;
+  }
+`;
 
 // &#8372;&nbsp; спецсимвол гривна+пробел

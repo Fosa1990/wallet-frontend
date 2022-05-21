@@ -23,7 +23,10 @@ const StyledNotify = styled(ToastContainer)`
   .Toastify__progress-bar {
     background-color: ${iconBgCl};
   }
-
+  .Toastify__error {
+    background-color: #9253db;
+    color: black;
+  }
   .Toastify__toast-icon svg {
     fill: ${iconBgCl};
   }

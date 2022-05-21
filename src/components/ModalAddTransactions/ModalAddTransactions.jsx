@@ -38,10 +38,10 @@ export default function ModalAddTransactions() {
 
   useEffect(() => {
     if (data?.code === 201) {
-      NotifyContainer(toast(data.payload.message || 'Done!'));
+      NotifyContainer(toast(data?.payload?.message || 'Done!'));
       dispatch(closeModalWindow());
     }
-  }, [data]);
+  }, [data, dispatch]);
 
   const handleSubmit = e => {
     const StatusType = checked ? trTypeAdd : trTypeRemove;

@@ -15,6 +15,7 @@ export default createGlobalStyle`
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: 'Segoe UI';
   src: local('Segoe UI'), url(${segoeBold}) format('truetype');
@@ -142,5 +143,4 @@ input:focus-visible {
 textarea:focus-visible {
     outline: none;
   }
-
 `;
