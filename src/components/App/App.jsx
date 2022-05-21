@@ -32,11 +32,9 @@ const Registration = lazy(() =>
 export default function App() {
   const showModalLogout = useSelector(selectIsModalLogoutOpen);
   const token = useSelector(authSelectors.getToken);
-  // const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const { isFetching, data } = useFetchCurrentUserQuery(token, {
     skip: token === null,
   });
-  console.log('data: ', data);
   // console.log('__isFetching__: ', isFetching);useEffect(() => {
   //   dispatch(operations.fetchCurrentUser());
   // }, [dispatch]);
@@ -89,13 +87,7 @@ export default function App() {
 
               <Route path={ROUTES.VERIFY} element={<VerifyPage />} />
               <Route path="*" element={<ErrorPage />} />
-              {/* <Route path="*" element={<Navigate to={`/${ROUTES.NOT_FOUND}`} />} /> */}
             </Routes>
-            {/* <ButtonAddTransactions /> */}
-            {/* <Loader /> */}
-            {/* <Header /> */}
-            {/* <Navigation /> */}
-            {/* <HomeTab/> */}
           </Suspense>
 
           {showModalLogout && <ModalLogout />}
