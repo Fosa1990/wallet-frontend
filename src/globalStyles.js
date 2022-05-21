@@ -1,8 +1,47 @@
 import { createGlobalStyle } from 'styled-components';
+import circeRegular from './assets/fonts/Circe-Regular.otf';
+import circeBold from './assets/fonts/Circe-Bold.otf';
+import segoe from './assets/fonts/segoeui.ttf';
+import segoeBold from './assets/fonts/segoeuib.ttf';
 import ellipseUp from './images/ellipse-up.png';
 import ellipseDown from './images/ellipse-down.png';
 
 export default createGlobalStyle`
+
+@font-face {
+  font-family: 'Segoe UI';
+  src: local('Segoe UI'), url(${segoe}) format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Segoe UI';
+  src: local('Segoe UI'), url(${segoeBold}) format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Circe';
+  src: local('Circe'), local('Circe-Regular'),
+    url(${circeRegular}) format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Circe';
+  src: local('Circe'), local('Circe-Bold'),
+    url(${circeBold}) format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
    * {
   margin: 0 ;
   padding: 0;
@@ -104,5 +143,4 @@ input:focus-visible {
 textarea:focus-visible {
     outline: none;
   }
-
 `;

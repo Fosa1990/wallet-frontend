@@ -17,7 +17,6 @@ const authSlice = createSlice({
 
     builder.addMatcher(
       authApi.endpoints.loginUser.matchFulfilled,
-      // console.log('__loginUser.payload: ', payload)
       (state, { payload }) => {
         state.user = payload.payload.user;
         state.token = payload.payload.token;

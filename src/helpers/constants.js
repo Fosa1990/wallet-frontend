@@ -1,10 +1,14 @@
-const BASE_URL = 'http://localhost:3000/';
-const SERVER_BASE_URL = 'https://amazing-wallet.herokuapp.com/api';
+const BASE_URL = {
+  FRONT: 'http://localhost:3000',
+  BACK: 'http://localhost:8081',
+  SERVER: 'https://amazing-wallet.herokuapp.com',
+};
 
 const ROUTES = {
   API: 'api',
   AUTH: 'auth',
   USERS: 'users',
+  HOME: 'home',
   LOGIN: '/',
   LOGOUT: 'logout',
   REGISTRATION: 'registration',
@@ -39,4 +43,13 @@ const optionModalTransuction = {
   trTypeRemove: 'spend',
 };
 
-export { BASE_URL, ROUTES, colors, optionModalTransuction, SERVER_BASE_URL };
+const TIME_MS = {
+  HOUR: 3600000,
+};
+
+const NAMES = {
+  CURRENCY: 'currency',
+  RATES: 'rates',
+};
+
+export { BASE_URL, ROUTES, colors, optionModalTransuction, TIME_MS, NAMES };

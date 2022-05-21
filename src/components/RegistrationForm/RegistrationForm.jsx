@@ -24,6 +24,8 @@ import {
   iconBgActiveCl,
 } from '../../stylesheet/utils/stylesVars';
 
+const validateName = name => regexName.test(name);
+
 export default function RegistrationForm() {
   const [register] = useRegisterUserMutation();
 
@@ -39,8 +41,8 @@ export default function RegistrationForm() {
       .oneOf([Yup.ref('password'), null], 'Password must match')
       .required('Confirm password is required'),
     name: Yup.string()
-      .min(1, regexName, 'Name must be at least 1 character')
-      .max(12, regexName, 'Must be 12 characters or less')
+      .min(1, validateName, 'Name must be at least 1 character')
+      .max(12, validateName, 'Must be 12 characters or less')
       .required('Required'),
   });
 
@@ -114,9 +116,11 @@ export default function RegistrationForm() {
               />
               <ButtonWrapper>
                 <Button
+                  className="ButtonRegistr"
                   primary
                   color={accentBgCl}
                   background={accentPositiveCl}
+                  disabled={!formik.isValid || formik.isSubmitting}
                 >
                   Sign up
                 </Button>
@@ -209,7 +213,7 @@ const FromStyle = styled.div`
 
   ${size.desktop} {
     width: 533px;
-    height: 666px;
+    height: 616px;
   }
 
   .Icon {
@@ -222,8 +226,13 @@ const ButtonWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
+  .ButtonRegistr:disabled {
+    cursor: not-allowed;
+    box-shadow: inset 0px 0px 45px rgb(255 255 255 / 70%);
+  }
+
   .ButtonLogin {
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
   }
 
   .IconGoogle {

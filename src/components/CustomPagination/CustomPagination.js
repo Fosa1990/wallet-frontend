@@ -63,7 +63,7 @@ const StylePagination = createGlobalStyle`
   border: none;
   border-radius: 50%;
   background-color:${accentBgCl};
-  transition: all ${duration} ${timingFunc}; 
+  transition: all ${duration} ${timingFunc};
 }
 
 .custom-item:hover,

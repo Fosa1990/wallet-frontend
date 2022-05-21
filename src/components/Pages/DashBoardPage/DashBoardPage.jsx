@@ -28,7 +28,7 @@ export default function DashBoardPage() {
   const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
   useEffect(() => {
     if (isLoggedin) {
-      toast.info('Welcome to  wallet');
+      toast.info('Welcome to Amazing wallet');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
