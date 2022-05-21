@@ -4,6 +4,7 @@ import Logo from '../../Logo';
 import { circleFont, size } from '../../../stylesheet/utils/stylesVars';
 
 export default function VerifyPage() {
+  // eslint-disable-next-line no-unused-vars
   const [searchParams, setSearchParams] = useSearchParams();
   const userName = searchParams.get('name');
   const userEmail = searchParams.get('email');

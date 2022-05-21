@@ -43,7 +43,7 @@ export default function DashBoardPage() {
         <TabWrap>
           <Routes>
             <Route index element={<HomeTab />} />
-            <Route path="home" element={<HomeTab />} />
+            <Route path={ROUTES.HOME} element={<HomeTab />} />
             <Route path={ROUTES.DIAGRAM} element={<DiagramTab />} />
             <Route
               path={ROUTES.CURRENCY}
