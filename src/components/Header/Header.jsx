@@ -23,6 +23,7 @@ import { openModalLogout } from '../../redux/globalSlice';
 export default function Header({ children, onClick, ...props }) {
   // const isModalLogoutOpen =  useSelector(modalSelectors.getLogoutOpen)
   const userName = useSelector(authSelectors.getUserName);
+  const name = userName.split('')[0].toUpperCase() + userName.slice(1);
   const dispatch = useDispatch();
 
   const handleClick = () => {
@@ -35,7 +36,7 @@ export default function Header({ children, onClick, ...props }) {
       <Logo to="/home" />
       <UserInfo>
         <Avatar />
-        <UserName>{userName || 'User'} </UserName>
+        <UserName>{name || 'User'} </UserName>
         <LogoutButton type="button" onClick={handleClick}>
           <ExitIcon src={exit} />
           <Media

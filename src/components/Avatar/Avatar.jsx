@@ -31,8 +31,6 @@ const UserAvatarDiv = styled.div`
   border-radius: 50%;
   margin-right: 5px;
   ${size.tablet} {
-    width: 50px;
-    height: 50px;
     margin-right: 15px;
   }
 `;
@@ -43,8 +41,6 @@ const AvatarImg = styled.img`
   border-radius: 50%;
   margin-right: 5px;
   ${size.tablet} {
-    width: 50px;
-    height: 50px;
     margin-right: 15px;
   }
 `;

@@ -17,7 +17,8 @@ import { toast } from 'react-toastify';
 
 export default function ModalLogout() {
   const dispatch = useDispatch();
-  const name = useSelector(authSelectors.getUserName);
+  const userName = useSelector(authSelectors.getUserName);
+  const name = userName.split('')[0].toUpperCase() + userName.slice(1);
   const [logout] = useLogoutUserMutation();
   const onLogout = () => {
     logout();
