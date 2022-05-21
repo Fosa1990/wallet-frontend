@@ -3,10 +3,7 @@ import React, { /* useState,*/ useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchBalance } from '../../redux/finances/financesOperations';
 import getFinancesSelectors from '../../redux/finances/financesSelectors';
-import {
-  poppinsFont,
-  accentTextCl,
-} from '../../stylesheet/utils/stylesVars';
+import { poppinsFont, accentTextCl } from '../../stylesheet/utils/stylesVars';
 
 export default function BalanceSum() {
   const balance = useSelector(getFinancesSelectors.getBalance);
@@ -19,7 +16,7 @@ export default function BalanceSum() {
   return (
     <Sum>
       <span>&#8372;&nbsp;</span>
-      {balance ? balance : 0.00}    
+      {balance ? balance : 0.0}
     </Sum>
   );
 }

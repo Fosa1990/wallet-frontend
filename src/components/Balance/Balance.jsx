@@ -28,6 +28,7 @@ const BalanceWrapper = styled.div`
   color: ${balanceCl};
   width: 280px;
   padding-left: 32px;
+  margin-bottom: 32px;
 
   ${size.tablet} {
     width: 336px;

@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import Media from 'react-media';
 import { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { size } from '../../../stylesheet/utils/stylesVars';
 import Header from '../../Header';
@@ -17,6 +16,12 @@ import { ROUTES } from '../../../helpers/constants';
 import ButtonAddTransactions from '../../ButtonAddTransactions';
 import { selectIsModalAddTransactionOpen } from '../../../redux/globalSelectors';
 import ModalAddTransactions from '../../ModalAddTransactions';
+import getFinancesSelectors from '../../../redux/finances/financesSelectors';
+import {
+  fetchFinances,
+  fetchBalance,
+} from '../../../redux/finances/financesOperations';
+import { useFetchCurrentUserQuery } from '../../../redux/auth/authReduce';
 
 export default function DashBoardPage() {
   const isLoggedin = useSelector(authSelectors.getIsLoggedIn);
@@ -25,47 +30,70 @@ export default function DashBoardPage() {
     if (isLoggedin) {
       toast.info('Welcome to  wallet');
     }
-  }, [isLoggedin]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const token = useSelector(authSelectors.getToken);
+  const { isFetching, data } = useFetchCurrentUserQuery();
+  console.log(isFetching);
+
+  // const finances = useSelector(getFinancesSelectors.getFinances);
+  // const [isLoading, setIsLoading] = useState(false);
+  const balance = useSelector(getFinancesSelectors.getBalance);
+  console.log(balance);
+  console.log(isFetching);
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(fetchBalance());
+  // }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchFinances());
+    dispatch(fetchBalance());
+  }, [dispatch]);
 
   ///  при загрузці  треба  доставати транзакції щоб їх  рендерити в  Hometab
   return (
     <>
-      <Header />
-      <MainWrap>
-        <SideBar>
-          <MobSidebar>
-            <Navigation />
-            {/* <Balance /> */}
-            <Media query="(min-width: 768px)" render={() => <Balance />} />
-          </MobSidebar>
-          <Media query="(min-width: 768px)" render={() => <Currency />} />
-        </SideBar>
+      {!isFetching && (
+        <>
+          <Header />
+          <MainWrap>
+            <SideBar>
+              <MobSidebar>
+                <Navigation />
+                {/* <Balance /> */}
+                <Media query="(min-width: 768px)" render={() => <Balance />} />
+              </MobSidebar>
+              <Media query="(min-width: 768px)" render={() => <Currency />} />
+            </SideBar>
 
-        <TabWrap>
-          <Routes>
-            <Route index element={<HomeTab />} />
-            <Route path="home" element={<HomeTab />} />
-            <Route path={ROUTES.DIAGRAM} element={<DiagramTab />} />
-            <Route
-              path={ROUTES.CURRENCY}
-              element={
-                <>
-                  <Media
-                    query="(min-width: 768px)"
-                    render={() => <Navigate to="/dashboard/home" />}
-                  />
-                  <Media
-                    query="(max-width: 767px)"
-                    render={() => <Currency />}
-                  />
-                </>
-              }
-            />
-          </Routes>
-          <ButtonAddTransactions />
-          {showModalAddTransactions && <ModalAddTransactions />}
-        </TabWrap>
-      </MainWrap>
+            <TabWrap>
+              <Routes>
+                <Route index element={<HomeTab />} />
+                <Route path="home" element={<HomeTab />} />
+                <Route path={ROUTES.DIAGRAM} element={<DiagramTab />} />
+                <Route
+                  path={ROUTES.CURRENCY}
+                  element={
+                    <>
+                      <Media
+                        query="(min-width: 768px)"
+                        render={() => <Navigate to="/dashboard/home" />}
+                      />
+                      <Media
+                        query="(max-width: 767px)"
+                        render={() => <Currency />}
+                      />
+                    </>
+                  }
+                />
+              </Routes>
+              <ButtonAddTransactions />
+              {showModalAddTransactions && <ModalAddTransactions />}
+            </TabWrap>
+          </MainWrap>
+        </>
+      )}
     </>
   );
 }
