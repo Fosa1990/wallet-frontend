@@ -94,7 +94,7 @@ const Td = styled.td`
   font-size: 16px;
   font-weight: 400;
   padding: 14px 0;
-  max-width: 150px;
+  max-width: 140px;
   word-wrap: normal;
 
   ${size.tablet} {
