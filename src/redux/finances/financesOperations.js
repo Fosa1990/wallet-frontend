@@ -7,22 +7,9 @@ export const fetchFinances = createAsyncThunk(
   async (page, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `${BASE_URL.SERVER}/api/transactions?page=${page}&limit=4`,
+        `${BASE_URL.SERVER}/api/transactions?page=${page}`,
       );
-      // console.log(
-      //   'response.data.payload.transactions',
-      //   response.data.payload.transactions,
-      // );
-      // const sortedTransactions = response.data.payload.transactions.sort(
-      //   function (a, b) {
-      //     if (a.date > b.date) {
-      //       return -1;
-      //     } else {
-      //       return 1;
-      //     }
-      //   },
-      // );
-      // console.log('sortedTransactions', sortedTransactions);
+
       return response.data.payload;
     } catch (error) {
       console.log('error.message', error.message);
