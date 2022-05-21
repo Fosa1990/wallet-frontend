@@ -96,5 +96,5 @@ const Td = styled.td`
   padding: 14px 0;
   text-align: right;
   max-width: 135px;
-  word-wrap: normal;
+  word-wrap: break-word;
 `;

@@ -95,7 +95,7 @@ const Td = styled.td`
   font-weight: 400;
   padding: 14px 0;
   max-width: 140px;
-  word-wrap: normal;
+  word-wrap: break-word;
 
   ${size.tablet} {
     text-align: center;
