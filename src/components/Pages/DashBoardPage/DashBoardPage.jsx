@@ -1,5 +1,127 @@
-export default function DashBoardPage () {
+import styled from 'styled-components';
+import Media from 'react-media';
+import { useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { size } from '../../../stylesheet/utils/stylesVars';
+import Header from '../../Header';
+import HomeTab from '../../HomeTab';
+import DiagramTab from '../../DiagramTab';
+import Currency from '../../Currency';
+import Navigation from '../../Navigation';
+import Balance from '../../Balance';
+import authSelectors from '../../../redux/auth';
+import { ROUTES } from '../../../helpers/constants';
+import ButtonAddTransactions from '../../ButtonAddTransactions';
+import { selectIsModalAddTransactionOpen } from '../../../redux/globalSelectors';
+import ModalAddTransactions from '../../ModalAddTransactions';
+
+export default function DashBoardPage() {
+  const isLoggedin = useSelector(authSelectors.getIsLoggedIn);
+  const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
+  useEffect(() => {
+    if (isLoggedin) {
+      toast.info('Welcome to Amazing wallet');
+    }
+  }, [isLoggedin]);
+
+  ///  при загрузці  треба  доставати транзакції щоб їх  рендерити в  Hometab
   return (
-    <div >Page: DashBoardPage</div>
-  )
+    <>
+      <Header />
+      <MainWrap>
+        <SideBar>
+          <MobSidebar>
+            <Navigation />
+            <Media query="(min-width: 768px)" render={() => <Balance />} />
+          </MobSidebar>
+          <Media query="(min-width: 768px)" render={() => <Currency />} />
+        </SideBar>
+
+        <TabWrap>
+          <Routes>
+            <Route index element={<HomeTab />} />
+            <Route path={ROUTES.HOME} element={<HomeTab />} />
+            <Route path={ROUTES.DIAGRAM} element={<DiagramTab />} />
+            <Route
+              path={ROUTES.CURRENCY}
+              element={
+                <>
+                  <Media
+                    query="(min-width: 768px)"
+                    render={() => <Navigate to="/dashboard/home" />}
+                  />
+                  <Media
+                    query="(max-width: 767px)"
+                    render={() => <Currency />}
+                  />
+                </>
+              }
+            />
+          </Routes>
+          <ButtonAddTransactions />
+          {showModalAddTransactions && <ModalAddTransactions />}
+        </TabWrap>
+      </MainWrap>
+    </>
+  );
 }
+
+const MainWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(50px);
+  flex-grow: 1;
+
+  ${size.tablet} {
+    padding: 0px 32px;
+    justify-content: start;
+  }
+  ${size.desktop} {
+    padding: 0 16px;
+    flex-direction: row;
+    position: relative;
+  }
+`;
+const SideBar = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  ${size.tablet} {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  ${size.desktop} {
+    display: flex;
+    padding-right: 69px;
+    padding-top: 40px;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    border-right: 1px solid #e7e5f2;
+    /* box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
+      1px 0px 0px rgba(255, 255, 255, 0.6); */
+  }
+`;
+const TabWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  ${size.desktop} {
+    padding-left: 69px;
+    padding-top: 40px;
+  }
+`;
+const MobSidebar = styled.div`
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+`;
