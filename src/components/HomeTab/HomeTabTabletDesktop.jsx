@@ -93,7 +93,7 @@ const Td = styled.td`
   font-size: 16px;
   font-weight: 400;
   padding: 14px 0;
-  text-transform: capitalize;
+
   ${size.tablet} {
     text-align: center;
   }
