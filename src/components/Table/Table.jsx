@@ -18,23 +18,25 @@ export default function Table({ categories, transactionType }) {
           </tr>
         </Thead>
         <tbody>
-          {categories.filter(item=>item._id !== 'income').map(category => (
-            <TableRow key={category._id}>
-              <TableData>
-                {colors.map(
-                  color =>
-                    color.category === category._id && (
-                      <ColorBlock
-                        key={color.color}
-                        style={{ backgroundColor: color.color }}
-                      ></ColorBlock>
-                    ),
-                )}
-              </TableData>
-              <TableData>{category._id}</TableData>
-              <TableData>{category.totalSum}</TableData>
-            </TableRow>
-          ))}
+          {categories
+            .filter(item => item._id !== 'income')
+            .map(category => (
+              <TableRow key={category._id}>
+                <TableData>
+                  {colors.map(
+                    color =>
+                      color.category === category._id && (
+                        <ColorBlock
+                          key={color.color}
+                          style={{ backgroundColor: color.color }}
+                        ></ColorBlock>
+                      ),
+                  )}
+                </TableData>
+                <TableData>{category._id}</TableData>
+                <TableData>{category.totalSum}</TableData>
+              </TableRow>
+            ))}
         </tbody>
         <TableFoot>
           <TableFootRow>
@@ -55,9 +57,11 @@ const TableMain = styled.table`
   width: 280px;
   border-collapse: collapse;
   margin: 0 auto;
-
   ${size.tablet} {
     width: 336px;
+  }
+  ${size.desktop} {
+    width: 395px;
   }
 `;
 const Thead = styled.thead`
@@ -77,6 +81,14 @@ const Thead = styled.thead`
     padding-right: 20px;
     border-radius: 0 30px 30px 0;
   }
+  margin-bottom: 8px;
+
+  ${size.tablet} {
+    margin-bottom: 16px;
+  }
+  /* ${size.desktop} {
+    width: 395px;
+  } */
 `;
 const TableData = styled.td`
   padding: 8px 0;
@@ -91,6 +103,9 @@ const TableData = styled.td`
   :last-child {
     text-align: end;
     padding-right: 20px;
+  }
+  ${size.tablet} {
+    padding: 16px 0;
   }
 `;
 const TableRow = styled.tr`

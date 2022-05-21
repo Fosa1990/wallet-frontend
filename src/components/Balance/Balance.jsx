@@ -28,11 +28,12 @@ const BalanceWrapper = styled.div`
   color: ${balanceCl};
   width: 280px;
   padding-left: 32px;
-  /* margin-bottom: 32px; */
+  margin-bottom: 32px;
 
   ${size.tablet} {
     width: 336px;
     padding: 8px 40px 11px;
+    margin-bottom: 0px;
   }
   ${size.desktop} {
     width: 395px;

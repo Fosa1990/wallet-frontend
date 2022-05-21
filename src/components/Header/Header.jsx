@@ -1,27 +1,20 @@
 import styled from 'styled-components';
 import Media from 'react-media';
-// import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import authSelectors from '../../redux/auth/authSelectors';
+import LogoutButton from '../LogoutButton';
+import Avatar from '../Avatar';
+import Logo from '../Logo';
+import exit from '../../images/svg/exit.svg';
+import { openModalLogout } from '../../redux/globalSlice';
 import {
   textPlcholderCl,
   accentBgCl,
   circleFont,
   size,
 } from '../../stylesheet/utils/stylesVars';
-import authSelectors from '../../redux/auth/authSelectors';
-import LogoutButton from '../LogoutButton';
-import Avatar from '../Avatar';
-import Logo from '../Logo';
-// import { authApi } from '../../redux/auth/authReduce';
-// import Icon from '../Icon';
-// import logo from '../../images/svg/logo.svg';
-import exit from '../../images/svg/exit.svg';
-import { openModalLogout } from '../../redux/globalSlice';
-
-/// підключити компонент модалки на логаут
 
 export default function Header({ children, onClick, ...props }) {
-  // const isModalLogoutOpen =  useSelector(modalSelectors.getLogoutOpen)
   const userName = useSelector(authSelectors.getUserName);
   const name = userName.split('')[0].toUpperCase() + userName.slice(1);
   const dispatch = useDispatch();
@@ -55,7 +48,6 @@ const StyledHeader = styled.div`
   width: 100%;
   height: 60px;
   padding: 15px 20px;
-
   background: ${accentBgCl};
   ${size.tablet} {
     height: 80px;
@@ -65,35 +57,6 @@ const StyledHeader = styled.div`
     padding: 20px 16px;
   }
 `;
-
-// const Logo = styled(NavLink)`
-//   display: flex;
-//   cursor: pointer;
-//   justify-content: ${props => props.justify || 'center'};
-//   align-items: ${props => props.align || 'center'};
-// `;
-
-// const Title = styled.div`
-//   font-family: ${poppinsFont};
-//   font-size: 25px;
-//   font-weight: 700;
-//   color: ${props => props.color || accentTextCl};
-
-//   ${size.tablet} {
-//     font-size: 30px;
-//     line-height: 1, 5;
-//   }
-// `;
-//  const LogoIcon = styled.img`
-//   width: 30px;
-//   height: 30px;
-//   margin-right: 15px;
-//   ${size.tablet} {
-//     width: 40px;
-//     height: 40px;
-//     margin-right: 20px;
-//   }
-// `;
 
 const UserInfo = styled.div`
   display: flex;

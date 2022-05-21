@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import logo from '../../images/svg/logo.svg';
 import { NavLink } from 'react-router-dom';
+import logo from '../../images/svg/logo.svg';
 import {
   accentTextCl,
   poppinsFont,
@@ -28,7 +28,6 @@ const Title = styled.div`
   font-size: 25px;
   font-weight: 700;
   color: ${props => props.color || accentTextCl};
-
   ${size.tablet} {
     font-size: 30px;
     line-height: 1, 5;
