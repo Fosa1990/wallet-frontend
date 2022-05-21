@@ -13,6 +13,7 @@ import HomeTabMobile from './HomeTabMobile';
 import HomeTabTabletDesktop from './HomeTabTabletDesktop';
 import Loader from '../Loader';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
+import { circleFont, size } from '../../stylesheet/utils/stylesVars';
 
 export default function HomeTab() {
   const finances = useSelector(getFinancesSelectors.getFinances);
@@ -64,16 +65,16 @@ const Div = styled.div`
   flex-direction: column;
 `;
 
-// const NoInfo = styled.div`
-//   font: ${circleFont};
-//   margin-top: 30px;
-//   font-size: 20px;
-//   font-weight: 500;
-//   text-align: center;
+const NoInfo = styled.div`
+  font: ${circleFont};
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
 
-//   ${size.tablet} {
-//     font-size: 30px;
-//   }
-// `;
+  ${size.tablet} {
+    font-size: 30px;
+  }
+`;
 
 // &#8372;&nbsp; спецсимвол гривна+пробел

@@ -32,8 +32,8 @@ export default function DashBoardPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const token = useSelector(authSelectors.getToken);
-  const { isFetching, data } = useFetchCurrentUserQuery();
+  // const token = useSelector(authSelectors.getToken);
+  const { isFetching } = useFetchCurrentUserQuery();
   console.log(isFetching);
 
   // const finances = useSelector(getFinancesSelectors.getFinances);
@@ -126,6 +126,7 @@ const SideBar = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    /* align-items: flex-start; */
     margin-bottom: 20px;
   }
 

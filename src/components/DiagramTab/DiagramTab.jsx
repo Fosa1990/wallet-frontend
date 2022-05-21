@@ -106,6 +106,7 @@ const ChartWrapper = styled.div`
   position: relative;
 
   margin-bottom: 32px;
+  margin-right: 32px;
 `;
 const Balance = styled.span`
   position: absolute;
