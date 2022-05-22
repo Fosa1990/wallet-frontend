@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { iconBgCl } from '../../stylesheet/utils/stylesVars';
 
 export default function Comment({ transactionComment }) {
   const [showMore, setShowMore] = useState(true);
@@ -28,4 +29,5 @@ const Button = styled.button`
   background-color: transparent;
   cursor: pointer;
   font-weight: bold;
+  color: ${iconBgCl};
 `;
