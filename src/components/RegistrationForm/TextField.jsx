@@ -20,10 +20,10 @@ export const TextField = ({ label, ...props }) => {
         <Label htmlFor={field.name}>
           {label}
           <Input
-            data-tip={
+            title={
               field.name === 'email'
                 ? 'For example: JohnDoe@domain.com'
-                : 'Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer'
+                : 'Name may contain only letters, apostrophe, dash and spaces.'
             }
             className={`${meta.touched && meta.error && 'is-invalid'}`}
             {...field}

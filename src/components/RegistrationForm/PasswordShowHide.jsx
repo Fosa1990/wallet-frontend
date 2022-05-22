@@ -22,7 +22,7 @@ const PasswordShowHide = ({ field, form, label }) => {
           <Label htmlFor={field.name}>
             {label}
             <Input
-              data-tip={
+              title={
                 field.name === 'password'
                   ? 'The length of the password should be from 6 to 16 characters long'
                   : 'The length of the password should be from 6 to 16 characters long'
