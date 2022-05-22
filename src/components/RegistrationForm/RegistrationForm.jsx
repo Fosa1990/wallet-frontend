@@ -33,7 +33,7 @@ export default function RegistrationForm() {
       .required('E-mail is required'),
     password: Yup.string()
       .min(6, 'Password must be at least 6 characters')
-      .max(12, 'Password must be 12 characters or less')
+      .max(16, 'Password must be 16 characters or less')
       .required('Password is required'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Password must match')
