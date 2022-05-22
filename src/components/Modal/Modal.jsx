@@ -5,7 +5,12 @@ import Media from 'react-media';
 import { useDispatch } from 'react-redux';
 import Icon from '../Icon';
 import { closeModalWindow } from '../../redux/globalSlice';
-import { modalBgCl, accentBgCl, size } from '../../stylesheet/utils/stylesVars';
+import {
+  modalBgCl,
+  accentBgCl,
+  size,
+  timingFunc,
+} from '../../stylesheet/utils/stylesVars';
 import styled from 'styled-components';
 
 const modalRoot = document.querySelector('#root-modal');
@@ -115,6 +120,12 @@ const Button = styled.button`
   border: none;
   width: 40px;
   height: 40px;
+  transform: rotateZ(360deg);
+  transition: transform 0.25s ${timingFunc};
+  &:hover,
+  &:focus {
+    transform: rotateZ(0deg);
+  }
 `;
 
 Modal.propTypes = {
