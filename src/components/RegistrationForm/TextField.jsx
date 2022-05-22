@@ -1,7 +1,6 @@
 import React from 'react';
 import { useField, ErrorMessage } from 'formik';
 import styled from 'styled-components';
-
 import {
   accentPositiveCl,
   iconDefaultCl,

@@ -1,7 +1,9 @@
+import { toast } from 'react-toastify';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { tokenService } from '../../services/tokenService';
-import { toast } from 'react-toastify';
-import { BASE_URL } from '../../helpers/constants';
+import { BASE_URL, ROUTES } from '../../utils/constants';
+
+const { API, AUTH, SIGNUP, SIGNIN, SIGNOUT, USERS, CURRENT } = ROUTES;
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -14,7 +16,6 @@ export const authApi = createApi({
       if (token) {
         headers.set('authorization', `Bearer ${token}`);
         tokenService.set(token);
-        // при логауте надо очистить токен!
       }
       return headers;
     },
@@ -24,13 +25,13 @@ export const authApi = createApi({
     registerUser: builder.mutation({
       queryFn: async (newUser, queryApi, extraOptions, baseQuery) => {
         const res = await baseQuery({
-          url: '/api/auth/signup',
+          url: `/${API}/${AUTH}/${SIGNUP}`,
           method: 'POST',
           body: newUser,
         });
         res.data.code === 201 &&
           toast.warn(
-            `You need to confirm your ${res.data.payload.user.email} email to access the Amazing Wallet`,
+            `You need to confirm your ${res?.data?.payload?.user?.email} email to access the Amazing Wallet`,
             {
               className: 'Toastify__error',
               position: 'top-right',
@@ -51,7 +52,7 @@ export const authApi = createApi({
     loginUser: builder.mutation({
       queryFn: async (userData, queryApi, extraOptions, baseQuery) => {
         const res = await baseQuery({
-          url: '/api/auth/signin',
+          url: `/${API}/${AUTH}/${SIGNIN}`,
           method: 'POST',
           body: userData,
         });
@@ -63,7 +64,7 @@ export const authApi = createApi({
 
     logoutUser: builder.mutation({
       query: () => ({
-        url: '/api/auth/signout',
+        url: `/${API}/${AUTH}/${SIGNOUT}`,
       }),
       invalidatesTags: ['Auth'],
     }),
@@ -71,7 +72,7 @@ export const authApi = createApi({
     fetchCurrentUser: builder.query({
       queryFn: async (arg, queryApi, extraOptions, baseQuery) => {
         const res = await baseQuery({
-          url: 'api/users/current',
+          url: `/${API}/${USERS}/${CURRENT}`,
         });
         return res;
       },

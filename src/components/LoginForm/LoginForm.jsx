@@ -2,15 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import styled from 'styled-components';
 import { TextField } from '../RegistrationForm/TextField';
 import PasswordShowHide from '../RegistrationForm/PasswordShowHide';
 import { useLoginUserMutation } from '../../redux/auth/authReduce';
-import { regexEmail } from '../../helpers/regex';
-import { ROUTES } from '../../helpers/constants';
+import { regexEmail } from '../../utils/regex';
+import { ROUTES } from '../../utils/constants';
 import Button from '../Button/Button';
-import logo from '../../images/svg/logo.svg';
-import Icons from '../../images/svg/sprite.svg';
-import styled from 'styled-components';
 import {
   iconDefaultCl,
   accentPositiveCl,
@@ -20,6 +18,8 @@ import {
   poppinsFont,
   accentTextCl,
 } from '../../stylesheet/utils/stylesVars';
+import logo from '../../assets/images/svg/logo.svg';
+import Icons from '../../assets/images/svg/sprite.svg';
 
 export default function LoginForm() {
   const [register] = useLoginUserMutation();

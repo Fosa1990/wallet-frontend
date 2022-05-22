@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
-import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 import Media from 'react-media';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { closeModalWindow } from '../../redux/globalSlice';
 import { modalBgCl, accentBgCl, size } from '../../stylesheet/utils/stylesVars';

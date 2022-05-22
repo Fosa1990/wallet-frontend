@@ -1,23 +1,18 @@
-import React, { Suspense, lazy } from 'react';
-import { Routes, Route /* , Navigate */ } from 'react-router-dom';
+import React, { Suspense, lazy /* , useEffect, useDispatch */ } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import 'react-toastify/dist/ReactToastify.css';
-// import { useEffect } from 'react';
-import '../../../node_modules/modern-normalize/modern-normalize.css';
-import ModalLogout from '../ModalLogout';
-import {
-  selectIsModalLogoutOpen,
-  // selectIsModalAddTransactionOpen,
-} from '../../redux/globalSelectors';
-import './App.css';
-import Loader from '../Loader';
+import { selectIsModalLogoutOpen } from '../../redux/globalSelectors';
 import authSelectors from '../../redux/auth';
-import { PrivateRoute, PublicRouteLogin, PublicRouteRegin } from '../Router';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
+import ModalLogout from '../ModalLogout';
+import Loader from '../Loader';
+import { VerifyPage, ErrorPage } from '../Pages';
+import { PrivateRoute, PublicRouteLogin, PublicRouteRegin } from '../Router';
 import NotifyContainer from '../NotifyContainer';
-import { ROUTES } from '../../helpers/constants';
-import { VerifyPage } from '../Pages/';
-import { ErrorPage } from '../Pages/';
+import { ROUTES } from '../../utils/constants';
+// import { tokenService } from '../../services/tokenService';
+import '../../../node_modules/modern-normalize/modern-normalize.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
@@ -29,20 +24,22 @@ const Registration = lazy(() =>
   import('../../pages/RegistrationPage' /* webpackChunkName: "Registration" */),
 );
 
+const { REGISTRATION, LOGIN, HOME, DASHBOARD, VERIFY } = ROUTES;
+
 export default function App() {
   const showModalLogout = useSelector(selectIsModalLogoutOpen);
   const token = useSelector(authSelectors.getToken);
+  // eslint-disable-next-line no-unused-vars
   const { isFetching, data } = useFetchCurrentUserQuery(token, {
     skip: token === null,
   });
-  // console.log('__isFetching__: ', isFetching);useEffect(() => {
-  //   dispatch(operations.fetchCurrentUser());
-  // }, [dispatch]);
-  // console.log('__isFetching__: ', isFetching);
-  //--------------
-  // const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
-  //-------------
-  /// компоненти  по  факту реалізації  потім розставимо  по місцям і  пропишем тут роути
+  // console.log('data', data);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //     // dispatch(fetchCurrentUser());
+  //   };
+  // }, []);
+
   return (
     <>
       {isFetching ? (
@@ -53,10 +50,10 @@ export default function App() {
           <Suspense fallback={<Loader />}>
             <Routes>
               <Route
-                path={ROUTES.REGISTRATION}
+                path={REGISTRATION}
                 element={
                   <PublicRouteRegin
-                    redirectTo={`/${ROUTES.DASHBOARD}/${ROUTES.HOME}`}
+                    redirectTo={`/${DASHBOARD}/${HOME}`}
                     restricted
                   >
                     <Registration />
@@ -65,10 +62,10 @@ export default function App() {
               />
 
               <Route
-                path={ROUTES.LOGIN}
+                path={LOGIN}
                 element={
                   <PublicRouteLogin
-                    redirectTo={`/${ROUTES.DASHBOARD}/${ROUTES.HOME}`}
+                    redirectTo={`/${DASHBOARD}/${HOME}`}
                     restricted
                   >
                     <Login />
@@ -77,15 +74,15 @@ export default function App() {
               />
 
               <Route
-                path={`/${ROUTES.DASHBOARD}/*`}
+                path={`/${DASHBOARD}/*`}
                 element={
-                  <PrivateRoute redirectTo={ROUTES.LOGIN}>
+                  <PrivateRoute redirectTo={LOGIN}>
                     <Dashboard />
                   </PrivateRoute>
                 }
               />
 
-              <Route path={ROUTES.VERIFY} element={<VerifyPage />} />
+              <Route path={VERIFY} element={<VerifyPage />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </Suspense>

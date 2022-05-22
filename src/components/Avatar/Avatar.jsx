@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import authSelectors from '../../redux/auth/authSelectors';
 import styled from 'styled-components';
+import authSelectors from '../../redux/auth/authSelectors';
 import { size, accentBgCl } from '../../stylesheet/utils/stylesVars';
 
 export default function Avatar() {
