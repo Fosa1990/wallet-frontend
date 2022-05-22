@@ -23,7 +23,7 @@ import {
 import styled from 'styled-components';
 import 'react-datetime/css/react-datetime.css';
 
-const { trTypeAdd, trTypeRemove } = optionModalTransuction;
+const { add, spend } = optionModalTransuction;
 
 export default function ModalAddTransactions() {
   const [checked, setChecked] = useState(false);
@@ -38,7 +38,7 @@ export default function ModalAddTransactions() {
 
   const toggleChange = e => {
     setChecked(e);
-    e ? setCategory(trTypeAdd) : setCategory('');
+    e ? setCategory(add) : setCategory('');
   };
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export default function ModalAddTransactions() {
   }, [data, dispatch]);
 
   const handleSubmit = e => {
-    const transactionType = checked ? trTypeAdd : trTypeRemove;
+    const transactionType = checked ? add : spend;
     e.preventDefault();
     console.log({
       category,
