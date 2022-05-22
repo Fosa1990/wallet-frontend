@@ -3,14 +3,12 @@ import { Link } from 'react-router-dom';
 import { Field, Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
-import { TextField } from './TextField';
-import { useRegisterUserMutation } from '../../redux/auth/authReduce';
 import { regexName, regexEmail } from '../../utils/regex';
+import { useRegisterUserMutation } from '../../redux/auth/authReduce';
+import { TextField } from './TextField';
 import PasswordStrenght from './PasswordStrength';
-import Button from '../Button/Button';
 import PasswordShowHide from './PasswordShowHide';
-import logo from '../../assets/images/svg/logo.svg';
-import Icons from '../../assets/images/svg/sprite.svg';
+import Button from '../Button/Button';
 import { ROUTES } from '../../utils/constants';
 import {
   accentPositiveCl,
@@ -21,6 +19,8 @@ import {
   iconDefaultCl,
   iconBgActiveCl,
 } from '../../stylesheet/utils/stylesVars';
+import logo from '../../assets/images/svg/logo.svg';
+import Icons from '../../assets/images/svg/sprite.svg';
 
 const validateName = name => regexName.test(name);
 
