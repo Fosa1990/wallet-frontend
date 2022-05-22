@@ -9,6 +9,8 @@ import {
   accentNegativeCl,
 } from '../../stylesheet/utils/stylesVars';
 
+import ReactTooltip from 'react-tooltip';
+
 export const TextField = ({ label, ...props }) => {
   const [field, meta] = useField(props);
 
@@ -28,6 +30,7 @@ export const TextField = ({ label, ...props }) => {
             {...props}
             autoComplete="on"
           />
+          <ReactTooltip />
         </Label>
         <Error>
           <ErrorMessage className="error" component="div" name={field.name} />

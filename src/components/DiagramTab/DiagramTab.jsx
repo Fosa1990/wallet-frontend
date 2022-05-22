@@ -1,14 +1,17 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import getFinancesSelectors from '../../redux/finances/financesSelectors';
+import categoriesSelectors from '../../redux/categories/categoriesSelectors';
+import { getCategories } from '../../redux/categories/categoriesOperations';
+
 import Table from '../Table';
 import Chart from '../Chart';
 import Select from '../Select';
 import BalanceSum from '../Balance/BalanceSum';
-// import NoInfo from '../NoInfo';
-import categoriesSelectors from '../../redux/categories/categoriesSelectors';
-import { getCategories } from '../../redux/categories/categoriesOperations';
+import nodata from '../../assets/images/nodata.jpg';
+
 import { size } from '../../stylesheet/utils/stylesVars';
 
 export default function DiagramTab() {
@@ -57,17 +60,24 @@ export default function DiagramTab() {
     );
   }
 
+  const loading = useSelector(getFinancesSelectors.getLoading);
   return (
     <>
       <DiagramTabWrapper>
         <RoundWrap>
           <DiagramTabHeader>Statistics</DiagramTabHeader>
-          {/* {categories.length === 0 && <NoInfo />} */}
+
           <ChartWrapper>
-            <Balance>
-              {categories[0]?.category?.length > 0 && <BalanceSum />}
-            </Balance>
-            <Chart categories={categories[0]?.category ?? []} />
+            {!loading && categories[0]?.category.length === 0 ? (
+              <NoDataImg src={nodata} />
+            ) : (
+              <>
+                <Balance>
+                  {categories[0]?.category?.length > 0 && <BalanceSum />}
+                </Balance>
+                <Chart categories={categories[0]?.category ?? []} />
+              </>
+            )}
           </ChartWrapper>
         </RoundWrap>
         <div>
@@ -141,4 +151,8 @@ const Balance = styled.span`
   font-weight: bold;
   font-size: 18px;
   line-height: 1.5;
+`;
+const NoDataImg = styled.img`
+  width: 100%;
+  max-width: 270px;
 `;
