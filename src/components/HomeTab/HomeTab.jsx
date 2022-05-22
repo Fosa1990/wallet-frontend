@@ -11,7 +11,6 @@ import HomeTabMobile from './HomeTabMobile';
 import HomeTabTabletDesktop from './HomeTabTabletDesktop';
 import Loader from '../Loader';
 import NoInfo from '../NoInfo';
-import ButtonAddTransactions from '../../components/ButtonAddTransactions';
 import ModalAddTransactions from '../../components/ModalAddTransactions';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
 import { selectIsModalAddTransactionOpen } from '../../redux/globalSelectors';
@@ -68,7 +67,6 @@ export default function HomeTab() {
           />
         )}
       </Div>
-      <ButtonAddTransactions />
       {showModalAddTransactions && <ModalAddTransactions />}
     </>
   );
