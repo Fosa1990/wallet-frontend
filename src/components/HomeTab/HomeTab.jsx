@@ -3,11 +3,6 @@ import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Media from 'react-media';
 import { useSelector, useDispatch } from 'react-redux';
-import CustomPagination from '../CustomPagination';
-import Balance from '../Balance';
-import HomeTabMobile from './HomeTabMobile';
-import HomeTabTabletDesktop from './HomeTabTabletDesktop';
-import NoInfo from '../NoInfo';
 import getFinancesSelectors from '../../redux/finances/financesSelectors';
 import ButtonAddTransactions from '../../components/ButtonAddTransactions';
 import ModalAddTransactions from '../../components/ModalAddTransactions';
@@ -18,7 +13,12 @@ import {
   getIsNewTransaction,
 } from '../../redux/globalSelectors';
 import { reloadTransactionList } from '../../redux/globalSlice';
-// import { circleFont, size } from '../../stylesheet/utils/stylesVars';
+import CustomPagination from '../CustomPagination';
+import Balance from '../Balance';
+import HomeTabMobile from './HomeTabMobile';
+import HomeTabTabletDesktop from './HomeTabTabletDesktop';
+import NoInfo from '../NoInfo';
+import Loader from '../Loader';
 
 export default function HomeTab() {
   const dispatch = useDispatch();
@@ -28,8 +28,7 @@ export default function HomeTab() {
   const totalDocuments = useSelector(getFinancesSelectors.getCountDocuments);
   const isNewTransaction = useSelector(getIsNewTransaction);
   const { refetch } = useFetchCurrentUserQuery();
-  const { loading } = useSelector(getFinancesSelectors.getLoading);
-  console.log('loading', loading);
+  const loading = useSelector(getFinancesSelectors.getLoading);
 
   useEffect(() => {
     dispatch(fetchFinances(page.get('page')));
@@ -59,6 +58,7 @@ export default function HomeTab() {
             )
           }
         </Media>
+        {loading && <Loader />}
         {!loading && finances.length === 0 && <NoInfo />}
         {totalDocuments.totalDocuments > 0 && isLoading && (
           <CustomPagination
