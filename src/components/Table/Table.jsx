@@ -34,18 +34,30 @@ export default function Table({ categories, transactionType }) {
                   )}
                 </TableData>
                 <TableData>{category._id}</TableData>
-                <TableData>{category.totalSum}</TableData>
+                <TableData>
+                  {Intl.NumberFormat('ru-Ru', {
+                    minimumFractionDigits: 2,
+                  }).format(category.totalSum)}
+                </TableData>
               </TableRow>
             ))}
         </tbody>
         <TableFoot>
           <TableFootRow>
             <td colSpan={2}>Income:</td>
-            <IncomeValue>{transactionType[0]?.totalSum ?? 0}</IncomeValue>
+            <IncomeValue>
+              {Intl.NumberFormat('ru-Ru', {
+                minimumFractionDigits: 2,
+              }).format(transactionType[0]?.totalSum) ?? 0}
+            </IncomeValue>
           </TableFootRow>
           <TableFootRow>
             <td colSpan={2}>Expence:</td>
-            <ExpenceValue>{transactionType[1]?.totalSum ?? 0}</ExpenceValue>
+            <ExpenceValue>
+              {Intl.NumberFormat('ru-Ru', {
+                minimumFractionDigits: 2,
+              }).format(transactionType[1]?.totalSum) ?? 0}
+            </ExpenceValue>
           </TableFootRow>
         </TableFoot>
       </TableMain>
