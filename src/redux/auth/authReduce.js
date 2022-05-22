@@ -29,7 +29,7 @@ export const authApi = createApi({
           method: 'POST',
           body: newUser,
         });
-        res.data.code === 201 &&
+        if (res?.data?.code === 201) {
           toast.warn(
             `You need to confirm your ${res?.data?.payload?.user?.email} email to access the Amazing Wallet`,
             {
@@ -43,6 +43,7 @@ export const authApi = createApi({
               progress: undefined,
             },
           );
+        }
 
         return res;
       },
