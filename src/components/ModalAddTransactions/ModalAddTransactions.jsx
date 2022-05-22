@@ -15,10 +15,12 @@ import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
 import Modal from '../Modal/Modal';
 import sprite from '../../images/svg/sprite.svg';
 import {
-  accentPositiveCl,
-  accentNegativeCl,
-  size,
   accentDisableCl,
+  accentNegativeCl,
+  accentPositiveCl,
+  circleFont,
+  size,
+  poppinsFont,
 } from '../../stylesheet/utils/stylesVars';
 import styled from 'styled-components';
 import 'react-datetime/css/react-datetime.css';
@@ -31,7 +33,6 @@ export default function ModalAddTransactions() {
   const [sumTransaction, setSumTransaction] = useState();
   const [comment, setComment] = useState('');
   const [selectedOption, setSelectedOption] = useState(defaultSpend);
-
   const [addTransactions, { data }] = useCreateTransactionsMutation();
 
   const dispatch = useDispatch();
@@ -55,7 +56,7 @@ export default function ModalAddTransactions() {
     addTransactions({
       category: selectedOption,
       comment: comment,
-      sum: sumTransaction,
+      sum: Number(sumTransaction),
       date: selectedDate,
       transactionType: StatusType,
     });
@@ -127,7 +128,7 @@ export default function ModalAddTransactions() {
 }
 
 const Title = styled.h2`
-  font-family: 'Poppins';
+  font-family: ${poppinsFont};
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -141,7 +142,7 @@ const Title = styled.h2`
 `;
 
 const Form = styled.form`
-  font-family: 'Circe';
+  font-family: ${circleFont};
   font-style: normal;
   font-size: 18px;
   display: flex;

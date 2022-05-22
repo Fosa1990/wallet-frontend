@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 import { openModalAddTransaction } from '../../redux/globalSlice';
 import { accentPositiveCl, size } from '../../stylesheet/utils/stylesVars';
-import styled from 'styled-components';
 import sprite from '../../images/svg/sprite.svg';
 
 export default function ButtonAddTransactions() {

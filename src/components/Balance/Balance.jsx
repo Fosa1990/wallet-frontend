@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import React from 'react';
 import { size } from '../../stylesheet/utils/stylesVars';
 import {
   circleFont,

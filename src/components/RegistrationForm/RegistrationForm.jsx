@@ -9,8 +9,6 @@ import { ROUTES } from '../../helpers/constants';
 import PasswordStrenght from './PasswordStrength';
 import Button from '../Button/Button';
 import logo from '../../images/svg/logo.svg';
-// import { ReactComponent as GoogleIcon } from '../../images/svg/icons-google.svg';
-
 import Icons from '../../images/svg/sprite.svg';
 import styled from 'styled-components';
 import {
@@ -57,14 +55,12 @@ export default function RegistrationForm() {
         }}
         validationSchema={validate}
         onSubmit={(values, onSubmitProps) => {
-          // console.log(values);
           register(values);
           onSubmitProps.resetForm();
         }}
       >
         {formik => (
           <FromStyle>
-            {/* {console.log('formik.values', formik.values)} */}
             <LogoWrapper>
               <LogoIcon src={logo} />
               <Title>Wallet</Title>
@@ -129,17 +125,6 @@ export default function RegistrationForm() {
                     Login
                   </Button>
                 </Link>
-                {/* <a
-                  className="IconGoogle"
-                  href="http://localhost:8081/api/auth/google"
-                > */}
-                {/* <a
-                  className="IconGoogle"
-                  href="https://amazing-wallet.herokuapp.com/api/auth/google"
-                > */}
-                {/* <GoogleIcon width={32} height={28} />
-                  Sign up
-                </a> */}
               </ButtonWrapper>
             </Form>
           </FromStyle>

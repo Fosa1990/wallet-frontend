@@ -1,11 +1,12 @@
-import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { getIsLoggedIn, getIsInBase } from '../../../redux/auth/authSelectors';
+import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+import authSelectors from '../../../redux/auth/authSelectors';
+import { ROUTES } from '../../../helpers/constants';
 
 export default function PublicRoute({ children, restricted, redirectTo }) {
-  const isLoggedIn = useSelector(getIsLoggedIn);
-  const isInBase = useSelector(getIsInBase);
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const isInBase = useSelector(authSelectors.getIsInBase);
   const shouldRedirect = restricted && (isLoggedIn || isInBase);
 
   return <>{shouldRedirect ? <Navigate to={redirectTo} /> : children}</>;
@@ -13,7 +14,7 @@ export default function PublicRoute({ children, restricted, redirectTo }) {
 
 PublicRoute.defaultProps = {
   restricted: false,
-  redirectTo: '/home',
+  redirectTo: `/${ROUTES.HOME}`,
 };
 
 PublicRoute.propTypes = {

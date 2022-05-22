@@ -1,13 +1,13 @@
+import Moment from 'react-moment';
 import styled from 'styled-components';
-// import { size } from '../../stylesheet/utils/stylesVars';
+import Comment from './Comment';
 import {
   circleFont,
   accentBgCl,
   accentNegativeCl,
   accentPositiveCl,
+  // size,
 } from '../../stylesheet/utils/stylesVars';
-import Moment from 'react-moment';
-import Comment from './Comment';
 
 export default function HomeTabMobile({ finances }) {
   return finances.map(transaction => (
