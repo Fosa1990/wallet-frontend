@@ -7,7 +7,6 @@ import { getCurrencyRates } from '../../services/currencyService';
 import { roundToTwoAfterZero } from '../../utils/roundToTwoAfterZero';
 import { TIME_MS, NAMES } from '../../utils/constants';
 
-
 import {
   iconBgValueCl,
   iconBgCl,
@@ -156,11 +155,10 @@ const Thead = styled.thead`
 
 const Tr = styled.tr`
   vertical-align: middle;
-
 `;
 
 const Th = styled.th`
-  font: ${poppinsFont};
+  font-family: ${poppinsFont};
   font-size: 18px;
   font-weight: 700;
   line-height: 26px;
@@ -188,7 +186,7 @@ const Tbody = styled.tbody`
 `;
 
 const Td = styled.td`
-  font: ${circleFont};
+  font-family: ${circleFont};
   font-size: 16px;
   font-weight: 400;
   line-height: 23px;
@@ -209,5 +207,3 @@ const Td = styled.td`
     padding-bottom: 10px;
   }
 `;
-
-
