@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { useSearchParams } from 'react-router-dom';
+import styled from 'styled-components';
 import Logo from '../../Logo';
 import { circleFont, size } from '../../../stylesheet/utils/stylesVars';
 
@@ -16,8 +16,6 @@ export default function VerifyPage() {
       <Text>Now you can login the app</Text>
       <Logo />
       <Text>and help yourself with income and expense accounting</Text>
-      {/* <a href="http://localhost:3000/">Click to LOCAL_TESTING</a>
-      <a href="https://amazing-wallet.netlify.app/">Click to Login</a> */}
     </PageWrap>
   );
 }

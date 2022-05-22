@@ -5,14 +5,15 @@ import authSelectors from '../../redux/auth/authSelectors';
 import LogoutButton from '../LogoutButton';
 import Avatar from '../Avatar';
 import Logo from '../Logo';
-import exit from '../../images/svg/exit.svg';
 import { openModalLogout } from '../../redux/globalSlice';
+import { ROUTES } from '../../utils/constants';
 import {
   textPlcholderCl,
   accentBgCl,
   circleFont,
   size,
 } from '../../stylesheet/utils/stylesVars';
+import exit from '../../assets/images/svg/exit.svg';
 
 export default function Header({ children, onClick, ...props }) {
   const userName = useSelector(authSelectors.getUserName);
@@ -26,9 +27,9 @@ export default function Header({ children, onClick, ...props }) {
 
   return (
     <StyledHeader>
-      <Logo to="/home" />
+      <Logo to={`/${ROUTES.HOME}`} />
       <UserInfo>
-        <Avatar />
+        <Media query="(min-width: 768px)" render={() => <Avatar />} />
         <UserName>{name || 'User'} </UserName>
         <LogoutButton type="button" onClick={handleClick}>
           <ExitIcon src={exit} />

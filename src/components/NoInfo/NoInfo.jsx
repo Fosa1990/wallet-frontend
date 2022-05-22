@@ -11,13 +11,19 @@ export default function NoInfo() {
 }
 
 const StyledNoInfo = styled.div`
-  font: ${circleFont};
+  font-family: ${circleFont};
   margin-top: 30px;
   font-size: 20px;
   font-weight: 500;
   text-align: center;
 
   ${size.tablet} {
+    padding: 5px;
     font-size: 30px;
+    width: 704px;
+  }
+
+  ${size.desktop} {
+    width: 715px;
   }
 `;

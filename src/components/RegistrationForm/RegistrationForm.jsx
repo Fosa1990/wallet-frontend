@@ -1,28 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Formik, Form } from 'formik';
+import { Field, Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { TextField } from './TextField';
-import { useRegisterUserMutation } from '../../redux/auth/authReduce';
-import { regexName, regexEmail } from '../../helpers/regex';
-import { ROUTES } from '../../helpers/constants';
-import PasswordStrenght from './PasswordStrength';
-import Button from '../Button/Button';
-import logo from '../../images/svg/logo.svg';
-// import { ReactComponent as GoogleIcon } from '../../images/svg/icons-google.svg';
-
-import Icons from '../../images/svg/sprite.svg';
 import styled from 'styled-components';
+import { regexName, regexEmail } from '../../utils/regex';
+import { useRegisterUserMutation } from '../../redux/auth/authReduce';
+import { TextField } from './TextField';
+import PasswordStrenght from './PasswordStrength';
+import PasswordShowHide from './PasswordShowHide';
+import Button from '../Button/Button';
+import { ROUTES } from '../../utils/constants';
 import {
   accentPositiveCl,
   accentBgCl,
-  borderBtnCl,
   size,
   poppinsFont,
   accentTextCl,
   iconDefaultCl,
   iconBgActiveCl,
 } from '../../stylesheet/utils/stylesVars';
+import logo from '../../assets/images/svg/logo.svg';
+import Icons from '../../assets/images/svg/sprite.svg';
 
 const validateName = name => regexName.test(name);
 
@@ -57,14 +55,12 @@ export default function RegistrationForm() {
         }}
         validationSchema={validate}
         onSubmit={(values, onSubmitProps) => {
-          // console.log(values);
           register(values);
           onSubmitProps.resetForm();
         }}
       >
         {formik => (
           <FromStyle>
-            {/* {console.log('formik.values', formik.values)} */}
             <LogoWrapper>
               <LogoIcon src={logo} />
               <Title>Wallet</Title>
@@ -82,28 +78,29 @@ export default function RegistrationForm() {
                 placeholder="E-mail"
                 type="email"
               />
-              <TextField
-                label={
-                  <svg width="16" height="21" className="labelIcon">
-                    <use href={`${Icons}#icon-password`} />
-                  </svg>
-                }
+              <Field
                 name="password"
-                placeholder="Password"
                 type="password"
-              />
-              <TextField
+                component={PasswordShowHide}
                 label={
                   <svg width="16" height="21" className="labelIcon">
                     <use href={`${Icons}#icon-password`} />
                   </svg>
                 }
+              ></Field>
+              <Field
                 name="confirmPassword"
-                placeholder="Confirm password"
                 type="password"
-                className="label"
-              />
+                component={PasswordShowHide}
+                label={
+                  <svg width="16" height="21" className="labelIcon">
+                    <use href={`${Icons}#icon-password`} />
+                  </svg>
+                }
+              ></Field>
+
               <PasswordStrenght password={formik.values.password} />
+
               <TextField
                 label={
                   <svg width="18" height="18" className="labelIcon">
@@ -120,26 +117,12 @@ export default function RegistrationForm() {
                   primary
                   color={accentBgCl}
                   background={accentPositiveCl}
-                  disabled={!formik.isValid || formik.isSubmitting}
                 >
                   Sign up
                 </Button>
-                <Link to={ROUTES.LOGIN}>
-                  <Button className="ButtonLogin" outlined color={borderBtnCl}>
-                    Login
-                  </Button>
+                <Link to={ROUTES.LOGIN} className="ButtonLogin">
+                  Login
                 </Link>
-                {/* <a
-                  className="IconGoogle"
-                  href="http://localhost:8081/api/auth/google"
-                > */}
-                {/* <a
-                  className="IconGoogle"
-                  href="https://amazing-wallet.herokuapp.com/api/auth/google"
-                > */}
-                {/* <GoogleIcon width={32} height={28} />
-                  Sign up
-                </a> */}
               </ButtonWrapper>
             </Form>
           </FromStyle>
@@ -226,16 +209,7 @@ const ButtonWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
-  .ButtonRegistr:disabled {
-    cursor: not-allowed;
-    box-shadow: inset 0px 0px 45px rgb(255 255 255 / 70%);
-  }
-
   .ButtonLogin {
-    // margin-bottom: 20px;
-  }
-
-  .IconGoogle {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -248,6 +222,7 @@ const ButtonWrapper = styled.div`
     text-transform: uppercase;
     border: 1px solid ${iconBgActiveCl};
     border-radius: 20px;
+    cursor: pointer;
 
     ${size.tablet},${size.desktop} {
       width: 300px;

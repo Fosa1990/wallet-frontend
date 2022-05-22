@@ -7,8 +7,8 @@ import {
   accentDisableCl,
 } from '../../../stylesheet/utils/stylesVars';
 import styled from 'styled-components';
-import sprite from '../../../images/svg/sprite.svg';
-import { optionModalTransuction } from '../../../helpers/constants';
+import sprite from '../../../assets/images/svg/sprite.svg';
+import { optionModalTransuction } from '../../../utils/constants';
 
 export default function ToggleSwitch({ check }) {
   const [checked, setChecked] = useState(false);

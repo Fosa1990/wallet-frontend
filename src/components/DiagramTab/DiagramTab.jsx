@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 import Table from '../Table';
 import Chart from '../Chart';
 import Select from '../Select';
 import BalanceSum from '../Balance/BalanceSum';
 // import NoInfo from '../NoInfo';
-import styled from 'styled-components';
 import categoriesSelectors from '../../redux/categories/categoriesSelectors';
 import { getCategories } from '../../redux/categories/categoriesOperations';
 import { size } from '../../stylesheet/utils/stylesVars';
@@ -19,7 +19,6 @@ export default function DiagramTab() {
 
   const categories = useSelector(categoriesSelectors.getCategories);
   const dispatch = useDispatch();
-  console.log('categories', categories);
 
   useEffect(() => {
     dispatch(
@@ -110,25 +109,28 @@ const DiagramTabHeader = styled.h2`
   margin-bottom: 8px;
 `;
 const RoundWrap = styled.div`
+  / ${size.desktop} {
+    /* margin-bottom: 32px; */
+    /* margin-right: 32px; */
+    /* width: 288px;
+    height: 288px; */
+  }
+`;
+const ChartWrapper = styled.div`
+  position: relative;
+  margin-bottom: 32px;
+
+  width: 280px;
+
+  ${size.tablet} {
+    margin-right: 32px;
+    width: 336px;
+    height: 336px;
+  }
   ${size.desktop} {
     width: 288px;
     height: 288px;
   }
-`;
-
-// const SelectWrap = styled.div`
-//   ${size.tablet} {
-//     width: 336px;
-//   }
-//   ${size.desktop} {
-//     width: 395px;
-//   }
-// `;
-const ChartWrapper = styled.div`
-  position: relative;
-
-  margin-bottom: 32px;
-  margin-right: 32px;
 `;
 const Balance = styled.span`
   position: absolute;

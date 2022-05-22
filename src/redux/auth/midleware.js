@@ -6,10 +6,8 @@ export const rtkQueryErrorLogger = api => next => action => {
     if (action.payload?.data?.payload?.message === 'jwt expired') {
       toast.error('Please login again');
     } else if (action.payload?.data?.payload?.message) {
-      // console.log(action.payload?.data);
       toast.error(`${action.payload?.data?.payload?.message}`);
     } else {
-      // console.log(action.payload);
       toast.error('Bad Request');
     }
   }

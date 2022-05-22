@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 import Media from 'react-media';
 import SVG from 'react-inlinesvg';
 import {
@@ -8,9 +8,9 @@ import {
   iconBgValueCl,
   size,
 } from '../../stylesheet/utils/stylesVars';
-import home from '../../images/svg/home.svg';
-import diagram from '../../images/svg/diagram.svg';
-import currency from '../../images/svg/currency.svg';
+import home from '../../assets/images/svg/home.svg';
+import diagram from '../../assets/images/svg/diagram.svg';
+import currency from '../../assets/images/svg/currency.svg';
 
 export default function Navigation() {
   return (
