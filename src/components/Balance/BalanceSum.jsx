@@ -16,7 +16,11 @@ export default function BalanceSum() {
   return (
     <Sum>
       <span>&#8372;&nbsp;</span>
-      {balance ? balance.toFixed(2) : 0.00}
+      {balance
+        ? Intl.NumberFormat('ru-Ru', {
+            minimumFractionDigits: 2,
+          }).format(balance)
+        : 0.0}
     </Sum>
   );
 }

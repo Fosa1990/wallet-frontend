@@ -67,7 +67,7 @@ export default function Currency() {
             .map(
               item =>
                 item && (
-                  <tr key={item.ccy}>
+                  <Tr key={item.ccy}>
                     <Td>
                       {item.ccy}/{item.base_ccy}
                     </Td>
@@ -81,14 +81,27 @@ export default function Currency() {
                     ) : (
                       <Td>{Number(item.sale).toFixed(0)}</Td>
                     )}
-                  </tr>
+                  </Tr>
                 ),
             )}
+          <tr>
+            <Space colSpan="3"></Space>
+          </tr>
         </Tbody>
       </Table>
     </Wrapper>
   );
 }
+
+const Space = styled.td`
+  ${size.desktop} {
+    height: 134px;
+    background-image: url(${wave});
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+  }
+`;
 
 const Wrapper = styled.div`
   position: relative;
@@ -102,7 +115,6 @@ const Wrapper = styled.div`
 
 const Table = styled.table`
   background-color: ${iconBgValueCl};
-  background-image: url(${wave});
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: contain;
@@ -110,17 +122,20 @@ const Table = styled.table`
   border-collapse: collapse;
 
   ${size.mobile} {
+    background-image: url(${wave});
     width: 280px;
     height: 174px;
   }
   ${size.tablet} {
+    background-image: url(${wave});
     width: 336px;
     height: 182px;
   }
   ${size.desktop} {
+    background-image: none;
     width: 393px;
     height: 347px;
-    background-position: center;
+    text-align: center;
   }
 `;
 
@@ -137,7 +152,10 @@ const Thead = styled.thead`
   }
 `;
 
-const Tr = styled.tr``;
+const Tr = styled.tr`
+  vertical-align: middle;
+
+`;
 
 const Th = styled.th`
   font: ${poppinsFont};
@@ -154,9 +172,18 @@ const Th = styled.th`
   :last-child {
     border-radius: 0 30px 0 0;
   }
+
+  ${size.desktop} {
+    :first-child {
+      text-align: center;
+      padding-left: 0;
+    }
+  }
 `;
 
-const Tbody = styled.tbody``;
+const Tbody = styled.tbody`
+  padding-top: 20px;
+`;
 
 const Td = styled.td`
   font: ${circleFont};
@@ -175,4 +202,10 @@ const Td = styled.td`
     padding-top: 20px;
     padding-bottom: 4px;
   }
+  ${size.tablet} {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 `;
+
+

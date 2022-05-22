@@ -31,11 +31,19 @@ export default function HomeTabMobile({ finances }) {
         </Tr>
         <Tr>
           <Th>Sum</Th>
-          <Td>{transaction.sum.toFixed(2)}</Td>
+          <Td>
+            {Intl.NumberFormat('ru-Ru', {
+              minimumFractionDigits: 2,
+            }).format(transaction.sum)}
+          </Td>
         </Tr>
         <Tr>
           <Th>Balance</Th>
-          <Td>{transaction.balance.toFixed(2)}</Td>
+          <Td>
+            {Intl.NumberFormat('ru-Ru', {
+              minimumFractionDigits: 2,
+            }).format(transaction.balance)}
+          </Td>
         </Tr>
       </Tbody>
     </MobileTable>

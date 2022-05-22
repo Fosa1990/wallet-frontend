@@ -37,11 +37,23 @@ export default function HomeTabTabletDesktop({ finances }) {
                 <Td>{transaction.category}</Td>
                 <Td>{<Comment transactionComment={transaction.comment} />}</Td>
                 {transaction.transactionType === 'income' ? (
-                  <Income>{transaction.sum.toFixed(2).toLocaleString({useGroupping: true})}</Income>
+                  <Income>
+                    {Intl.NumberFormat('ru-Ru', {
+                      minimumFractionDigits: 2,
+                    }).format(transaction.sum)}
+                  </Income>
                 ) : (
-                  <Spend>{transaction.sum.toFixed(2)}</Spend>
+                  <Spend>
+                    {Intl.NumberFormat('ru-Ru', {
+                      minimumFractionDigits: 2,
+                    }).format(transaction.sum)}
+                  </Spend>
                 )}
-                <Td>{transaction.balance.toFixed(2)}</Td>
+                <Td>
+                  {Intl.NumberFormat('ru-Ru', {
+                    minimumFractionDigits: 2,
+                  }).format(transaction.balance)}
+                </Td>
               </Tr>
             ))
           : null}
