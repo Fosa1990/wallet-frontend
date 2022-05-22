@@ -28,7 +28,7 @@ export default function HomeTab() {
   const dispatch = useDispatch();
   const { isFetching, refetch } = useFetchCurrentUserQuery();
   const isNewTransaction = useSelector(getIsNewTransaction);
-  console.log('isFetching', isFetching);
+  // console.log('isFetching', isFetching);
 
   useEffect(() => {
     dispatch(fetchFinances(page.get('page')));
