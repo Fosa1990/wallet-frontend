@@ -6,11 +6,9 @@ import styled from 'styled-components';
 import { TextField } from './TextField';
 import { useRegisterUserMutation } from '../../redux/auth/authReduce';
 import { regexName, regexEmail } from '../../utils/regex';
-import PasswordStrenght from './PasswordStrength';
+import PasswordStrength from './PasswordStrength';
 import PasswordShowHide from './PasswordShowHide';
 import Button from '../Button/Button';
-import logo from '../../assets/images/svg/logo.svg';
-import Icons from '../../assets/images/svg/sprite.svg';
 import { ROUTES } from '../../utils/constants';
 import {
   accentPositiveCl,
@@ -101,7 +99,7 @@ export default function RegistrationForm() {
                 }
               ></Field>
 
-              <PasswordStrenght password={formik.values.password} />
+              <PasswordStrength password={formik.values.password} />
 
               <TextField
                 label={
