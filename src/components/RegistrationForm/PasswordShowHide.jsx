@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ErrorMessage } from 'formik';
 import styled from 'styled-components';
-import ReactTooltip from 'react-tooltip';
 import { IoIosEyeOff, IoIosEye } from 'react-icons/io';
 
 import {
@@ -49,7 +48,6 @@ const PasswordShowHide = ({ field, form, label }) => {
                 <IoIosEye className="icon-open-eye" />
               )}
             </i>
-            <ReactTooltip />
           </Label>
           <Error>
             <ErrorMessage className="error" component="div" name={field.name} />

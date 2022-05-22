@@ -13,7 +13,6 @@ import ReactTooltip from 'react-tooltip';
 
 export const TextField = ({ label, ...props }) => {
   const [field, meta] = useField(props);
-  console.log(field.name);
 
   return (
     <>
