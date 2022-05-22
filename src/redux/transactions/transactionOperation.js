@@ -1,11 +1,13 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { axiosBaseQuery } from '../../api/api';
-import { BASE_URL } from '../../helpers/constants';
+import { BASE_URL, ROUTES } from '../../helpers/constants';
+
+const { API, TRANSACTIONS } = ROUTES;
 
 export const transactionApi = createApi({
   reducerPath: 'transactionApi',
   baseQuery: axiosBaseQuery({
-    baseUrl: BASE_URL.SERVER,
+    baseUrl: BASE_URL.BACK,
     refetchOnReconnect: true,
   }),
 
@@ -13,7 +15,7 @@ export const transactionApi = createApi({
   endpoints: builder => ({
     getTransactions: builder.query({
       query: () => ({
-        url: `/api/transactions`,
+        url: `/${API}/${TRANSACTIONS}`,
         method: 'GET',
       }),
       providesTags: (result, error, arg) =>
@@ -24,7 +26,7 @@ export const transactionApi = createApi({
 
     createTransactions: builder.mutation({
       query: data => ({
-        url: `/api/transactions`,
+        url: `/${API}/${TRANSACTIONS}`,
         method: 'POST',
         data,
       }),
@@ -33,7 +35,7 @@ export const transactionApi = createApi({
 
     deleteTransactions: builder.mutation({
       query: transactionId => ({
-        url: `/api/transactions/${transactionId}`,
+        url: `/${API}/${TRANSACTIONS}/${transactionId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Post'],

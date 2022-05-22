@@ -4,6 +4,7 @@ import {
   accentDisableCl,
   accentTextCl,
   accentBgCl,
+  circleFont,
 } from '../../../stylesheet/utils/stylesVars';
 import styled from 'styled-components';
 import sprite from '../../../images/svg/sprite.svg';
@@ -57,7 +58,7 @@ SelectCustom.propTypes = {
 };
 
 const PlaceholderWraper = styled.div`
-  font-family: 'Circe';
+  font-family: ${circleFont};
   font-style: normal;
   font-weight: 400;
   font-size: 18px;

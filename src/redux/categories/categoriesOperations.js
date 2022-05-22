@@ -1,5 +1,5 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { BASE_URL } from '../../helpers/constants';
 
 export const getCategories = createAsyncThunk(
@@ -7,7 +7,7 @@ export const getCategories = createAsyncThunk(
   async ({ year, month }, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `${BASE_URL.SERVER}/api/categories?year=${year}&month=${month}`,
+        `${BASE_URL.BACK}/api/categories?year=${year}&month=${month}`,
       );
       return response.data.payload.categories;
     } catch (error) {

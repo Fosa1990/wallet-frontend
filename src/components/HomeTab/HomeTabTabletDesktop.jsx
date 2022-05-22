@@ -1,13 +1,13 @@
+import Moment from 'react-moment';
 import styled from 'styled-components';
 import { size } from '../../stylesheet/utils/stylesVars';
+import Comment from './Comment';
 import {
   circleFont,
   accentBgCl,
   accentNegativeCl,
   accentPositiveCl,
 } from '../../stylesheet/utils/stylesVars';
-import Moment from 'react-moment';
-import Comment from './Comment';
 
 export default function HomeTabTabletDesktop({ finances }) {
   return (
@@ -75,6 +75,7 @@ const Th = styled.th`
   font: ${circleFont};
   font-size: 18px;
   font-weight: 700;
+
   ${size.tablet} {
     padding: 16px 0 15px;
     text-align: center;

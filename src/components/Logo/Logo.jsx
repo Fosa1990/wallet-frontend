@@ -1,11 +1,11 @@
-import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import logo from '../../images/svg/logo.svg';
+import styled from 'styled-components';
 import {
   accentTextCl,
   poppinsFont,
   size,
 } from '../../stylesheet/utils/stylesVars';
+import logo from '../../images/svg/logo.svg';
 
 export default function Logo() {
   return (
