@@ -27,8 +27,9 @@ export default function HomeTab() {
   const finances = useSelector(getFinancesSelectors.getFinances);
   const totalDocuments = useSelector(getFinancesSelectors.getCountDocuments);
   const isNewTransaction = useSelector(getIsNewTransaction);
-  const { isFetching, refetch } = useFetchCurrentUserQuery();
-  // console.log('isFetching', isFetching);
+  const { refetch } = useFetchCurrentUserQuery();
+  const { loading } = useSelector(getFinancesSelectors.getLoading);
+  console.log('loading', loading);
 
   useEffect(() => {
     dispatch(fetchFinances(page.get('page')));
@@ -44,7 +45,7 @@ export default function HomeTab() {
   };
 
   const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
-  // console.log('isFetching', isFetching);
+
   return (
     <>
       <Div>
@@ -58,7 +59,7 @@ export default function HomeTab() {
             )
           }
         </Media>
-        {!isFetching && finances.length === 0 && <NoInfo />}
+        {!loading && finances.length === 0 && <NoInfo />}
         {totalDocuments.totalDocuments > 0 && isLoading && (
           <CustomPagination
             page={Number(page.get('page'))}
