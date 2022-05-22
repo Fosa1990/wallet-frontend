@@ -1,10 +1,6 @@
-import { useEffect } from 'react';
 import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import Media from 'react-media';
-import { useSelector } from 'react-redux';
-import authSelectors from '../../../redux/auth';
 import Header from '../../Header';
 import HomeTab from '../../HomeTab';
 import DiagramTab from '../../DiagramTab';
@@ -18,14 +14,6 @@ import { size } from '../../../stylesheet/utils/stylesVars';
 export default function DashBoardPage() {
   const { pathname } = useLocation();
   const route = `${'/' + ROUTES.DASHBOARD + '/' + ROUTES.HOME}`;
-  const isLoggedin = useSelector(authSelectors.getIsLoggedIn);
-
-  useEffect(() => {
-    if (isLoggedin) {
-      toast.info('Welcome to Amazing wallet');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <>

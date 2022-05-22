@@ -61,7 +61,6 @@ const Section = styled.section`
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  /* padding: 107px 20px 0; */
   ${size.tablet} {
     display: block;
     padding: 60px 20px 0 20px;
