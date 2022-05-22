@@ -9,7 +9,6 @@ import HomeTabMobile from './HomeTabMobile';
 import HomeTabTabletDesktop from './HomeTabTabletDesktop';
 import NoInfo from '../NoInfo';
 import getFinancesSelectors from '../../redux/finances/financesSelectors';
-import ButtonAddTransactions from '../../components/ButtonAddTransactions';
 import ModalAddTransactions from '../../components/ModalAddTransactions';
 import { fetchFinances } from '../../redux/finances/financesOperations';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
@@ -68,7 +67,6 @@ export default function HomeTab() {
           />
         )}
       </Div>
-      <ButtonAddTransactions />
       {showModalAddTransactions && <ModalAddTransactions />}
     </>
   );

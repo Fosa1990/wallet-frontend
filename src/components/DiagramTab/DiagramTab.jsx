@@ -19,7 +19,6 @@ export default function DiagramTab() {
 
   const categories = useSelector(categoriesSelectors.getCategories);
   const dispatch = useDispatch();
-  // console.log('categories', categories);
 
   useEffect(() => {
     dispatch(
@@ -117,38 +116,22 @@ const RoundWrap = styled.div`
     height: 288px; */
   }
 `;
-
 const ChartWrapper = styled.div`
   position: relative;
   margin-bottom: 32px;
+
+  width: 280px;
+
   ${size.tablet} {
     margin-right: 32px;
     width: 336px;
     height: 336px;
   }
-
   ${size.desktop} {
     width: 288px;
     height: 288px;
   }
 `;
-
-// const SelectWrap = styled.div`
-//   ${size.tablet} {
-//     width: 336px;
-//   }
-//   ${size.desktop} {
-//     width: 395px;
-//   }
-// `;
-
-// const ChartWrapper = styled.div`
-//   position: relative;
-
-//   margin-bottom: 32px;
-//   margin-right: 32px;
-// `;
-
 const Balance = styled.span`
   position: absolute;
   top: 50%;
