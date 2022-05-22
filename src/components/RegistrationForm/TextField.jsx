@@ -22,7 +22,7 @@ export const TextField = ({ label, ...props }) => {
           <Input
             data-tip={
               field.name === 'email'
-                ? 'JohnDoe@domain.com'
+                ? 'For example: JohnDoe@domain.com'
                 : 'Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer'
             }
             className={`${meta.touched && meta.error && 'is-invalid'}`}
