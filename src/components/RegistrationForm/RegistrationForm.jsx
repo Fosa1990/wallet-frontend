@@ -21,8 +21,6 @@ import {
   iconDefaultCl,
   iconBgActiveCl,
 } from '../../stylesheet/utils/stylesVars';
-import logo from '../../assets/images/svg/logo.svg';
-import Icons from '../../assets/images/svg/sprite.svg';
 
 const validateName = name => regexName.test(name);
 
