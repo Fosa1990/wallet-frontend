@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ErrorMessage } from 'formik';
 import styled from 'styled-components';
+import { IoIosEyeOff, IoIosEye } from 'react-icons/io';
 
 import {
   accentPositiveCl,
@@ -9,7 +10,6 @@ import {
   textPlcholderCl,
   accentNegativeCl,
 } from '../../stylesheet/utils/stylesVars';
-import { IoIosEyeOff, IoIosEye } from 'react-icons/io';
 
 const PasswordShowHide = ({ field, form, label }) => {
   const [showHidePassword, changeShowHidePassword] = useState(false);
@@ -22,6 +22,11 @@ const PasswordShowHide = ({ field, form, label }) => {
           <Label htmlFor={field.name}>
             {label}
             <Input
+              data-tip={
+                field.name === 'password'
+                  ? 'The length of the password should be from 6 to 16 characters long'
+                  : 'The length of the password should be from 6 to 16 characters long'
+              }
               placeholder={
                 field.name === 'password' ? 'Password' : 'Confirm password'
               }

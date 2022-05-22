@@ -37,15 +37,9 @@ export default function App() {
     : (document.body.style.overflow = 'scroll');
   const token = useSelector(authSelectors.getToken);
   // eslint-disable-next-line no-unused-vars
-  const { isFetching, data } = useFetchCurrentUserQuery(token, {
+  const { isFetching } = useFetchCurrentUserQuery(token, {
     skip: token === null,
   });
-  // console.log('data', data);
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //     // dispatch(fetchCurrentUser());
-  //   };
-  // }, []);
 
   return (
     <>
