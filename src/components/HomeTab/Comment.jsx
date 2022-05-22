@@ -1,24 +1,23 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { iconBgCl } from '../../stylesheet/utils/stylesVars';
 
 export default function Comment({ transactionComment }) {
-  const [text, setText] = useState(transactionComment.substr(0, 20));
-  const readMore = e => {
-    setText(transactionComment);
-    e.target.disabled = true;
-    e.target.classList.add('visually-hidden');
+  const [showMore, setShowMore] = useState(true);
+  const ellipseText = text => {
+    return text.length > 20 ? text.slice(0, 20) : text;
+  };
+  const toggleShowMore = () => {
+    setShowMore(state => !state);
   };
 
   return (
     <div>
-      {transactionComment.length < 20 && <p>{text}</p>}
+      {showMore ? ellipseText(transactionComment) : transactionComment}
       {transactionComment.length > 20 && (
-        <>
-          <p>
-            {text}
-            <Button onClick={readMore}>...</Button>
-          </p>
-        </>
+        <Button onClick={toggleShowMore}>
+          {showMore ? '...' : <span>&nbsp;&#8682;</span>}
+        </Button>
       )}
     </div>
   );
@@ -27,6 +26,12 @@ export default function Comment({ transactionComment }) {
 const Button = styled.button`
   display: inline;
   border: none;
+  font-weight: bold;
+  color: ${iconBgCl};
   background-color: transparent;
   cursor: pointer;
+
+  :hover {
+    text-decoration: underline;
+  }
 `;

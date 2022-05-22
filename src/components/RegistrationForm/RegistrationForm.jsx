@@ -2,18 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Field, Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import styled from 'styled-components';
 import { TextField } from './TextField';
 import { useRegisterUserMutation } from '../../redux/auth/authReduce';
-import { regexName, regexEmail } from '../../helpers/regex';
-import { ROUTES } from '../../helpers/constants';
+import { regexName, regexEmail } from '../../utils/regex';
 import PasswordStrenght from './PasswordStrength';
 import Button from '../Button/Button';
-import logo from '../../images/svg/logo.svg';
-// import { ReactComponent as GoogleIcon } from '../../images/svg/icons-google.svg';
-
 import PasswordShowHide from './PasswordShowHide';
-import Icons from '../../images/svg/sprite.svg';
-import styled from 'styled-components';
+import logo from '../../assets/images/svg/logo.svg';
+import Icons from '../../assets/images/svg/sprite.svg';
+import { ROUTES } from '../../utils/constants';
 import {
   accentPositiveCl,
   accentBgCl,
@@ -57,14 +55,12 @@ export default function RegistrationForm() {
         }}
         validationSchema={validate}
         onSubmit={(values, onSubmitProps) => {
-          // console.log(values);
           register(values);
           onSubmitProps.resetForm();
         }}
       >
         {formik => (
           <FromStyle>
-            {/* {console.log('formik.values', formik.values)} */}
             <LogoWrapper>
               <LogoIcon src={logo} />
               <Title>Wallet</Title>
@@ -127,17 +123,6 @@ export default function RegistrationForm() {
                 <Link to={ROUTES.LOGIN} className="ButtonLogin">
                   Login
                 </Link>
-                {/* <a
-                  className="IconGoogle"
-                  href="http://localhost:8081/api/auth/google"
-                > */}
-                {/* <a
-                  className="IconGoogle"
-                  href="https://amazing-wallet.herokuapp.com/api/auth/google"
-                > */}
-                {/* <GoogleIcon width={32} height={28} />
-                  Sign up
-                </a> */}
               </ButtonWrapper>
             </Form>
           </FromStyle>

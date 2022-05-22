@@ -1,5 +1,5 @@
-import styled /*, { css } */ from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 import Media from 'react-media';
 import SVG from 'react-inlinesvg';
 import {
@@ -8,9 +8,9 @@ import {
   iconBgValueCl,
   size,
 } from '../../stylesheet/utils/stylesVars';
-import home from '../../images/svg/home.svg';
-import diagram from '../../images/svg/diagram.svg';
-import currency from '../../images/svg/currency.svg';
+import home from '../../assets/images/svg/home.svg';
+import diagram from '../../assets/images/svg/diagram.svg';
+import currency from '../../assets/images/svg/currency.svg';
 
 export default function Navigation() {
   return (
@@ -26,7 +26,7 @@ export default function Navigation() {
         <NavIcon src={diagram} />
         <Media
           query="(min-width: 768px)"
-          render={() => <NavText>DashBoard</NavText>}
+          render={() => <NavText>Statistics</NavText>}
         />
       </Link>
       <Media
@@ -51,6 +51,9 @@ const NavWrap = styled.div`
     justify-content: ${props => props.justify || 'start'};
     margin-top: 40px;
     margin-bottom: 28px;
+  }
+  ${size.desktop} {
+    margin-top: 0px;
   }
 `;
 
@@ -81,6 +84,7 @@ const Link = styled(NavLink)`
   font-weight: 400;
   line-height: 1.5;
   cursor: pointer;
+  transition: font-weight 300ms;
 
   ${size.tablet} {
     justify-content: ${props => props.justify || 'flex-start'};
@@ -90,14 +94,16 @@ const Link = styled(NavLink)`
       margin-bottom: 12px;
     }
   }
-  &.active ${NavIcon} {
-    font-weight: 700;
+  &.active,
+  &:hover ${NavIcon} {
     path {
       fill: ${iconBgValueCl};
     }
   }
-  &:hover,
   &.active ${NavText} {
+    font-weight: 700;
+  }
+  &:hover ${NavText} {
     font-weight: 700;
   }
 `;

@@ -1,12 +1,13 @@
-import { colors, optionModalTransuction } from '../../../helpers/constants';
+import { colors, optionModalTransuction } from '../../../utils/constants';
 import {
   accentNegativeCl,
   accentDisableCl,
   accentTextCl,
   accentBgCl,
+  circleFont,
 } from '../../../stylesheet/utils/stylesVars';
 import styled from 'styled-components';
-import sprite from '../../../images/svg/sprite.svg';
+import sprite from '../../../assets/images/svg/sprite.svg';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -57,7 +58,7 @@ SelectCustom.propTypes = {
 };
 
 const PlaceholderWraper = styled.div`
-  font-family: 'Circe';
+  font-family: ${circleFont};
   font-style: normal;
   font-weight: 400;
   font-size: 18px;

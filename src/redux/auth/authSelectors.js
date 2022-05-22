@@ -1,18 +1,14 @@
-export const getIsLoggedIn = state => state.auth.isLoggedIn;
-
-export const getIsInBase = state => state.auth.isInBase;
-
-export const getUserName = state => state.auth.user.name;
-
+const getIsLoggedIn = state => state.auth.isLoggedIn;
+const getIsInBase = state => state.auth.isInBase;
+const getUserName = state => state.auth.user.name;
 const getIsFetchingCurrent = state => state.auth.isFetchingCurrentUser;
-
-export const getBalance = state => state.auth.user.balance;
-
-export const getAvatarURL = state => state.auth.user.avatarURL;
-export const getToken = state => state.auth.token;
+const getBalance = state => state.auth.user.balance;
+const getAvatarURL = state => state.auth.user.avatarURL;
+const getToken = state => state.auth.token;
 
 const authSelectors = {
   getIsLoggedIn,
+  getIsInBase,
   getUserName,
   getToken,
   getAvatarURL,

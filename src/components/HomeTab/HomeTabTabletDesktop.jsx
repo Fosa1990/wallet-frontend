@@ -1,13 +1,13 @@
+import Moment from 'react-moment';
 import styled from 'styled-components';
 import { size } from '../../stylesheet/utils/stylesVars';
+import Comment from './Comment';
 import {
   circleFont,
   accentBgCl,
   accentNegativeCl,
   accentPositiveCl,
 } from '../../stylesheet/utils/stylesVars';
-import Moment from 'react-moment';
-import Comment from './Comment';
 
 export default function HomeTabTabletDesktop({ finances }) {
   return (
@@ -37,11 +37,11 @@ export default function HomeTabTabletDesktop({ finances }) {
                 <Td>{transaction.category}</Td>
                 <Td>{<Comment transactionComment={transaction.comment} />}</Td>
                 {transaction.transactionType === 'income' ? (
-                  <Income>{transaction.sum}</Income>
+                  <Income>{transaction.sum.toFixed(2).toLocaleString({useGroupping: true})}</Income>
                 ) : (
-                  <Spend>{transaction.sum}</Spend>
+                  <Spend>{transaction.sum.toFixed(2)}</Spend>
                 )}
-                <Td>{transaction.balance}</Td>
+                <Td>{transaction.balance.toFixed(2)}</Td>
               </Tr>
             ))
           : null}
@@ -75,6 +75,7 @@ const Th = styled.th`
   font: ${circleFont};
   font-size: 18px;
   font-weight: 700;
+
   ${size.tablet} {
     padding: 16px 0 15px;
     text-align: center;

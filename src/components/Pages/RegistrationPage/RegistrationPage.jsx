@@ -1,9 +1,9 @@
 import ContainerAuth from '../../ContainerAuth';
 import RegistrationForm from '../../RegistrationForm';
-import imgRegisterTab from '../../../images/frame-register-tablet.png';
-import imgRegisterTabBest from '../../../images/frame-register-tablet@2x.png';
-import imgRegister from '../../../images/frame-register.png';
-import imgRegisterBest from '../../../images/frame-register@2x.png';
+import imgRegisterTab from '../../../assets/images/frame-register-tablet.png';
+import imgRegisterTabBest from '../../../assets/images/frame-register-tablet@2x.png';
+import imgRegister from '../../../assets/images/frame-register.png';
+import imgRegisterBest from '../../../assets/images/frame-register@2x.png';
 
 export default function RegistrationPage() {
   return (
