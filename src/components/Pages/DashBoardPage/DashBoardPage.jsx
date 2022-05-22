@@ -4,24 +4,22 @@ import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import Media from 'react-media';
 import { useSelector } from 'react-redux';
+import authSelectors from '../../../redux/auth';
 import Header from '../../Header';
 import HomeTab from '../../HomeTab';
 import DiagramTab from '../../DiagramTab';
 import Currency from '../../Currency';
 import Navigation from '../../Navigation';
 import Balance from '../../Balance';
-// import Container from '../../Container';
-import authSelectors from '../../../redux/auth';
-// import { selectIsModalAddTransactionOpen } from '../../../redux/globalSelectors';
+import ButtonAddTransactions from '../../ButtonAddTransactions';
 import { ROUTES } from '../../../utils/constants';
 import { size } from '../../../stylesheet/utils/stylesVars';
-import ButtonAddTransactions from '../../ButtonAddTransactions';
 
 export default function DashBoardPage() {
   const { pathname } = useLocation();
   const route = `${'/' + ROUTES.DASHBOARD + '/' + ROUTES.HOME}`;
   const isLoggedin = useSelector(authSelectors.getIsLoggedIn);
-  // const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
+
   useEffect(() => {
     if (isLoggedin) {
       toast.info('Welcome to Amazing wallet');
@@ -52,7 +50,7 @@ export default function DashBoardPage() {
                 <>
                   <Media
                     query="(min-width: 768px)"
-                    render={() => <Navigate to="/dashboard/home" />}
+                    render={() => <Navigate to="/statistics/home" />}
                   />
                   <Media
                     query="(max-width: 767px)"
