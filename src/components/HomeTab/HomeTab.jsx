@@ -16,7 +16,6 @@ import CustomPagination from '../CustomPagination';
 import Balance from '../Balance';
 import HomeTabMobile from './HomeTabMobile';
 import HomeTabTabletDesktop from './HomeTabTabletDesktop';
-import NoInfo from '../NoInfo';
 
 export default function HomeTab() {
   const dispatch = useDispatch();
@@ -25,8 +24,8 @@ export default function HomeTab() {
   const finances = useSelector(getFinancesSelectors.getFinances);
   const totalDocuments = useSelector(getFinancesSelectors.getCountDocuments);
   const isNewTransaction = useSelector(getIsNewTransaction);
+  // eslint-disable-next-line no-unused-vars
   const { isFetching, refetch } = useFetchCurrentUserQuery();
-
 
   useEffect(() => {
     dispatch(fetchFinances(page.get('page')));
@@ -56,8 +55,6 @@ export default function HomeTab() {
             )
           }
         </Media>
-        {loading && <Loader />}
-        {!loading && finances.length === 0 && <NoInfo />}
         {totalDocuments.totalDocuments > 0 && isLoading && (
           <CustomPagination
             page={Number(page.get('page'))}
