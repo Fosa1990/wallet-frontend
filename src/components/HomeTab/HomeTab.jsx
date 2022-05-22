@@ -17,7 +17,6 @@ import Balance from '../Balance';
 import HomeTabMobile from './HomeTabMobile';
 import HomeTabTabletDesktop from './HomeTabTabletDesktop';
 import NoInfo from '../NoInfo';
-import Loader from '../Loader';
 
 export default function HomeTab() {
   const dispatch = useDispatch();
@@ -26,8 +25,8 @@ export default function HomeTab() {
   const finances = useSelector(getFinancesSelectors.getFinances);
   const totalDocuments = useSelector(getFinancesSelectors.getCountDocuments);
   const isNewTransaction = useSelector(getIsNewTransaction);
-  const { refetch } = useFetchCurrentUserQuery();
-  const loading = useSelector(getFinancesSelectors.getLoading);
+  const { isFetching, refetch } = useFetchCurrentUserQuery();
+
 
   useEffect(() => {
     dispatch(fetchFinances(page.get('page')));
@@ -78,5 +77,3 @@ const Div = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-
-// &#8372;&nbsp; спецсимвол гривна+пробел
