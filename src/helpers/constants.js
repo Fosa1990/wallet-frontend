@@ -36,7 +36,7 @@ const colors = [
 
 const optionModalTransuction = {
   add: 'Income',
-  spend: 'Basic spend',
+  spend: 'Expense',
   defaultSpend: 'other spend',
   trTypeAdd: 'income',
   trTypeRemove: 'spend',
