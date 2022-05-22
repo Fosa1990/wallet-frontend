@@ -11,7 +11,10 @@ import HomeTabMobile from './HomeTabMobile';
 import HomeTabTabletDesktop from './HomeTabTabletDesktop';
 import Loader from '../Loader';
 import NoInfo from '../NoInfo';
+import ButtonAddTransactions from '../../components/ButtonAddTransactions';
+import ModalAddTransactions from '../../components/ModalAddTransactions';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
+import { selectIsModalAddTransactionOpen } from '../../redux/globalSelectors';
 
 import { circleFont, size } from '../../stylesheet/utils/stylesVars';
 import { getIsNewTransaction } from '../../redux/globalSelectors';
@@ -25,6 +28,7 @@ export default function HomeTab() {
   const dispatch = useDispatch();
   const { isFetching, refetch } = useFetchCurrentUserQuery();
   const isNewTransaction = useSelector(getIsNewTransaction);
+  // console.log('isFetching', isFetching);
 
   useEffect(() => {
     dispatch(fetchFinances(page.get('page')));
@@ -39,9 +43,10 @@ export default function HomeTab() {
     setPage({ page: pageNumber });
   };
 
+  const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
+  // console.log('isFetching', isFetching);
   return (
     <>
-      {isFetching && <Loader />}
       <Div>
         <Media query="(max-width: 767px)" render={() => <Balance />} />
         <Media query="(max-width: 767px)">
@@ -53,7 +58,7 @@ export default function HomeTab() {
             )
           }
         </Media>
-        {finances.length === 0 && !isFetching && <NoInfo />}
+        {!isFetching && finances.length === 0 && <NoInfo />}
         {totalDocuments.totalDocuments > 0 && isLoading && (
           <CustomPagination
             page={Number(page.get('page'))}
@@ -63,6 +68,8 @@ export default function HomeTab() {
           />
         )}
       </Div>
+      <ButtonAddTransactions />
+      {showModalAddTransactions && <ModalAddTransactions />}
     </>
   );
 }
@@ -70,6 +77,7 @@ export default function HomeTab() {
 const Div = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 // &#8372;&nbsp; спецсимвол гривна+пробел

@@ -110,25 +110,27 @@ const DiagramTabHeader = styled.h2`
   margin-bottom: 8px;
 `;
 const RoundWrap = styled.div`
+  / ${size.desktop} {
+    /* margin-bottom: 32px; */
+    /* margin-right: 32px; */
+    /* width: 288px;
+    height: 288px; */
+  }
+`;
+
+const ChartWrapper = styled.div`
+  position: relative;
+  margin-bottom: 32px;
+  ${size.tablet} {
+    margin-right: 32px;
+    width: 336px;
+    height: 336px;
+  }
+
   ${size.desktop} {
     width: 288px;
     height: 288px;
   }
-`;
-
-// const SelectWrap = styled.div`
-//   ${size.tablet} {
-//     width: 336px;
-//   }
-//   ${size.desktop} {
-//     width: 395px;
-//   }
-// `;
-const ChartWrapper = styled.div`
-  position: relative;
-
-  margin-bottom: 32px;
-  margin-right: 32px;
 `;
 const Balance = styled.span`
   position: absolute;

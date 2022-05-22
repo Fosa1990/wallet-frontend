@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { Routes, Route /* , Navigate */ } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
-// import { useEffect } from 'react';
+import { useEffect, useDispatch } from 'react';
 import '../../../node_modules/modern-normalize/modern-normalize.css';
 import ModalLogout from '../ModalLogout';
 import {
@@ -18,6 +18,7 @@ import NotifyContainer from '../NotifyContainer';
 import { ROUTES } from '../../helpers/constants';
 import { VerifyPage } from '../Pages/';
 import { ErrorPage } from '../Pages/';
+import { tokenService } from '../../services/tokenService';
 
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
@@ -35,14 +36,16 @@ export default function App() {
   const { isFetching, data } = useFetchCurrentUserQuery(token, {
     skip: token === null,
   });
-  // console.log('__isFetching__: ', isFetching);useEffect(() => {
-  //   dispatch(operations.fetchCurrentUser());
-  // }, [dispatch]);
-  // console.log('__isFetching__: ', isFetching);
-  //--------------
-  // const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
-  //-------------
-  /// компоненти  по  факту реалізації  потім розставимо  по місцям і  пропишем тут роути
+  // console.log('data', data);
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+
+  //     // dispatch(fetchCurrentUser());
+  //   };
+
+  // }, []);
+
   return (
     <>
       {isFetching ? (
