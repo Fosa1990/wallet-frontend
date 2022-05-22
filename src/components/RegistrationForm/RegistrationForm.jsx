@@ -6,11 +6,9 @@ import styled from 'styled-components';
 import { TextField } from './TextField';
 import { useRegisterUserMutation } from '../../redux/auth/authReduce';
 import { regexName, regexEmail } from '../../utils/regex';
-import PasswordStrenght from './PasswordStrength';
+import PasswordStrength from './PasswordStrength';
 import PasswordShowHide from './PasswordShowHide';
 import Button from '../Button/Button';
-import logo from '../../assets/images/svg/logo.svg';
-import Icons from '../../assets/images/svg/sprite.svg';
 import { ROUTES } from '../../utils/constants';
 import {
   accentPositiveCl,
@@ -101,7 +99,7 @@ export default function RegistrationForm() {
                 }
               ></Field>
 
-              <PasswordStrenght password={formik.values.password} />
+              <PasswordStrength password={formik.values.password} />
 
               <TextField
                 label={
@@ -119,10 +117,15 @@ export default function RegistrationForm() {
                   primary
                   color={accentBgCl}
                   background={accentPositiveCl}
+                  data-tip="Click to sign up"
                 >
                   Sign up
                 </Button>
-                <Link to={ROUTES.LOGIN} className="ButtonLogin">
+                <Link
+                  data-tip="Click to login"
+                  to={ROUTES.LOGIN}
+                  className="ButtonLogin"
+                >
                   Login
                 </Link>
               </ButtonWrapper>
@@ -145,7 +148,6 @@ const LogoIcon = styled.img`
   width: 30px;
   height: 30px;
   margin-right: 15px;
-
   ${size.tablet} {
     width: 40px;
     height: 40px;
@@ -158,7 +160,6 @@ const Title = styled.h1`
   font-size: 25px;
   font-weight: 700;
   color: ${accentTextCl};
-
   ${size.tablet} {
     font-size: 30px;
     line-height: 1.5;
@@ -167,26 +168,22 @@ const Title = styled.h1`
 
 const FromStyle = styled.div`
   font-family: ${poppinsFont};
-
   .labelIcon {
     position: absolute;
     left: 10px;
     fill: ${iconDefaultCl};
     cursor: pointer;
-
     &:focus,
     &:hover {
       fill: ${accentPositiveCl};
       outline: ${accentPositiveCl};
     }
   }
-
   ${size.mobile} {
     width: 320px;
     padding: 32px 20px 36px;
     margin: 0 auto;
   }
-
   ${size.tablet} {
     width: 533px;
     height: 100%;
@@ -195,12 +192,10 @@ const FromStyle = styled.div`
     background: #fff;
     border-radius: 20px;
   }
-
   ${size.desktop} {
     width: 533px;
     height: 616px;
   }
-
   .Icon {
     margin-right: 20px;
   }
@@ -210,7 +205,6 @@ const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   .ButtonLogin {
     display: flex;
     align-items: center;
@@ -225,7 +219,6 @@ const ButtonWrapper = styled.div`
     border: 1px solid ${iconBgActiveCl};
     border-radius: 20px;
     cursor: pointer;
-
     ${size.tablet},${size.desktop} {
       width: 300px;
     }
