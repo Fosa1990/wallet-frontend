@@ -7,7 +7,7 @@ import { store, persistor } from './redux/store';
 import { App } from './components';
 import '../node_modules/modern-normalize/modern-normalize.css';
 
-import Global from './globalStyles';
+import Global from './styles/globalStyles';
 
 ReactDOM.render(
   <React.StrictMode>
