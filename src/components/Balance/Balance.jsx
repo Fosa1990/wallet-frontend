@@ -1,11 +1,11 @@
+import BalanceSum from './BalanceSum';
 import styled from 'styled-components';
-import { size } from '../../stylesheet/utils/stylesVars';
 import {
+  size,
   circleFont,
   accentBgCl,
   balanceCl,
 } from '../../stylesheet/utils/stylesVars';
-import BalanceSum from './BalanceSum';
 
 export default function Balance() {
   return (

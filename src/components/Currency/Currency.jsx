@@ -6,6 +6,8 @@ import { useLocaleStorage } from '../../hooks/useLocaleStorage';
 import { getCurrencyRates } from '../../services/currencyService';
 import { roundToTwoAfterZero } from '../../utils/roundToTwoAfterZero';
 import { TIME_MS, NAMES } from '../../utils/constants';
+
+
 import {
   iconBgValueCl,
   iconBgCl,

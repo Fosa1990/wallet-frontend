@@ -1,8 +1,8 @@
 import Moment from 'react-moment';
 import styled from 'styled-components';
-import { size } from '../../stylesheet/utils/stylesVars';
 import Comment from './Comment';
 import {
+  size,
   circleFont,
   accentBgCl,
   accentNegativeCl,

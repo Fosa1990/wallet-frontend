@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
 import { fetchBalance } from '../../redux/finances/financesOperations';
 import authSelectors from '../../redux/auth/authSelectors';
 import { poppinsFont, accentTextCl } from '../../stylesheet/utils/stylesVars';
@@ -20,7 +20,7 @@ export default function BalanceSum() {
         ? Intl.NumberFormat('ru-Ru', {
             minimumFractionDigits: 2,
           }).format(balance)
-        : 0.00}
+        : 0.0}
     </Sum>
   );
 }

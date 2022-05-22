@@ -6,7 +6,6 @@ import {
   accentBgCl,
   accentNegativeCl,
   accentPositiveCl,
-  // size,
 } from '../../stylesheet/utils/stylesVars';
 
 export default function HomeTabMobile({ finances }) {
