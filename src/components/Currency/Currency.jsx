@@ -4,8 +4,8 @@ import moment from 'moment';
 import Loader from '../Loader';
 import { useLocaleStorage } from '../../hooks/useLocaleStorage';
 import { getCurrencyRates } from '../../services/currencyService';
-import { roundToTwoAfterZero } from '../../helpers/roundToTwoAfterZero';
-import { TIME_MS, NAMES } from '../../helpers/constants';
+import { roundToTwoAfterZero } from '../../utils/roundToTwoAfterZero';
+import { TIME_MS, NAMES } from '../../utils/constants';
 import {
   iconBgValueCl,
   iconBgCl,
@@ -14,7 +14,7 @@ import {
   circleFont,
   size,
 } from '../../stylesheet/utils/stylesVars';
-import wave from '../../images/wave.png';
+import wave from '../../assets/images/wave.png';
 
 export default function Currency() {
   const [exchangeRates, setExchangeRates] = useState([]);

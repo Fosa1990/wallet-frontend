@@ -2,15 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import styled from 'styled-components';
 import { TextField } from './TextField';
 import { useRegisterUserMutation } from '../../redux/auth/authReduce';
-import { regexName, regexEmail } from '../../helpers/regex';
-import { ROUTES } from '../../helpers/constants';
+import { regexName, regexEmail } from '../../utils/regex';
 import PasswordStrenght from './PasswordStrength';
 import Button from '../Button/Button';
-import logo from '../../images/svg/logo.svg';
-import Icons from '../../images/svg/sprite.svg';
-import styled from 'styled-components';
+import logo from '../../assets/images/svg/logo.svg';
+import Icons from '../../assets/images/svg/sprite.svg';
+import { ROUTES } from '../../utils/constants';
 import {
   accentPositiveCl,
   accentBgCl,

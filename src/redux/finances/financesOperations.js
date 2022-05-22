@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { BASE_URL, ROUTES } from '../../helpers/constants';
+import { BASE_URL, ROUTES } from '../../utils/constants';
 
 const { API, TRANSACTIONS } = ROUTES;
 

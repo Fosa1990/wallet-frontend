@@ -8,12 +8,12 @@ import {
   closeModalWindow,
   addTransactionSuccess,
 } from '../../redux/globalSlice';
-import { optionModalTransuction } from '../../helpers/constants';
+import { optionModalTransuction } from '../../utils/constants';
 import Button from '../Button/Button';
 import SelectCustom from './Select/SelectCustom';
 import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
 import Modal from '../Modal/Modal';
-import sprite from '../../images/svg/sprite.svg';
+import sprite from '../../assets/images/svg/sprite.svg';
 import {
   accentDisableCl,
   accentNegativeCl,

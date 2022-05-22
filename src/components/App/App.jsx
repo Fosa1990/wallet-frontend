@@ -9,7 +9,7 @@ import Loader from '../Loader';
 import { VerifyPage, ErrorPage } from '../Pages';
 import { PrivateRoute, PublicRouteLogin, PublicRouteRegin } from '../Router';
 import NotifyContainer from '../NotifyContainer';
-import { ROUTES } from '../../helpers/constants';
+import { ROUTES } from '../../utils/constants';
 // import { tokenService } from '../../services/tokenService';
 import '../../../node_modules/modern-normalize/modern-normalize.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -23,6 +23,8 @@ const Dashboard = lazy(() =>
 const Registration = lazy(() =>
   import('../../pages/RegistrationPage' /* webpackChunkName: "Registration" */),
 );
+
+const { REGISTRATION, LOGIN, HOME, DASHBOARD, VERIFY } = ROUTES;
 
 export default function App() {
   const showModalLogout = useSelector(selectIsModalLogoutOpen);
@@ -48,10 +50,10 @@ export default function App() {
           <Suspense fallback={<Loader />}>
             <Routes>
               <Route
-                path={ROUTES.REGISTRATION}
+                path={REGISTRATION}
                 element={
                   <PublicRouteRegin
-                    redirectTo={`/${ROUTES.DASHBOARD}/${ROUTES.HOME}`}
+                    redirectTo={`/${DASHBOARD}/${HOME}`}
                     restricted
                   >
                     <Registration />
@@ -60,10 +62,10 @@ export default function App() {
               />
 
               <Route
-                path={ROUTES.LOGIN}
+                path={LOGIN}
                 element={
                   <PublicRouteLogin
-                    redirectTo={`/${ROUTES.DASHBOARD}/${ROUTES.HOME}`}
+                    redirectTo={`/${DASHBOARD}/${HOME}`}
                     restricted
                   >
                     <Login />
@@ -72,15 +74,15 @@ export default function App() {
               />
 
               <Route
-                path={`/${ROUTES.DASHBOARD}/*`}
+                path={`/${DASHBOARD}/*`}
                 element={
-                  <PrivateRoute redirectTo={ROUTES.LOGIN}>
+                  <PrivateRoute redirectTo={LOGIN}>
                     <Dashboard />
                   </PrivateRoute>
                 }
               />
 
-              <Route path={ROUTES.VERIFY} element={<VerifyPage />} />
+              <Route path={VERIFY} element={<VerifyPage />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </Suspense>

@@ -1,6 +1,6 @@
 import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-import { colors } from '../../helpers/constants';
+import { colors } from '../../utils/constants';
 
 ChartJS.register(ArcElement, Tooltip);
 

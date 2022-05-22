@@ -8,9 +8,9 @@ import {
   iconBgValueCl,
   size,
 } from '../../stylesheet/utils/stylesVars';
-import home from '../../images/svg/home.svg';
-import diagram from '../../images/svg/diagram.svg';
-import currency from '../../images/svg/currency.svg';
+import home from '../../assets/images/svg/home.svg';
+import diagram from '../../assets/images/svg/diagram.svg';
+import currency from '../../assets/images/svg/currency.svg';
 
 export default function Navigation() {
   return (

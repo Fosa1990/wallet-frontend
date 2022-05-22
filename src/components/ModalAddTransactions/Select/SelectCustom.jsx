@@ -1,4 +1,4 @@
-import { colors, optionModalTransuction } from '../../../helpers/constants';
+import { colors, optionModalTransuction } from '../../../utils/constants';
 import {
   accentNegativeCl,
   accentDisableCl,
@@ -7,7 +7,7 @@ import {
   circleFont,
 } from '../../../stylesheet/utils/stylesVars';
 import styled from 'styled-components';
-import sprite from '../../../images/svg/sprite.svg';
+import sprite from '../../../assets/images/svg/sprite.svg';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 

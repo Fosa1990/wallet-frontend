@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { axiosBaseQuery } from '../../api/api';
-import { BASE_URL, ROUTES } from '../../helpers/constants';
+import { axiosBaseQuery } from '../../services/api';
+import { BASE_URL, ROUTES } from '../../utils/constants';
 
 const { API, TRANSACTIONS } = ROUTES;
 
