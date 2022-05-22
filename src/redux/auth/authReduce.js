@@ -31,7 +31,7 @@ export const authApi = createApi({
         });
         res.data.code === 201 &&
           toast.warn(
-            `You need to confirm your ${res.data.payload.user.email} email to access the Amazing Wallet`,
+            `You need to confirm your ${res?.data?.payload?.user?.email} email to access the Amazing Wallet`,
             {
               className: 'Toastify__error',
               position: 'top-right',
