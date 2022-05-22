@@ -84,10 +84,11 @@ const Overlay = styled.div`
   bottom: 0;
   left: 0;
   width: 100vw;
+  background-color: ${accentBgCl};
   height: ${p => p.height || 'calc(100vh - 60px)'};
-  background-color: ${modalBgCl};
   ${size.tablet} {
     height: 100vh;
+    background-color: ${modalBgCl};
   }
 `;
 
@@ -100,6 +101,7 @@ const Content = styled.div`
   transform: translate(-50%, -50%);
   padding: ${p => p.padding || '20px 10px 0px'};
   background-color: ${accentBgCl};
+  overflow-y: auto;
   ${size.tablet} {
     width: 540px;
     height: auto;
