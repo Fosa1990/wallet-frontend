@@ -2,12 +2,8 @@ import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import Media from 'react-media';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Icon from '../Icon';
-import {
-  selectIsModalLogoutOpen,
-  selectIsModalAddTransactionOpen,
-} from '../../redux/globalSelectors';
 import { closeModalWindow } from '../../redux/globalSlice';
 import { modalBgCl, accentBgCl, size } from '../../stylesheet/utils/stylesVars';
 import styled from 'styled-components';
@@ -23,12 +19,6 @@ export default function Modal({
   paddingTab,
 }) {
   const dispatch = useDispatch();
-  const isTransactionModalOpen = useSelector(selectIsModalAddTransactionOpen);
-  const isExitModalOpen = useSelector(selectIsModalLogoutOpen);
-
-  isTransactionModalOpen || isExitModalOpen
-    ? (document.body.style.overflow = 'hidden')
-    : (document.body.style.overflow = 'scroll');
 
   const onModalClose = e => {
     dispatch(closeModalWindow());
