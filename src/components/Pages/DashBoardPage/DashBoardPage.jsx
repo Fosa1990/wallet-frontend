@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import Media from 'react-media';
@@ -15,8 +15,11 @@ import authSelectors from '../../../redux/auth';
 // import { selectIsModalAddTransactionOpen } from '../../../redux/globalSelectors';
 import { ROUTES } from '../../../utils/constants';
 import { size } from '../../../stylesheet/utils/stylesVars';
+import ButtonAddTransactions from '../../ButtonAddTransactions';
 
 export default function DashBoardPage() {
+  const { pathname } = useLocation();
+  const route = `${'/' + ROUTES.DASHBOARD + '/' + ROUTES.HOME}`;
   const isLoggedin = useSelector(authSelectors.getIsLoggedIn);
   // const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
   useEffect(() => {
@@ -61,6 +64,7 @@ export default function DashBoardPage() {
           </Routes>
         </TabWrap>
       </MainWrap>
+      {pathname === route && <ButtonAddTransactions />}
     </>
   );
 }
