@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { tokenService } from '../../services/tokenService';
-import { BASE_URL, ROUTES } from '../../helpers/constants';
+import { BASE_URL, ROUTES } from '../../utils/constants';
 
 const { API, AUTH, SIGNUP, SIGNIN, SIGNOUT, USERS, CURRENT } = ROUTES;
 

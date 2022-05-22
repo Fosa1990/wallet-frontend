@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { size } from '../../stylesheet/utils/stylesVars';
-import { months } from '../../helpers/constants';
+import { months } from '../../utils/constants';
 
 export default function Select({ year, month, onYear, onMonth }) {
   let years = [];

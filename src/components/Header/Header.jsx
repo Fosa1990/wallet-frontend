@@ -6,14 +6,14 @@ import LogoutButton from '../LogoutButton';
 import Avatar from '../Avatar';
 import Logo from '../Logo';
 import { openModalLogout } from '../../redux/globalSlice';
-import { ROUTES } from '../../helpers/constants';
+import { ROUTES } from '../../utils/constants';
 import {
   textPlcholderCl,
   accentBgCl,
   circleFont,
   size,
 } from '../../stylesheet/utils/stylesVars';
-import exit from '../../images/svg/exit.svg';
+import exit from '../../assets/images/svg/exit.svg';
 
 export default function Header({ children, onClick, ...props }) {
   const userName = useSelector(authSelectors.getUserName);

@@ -13,7 +13,7 @@ import Balance from '../../Balance';
 // import Container from '../../Container';
 import authSelectors from '../../../redux/auth';
 // import { selectIsModalAddTransactionOpen } from '../../../redux/globalSelectors';
-import { ROUTES } from '../../../helpers/constants';
+import { ROUTES } from '../../../utils/constants';
 import { size } from '../../../stylesheet/utils/stylesVars';
 
 export default function DashBoardPage() {

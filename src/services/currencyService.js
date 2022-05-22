@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL, ROUTES } from '../helpers/constants';
+import { BASE_URL, ROUTES } from '../utils/constants';
 const { API, CURRENCY } = ROUTES;
 
 export const getCurrencyRates = async () => {

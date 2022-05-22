@@ -3,8 +3,8 @@ import circeRegular from './assets/fonts/Circe-Regular.otf';
 import circeBold from './assets/fonts/Circe-Bold.otf';
 import segoe from './assets/fonts/segoeui.ttf';
 import segoeBold from './assets/fonts/segoeuib.ttf';
-import ellipseUp from './images/ellipse-up.png';
-import ellipseDown from './images/ellipse-down.png';
+import ellipseUp from './assets/images/ellipse-up.png';
+import ellipseDown from './assets/images/ellipse-down.png';
 
 export default createGlobalStyle`
 

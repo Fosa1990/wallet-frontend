@@ -5,7 +5,7 @@ import {
   poppinsFont,
   size,
 } from '../../stylesheet/utils/stylesVars';
-import logo from '../../images/svg/logo.svg';
+import logo from '../../assets/images/svg/logo.svg';
 
 export default function Logo() {
   return (
