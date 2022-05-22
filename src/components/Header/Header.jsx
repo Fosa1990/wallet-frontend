@@ -21,7 +21,6 @@ export default function Header({ children, onClick, ...props }) {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    console.log('click  for logout');
     dispatch(openModalLogout());
   };
 

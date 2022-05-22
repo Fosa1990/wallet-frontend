@@ -6,7 +6,7 @@ const getValue = (key, initValue) => {
     try {
       return JSON.parse(value);
     } catch (err) {
-      console.log(err);
+      console.log('Error parsing localStorage value', err);
     }
   }
   return initValue;

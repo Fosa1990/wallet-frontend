@@ -13,7 +13,6 @@ import { VerifyPage, ErrorPage } from '../Pages';
 import { PrivateRoute, PublicRouteLogin, PublicRouteRegin } from '../Router';
 import NotifyContainer from '../NotifyContainer';
 import { ROUTES } from '../../utils/constants';
-// import { tokenService } from '../../services/tokenService';
 import '../../../node_modules/modern-normalize/modern-normalize.css';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -36,7 +35,6 @@ export default function App() {
     ? (document.body.style.overflow = 'hidden')
     : (document.body.style.overflow = 'auto');
   const token = useSelector(authSelectors.getToken);
-  // eslint-disable-next-line no-unused-vars
   const { isFetching } = useFetchCurrentUserQuery(token, {
     skip: token === null,
   });
