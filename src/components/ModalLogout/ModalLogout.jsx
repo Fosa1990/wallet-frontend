@@ -2,6 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import Modal from '../Modal';
 import Button from '../Button';
+import authSelectors from '../../redux/auth/authSelectors';
+import { closeModalWindow } from '../../redux/globalSlice';
+import { useLogoutUserMutation } from '../../redux/auth/authReduce';
 import {
   size,
   accentBgCl,
@@ -10,9 +13,6 @@ import {
   borderBtnCl,
   poppinsFont,
 } from '../../stylesheet/utils/stylesVars';
-import authSelectors from '../../redux/auth/authSelectors';
-import { closeModalWindow } from '../../redux/globalSlice';
-import { useLogoutUserMutation } from '../../redux/auth/authReduce';
 import styled from 'styled-components';
 
 export default function ModalLogout() {

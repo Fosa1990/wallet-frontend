@@ -1,13 +1,13 @@
+import Moment from 'react-moment';
 import styled from 'styled-components';
-// import { size } from '../../stylesheet/utils/stylesVars';
+import Comment from './Comment';
 import {
   circleFont,
   accentBgCl,
   accentNegativeCl,
   accentPositiveCl,
+  // size,
 } from '../../stylesheet/utils/stylesVars';
-import Moment from 'react-moment';
-import Comment from './Comment';
 
 export default function HomeTabMobile({ finances }) {
   return finances.map(transaction => (
@@ -31,11 +31,11 @@ export default function HomeTabMobile({ finances }) {
         </Tr>
         <Tr>
           <Th>Sum</Th>
-          <Td>{transaction.sum}</Td>
+          <Td>{transaction.sum.toFixed(2)}</Td>
         </Tr>
         <Tr>
           <Th>Balance</Th>
-          <Td>{transaction.balance}</Td>
+          <Td>{transaction.balance.toFixed(2)}</Td>
         </Tr>
       </Tbody>
     </MobileTable>

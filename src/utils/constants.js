@@ -19,6 +19,10 @@ const ROUTES = {
   NOT_FOUND: 'not-found',
   SERVER_ERROR: 'server-error',
   GOOGLE_AUTH: 'google',
+  TRANSACTIONS: 'transactions',
+  SIGNUP: 'signup',
+  SIGNIN: 'signin',
+  SIGNOUT: 'signout',
 };
 
 const colors = [
@@ -37,7 +41,6 @@ const colors = [
 const optionModalTransuction = {
   add: 'Income',
   spend: 'Expense',
-  defaultSpend: 'other spend',
   trTypeAdd: 'income',
   trTypeRemove: 'spend',
 };
@@ -51,4 +54,27 @@ const NAMES = {
   RATES: 'rates',
 };
 
-export { BASE_URL, ROUTES, colors, optionModalTransuction, TIME_MS, NAMES };
+const months = [
+  '01',
+  '02',
+  '03',
+  '04',
+  '05',
+  '06',
+  '07',
+  '08',
+  '09',
+  '10',
+  '11',
+  '12',
+];
+
+export {
+  BASE_URL,
+  ROUTES,
+  colors,
+  optionModalTransuction,
+  TIME_MS,
+  NAMES,
+  months,
+};
