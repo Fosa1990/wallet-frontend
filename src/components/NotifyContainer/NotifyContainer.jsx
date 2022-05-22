@@ -4,6 +4,8 @@ import {
   iconBgCl,
   accentTextCl,
   circleFont,
+  toastifyContainerBgc,
+  toastifyErrorBgc,
 } from '../../stylesheet/utils/stylesVars';
 
 export default function NotifyContainer({ ...props }) {
@@ -15,7 +17,7 @@ const StyledNotify = styled(ToastContainer)`
     max-width: 280px;
     height: 50px;
     border-radius: 20px;
-    background-color: rgba(87, 243, 209, 0.9);
+    background-color: ${toastifyContainerBgc};
     backdrop-filter: blur(5px);
     color: ${accentTextCl};
     font-family: ${circleFont};
@@ -24,7 +26,7 @@ const StyledNotify = styled(ToastContainer)`
     background-color: ${iconBgCl};
   }
   .Toastify__error {
-    background-color: #9253db;
+    background-color: ${toastifyErrorBgc};
     color: black;
   }
   .Toastify__toast-icon svg {
