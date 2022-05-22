@@ -55,12 +55,6 @@ const Label = styled.label`
   align-items: center;
   border-bottom: 1px solid ${iconDefaultCl};
   fill: ${accentPositiveCl};
-
-  .tooptip {
-    // position: absolute;
-    // left: 200px;
-    // top: 0px;
-  }
 `;
 
 const Input = styled.input`
