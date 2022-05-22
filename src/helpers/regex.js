@@ -5,6 +5,6 @@ const regexEmail =
 
 const regexToken = /(^[A-Za-z0-9-_]*\.[A-Za-z0-9-_]*\.[A-Za-z0-9-_]*$)/g;
 
-const regexSum = /^(0|[1-9]\d*)([.,]\d{1,2})?/gm;
+const regexSum = /^(0|[1-9]\d*)([.]\d{1,2})?/gm;
 
 export { regexName, regexEmail, regexToken, regexSum };

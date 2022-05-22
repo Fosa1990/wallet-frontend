@@ -26,13 +26,16 @@ export default function HomeTab() {
   const [page, setPage] = useSearchParams({ page: 1 });
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
-  const { isFetching } = useFetchCurrentUserQuery();
+  const { isFetching, refetch } = useFetchCurrentUserQuery();
   const isNewTransaction = useSelector(getIsNewTransaction);
   console.log('isFetching', isFetching);
 
   useEffect(() => {
     dispatch(fetchFinances(page.get('page')));
     setIsLoading(true);
+    if (isNewTransaction) {
+      refetch();
+    }
     dispatch(reloadTransactionList());
   }, [dispatch, page, isNewTransaction]);
 
