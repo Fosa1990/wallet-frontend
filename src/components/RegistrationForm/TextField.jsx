@@ -54,7 +54,7 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-  width: 280px;
+  width: 100%;
   height: 32px;
   font-size: 18px;
   line-height: 1.5;
