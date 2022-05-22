@@ -37,7 +37,7 @@ export default function HomeTabTabletDesktop({ finances }) {
                 <Td>{transaction.category}</Td>
                 <Td>{<Comment transactionComment={transaction.comment} />}</Td>
                 {transaction.transactionType === 'income' ? (
-                  <Income>{transaction.sum.toFixed(2)}</Income>
+                  <Income>{transaction.sum.toFixed(2).toLocaleString({useGroupping: true})}</Income>
                 ) : (
                   <Spend>{transaction.sum.toFixed(2)}</Spend>
                 )}
