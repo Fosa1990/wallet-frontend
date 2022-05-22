@@ -4,6 +4,9 @@ import { tokenService } from '../../services/tokenService';
 import { BASE_URL, ROUTES } from '../../utils/constants';
 
 const { API, AUTH, SIGNUP, SIGNIN, SIGNOUT, USERS, CURRENT } = ROUTES;
+function saveToken(token) {
+  sessionStorage.setItem('tokenData', JSON.stringify(token));
+}
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -16,6 +19,7 @@ export const authApi = createApi({
       if (token) {
         headers.set('authorization', `Bearer ${token}`);
         tokenService.set(token);
+        saveToken(token);
       }
       return headers;
     },

@@ -1,10 +1,10 @@
 import { isRejectedWithValue } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-
 export const rtkQueryErrorLogger = api => next => action => {
   if (isRejectedWithValue(action)) {
     if (action.payload?.data?.payload?.message === 'jwt expired') {
       toast.error('Please login again');
+      window.localStorage.clear();
     } else if (action.payload?.data?.payload?.message) {
       toast.error(`${action.payload?.data?.payload?.message}`);
     } else {
