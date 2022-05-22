@@ -36,7 +36,7 @@ export default function App() {
   const { isFetching, data } = useFetchCurrentUserQuery(token, {
     skip: token === null,
   });
-  console.log('data', data);
+  // console.log('data', data);
   // const dispatch = useDispatch();
 
   // useEffect(() => {
