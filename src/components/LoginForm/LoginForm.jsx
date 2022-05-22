@@ -2,15 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import styled from 'styled-components';
 import { TextField } from '../RegistrationForm/TextField';
 import { useLoginUserMutation } from '../../redux/auth/authReduce';
-import { regexEmail } from '../../helpers/regex';
-import { ROUTES } from '../../helpers/constants';
+import { regexEmail } from '../../utils/regex';
+import { ROUTES } from '../../utils/constants';
 import Button from '../Button/Button';
-import logo from '../../images/svg/logo.svg';
-import Icons from '../../images/svg/sprite.svg';
-// import { ReactComponent as GoogleIcon } from '../../images/svg/icons-google.svg';
-import styled from 'styled-components';
 import {
   iconDefaultCl,
   accentPositiveCl,
@@ -21,6 +18,8 @@ import {
   accentTextCl,
   iconBgActiveCl,
 } from '../../stylesheet/utils/stylesVars';
+import logo from '../../assets/images/svg/logo.svg';
+import Icons from '../../assets/images/svg/sprite.svg';
 
 export default function LoginForm() {
   const [register] = useLoginUserMutation();
@@ -89,17 +88,6 @@ export default function LoginForm() {
                   Sign up
                 </Button>
               </Link>
-              {/* <a
-                className="IconGoogle"
-                href="http://localhost:8081/api/auth/google"
-              > */}
-              {/* <a
-                className="IconGoogle"
-                href="https://amazing-wallet.herokuapp.com/api/auth/google"
-              >
-                <GoogleIcon width={32} height={28} />
-                Login
-              </a> */}
             </ButtonWrapper>
           </Form>
         </FormWrapper>

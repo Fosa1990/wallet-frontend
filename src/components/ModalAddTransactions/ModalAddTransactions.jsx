@@ -1,42 +1,46 @@
 import { useEffect, useState } from 'react';
-import Button from '../Button/Button';
-import SelectCustom from './Select/SelectCustom';
-import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
-import Modal from '../Modal/Modal';
-import Datetime from 'react-datetime';
 import { useDispatch } from 'react-redux';
+import { useCreateTransactionsMutation } from '../../redux/transactions/transactionOperation';
+import Datetime from 'react-datetime';
+import { toast } from 'react-toastify';
+import NotifyContainer from '../NotifyContainer/NotifyContainer';
 import {
   closeModalWindow,
   addTransactionSuccess,
 } from '../../redux/globalSlice';
-import { optionModalTransuction } from '../../helpers/constants';
-import { useCreateTransactionsMutation } from '../../redux/transactions/transactionOperation';
-import NotifyContainer from '../NotifyContainer/NotifyContainer';
-import { toast } from 'react-toastify';
+import { optionModalTransuction } from '../../utils/constants';
+import Button from '../Button/Button';
+import SelectCustom from './Select/SelectCustom';
+import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
+import Modal from '../Modal/Modal';
+import sprite from '../../assets/images/svg/sprite.svg';
 import {
-  accentPositiveCl,
-  size,
   accentDisableCl,
+  accentNegativeCl,
+  accentPositiveCl,
+  circleFont,
+  size,
+  poppinsFont,
 } from '../../stylesheet/utils/stylesVars';
 import styled from 'styled-components';
-import sprite from '../../images/svg/sprite.svg';
 import 'react-datetime/css/react-datetime.css';
 
-const { defaultSpend, trTypeAdd, trTypeRemove } = optionModalTransuction;
+const { add, trTypeRemove, trTypeAdd } = optionModalTransuction;
 
 export default function ModalAddTransactions() {
   const [checked, setChecked] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [sumTransaction, setSumTransaction] = useState();
+  const [date, setDate] = useState(new Date());
+  const [sum, setSum] = useState();
   const [comment, setComment] = useState('');
-  const [selectedOption, setSelectedOption] = useState(defaultSpend);
+  const [category, setCategory] = useState('');
 
   const [addTransactions, { data }] = useCreateTransactionsMutation();
+
   const dispatch = useDispatch();
 
   const toggleChange = e => {
     setChecked(e);
-    e ? setSelectedOption(trTypeAdd) : setSelectedOption(defaultSpend);
+    e ? setCategory(add) : setCategory('');
   };
 
   useEffect(() => {
@@ -48,14 +52,14 @@ export default function ModalAddTransactions() {
   }, [data, dispatch]);
 
   const handleSubmit = e => {
-    const StatusType = checked ? trTypeAdd : trTypeRemove;
+    const transactionType = checked ? trTypeAdd : trTypeRemove;
     e.preventDefault();
     addTransactions({
-      category: selectedOption,
-      comment: comment,
-      sum: sumTransaction,
-      date: selectedDate,
-      transactionType: StatusType,
+      category,
+      comment,
+      sum,
+      date,
+      transactionType,
     });
   };
 
@@ -63,23 +67,26 @@ export default function ModalAddTransactions() {
     <Modal>
       <div>
         <Title>Add transaction</Title>
-        <Form onSubmit={handleSubmit} onReset={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <Label border>
             <ToggleSwitch check={toggleChange} />
           </Label>
           {!checked && (
             <Label>
-              <SelectCustom select={setSelectedOption} />
+              <SelectCustom select={setCategory} />
             </Label>
           )}
           <ContainerStyle>
             <Label fontWeight={700}>
               <input
                 type="number"
-                name="sumTransaction"
-                defaultValue={sumTransaction}
-                onChange={({ target: { value } }) => setSumTransaction(value)}
+                name="sum"
+                defaultValue={sum}
+                onChange={({ target }) => setSum(target.valueAsNumber)}
                 placeholder="0.00"
+                title="0.05, 0.50, 5.55, 50.50"
+                step="0.01"
+                min="0.01"
                 required
               />
             </Label>
@@ -88,8 +95,8 @@ export default function ModalAddTransactions() {
                 timeFormat={false}
                 closeOnSelect={true}
                 dateFormat={'DD.MM.YYYY'}
-                value={selectedDate}
-                onChange={date => setSelectedDate(date?._d)}
+                value={date}
+                onChange={date => setDate(date?._d)}
               />
               <svg>
                 <use href={`${sprite}#icon-calendar`} />
@@ -101,18 +108,14 @@ export default function ModalAddTransactions() {
               spellcheck={true}
               value={comment}
               onChange={({ target: { value } }) => setComment(value)}
-              name="Comment"
+              name="comment"
               placeholder="Comment"
             />
           </Label>
           <Button primary type="submit">
             ADD
           </Button>
-          <Button
-            type="reset"
-            outlined
-            onClick={() => dispatch(closeModalWindow())}
-          >
+          <Button outlined onClick={() => dispatch(closeModalWindow())}>
             CANCEL
           </Button>
         </Form>
@@ -122,7 +125,7 @@ export default function ModalAddTransactions() {
 }
 
 const Title = styled.h2`
-  font-family: 'Poppins';
+  font-family: ${poppinsFont};
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -136,7 +139,7 @@ const Title = styled.h2`
 `;
 
 const Form = styled.form`
-  font-family: 'Circe';
+  font-family: ${circleFont};
   font-style: normal;
   font-size: 18px;
   display: flex;
@@ -161,6 +164,9 @@ const Label = styled.label`
     line-height: 1.5;
     &:focus-visible {
       border-bottom: 1px solid ${accentPositiveCl};
+    }
+    &:focus:invalid {
+      border-bottom: 1px solid ${accentNegativeCl};
     }
   }
   ${size.tablet} {
@@ -200,12 +206,12 @@ const ContainerStyle = styled.div`
 const Textarea = styled.textarea`
   font-size: inherit;
   width: 280px;
-  min-height: 84px;
+  height: 84px;
   max-height: 150px;
   resize: none;
   ${size.tablet} {
     width: 394px;
-    min-height: 32px;
+    height: 32px;
     max-height: 280px;
     padding: 0 20px;
   }

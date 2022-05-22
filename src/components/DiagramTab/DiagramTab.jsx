@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 import Table from '../Table';
 import Chart from '../Chart';
 import Select from '../Select';
 import BalanceSum from '../Balance/BalanceSum';
-import styled from 'styled-components';
+// import NoInfo from '../NoInfo';
 import categoriesSelectors from '../../redux/categories/categoriesSelectors';
 import { getCategories } from '../../redux/categories/categoriesOperations';
 import { size } from '../../stylesheet/utils/stylesVars';
@@ -18,7 +19,6 @@ export default function DiagramTab() {
 
   const categories = useSelector(categoriesSelectors.getCategories);
   const dispatch = useDispatch();
-  console.log("categories", categories)
 
   useEffect(() => {
     dispatch(
@@ -60,15 +60,16 @@ export default function DiagramTab() {
   return (
     <>
       <DiagramTabWrapper>
-        <div>
+        <RoundWrap>
           <DiagramTabHeader>Statistics</DiagramTabHeader>
+          {/* {categories.length === 0 && <NoInfo />} */}
           <ChartWrapper>
             <Balance>
               {categories[0]?.category?.length > 0 && <BalanceSum />}
             </Balance>
             <Chart categories={categories[0]?.category ?? []} />
           </ChartWrapper>
-        </div>
+        </RoundWrap>
         <div>
           <Select
             year={searchParams.get('year')}
@@ -90,9 +91,14 @@ const DiagramTabWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  padding-bottom: 48px;
 
   ${size.tablet} {
     flex-direction: row;
+    padding-bottom: 24px;
+  }
+  ${size.desktop} {
+    padding-bottom: 44px;
   }
 `;
 const DiagramTabHeader = styled.h2`
@@ -100,14 +106,31 @@ const DiagramTabHeader = styled.h2`
   font-weight: 400;
   font-style: normal;
   line-height: 1.5;
-
   margin-bottom: 8px;
+`;
+const RoundWrap = styled.div`
+  / ${size.desktop} {
+    /* margin-bottom: 32px; */
+    /* margin-right: 32px; */
+    /* width: 288px;
+    height: 288px; */
+  }
 `;
 const ChartWrapper = styled.div`
   position: relative;
-
   margin-bottom: 32px;
-  margin-right: 32px;
+
+  width: 280px;
+
+  ${size.tablet} {
+    margin-right: 32px;
+    width: 336px;
+    height: 336px;
+  }
+  ${size.desktop} {
+    width: 288px;
+    height: 288px;
+  }
 `;
 const Balance = styled.span`
   position: absolute;

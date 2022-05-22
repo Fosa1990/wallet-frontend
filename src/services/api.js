@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { tokenService } from '../services/tokenService';
-import { ROUTES } from '../helpers/constants';
+import { tokenService } from './tokenService';
+import { ROUTES } from '../utils/constants';
 
 //універсальна функція для запиту, теоретично може бути одна на проект якщо постаратись, використовується у парі з rtcQuery
 export const axiosBaseQuery =

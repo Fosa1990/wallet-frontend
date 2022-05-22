@@ -1,99 +1,70 @@
+import { useEffect } from 'react';
+import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import Media from 'react-media';
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { size } from '../../../stylesheet/utils/stylesVars';
+import { useSelector } from 'react-redux';
 import Header from '../../Header';
 import HomeTab from '../../HomeTab';
 import DiagramTab from '../../DiagramTab';
 import Currency from '../../Currency';
 import Navigation from '../../Navigation';
 import Balance from '../../Balance';
+// import Container from '../../Container';
 import authSelectors from '../../../redux/auth';
-import { ROUTES } from '../../../helpers/constants';
+// import { selectIsModalAddTransactionOpen } from '../../../redux/globalSelectors';
+import { ROUTES } from '../../../utils/constants';
+import { size } from '../../../stylesheet/utils/stylesVars';
 import ButtonAddTransactions from '../../ButtonAddTransactions';
-import { selectIsModalAddTransactionOpen } from '../../../redux/globalSelectors';
-import ModalAddTransactions from '../../ModalAddTransactions';
-import getFinancesSelectors from '../../../redux/finances/financesSelectors';
-import {
-  fetchFinances,
-  fetchBalance,
-} from '../../../redux/finances/financesOperations';
-import { useFetchCurrentUserQuery } from '../../../redux/auth/authReduce';
 
 export default function DashBoardPage() {
+  const { pathname } = useLocation();
+  const route = `${'/' + ROUTES.DASHBOARD + '/' + ROUTES.HOME}`;
   const isLoggedin = useSelector(authSelectors.getIsLoggedIn);
-  const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
+  // const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
   useEffect(() => {
     if (isLoggedin) {
       toast.info('Welcome to Amazing wallet');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  // const token = useSelector(authSelectors.getToken);
-  const { isFetching } = useFetchCurrentUserQuery();
-  console.log(isFetching);
 
-  // const finances = useSelector(getFinancesSelectors.getFinances);
-  // const [isLoading, setIsLoading] = useState(false);
-  const balance = useSelector(getFinancesSelectors.getBalance);
-  console.log(balance);
-  console.log(isFetching);
-  const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(fetchBalance());
-  // }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchFinances());
-    dispatch(fetchBalance());
-  }, [dispatch]);
-
-  ///  при загрузці  треба  доставати транзакції щоб їх  рендерити в  Hometab
   return (
     <>
-      {!isFetching && (
-        <>
-          <Header />
-          <MainWrap>
-            <SideBar>
-              <MobSidebar>
-                <Navigation />
-                {/* <Balance /> */}
-                <Media query="(min-width: 768px)" render={() => <Balance />} />
-              </MobSidebar>
-              <Media query="(min-width: 768px)" render={() => <Currency />} />
-            </SideBar>
+      <Header />
+      <MainWrap>
+        <SideBar>
+          <MobSidebar>
+            <Navigation />
+            <Media query="(min-width: 768px)" render={() => <Balance />} />
+          </MobSidebar>
+          <Media query="(min-width: 768px)" render={() => <Currency />} />
+        </SideBar>
 
-            <TabWrap>
-              <Routes>
-                <Route index element={<HomeTab />} />
-                <Route path="home" element={<HomeTab />} />
-                <Route path={ROUTES.DIAGRAM} element={<DiagramTab />} />
-                <Route
-                  path={ROUTES.CURRENCY}
-                  element={
-                    <>
-                      <Media
-                        query="(min-width: 768px)"
-                        render={() => <Navigate to="/dashboard/home" />}
-                      />
-                      <Media
-                        query="(max-width: 767px)"
-                        render={() => <Currency />}
-                      />
-                    </>
-                  }
-                />
-              </Routes>
-              <ButtonAddTransactions />
-              {showModalAddTransactions && <ModalAddTransactions />}
-            </TabWrap>
-          </MainWrap>
-        </>
-      )}
+        <TabWrap>
+          <Routes>
+            <Route index element={<HomeTab />} />
+            <Route path={ROUTES.HOME} element={<HomeTab />} />
+            <Route path={ROUTES.DIAGRAM} element={<DiagramTab />} />
+            <Route
+              path={ROUTES.CURRENCY}
+              element={
+                <>
+                  <Media
+                    query="(min-width: 768px)"
+                    render={() => <Navigate to="/dashboard/home" />}
+                  />
+                  <Media
+                    query="(max-width: 767px)"
+                    render={() => <Currency />}
+                  />
+                </>
+              }
+            />
+          </Routes>
+        </TabWrap>
+      </MainWrap>
+      {pathname === route && <ButtonAddTransactions />}
     </>
   );
 }
@@ -101,13 +72,10 @@ export default function DashBoardPage() {
 const MainWrap = styled.div`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* justify-content: center; */
   width: 100%;
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(50px);
   flex-grow: 1;
-
   ${size.tablet} {
     padding: 0px 32px;
     justify-content: start;
@@ -121,15 +89,12 @@ const MainWrap = styled.div`
 const SideBar = styled.div`
   display: flex;
   flex-direction: column;
-
   ${size.tablet} {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* align-items: flex-start; */
     margin-bottom: 20px;
   }
-
   ${size.desktop} {
     display: flex;
     padding-right: 69px;
@@ -138,8 +103,6 @@ const SideBar = styled.div`
     justify-content: start;
     align-items: flex-start;
     border-right: 1px solid #e7e5f2;
-    /* box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
-      1px 0px 0px rgba(255, 255, 255, 0.6); */
   }
 `;
 const TabWrap = styled.div`
@@ -152,6 +115,5 @@ const TabWrap = styled.div`
 `;
 const MobSidebar = styled.div`
   display: flex;
-  /* justify-content: center; */
   flex-direction: column;
 `;

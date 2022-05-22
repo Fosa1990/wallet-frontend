@@ -1,44 +1,51 @@
-import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import { fetchFinances } from '../../redux/finances/financesOperations';
-import getFinancesSelectors from '../../redux/finances/financesSelectors';
-import CustomPagination from '../CustomPagination';
-// import { circleFont, size } from '../../stylesheet/utils/stylesVars';
-
+import styled from 'styled-components';
 import Media from 'react-media';
+import { useSelector, useDispatch } from 'react-redux';
+import CustomPagination from '../CustomPagination';
 import Balance from '../Balance';
 import HomeTabMobile from './HomeTabMobile';
 import HomeTabTabletDesktop from './HomeTabTabletDesktop';
-import Loader from '../Loader';
+import NoInfo from '../NoInfo';
+import getFinancesSelectors from '../../redux/finances/financesSelectors';
+import ModalAddTransactions from '../../components/ModalAddTransactions';
+import { fetchFinances } from '../../redux/finances/financesOperations';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
-import { circleFont, size } from '../../stylesheet/utils/stylesVars';
-import { getIsNewTransaction } from '../../redux/globalSelectors';
+import {
+  selectIsModalAddTransactionOpen,
+  getIsNewTransaction,
+} from '../../redux/globalSelectors';
 import { reloadTransactionList } from '../../redux/globalSlice';
+// import { circleFont, size } from '../../stylesheet/utils/stylesVars';
 
 export default function HomeTab() {
-  const finances = useSelector(getFinancesSelectors.getFinances);
-  const totalDocuments = useSelector(getFinancesSelectors.getCountDocuments);
+  const dispatch = useDispatch();
   const [page, setPage] = useSearchParams({ page: 1 });
   const [isLoading, setIsLoading] = useState(false);
-  const dispatch = useDispatch();
-  const { isFetching } = useFetchCurrentUserQuery();
+  const finances = useSelector(getFinancesSelectors.getFinances);
+  const totalDocuments = useSelector(getFinancesSelectors.getCountDocuments);
   const isNewTransaction = useSelector(getIsNewTransaction);
+  const { isFetching, refetch } = useFetchCurrentUserQuery();
+  // console.log('isFetching', isFetching);
 
   useEffect(() => {
     dispatch(fetchFinances(page.get('page')));
     setIsLoading(true);
+    if (isNewTransaction) {
+      refetch();
+    }
     dispatch(reloadTransactionList());
-  }, [dispatch, page, isNewTransaction]);
+  }, [dispatch, isNewTransaction, page, refetch]);
 
   const onPageСhange = pageNumber => {
     setPage({ page: pageNumber });
   };
 
+  const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
+  // console.log('isFetching', isFetching);
   return (
     <>
-      {isFetching && <Loader />}
       <Div>
         <Media query="(max-width: 767px)" render={() => <Balance />} />
         <Media query="(max-width: 767px)">
@@ -50,7 +57,7 @@ export default function HomeTab() {
             )
           }
         </Media>
-        {finances.length === 0 && isFetching && <NoInfo>No data</NoInfo>}
+        {!isFetching && finances.length === 0 && <NoInfo />}
         {totalDocuments.totalDocuments > 0 && isLoading && (
           <CustomPagination
             page={Number(page.get('page'))}
@@ -60,6 +67,7 @@ export default function HomeTab() {
           />
         )}
       </Div>
+      {showModalAddTransactions && <ModalAddTransactions />}
     </>
   );
 }
@@ -67,18 +75,7 @@ export default function HomeTab() {
 const Div = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-const NoInfo = styled.div`
-  font: ${circleFont};
-  margin-top: 30px;
-  font-size: 20px;
-  font-weight: 500;
-  text-align: center;
-
-  ${size.tablet} {
-    font-size: 30px;
-  }
+  align-items: center;
 `;
 
 // &#8372;&nbsp; спецсимвол гривна+пробел
