@@ -26,8 +26,12 @@ export default function Comment({ transactionComment }) {
 const Button = styled.button`
   display: inline;
   border: none;
-  background-color: transparent;
-  cursor: pointer;
   font-weight: bold;
   color: ${iconBgCl};
+  background-color: transparent;
+  cursor: pointer;
+
+  :hover {
+    text-decoration: underline;
+  }
 `;
