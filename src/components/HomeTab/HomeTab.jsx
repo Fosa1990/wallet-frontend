@@ -44,7 +44,7 @@ export default function HomeTab() {
   };
 
   const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
-  console.log('isFetching', isFetching);
+  // console.log('isFetching', isFetching);
   return (
     <>
       <Div>
