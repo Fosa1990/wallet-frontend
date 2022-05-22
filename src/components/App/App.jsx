@@ -1,7 +1,10 @@
 import React, { Suspense, lazy /* , useEffect, useDispatch */ } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectIsModalLogoutOpen } from '../../redux/globalSelectors';
+import {
+  selectIsModalLogoutOpen,
+  selectIsModalAddTransactionOpen,
+} from '../../redux/globalSelectors';
 import authSelectors from '../../redux/auth';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
 import ModalLogout from '../ModalLogout';
@@ -28,6 +31,10 @@ const { REGISTRATION, LOGIN, HOME, DASHBOARD, VERIFY } = ROUTES;
 
 export default function App() {
   const showModalLogout = useSelector(selectIsModalLogoutOpen);
+  const showTransactionModalOpen = useSelector(selectIsModalAddTransactionOpen);
+  showTransactionModalOpen || showModalLogout
+    ? (document.body.style.overflow = 'hidden')
+    : (document.body.style.overflow = 'scroll');
   const token = useSelector(authSelectors.getToken);
   // eslint-disable-next-line no-unused-vars
   const { isFetching } = useFetchCurrentUserQuery(token, {
