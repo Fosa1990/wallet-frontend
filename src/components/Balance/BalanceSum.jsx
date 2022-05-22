@@ -16,7 +16,7 @@ export default function BalanceSum() {
   return (
     <Sum>
       <span>&#8372;&nbsp;</span>
-      {balance ? balance : 0.0}
+      {balance ? balance.toFixed(2) : 0.00}
     </Sum>
   );
 }

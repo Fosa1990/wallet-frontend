@@ -25,21 +25,22 @@ import {
 import styled from 'styled-components';
 import 'react-datetime/css/react-datetime.css';
 
-const { defaultSpend, trTypeAdd, trTypeRemove } = optionModalTransuction;
+const { add, trTypeRemove, trTypeAdd } = optionModalTransuction;
 
 export default function ModalAddTransactions() {
   const [checked, setChecked] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [sumTransaction, setSumTransaction] = useState();
+  const [date, setDate] = useState(new Date());
+  const [sum, setSum] = useState();
   const [comment, setComment] = useState('');
-  const [selectedOption, setSelectedOption] = useState(defaultSpend);
+  const [category, setCategory] = useState('');
+
   const [addTransactions, { data }] = useCreateTransactionsMutation();
 
   const dispatch = useDispatch();
 
   const toggleChange = e => {
     setChecked(e);
-    e ? setSelectedOption(trTypeAdd) : setSelectedOption(defaultSpend);
+    e ? setCategory(add) : setCategory('');
   };
 
   useEffect(() => {
@@ -51,14 +52,14 @@ export default function ModalAddTransactions() {
   }, [data, dispatch]);
 
   const handleSubmit = e => {
-    const StatusType = checked ? trTypeAdd : trTypeRemove;
+    const transactionType = checked ? trTypeAdd : trTypeRemove;
     e.preventDefault();
     addTransactions({
-      category: selectedOption,
-      comment: comment,
-      sum: Number(sumTransaction),
-      date: selectedDate,
-      transactionType: StatusType,
+      category,
+      comment,
+      sum,
+      date,
+      transactionType,
     });
   };
 
@@ -66,22 +67,22 @@ export default function ModalAddTransactions() {
     <Modal>
       <div>
         <Title>Add transaction</Title>
-        <Form onSubmit={handleSubmit} onReset={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <Label border>
             <ToggleSwitch check={toggleChange} />
           </Label>
           {!checked && (
             <Label>
-              <SelectCustom select={setSelectedOption} />
+              <SelectCustom select={setCategory} />
             </Label>
           )}
           <ContainerStyle>
             <Label fontWeight={700}>
               <input
                 type="number"
-                name="sumTransaction"
-                defaultValue={sumTransaction}
-                onChange={({ target: { value } }) => setSumTransaction(value)}
+                name="sum"
+                defaultValue={sum}
+                onChange={({ target }) => setSum(target.valueAsNumber)}
                 placeholder="0.00"
                 title="0.05, 0.50, 5.55, 50.50"
                 step="0.01"
@@ -94,8 +95,8 @@ export default function ModalAddTransactions() {
                 timeFormat={false}
                 closeOnSelect={true}
                 dateFormat={'DD.MM.YYYY'}
-                value={selectedDate}
-                onChange={date => setSelectedDate(date?._d)}
+                value={date}
+                onChange={date => setDate(date?._d)}
               />
               <svg>
                 <use href={`${sprite}#icon-calendar`} />
@@ -107,18 +108,14 @@ export default function ModalAddTransactions() {
               spellcheck={true}
               value={comment}
               onChange={({ target: { value } }) => setComment(value)}
-              name="Comment"
+              name="comment"
               placeholder="Comment"
             />
           </Label>
           <Button primary type="submit">
             ADD
           </Button>
-          <Button
-            type="reset"
-            outlined
-            onClick={() => dispatch(closeModalWindow())}
-          >
+          <Button outlined onClick={() => dispatch(closeModalWindow())}>
             CANCEL
           </Button>
         </Form>

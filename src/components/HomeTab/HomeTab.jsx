@@ -7,12 +7,16 @@ import CustomPagination from '../CustomPagination';
 import Balance from '../Balance';
 import HomeTabMobile from './HomeTabMobile';
 import HomeTabTabletDesktop from './HomeTabTabletDesktop';
-import Loader from '../Loader';
 import NoInfo from '../NoInfo';
-import { fetchFinances } from '../../redux/finances/financesOperations';
 import getFinancesSelectors from '../../redux/finances/financesSelectors';
+import ButtonAddTransactions from '../../components/ButtonAddTransactions';
+import ModalAddTransactions from '../../components/ModalAddTransactions';
+import { fetchFinances } from '../../redux/finances/financesOperations';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
-import { getIsNewTransaction } from '../../redux/globalSelectors';
+import {
+  selectIsModalAddTransactionOpen,
+  getIsNewTransaction,
+} from '../../redux/globalSelectors';
 import { reloadTransactionList } from '../../redux/globalSlice';
 // import { circleFont, size } from '../../stylesheet/utils/stylesVars';
 
@@ -24,6 +28,7 @@ export default function HomeTab() {
   const totalDocuments = useSelector(getFinancesSelectors.getCountDocuments);
   const isNewTransaction = useSelector(getIsNewTransaction);
   const { isFetching, refetch } = useFetchCurrentUserQuery();
+  // console.log('isFetching', isFetching);
 
   useEffect(() => {
     dispatch(fetchFinances(page.get('page')));
@@ -38,9 +43,10 @@ export default function HomeTab() {
     setPage({ page: pageNumber });
   };
 
+  const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
+  // console.log('isFetching', isFetching);
   return (
     <>
-      {isFetching && <Loader />}
       <Div>
         <Media query="(max-width: 767px)" render={() => <Balance />} />
         <Media query="(max-width: 767px)">
@@ -52,7 +58,7 @@ export default function HomeTab() {
             )
           }
         </Media>
-        {finances.length === 0 && !isFetching && <NoInfo />}
+        {!isFetching && finances.length === 0 && <NoInfo />}
         {totalDocuments.totalDocuments > 0 && isLoading && (
           <CustomPagination
             page={Number(page.get('page'))}
@@ -62,6 +68,8 @@ export default function HomeTab() {
           />
         )}
       </Div>
+      <ButtonAddTransactions />
+      {showModalAddTransactions && <ModalAddTransactions />}
     </>
   );
 }
@@ -69,6 +77,7 @@ export default function HomeTab() {
 const Div = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 // &#8372;&nbsp; спецсимвол гривна+пробел

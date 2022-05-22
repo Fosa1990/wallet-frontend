@@ -10,16 +10,15 @@ import DiagramTab from '../../DiagramTab';
 import Currency from '../../Currency';
 import Navigation from '../../Navigation';
 import Balance from '../../Balance';
+// import Container from '../../Container';
 import authSelectors from '../../../redux/auth';
-import ButtonAddTransactions from '../../ButtonAddTransactions';
-import ModalAddTransactions from '../../ModalAddTransactions';
-import { selectIsModalAddTransactionOpen } from '../../../redux/globalSelectors';
+// import { selectIsModalAddTransactionOpen } from '../../../redux/globalSelectors';
 import { ROUTES } from '../../../helpers/constants';
 import { size } from '../../../stylesheet/utils/stylesVars';
 
 export default function DashBoardPage() {
   const isLoggedin = useSelector(authSelectors.getIsLoggedIn);
-  const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
+  // const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
   useEffect(() => {
     if (isLoggedin) {
       toast.info('Welcome to Amazing wallet');
@@ -60,8 +59,6 @@ export default function DashBoardPage() {
               }
             />
           </Routes>
-          <ButtonAddTransactions />
-          {showModalAddTransactions && <ModalAddTransactions />}
         </TabWrap>
       </MainWrap>
     </>
@@ -75,7 +72,6 @@ const MainWrap = styled.div`
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(50px);
   flex-grow: 1;
-
   ${size.tablet} {
     padding: 0px 32px;
     justify-content: start;
@@ -89,14 +85,12 @@ const MainWrap = styled.div`
 const SideBar = styled.div`
   display: flex;
   flex-direction: column;
-
   ${size.tablet} {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 20px;
   }
-
   ${size.desktop} {
     display: flex;
     padding-right: 69px;

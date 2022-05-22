@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy /* , useEffect, useDispatch */ } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectIsModalLogoutOpen } from '../../redux/globalSelectors';
@@ -10,6 +10,7 @@ import { VerifyPage, ErrorPage } from '../Pages';
 import { PrivateRoute, PublicRouteLogin, PublicRouteRegin } from '../Router';
 import NotifyContainer from '../NotifyContainer';
 import { ROUTES } from '../../helpers/constants';
+// import { tokenService } from '../../services/tokenService';
 import '../../../node_modules/modern-normalize/modern-normalize.css';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -30,6 +31,12 @@ export default function App() {
   const { isFetching, data } = useFetchCurrentUserQuery(token, {
     skip: token === null,
   });
+  // console.log('data', data);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //     // dispatch(fetchCurrentUser());
+  //   };
+  // }, []);
 
   return (
     <>
