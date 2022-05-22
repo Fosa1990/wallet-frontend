@@ -15,6 +15,7 @@ const ROUTES = {
   VERIFY: 'verify',
   DASHBOARD: 'statistics',
   CURRENCY: 'currency',
+  CURRENT: 'current',
   DIAGRAM: 'diagram',
   NOT_FOUND: 'not-found',
   SERVER_ERROR: 'server-error',
