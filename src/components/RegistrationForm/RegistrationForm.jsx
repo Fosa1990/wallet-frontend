@@ -117,15 +117,10 @@ export default function RegistrationForm() {
                   primary
                   color={accentBgCl}
                   background={accentPositiveCl}
-                  data-tip="Click to sign up"
                 >
                   Sign up
                 </Button>
-                <Link
-                  data-tip="Click to login"
-                  to={ROUTES.LOGIN}
-                  className="ButtonLogin"
-                >
+                <Link to={ROUTES.LOGIN} className="ButtonLogin">
                   Login
                 </Link>
               </ButtonWrapper>

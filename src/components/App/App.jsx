@@ -34,7 +34,7 @@ export default function App() {
   const showTransactionModalOpen = useSelector(selectIsModalAddTransactionOpen);
   showTransactionModalOpen || showModalLogout
     ? (document.body.style.overflow = 'hidden')
-    : (document.body.style.overflow = 'scroll');
+    : (document.body.style.overflow = 'auto');
   const token = useSelector(authSelectors.getToken);
   // eslint-disable-next-line no-unused-vars
   const { isFetching, data } = useFetchCurrentUserQuery(token, {

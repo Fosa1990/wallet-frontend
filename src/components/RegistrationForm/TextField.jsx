@@ -9,8 +9,6 @@ import {
   accentNegativeCl,
 } from '../../stylesheet/utils/stylesVars';
 
-import ReactTooltip from 'react-tooltip';
-
 export const TextField = ({ label, ...props }) => {
   const [field, meta] = useField(props);
 
@@ -20,17 +18,16 @@ export const TextField = ({ label, ...props }) => {
         <Label htmlFor={field.name}>
           {label}
           <Input
-            data-tip={
+            title={
               field.name === 'email'
-                ? 'JohnDoe@domain.com'
-                : 'Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer'
+                ? 'For example: JohnDoe@domain.com'
+                : 'Name may contain only letters, apostrophe, dash and spaces.'
             }
             className={`${meta.touched && meta.error && 'is-invalid'}`}
             {...field}
             {...props}
             autoComplete="on"
           />
-          <ReactTooltip />
         </Label>
         <Error>
           <ErrorMessage className="error" component="div" name={field.name} />
@@ -58,6 +55,12 @@ const Label = styled.label`
   align-items: center;
   border-bottom: 1px solid ${iconDefaultCl};
   fill: ${accentPositiveCl};
+
+  .tooptip {
+    // position: absolute;
+    // left: 200px;
+    // top: 0px;
+  }
 `;
 
 const Input = styled.input`
