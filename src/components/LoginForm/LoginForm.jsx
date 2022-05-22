@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
+import { useLoginUserMutation } from '../../redux/auth/authReduce';
 import { TextField } from '../RegistrationForm/TextField';
 import PasswordShowHide from '../RegistrationForm/PasswordShowHide';
-import { useLoginUserMutation } from '../../redux/auth/authReduce';
-import { regexEmail } from '../../utils/regex';
-import { ROUTES } from '../../utils/constants';
 import Button from '../Button/Button';
+import { ROUTES } from '../../utils/constants';
+import { regexEmail } from '../../utils/regex';
 import {
   iconDefaultCl,
   accentPositiveCl,
