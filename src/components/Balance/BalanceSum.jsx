@@ -20,7 +20,7 @@ export default function BalanceSum() {
         ? Intl.NumberFormat('ru-Ru', {
             minimumFractionDigits: 2,
           }).format(balance)
-        : 0.0}
+        : 0.00}
     </Sum>
   );
 }
