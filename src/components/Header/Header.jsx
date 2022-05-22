@@ -29,7 +29,6 @@ export default function Header({ children, onClick, ...props }) {
       <Logo to="/home" />
       <UserInfo>
         <Media query="(min-width: 768px)" render={() => <Avatar />} />
-        {/* <Avatar /> */}
         <UserName>{name || 'User'} </UserName>
         <LogoutButton type="button" onClick={handleClick}>
           <ExitIcon src={exit} />
