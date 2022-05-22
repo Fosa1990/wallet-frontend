@@ -8,17 +8,19 @@ import {
   closeModalWindow,
   addTransactionSuccess,
 } from '../../redux/globalSlice';
-import { optionModalTransuction } from '../../helpers/constants';
+import { optionModalTransuction } from '../../utils/constants';
 import Button from '../Button/Button';
 import SelectCustom from './Select/SelectCustom';
 import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
 import Modal from '../Modal/Modal';
-import sprite from '../../images/svg/sprite.svg';
+import sprite from '../../assets/images/svg/sprite.svg';
 import {
-  accentPositiveCl,
-  accentNegativeCl,
-  size,
   accentDisableCl,
+  accentNegativeCl,
+  accentPositiveCl,
+  circleFont,
+  size,
+  poppinsFont,
 } from '../../stylesheet/utils/stylesVars';
 import styled from 'styled-components';
 import 'react-datetime/css/react-datetime.css';
@@ -123,7 +125,7 @@ export default function ModalAddTransactions() {
 }
 
 const Title = styled.h2`
-  font-family: 'Poppins';
+  font-family: ${poppinsFont};
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -137,7 +139,7 @@ const Title = styled.h2`
 `;
 
 const Form = styled.form`
-  font-family: 'Circe';
+  font-family: ${circleFont};
   font-style: normal;
   font-size: 18px;
   display: flex;

@@ -4,7 +4,7 @@ import {
   accentNegativeCl,
   accentPositiveCl,
 } from '../../stylesheet/utils/stylesVars';
-import { colors } from '../../helpers/constants';
+import { colors } from '../../utils/constants';
 import { size } from '../../stylesheet/utils/stylesVars';
 
 export default function Table({ categories, transactionType }) {

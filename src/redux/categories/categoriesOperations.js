@@ -1,6 +1,6 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { BASE_URL } from '../../helpers/constants';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { BASE_URL } from '../../utils/constants';
 
 export const getCategories = createAsyncThunk(
   'categories/getCategories',

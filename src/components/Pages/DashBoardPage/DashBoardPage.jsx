@@ -12,8 +12,8 @@ import Navigation from '../../Navigation';
 import Balance from '../../Balance';
 // import Container from '../../Container';
 import authSelectors from '../../../redux/auth';
-import { ROUTES } from '../../../helpers/constants';
-import { selectIsModalAddTransactionOpen } from '../../../redux/globalSelectors';
+// import { selectIsModalAddTransactionOpen } from '../../../redux/globalSelectors';
+import { ROUTES } from '../../../utils/constants';
 import { size } from '../../../stylesheet/utils/stylesVars';
 import ButtonAddTransactions from '../../ButtonAddTransactions';
 
@@ -26,6 +26,7 @@ export default function DashBoardPage() {
     if (isLoggedin) {
       toast.info('Welcome to Amazing wallet');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
