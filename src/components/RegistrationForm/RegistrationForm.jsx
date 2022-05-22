@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Formik, Form } from 'formik';
+import { Field, Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { TextField } from './TextField';
 import { useRegisterUserMutation } from '../../redux/auth/authReduce';
@@ -11,6 +11,7 @@ import Button from '../Button/Button';
 import logo from '../../images/svg/logo.svg';
 // import { ReactComponent as GoogleIcon } from '../../images/svg/icons-google.svg';
 
+import PasswordShowHide from './PasswordShowHide';
 import Icons from '../../images/svg/sprite.svg';
 import styled from 'styled-components';
 import {
@@ -35,7 +36,7 @@ export default function RegistrationForm() {
       .required('E-mail is required'),
     password: Yup.string()
       .min(6, 'Password must be at least 6 characters')
-      .max(16, 'Password must be 16 characters or less')
+      .max(12, 'Password must be 12 characters or less')
       .required('Password is required'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Password must match')
@@ -82,7 +83,43 @@ export default function RegistrationForm() {
                 placeholder="E-mail"
                 type="email"
               />
-              <TextField
+              {/* <Field
+                autoFocus
+                name="email"
+                placeholder="E-mail"
+                type="email"
+                component={PasswordShowHide}
+                className="input-style"
+                label={
+                  <svg width="21" height="16" className="labelIcon">
+                    <use href={`${Icons}#icon-email`} />
+                  </svg>
+                }
+              ></Field> */}
+              <Field
+                name="password"
+                placeholder="Password"
+                type="password"
+                component={PasswordShowHide}
+                label={
+                  <svg width="16" height="21" className="labelIcon">
+                    <use href={`${Icons}#icon-password`} />
+                  </svg>
+                }
+              ></Field>
+              <Field
+                name="confirmPassword"
+                placeholder="Confirm password"
+                type="password"
+                // className="label"
+                component={PasswordShowHide}
+                label={
+                  <svg width="16" height="21" className="labelIcon">
+                    <use href={`${Icons}#icon-password`} />
+                  </svg>
+                }
+              ></Field>
+              {/* <TextField
                 label={
                   <svg width="16" height="21" className="labelIcon">
                     <use href={`${Icons}#icon-password`} />
@@ -91,8 +128,8 @@ export default function RegistrationForm() {
                 name="password"
                 placeholder="Password"
                 type="password"
-              />
-              <TextField
+              /> */}
+              {/* <TextField
                 label={
                   <svg width="16" height="21" className="labelIcon">
                     <use href={`${Icons}#icon-password`} />
@@ -102,8 +139,9 @@ export default function RegistrationForm() {
                 placeholder="Confirm password"
                 type="password"
                 className="label"
-              />
+              /> */}
               <PasswordStrenght password={formik.values.password} />
+
               <TextField
                 label={
                   <svg width="18" height="18" className="labelIcon">
@@ -120,14 +158,11 @@ export default function RegistrationForm() {
                   primary
                   color={accentBgCl}
                   background={accentPositiveCl}
-                  disabled={!formik.isValid || formik.isSubmitting}
                 >
                   Sign up
                 </Button>
-                <Link to={ROUTES.LOGIN}>
-                  <Button className="ButtonLogin" outlined color={borderBtnCl}>
-                    Login
-                  </Button>
+                <Link to={ROUTES.LOGIN} className="ButtonLogin">
+                  Login
                 </Link>
                 {/* <a
                   className="IconGoogle"
@@ -226,16 +261,7 @@ const ButtonWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
-  .ButtonRegistr:disabled {
-    cursor: not-allowed;
-    box-shadow: inset 0px 0px 45px rgb(255 255 255 / 70%);
-  }
-
   .ButtonLogin {
-    // margin-bottom: 20px;
-  }
-
-  .IconGoogle {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -248,6 +274,7 @@ const ButtonWrapper = styled.div`
     text-transform: uppercase;
     border: 1px solid ${iconBgActiveCl};
     border-radius: 20px;
+    cursor: pointer;
 
     ${size.tablet},${size.desktop} {
       width: 300px;
