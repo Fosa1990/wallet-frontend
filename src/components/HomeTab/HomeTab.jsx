@@ -27,6 +27,7 @@ export default function HomeTab() {
   const isNewTransaction = useSelector(getIsNewTransaction);
   const { isFetching, refetch } = useFetchCurrentUserQuery();
 
+
   useEffect(() => {
     dispatch(fetchFinances(page.get('page')));
     setIsLoading(true);
@@ -55,7 +56,8 @@ export default function HomeTab() {
             )
           }
         </Media>
-        {!isFetching && finances.length === 0 && <NoInfo />}
+        {loading && <Loader />}
+        {!loading && finances.length === 0 && <NoInfo />}
         {totalDocuments.totalDocuments > 0 && isLoading && (
           <CustomPagination
             page={Number(page.get('page'))}

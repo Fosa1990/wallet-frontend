@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { Field, Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
-import { regexName, regexEmail } from '../../utils/regex';
-import { useRegisterUserMutation } from '../../redux/auth/authReduce';
 import { TextField } from './TextField';
-import PasswordStrenght from './PasswordStrength';
+import { useRegisterUserMutation } from '../../redux/auth/authReduce';
+import { regexName, regexEmail } from '../../utils/regex';
+import PasswordStrength from './PasswordStrength';
 import PasswordShowHide from './PasswordShowHide';
 import Button from '../Button/Button';
 import { ROUTES } from '../../utils/constants';
@@ -33,7 +33,7 @@ export default function RegistrationForm() {
       .required('E-mail is required'),
     password: Yup.string()
       .min(6, 'Password must be at least 6 characters')
-      .max(12, 'Password must be 12 characters or less')
+      .max(16, 'Password must be 16 characters or less')
       .required('Password is required'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Password must match')
@@ -99,7 +99,7 @@ export default function RegistrationForm() {
                 }
               ></Field>
 
-              <PasswordStrenght password={formik.values.password} />
+              <PasswordStrength password={formik.values.password} />
 
               <TextField
                 label={

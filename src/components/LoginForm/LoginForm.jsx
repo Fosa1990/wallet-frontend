@@ -1,22 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
-import { TextField } from '../RegistrationForm/TextField';
 import { useLoginUserMutation } from '../../redux/auth/authReduce';
-import { regexEmail } from '../../utils/regex';
-import { ROUTES } from '../../utils/constants';
+import { TextField } from '../RegistrationForm/TextField';
+import PasswordShowHide from '../RegistrationForm/PasswordShowHide';
 import Button from '../Button/Button';
+import { ROUTES } from '../../utils/constants';
+import { regexEmail } from '../../utils/regex';
 import {
   iconDefaultCl,
   accentPositiveCl,
   accentBgCl,
-  borderBtnCl,
+  iconBgActiveCl,
   size,
   poppinsFont,
   accentTextCl,
-  iconBgActiveCl,
 } from '../../stylesheet/utils/stylesVars';
 import logo from '../../assets/images/svg/logo.svg';
 import Icons from '../../assets/images/svg/sprite.svg';
@@ -30,7 +30,7 @@ export default function LoginForm() {
       .required('E-mail is required'),
     password: Yup.string()
       .min(6, 'Password must be at least 6 characters')
-      .max(12, 'Password must be 12 characters or less')
+      .max(16, 'Password must be 16 characters or less')
       .required('Password is required'),
   });
 
@@ -63,30 +63,22 @@ export default function LoginForm() {
               placeholder="E-mail"
               type="email"
             />
-            <TextField
+            <Field
+              name="password"
+              type="password"
+              component={PasswordShowHide}
               label={
                 <svg width="16" height="21" className="labelIcon">
                   <use href={`${Icons}#icon-password`} />
                 </svg>
               }
-              name="password"
-              placeholder="Password"
-              type="password"
-            />
+            ></Field>
             <ButtonWrapper>
-              <Button
-                primary
-                color={accentBgCl}
-                background={accentPositiveCl}
-                disabled={!formik.isValid || formik.isSubmitting}
-                className="disabledButton"
-              >
+              <Button primary color={accentBgCl} background={accentPositiveCl}>
                 Login
               </Button>
-              <Link to={`/${ROUTES.REGISTRATION}`}>
-                <Button outlined color={borderBtnCl} className="RegisterButton">
-                  Sign up
-                </Button>
+              <Link to={`/${ROUTES.REGISTRATION}`} className="RegisterButton">
+                Sign up
               </Link>
             </ButtonWrapper>
           </Form>
@@ -159,7 +151,6 @@ const FormWrapper = styled.div`
 
   ${size.desktop} {
     width: 533px;
-    // height: 518px;
     height: 468px;
   }
 `;
@@ -168,28 +159,24 @@ const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  .disabledButton:disabled {
-    cursor: not-allowed;
-    box-shadow: inset 0px 0px 45px rgb(255 255 255 / 70%);
+
+  .RegisterButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 280px;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    padding: 10px 65px 10px 71px;
+    color: ${iconBgActiveCl};
+    text-transform: uppercase;
+    border: 1px solid ${iconBgActiveCl};
+    border-radius: 20px;
+    cursor: pointer;
+
+    ${size.tablet},${size.desktop} {
+      width: 300px;
+    }
   }
-  // .IconGoogle {
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  //   width: 280px;
-  //   font-size: 18px;
-  //   line-height: 1.5;
-  //   text-align: center;
-  //   padding: 10px 65px 10px 71px;
-  //   color: ${iconBgActiveCl};
-  //   text-transform: uppercase;
-  //   border: 1px solid ${iconBgActiveCl};
-  //   border-radius: 20px;
-  //   ${size.tablet} {
-  //     width: 300px;
-  //   }
-  // }
-  // .RegisterButton {
-  //   margin-bottom: 20px;
-  // }
 `;

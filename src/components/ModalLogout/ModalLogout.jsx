@@ -1,6 +1,5 @@
-import styled from 'styled-components';
-import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import Modal from '../Modal';
 import Button from '../Button';
 import authSelectors from '../../redux/auth/authSelectors';
@@ -14,6 +13,7 @@ import {
   borderBtnCl,
   poppinsFont,
 } from '../../stylesheet/utils/stylesVars';
+import styled from 'styled-components';
 
 export default function ModalLogout() {
   const dispatch = useDispatch();
@@ -31,7 +31,13 @@ export default function ModalLogout() {
   };
 
   return (
-    <Modal>
+    <Modal
+      height="100vh"
+      heightContent="auto"
+      width="320px"
+      padding="20px 10px"
+      paddingTab="40px 73px"
+    >
       <Wrapper>
         <Text>{name ?? 'User'} are you sure you want to log out?</Text>
         <ButtonWrap>
