@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { regexName, regexEmail } from '../../utils/regex';
 import { useRegisterUserMutation } from '../../redux/auth/authReduce';
 import { TextField } from './TextField';
-import PasswordStrenght from './PasswordStrength';
+import PasswordStrength from './PasswordStrength';
 import PasswordShowHide from './PasswordShowHide';
 import Button from '../Button/Button';
 import { ROUTES } from '../../utils/constants';
@@ -99,7 +99,7 @@ export default function RegistrationForm() {
                 }
               ></Field>
 
-              <PasswordStrenght password={formik.values.password} />
+              <PasswordStrength password={formik.values.password} />
 
               <TextField
                 label={
@@ -117,10 +117,15 @@ export default function RegistrationForm() {
                   primary
                   color={accentBgCl}
                   background={accentPositiveCl}
+                  data-tip="Click to sign up"
                 >
                   Sign up
                 </Button>
-                <Link to={ROUTES.LOGIN} className="ButtonLogin">
+                <Link
+                  data-tip="Click to login"
+                  to={ROUTES.LOGIN}
+                  className="ButtonLogin"
+                >
                   Login
                 </Link>
               </ButtonWrapper>

@@ -1,7 +1,7 @@
 import React from 'react';
 import zxcvbn from 'zxcvbn';
 
-const PasswordStrenght = ({ password }) => {
+const PasswordStrength = ({ password }) => {
   const testResult = zxcvbn(password);
   const num = (testResult.score * 100) / 4;
   const progressColor = () => {
@@ -72,4 +72,4 @@ const PasswordStrenght = ({ password }) => {
   );
 };
 
-export default PasswordStrenght;
+export default PasswordStrength;
