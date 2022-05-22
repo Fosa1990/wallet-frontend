@@ -31,11 +31,11 @@ export default function HomeTabMobile({ finances }) {
         </Tr>
         <Tr>
           <Th>Sum</Th>
-          <Td>{transaction.sum}</Td>
+          <Td>{transaction.sum.toFixed(2)}</Td>
         </Tr>
         <Tr>
           <Th>Balance</Th>
-          <Td>{transaction.balance}</Td>
+          <Td>{transaction.balance.toFixed(2)}</Td>
         </Tr>
       </Tbody>
     </MobileTable>
