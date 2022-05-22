@@ -22,7 +22,7 @@ export const duration = '250ms';
 export const toastifyErrorBgc = '#ffcb3a';
 export const toastifyContainerBgc = 'rgba(87, 243, 209, 0.9)';
 
-/// timingFunc
+// timingFunc
 export const timingFunc = 'cubic-bezier(0.4, 0, 0.2, 1)';
 
 //breakpoints

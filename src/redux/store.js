@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import logger from 'redux-logger';
 import {
   persistStore,
   persistReducer,
@@ -28,11 +27,7 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(
-      authPersistConfig,
-      authSlice.reducer,
-      // googleSliceReducer,
-    ),
+    auth: persistReducer(authPersistConfig, authSlice.reducer),
     global: globalReducer,
     [authApi.reducerPath]: authApi.reducer,
     [transactionApi.reducerPath]: transactionApi.reducer,
@@ -46,7 +41,6 @@ export const store = configureStore({
       },
     }),
     transactionApi.middleware,
-    /* .concat(logger), */
     rtkQueryErrorLogger,
     authApi.middleware,
   ],

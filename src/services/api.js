@@ -17,7 +17,6 @@ export const axiosBaseQuery =
       };
     }
   };
-// функція добавляє токен до запитів якщо він є
 function setToken(url, token) {
   if (url === `/${ROUTES.USERS}/${ROUTES.LOGIN}`) tokenService.set(token);
   if (url === `/${ROUTES.USERS}/${ROUTES.LOGOUT}`) tokenService.unset();
