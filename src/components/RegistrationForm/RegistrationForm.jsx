@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Field, Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -17,7 +17,6 @@ import styled from 'styled-components';
 import {
   accentPositiveCl,
   accentBgCl,
-  borderBtnCl,
   size,
   poppinsFont,
   accentTextCl,
@@ -83,22 +82,8 @@ export default function RegistrationForm() {
                 placeholder="E-mail"
                 type="email"
               />
-              {/* <Field
-                autoFocus
-                name="email"
-                placeholder="E-mail"
-                type="email"
-                component={PasswordShowHide}
-                className="input-style"
-                label={
-                  <svg width="21" height="16" className="labelIcon">
-                    <use href={`${Icons}#icon-email`} />
-                  </svg>
-                }
-              ></Field> */}
               <Field
                 name="password"
-                placeholder="Password"
                 type="password"
                 component={PasswordShowHide}
                 label={
@@ -109,9 +94,7 @@ export default function RegistrationForm() {
               ></Field>
               <Field
                 name="confirmPassword"
-                placeholder="Confirm password"
                 type="password"
-                // className="label"
                 component={PasswordShowHide}
                 label={
                   <svg width="16" height="21" className="labelIcon">
@@ -119,27 +102,7 @@ export default function RegistrationForm() {
                   </svg>
                 }
               ></Field>
-              {/* <TextField
-                label={
-                  <svg width="16" height="21" className="labelIcon">
-                    <use href={`${Icons}#icon-password`} />
-                  </svg>
-                }
-                name="password"
-                placeholder="Password"
-                type="password"
-              /> */}
-              {/* <TextField
-                label={
-                  <svg width="16" height="21" className="labelIcon">
-                    <use href={`${Icons}#icon-password`} />
-                  </svg>
-                }
-                name="confirmPassword"
-                placeholder="Confirm password"
-                type="password"
-                className="label"
-              /> */}
+
               <PasswordStrenght password={formik.values.password} />
 
               <TextField

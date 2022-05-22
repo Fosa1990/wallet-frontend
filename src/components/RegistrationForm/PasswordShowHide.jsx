@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useField, ErrorMessage } from 'formik';
+import { ErrorMessage } from 'formik';
 import styled from 'styled-components';
 
 import {
@@ -12,10 +12,6 @@ import {
 import { IoIosEyeOff, IoIosEye } from 'react-icons/io';
 
 const PasswordShowHide = ({ field, form, label }) => {
-  // const [field, meta] = useField(props);
-  console.log('field', field);
-  console.log('meta', form);
-
   const [showHidePassword, changeShowHidePassword] = useState(false);
   const hasError = form.touched[field.name] && form.errors[field.name];
 
@@ -29,14 +25,12 @@ const PasswordShowHide = ({ field, form, label }) => {
               placeholder={
                 field.name === 'password' ? 'Password' : 'Confirm password'
               }
-              // placeholder={field.name === 'password'}
               type={showHidePassword ? 'text' : 'password'}
               className={
                 (`${form.touched && form.error && 'is-invalid'}`,
                 hasError ? 'input-error input-field' : 'input-field')
               }
               {...field}
-              // {...props}
               autoComplete="on"
             />
             <i
@@ -54,12 +48,6 @@ const PasswordShowHide = ({ field, form, label }) => {
             <ErrorMessage className="error" component="div" name={field.name} />
           </Error>
         </LabelWrapper>
-        {/* <i
-          className={hasError ? 'icon-error icon' : 'fa fa-key icon'}
-          onClick={() => changeShowHidePassword(!showHidePassword)}
-        >
-          {!showHidePassword ? <IoIosEyeOff /> : <IoIosEye />}
-        </i> */}
       </>
     </Container>
   );
@@ -69,12 +57,10 @@ export default PasswordShowHide;
 
 const Container = styled.div`
   position: relative;
-  // display: flex;
   width: 100%;
   margin-bottom: 15px;
 
   .icon {
-    // padding: 10px;
     color: ${accentPositiveCl};
     min-width: 50px;
     text-align: center;
@@ -93,18 +79,6 @@ const Container = styled.div`
     width: 100%;
     padding-left: 55px;
     outline: none;
-  }
-
-  .input-field:focus {
-    // border: 2px solid dodgerblue;
-  }
-
-  .input-error {
-    // border: 2px solid red;
-  }
-
-  .icon-error {
-    // background: red;
   }
 `;
 const LabelWrapper = styled.div`
@@ -128,7 +102,7 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-  width: 280px;
+  width: 100%;
   height: 32px;
   font-size: 18px;
   line-height: 1.5;
