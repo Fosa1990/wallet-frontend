@@ -37,11 +37,11 @@ export default function HomeTabTabletDesktop({ finances }) {
                 <Td>{transaction.category}</Td>
                 <Td>{<Comment transactionComment={transaction.comment} />}</Td>
                 {transaction.transactionType === 'income' ? (
-                  <Income>{transaction.sum}</Income>
+                  <Income>{transaction.sum.toFixed(2)}</Income>
                 ) : (
-                  <Spend>{transaction.sum}</Spend>
+                  <Spend>{transaction.sum.toFixed(2)}</Spend>
                 )}
-                <Td>{transaction.balance}</Td>
+                <Td>{transaction.balance.toFixed(2)}</Td>
               </Tr>
             ))
           : null}
