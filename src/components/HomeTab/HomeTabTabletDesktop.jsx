@@ -84,7 +84,7 @@ const Tr = styled.tr`
 `;
 
 const Th = styled.th`
-  font: ${circleFont};
+  font-family: ${circleFont};
   font-size: 18px;
   font-weight: 700;
 
@@ -103,7 +103,7 @@ const Th = styled.th`
 const Tbody = styled.tbody``;
 
 const Td = styled.td`
-  font: ${circleFont};
+  font-family: ${circleFont};
   font-size: 16px;
   font-weight: 400;
   padding: 14px 0;
