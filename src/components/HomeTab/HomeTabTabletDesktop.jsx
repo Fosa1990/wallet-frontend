@@ -69,7 +69,6 @@ export default function HomeTabTabletDesktop({ finances, onDelete }) {
                     src={edit}
                     type="button"
                     onClick={() => {
-                      console.log('click');
                       onDelete(transaction._id);
                     }}
                   />
