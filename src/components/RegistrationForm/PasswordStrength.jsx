@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import zxcvbn from 'zxcvbn';
 
 const PasswordStrength = ({ password }) => {
@@ -70,6 +71,10 @@ const PasswordStrength = ({ password }) => {
       </p>
     </>
   );
+};
+
+PasswordStrength.propTypes = {
+  password: PropTypes.string,
 };
 
 export default PasswordStrength;
