@@ -1,12 +1,12 @@
 import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-import { colors } from '../../utils/constants';
+import PropTypes from 'prop-types';
+import { colors, optionModalTransuction } from '../../utils/constants';
 
 ChartJS.register(ArcElement, Tooltip);
-
 export default function Chart({ categories }) {
   let newCategories = categories
-    .filter(item => item._id !== 'income')
+    .filter(item => item._id !== optionModalTransuction.trTypeAdd)
     .map(function (current) {
       let category = Object.assign({}, current);
       category.color = '';
@@ -35,3 +35,7 @@ export default function Chart({ categories }) {
   };
   return <Doughnut data={data} options={options} />;
 }
+
+Chart.propTypes = {
+  categories: PropTypes.array,
+};
