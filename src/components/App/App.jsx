@@ -1,5 +1,5 @@
-import React, { Suspense, lazy /* , useEffect, useDispatch */ } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { Suspense, lazy, useEffect /* , useDispatch */ } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
   selectIsModalLogoutOpen,
@@ -38,6 +38,19 @@ export default function App() {
   const { isFetching } = useFetchCurrentUserQuery(token, {
     skip: token === null,
   });
+  // TODO: google auth
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.search) {
+      const token = location.search.split('token=')[1];
+      console.log('==location.serach_token:', token);
+    }
+
+    return () => {};
+  }, [location]);
+
+  // TODO: google auth
 
   return (
     <>
