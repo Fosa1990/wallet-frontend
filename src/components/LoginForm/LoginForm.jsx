@@ -21,6 +21,8 @@ import {
 import logo from '../../assets/images/svg/logo.svg';
 import Icons from '../../assets/images/svg/sprite.svg';
 
+import { ReactComponent as GoogleIcon } from '../../assets/images/svg/icons-google.svg';
+
 export default function LoginForm() {
   const [register] = useLoginUserMutation();
 
@@ -80,6 +82,20 @@ export default function LoginForm() {
               <Link to={`/${ROUTES.REGISTRATION}`} className="RegisterButton">
                 Sign up
               </Link>
+              <a
+                className="IconGoogle"
+                href="http://localhost:8081/api/auth/google"
+              >
+                <GoogleIcon width={32} height={28} />
+                Login
+              </a>
+              {/* <a
+                className="IconGoogle"
+                href="https://amazing-wallet.herokuapp.com/api/auth/google"
+              >
+                <GoogleIcon width={32} height={28} />
+                Login
+              </a> */}
             </ButtonWrapper>
           </Form>
         </FormWrapper>

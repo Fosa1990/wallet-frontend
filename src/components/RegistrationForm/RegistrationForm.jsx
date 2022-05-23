@@ -21,6 +21,7 @@ import {
 } from '../../stylesheet/utils/stylesVars';
 import logo from '../../assets/images/svg/logo.svg';
 import Icons from '../../assets/images/svg/sprite.svg';
+import { ReactComponent as GoogleIcon } from '../../assets/images/svg/icons-google.svg';
 
 const validateName = name => regexName.test(name);
 
@@ -123,6 +124,20 @@ export default function RegistrationForm() {
                 <Link to={ROUTES.LOGIN} className="ButtonLogin">
                   Login
                 </Link>
+                <a
+                  className="IconGoogle"
+                  href="http://localhost:8081/api/auth/google"
+                >
+                  <GoogleIcon width={32} height={28} />
+                  Login
+                </a>
+                {/* <a
+                className="IconGoogle"
+                href="https://amazing-wallet.herokuapp.com/api/auth/google"
+              >
+                <GoogleIcon width={32} height={28} />
+                Login
+              </a> */}
               </ButtonWrapper>
             </Form>
           </FromStyle>

@@ -9,7 +9,7 @@ export const fetchFinances = createAsyncThunk(
   async (page, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `${BASE_URL.SERVER}/${API}/${TRANSACTIONS}?page=${page}`,
+        `${BASE_URL.BACK}/${API}/${TRANSACTIONS}?page=${page}`,
       );
 
       return response.data.payload;
@@ -25,7 +25,7 @@ export const fetchBalance = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `${BASE_URL.SERVER}/${API}/${TRANSACTIONS}`,
+        `${BASE_URL.BACK}/${API}/${TRANSACTIONS}`,
       );
       return response.data.payload.transactions[
         response.data.payload.transactions.length - 1
