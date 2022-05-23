@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from '../Modal';
 import Button from '../Button';
@@ -15,21 +16,25 @@ import {
   modalBgCl,
 } from '../../stylesheet/utils/stylesVars';
 import styled from 'styled-components';
+import { toast } from 'react-toastify';
+import NotifyContainer from '../NotifyContainer/NotifyContainer';
 
 export default function ModalLogout({ id }) {
   const dispatch = useDispatch();
   const userName = useSelector(authSelectors.getUserName);
   const name = userName.split('')[0].toUpperCase() + userName.slice(1);
-  const [deleteTransaction] = useDeleteTransactionsMutation();
+  const [deleteTransaction, { data }] = useDeleteTransactionsMutation();
+
+  useEffect(() => {
+    if (data?.code === 200) {
+      NotifyContainer(toast(data?.payload?.message || 'Done!'));
+      dispatch(closeModalWindow());
+      dispatch(addTransactionSuccess());
+    }
+  }, [data, dispatch]);
 
   const onDeleteHandler = () => {
     deleteTransaction(id);
-    dispatch(addTransactionSuccess());
-    onCancelDelete();
-  };
-
-  const onCancelDelete = e => {
-    dispatch(closeModalWindow());
   };
 
   return (
@@ -60,7 +65,7 @@ export default function ModalLogout({ id }) {
             outlined
             color={borderBtnCl}
             width="100px"
-            onClick={onCancelDelete}
+            onClick={() => dispatch(closeModalWindow())}
           >
             No
           </Button>

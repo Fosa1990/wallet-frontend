@@ -14,13 +14,13 @@ import {
 import del from '../../assets/images/delete.svg';
 import edit from '../../assets/images/edit.svg';
 
-import getFinancesSelectors from '../../redux/finances/financesSelectors';
-import { useSelector } from 'react-redux';
-import { selectIsModalDeleteOpen } from '../../redux/globalSelectors';
-export default function HomeTabTabletDesktop({ finances, onDelete }) {
-  const loading = useSelector(getFinancesSelectors.getLoading);
-  const showModalDelete = useSelector(selectIsModalDeleteOpen);
-  console.log(showModalDelete);
+// import getFinancesSelectors from '../../redux/finances/financesSelectors';
+// import { useSelector } from 'react-redux';
+// import { selectIsModalDeleteOpen } from '../../redux/globalSelectors';
+
+export default function HomeTabTabletDesktop({ finances, onDelete, onEdit }) {
+  // const loading = useSelector(getFinancesSelectors.getLoading);
+  // const showModalDelete = useSelector(selectIsModalDeleteOpen);
   return (
     <Table>
       <Thead>
@@ -70,16 +70,22 @@ export default function HomeTabTabletDesktop({ finances, onDelete }) {
                     <ActionButton
                       src={del}
                       type="button"
-                      disable={showModalDelete || loading}
+                      // disable={showModalDelete || loading}
                       onClick={() => onDelete(transaction._id)}
                     />
                     <ActionButton
                       src={edit}
                       type="button"
-                      disable={showModalDelete || loading}
-                      onClick={() => {
-                        onDelete(transaction._id);
-                      }}
+                      // disable={showModalDelete || loading}
+                      onClick={() =>
+                        onEdit(transaction._id, {
+                          transactionType: transaction.transactionType,
+                          category: transaction.category,
+                          sum: transaction.sum,
+                          date: transaction.date,
+                          comment: transaction.comment,
+                        })
+                      }
                     />
                   </Wrap>
                 </Td>
@@ -92,7 +98,9 @@ export default function HomeTabTabletDesktop({ finances, onDelete }) {
 }
 
 HomeTabTabletDesktop.propTypes = {
-  finances: PropTypes.array,
+  finances: PropTypes.array.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
 };
 
 const Table = styled.table`
@@ -145,13 +153,6 @@ const Td = styled.td`
   ${size.tablet} {
     text-align: center;
   }
-  /* &.button {
-    max-width: 86px;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: none;
-    box-shadow: none;
-  } */
 `;
 
 const Income = styled(Td)`

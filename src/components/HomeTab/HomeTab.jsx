@@ -4,17 +4,22 @@ import styled from 'styled-components';
 import Media from 'react-media';
 import { useSelector, useDispatch } from 'react-redux';
 import getFinancesSelectors from '../../redux/finances/financesSelectors';
+import ModalAddTransactions from '../../components/ModalAddTransactions';
+import ModalUpdateTransactions from '../../components/ModalUpdateTransactions';
 import { fetchFinances } from '../../redux/finances/financesOperations';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
 import {
   selectIsModalAddTransactionOpen,
   selectIsModalDeleteOpen,
+  selectIsModalUpdateTransactionOpen,
   getIsNewTransaction,
 } from '../../redux/globalSelectors';
-import { openModalDelete } from '../../redux/globalSlice';
-import { reloadTransactionList } from '../../redux/globalSlice';
-import ModalAddTransactions from '../../components/ModalAddTransactions';
 import ModalDelete from '../ModalDelete';
+import {
+  openModalDelete,
+  openModalUpdateTransaction,
+  reloadTransactionList,
+} from '../../redux/globalSlice';
 import CustomPagination from '../CustomPagination';
 import Balance from '../Balance';
 import HomeTabMobile from './HomeTabMobile';
@@ -25,19 +30,21 @@ import Loader from '../Loader';
 export default function HomeTab() {
   const dispatch = useDispatch();
   const [page, setPage] = useSearchParams({ page: 1 });
-  const [isLoading, setIsLoading] = useState(false);
-  const [disable, setDisable] = useState(false);
-  const [transId, setTransId] = useState();
+  const [idTransaction, setIdTransaction] = useState();
+  const [dataTransaction, setDataTransaction] = useState();
   const finances = useSelector(getFinancesSelectors.getFinances);
   const totalDocuments = useSelector(getFinancesSelectors.getCountDocuments);
   const isNewTransaction = useSelector(getIsNewTransaction);
   const { refetch } = useFetchCurrentUserQuery();
+  const showModalDelete = useSelector(selectIsModalDeleteOpen);
+  const loading = useSelector(getFinancesSelectors.getLoading);
 
   useEffect(() => {
+    console.log(1111111);
     dispatch(fetchFinances(page.get('page')));
-    setIsLoading(true);
     if (isNewTransaction) {
       refetch();
+      console.log(2222);
     }
     dispatch(reloadTransactionList());
   }, [dispatch, isNewTransaction, page, refetch]);
@@ -47,14 +54,21 @@ export default function HomeTab() {
   };
 
   const onDelete = id => {
-    // setDisable(true);
-    setTransId(id);
+    setIdTransaction(id);
     dispatch(openModalDelete());
   };
 
-  const showModalDelete = useSelector(selectIsModalDeleteOpen);
+  const onEdit = (id, data) => {
+    setIdTransaction(id);
+    setDataTransaction(data);
+    dispatch(openModalUpdateTransaction());
+  };
+
   const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
-  const loading = useSelector(getFinancesSelectors.getLoading);
+  const showModalUpdateTransactions = useSelector(
+    selectIsModalUpdateTransactionOpen,
+  );
+
   return (
     <>
       <Div>
@@ -62,15 +76,23 @@ export default function HomeTab() {
         <Media query="(max-width: 767px)">
           {matches =>
             matches ? (
-              <HomeTabMobile finances={finances} onDelete={onDelete} />
+              <HomeTabMobile
+                finances={finances}
+                onDelete={onDelete}
+                onEdit={onEdit}
+              />
             ) : (
-              <HomeTabTabletDesktop finances={finances} onDelete={onDelete} />
+              <HomeTabTabletDesktop
+                finances={finances}
+                onDelete={onDelete}
+                onEdit={onEdit}
+              />
             )
           }
         </Media>
         {loading && <Loader />}
         {!loading && finances.length === 0 && <NoInfo />}
-        {totalDocuments.totalDocuments > 0 && isLoading && (
+        {totalDocuments.totalDocuments > 0 && (
           <CustomPagination
             page={Number(page.get('page'))}
             itemsPerPage={totalDocuments.limitDocuments}
@@ -79,8 +101,14 @@ export default function HomeTab() {
           />
         )}
       </Div>
-      {showModalDelete && <ModalDelete id={transId} />}
+      {showModalDelete && <ModalDelete id={idTransaction} />}
       {showModalAddTransactions && <ModalAddTransactions />}
+      {showModalUpdateTransactions && (
+        <ModalUpdateTransactions
+          transactionId={idTransaction}
+          dataTransaction={dataTransaction}
+        />
+      )}
     </>
   );
 }

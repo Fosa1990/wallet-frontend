@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
+import React /* useEffect */ from 'react';
 import styled from 'styled-components';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchBalance } from '../../redux/finances/financesOperations';
+import { useSelector /*, useDispatch */ } from 'react-redux';
+// import { fetchBalance } from '../../redux/finances/financesOperations';
 import authSelectors from '../../redux/auth/authSelectors';
 import { poppinsFont, accentTextCl } from '../../stylesheet/utils/stylesVars';
 
 export default function BalanceSum() {
   const balance = useSelector(authSelectors.getBalance);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchBalance());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchBalance());
+  // }, [dispatch]);
 
   return (
     <Sum>
