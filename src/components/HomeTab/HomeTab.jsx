@@ -60,7 +60,7 @@ export default function HomeTab() {
         <Media query="(max-width: 767px)">
           {matches =>
             matches ? (
-              <HomeTabMobile finances={finances} />
+              <HomeTabMobile finances={finances} onDelete={onDelete} />
             ) : (
               <HomeTabTabletDesktop finances={finances} onDelete={onDelete} />
             )

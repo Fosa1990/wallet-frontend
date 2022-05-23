@@ -22,6 +22,7 @@ export const duration = '250ms';
 export const toastifyErrorBgc = '#ffcb3a';
 export const toastifyContainerBgc = 'rgba(87, 243, 209, 0.9)';
 export const tableShadow = 'rgba(255, 255, 255, 0.6)';
+export const tableRowBorderCl = '#dcdcdf';
 
 // timingFunc
 export const timingFunc = 'cubic-bezier(0.4, 0, 0.2, 1)';

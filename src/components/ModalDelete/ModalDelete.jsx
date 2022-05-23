@@ -3,6 +3,8 @@ import Modal from '../Modal';
 import Button from '../Button';
 import authSelectors from '../../redux/auth/authSelectors';
 import { closeModalWindow } from '../../redux/globalSlice';
+import { useDeleteTransactionsMutation } from '../../redux/transactions/transactionOperation';
+import { addTransactionSuccess } from '../../redux/globalSlice';
 import {
   size,
   accentBgCl,
@@ -10,21 +12,17 @@ import {
   accentTextCl,
   borderBtnCl,
   poppinsFont,
+  modalBgCl,
 } from '../../stylesheet/utils/stylesVars';
 import styled from 'styled-components';
-import { useDeleteTransactionsMutation } from '../../redux/transactions/transactionOperation';
-import { addTransactionSuccess } from '../../redux/globalSlice';
 
 export default function ModalLogout({ id }) {
   const dispatch = useDispatch();
   const userName = useSelector(authSelectors.getUserName);
   const name = userName.split('')[0].toUpperCase() + userName.slice(1);
-  const [deleteTransaction, result] = useDeleteTransactionsMutation();
+  const [deleteTransaction] = useDeleteTransactionsMutation();
 
   const onDeleteHandler = () => {
-    console.log('id', id);
-    console.log('click');
-    console.log('result', result);
     deleteTransaction(id);
     dispatch(addTransactionSuccess());
     onCancelDelete();
@@ -41,6 +39,7 @@ export default function ModalLogout({ id }) {
       width="320px"
       padding="20px 10px"
       paddingTab="40px 73px"
+      color={modalBgCl}
     >
       <Wrapper>
         <Text>

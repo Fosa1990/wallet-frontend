@@ -1,5 +1,6 @@
 import Moment from 'react-moment';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Comment from './Comment';
 import ActionButton from '../ActionButton';
 import {
@@ -14,7 +15,7 @@ import edit from '../../assets/images/edit.svg';
 export default function HomeTabMobile({ finances, onDelete }) {
   return finances.map(transaction => (
     <Wrap key={transaction._id}>
-      <MobileTable /*key={transaction._id}*/>
+      <MobileTable>
         <Tbody type={transaction.transactionType}>
           <Tr>
             <Th>Date</Th>
@@ -59,15 +60,17 @@ export default function HomeTabMobile({ finances, onDelete }) {
         <ActionButton
           src={edit}
           type="button"
-          onClick={() => {
-            console.log('click');
-            onDelete(transaction._id);
-          }}
+          onClick={() => onDelete(transaction._id)}
         />
       </ButtonWrap>
     </Wrap>
   ));
 }
+
+HomeTabMobile.propTypes = {
+  finances: PropTypes.array,
+};
+
 const MobileTable = styled.table`
   background-color: ${accentBgCl};
   border-collapse: collapse;

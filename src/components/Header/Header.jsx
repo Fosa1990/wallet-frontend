@@ -5,6 +5,7 @@ import authSelectors from '../../redux/auth/authSelectors';
 import LogoutButton from '../LogoutButton';
 import Avatar from '../Avatar';
 import Logo from '../Logo';
+import Icon from '../Icon';
 import { openModalLogout } from '../../redux/globalSlice';
 import { ROUTES } from '../../utils/constants';
 import {
@@ -13,7 +14,6 @@ import {
   circleFont,
   size,
 } from '../../stylesheet/utils/stylesVars';
-import exit from '../../assets/images/svg/exit.svg';
 
 export default function Header({ children, onClick, ...props }) {
   const userName = useSelector(authSelectors.getUserName);
@@ -31,7 +31,9 @@ export default function Header({ children, onClick, ...props }) {
         <Media query="(min-width: 768px)" render={() => <Avatar />} />
         <UserName>{name || 'User'} </UserName>
         <LogoutButton type="button" onClick={handleClick}>
-          <ExitIcon src={exit} />
+          <ExitIcon>
+            <Icon width="18px" height="18px" iconName="logout" />
+          </ExitIcon>
           <Media
             query="(min-width: 768px)"
             render={() => <span>Logout</span>}
@@ -61,23 +63,28 @@ const StyledHeader = styled.div`
 const UserInfo = styled.div`
   display: flex;
   justify-content: ${props => props.justify || 'center'};
-  align-items: ${props => props.align || 'center'};
+  align-items: ${props => props.align || 'baseline'};
   font-family: ${circleFont};
   font-size: 18px;
-  line-height: 1, 47;
+  line-height: 1.47;
   color: ${props => props.color || textPlcholderCl};
+  ${size.tablet} {
+    align-items: ${props => props.align || 'center'};
+  }
 `;
 
-const ExitIcon = styled.img`
-  width: 18px;
-  height: 18px;
-  margin-right: ${props => props.mRight || '8px'};
+const ExitIcon = styled.div`
+  display: flex;
+  align-items: center;
+  ${size.tablet} {
+    margin-right: ${props => props.mRight || '8px'};
+  }
 `;
 
 const UserName = styled.p`
   color: ${textPlcholderCl};
   ${size.tablet} {
-    padding: 6px 12px 6px 0;
+    padding-right: 12px;
     border-right: 1px solid ${textPlcholderCl};
   }
 `;

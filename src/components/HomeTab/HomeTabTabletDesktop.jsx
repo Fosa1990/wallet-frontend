@@ -1,6 +1,8 @@
 import Moment from 'react-moment';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Comment from './Comment';
+import ActionButton from '../ActionButton';
 import {
   size,
   circleFont,
@@ -11,7 +13,6 @@ import {
 } from '../../stylesheet/utils/stylesVars';
 import del from '../../assets/images/delete.svg';
 import edit from '../../assets/images/edit.svg';
-import ActionButton from '../ActionButton';
 
 export default function HomeTabTabletDesktop({ finances, onDelete }) {
   return (
@@ -80,6 +81,10 @@ export default function HomeTabTabletDesktop({ finances, onDelete }) {
     </Table>
   );
 }
+
+HomeTabTabletDesktop.propTypes = {
+  finances: PropTypes.array,
+};
 
 const Table = styled.table`
   border-collapse: collapse;

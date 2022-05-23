@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import SVG from 'react-inlinesvg';
+import PropTypes from 'prop-types';
 import {
   size,
   iconBgActiveCl,
   iconBgCl,
 } from '../../stylesheet/utils/stylesVars';
 
-export default function ActionButton({ src, onClick, ...props }) {
+export default function ActionButton({ src, onClick }) {
   return (
     <Button type="button" onClick={onClick}>
       <DelIcon src={src} />
@@ -21,8 +22,8 @@ const DelIcon = styled(SVG)`
     fill: ${iconBgCl};
   }
   ${size.tablet} {
-    width: 18px;
-    height: 18px;
+    width: 28px;
+    height: 28px;
     border-radius: 2px;
     margin-right: 23px;
   }
@@ -39,3 +40,8 @@ const Button = styled.button`
     }
   }
 `;
+
+Button.propTypes = {
+  src: PropTypes.string,
+  onClick: PropTypes.func,
+};

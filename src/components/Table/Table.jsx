@@ -1,12 +1,16 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import {
   accentBgCl,
   accentNegativeCl,
   accentPositiveCl,
 } from '../../stylesheet/utils/stylesVars';
-import { colors } from '../../utils/constants';
-import { size } from '../../stylesheet/utils/stylesVars';
-
+import { colors, optionModalTransuction } from '../../utils/constants';
+import {
+  size,
+  tableRowBorderCl,
+  tableShadow,
+} from '../../stylesheet/utils/stylesVars';
 export default function Table({ categories, transactionType }) {
   return (
     <div>
@@ -19,7 +23,7 @@ export default function Table({ categories, transactionType }) {
         </Thead>
         <tbody>
           {categories
-            .filter(item => item._id !== 'income')
+            .filter(item => item._id !== optionModalTransuction.trTypeAdd)
             .map(category => (
               <TableRow key={category._id}>
                 <TableData>
@@ -72,6 +76,11 @@ export default function Table({ categories, transactionType }) {
     </div>
   );
 }
+
+Table.propTypes = {
+  categories: PropTypes.array,
+  transactionType: PropTypes.array,
+};
 
 const TableMain = styled.table`
   width: 280px;
@@ -129,8 +138,8 @@ const TableData = styled.td`
   }
 `;
 const TableRow = styled.tr`
-  border-bottom: 1px solid #dcdcdf;
-  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+  border-bottom: 1px solid ${tableRowBorderCl};
+  box-shadow: 0px 1px 0px ${tableShadow};
 `;
 const ColorBlock = styled.div`
   height: 24px;

@@ -53,6 +53,8 @@ const TIME_MS = {
 const NAMES = {
   CURRENCY: 'currency',
   RATES: 'rates',
+  YEAR: 'year',
+  MONTH: 'month',
 };
 
 const months = [
