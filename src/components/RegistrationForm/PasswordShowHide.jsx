@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { ErrorMessage } from 'formik';
 import styled from 'styled-components';
 import { IoIosEyeOff, IoIosEye } from 'react-icons/io';
@@ -58,6 +59,11 @@ const PasswordShowHide = ({ field, form, label }) => {
   );
 };
 
+PasswordShowHide.propTypes = {
+  field: PropTypes.object,
+  form: PropTypes.object,
+  label: PropTypes.object,
+};
 export default PasswordShowHide;
 
 const Container = styled.div`
