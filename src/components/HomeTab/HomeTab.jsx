@@ -40,11 +40,9 @@ export default function HomeTab() {
   const loading = useSelector(getFinancesSelectors.getLoading);
 
   useEffect(() => {
-    console.log(1111111);
     dispatch(fetchFinances(page.get('page')));
     if (isNewTransaction) {
       refetch();
-      console.log(2222);
     }
     dispatch(reloadTransactionList());
   }, [dispatch, isNewTransaction, page, refetch]);
