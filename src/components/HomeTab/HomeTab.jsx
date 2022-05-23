@@ -4,14 +4,17 @@ import styled from 'styled-components';
 import Media from 'react-media';
 import { useSelector, useDispatch } from 'react-redux';
 import getFinancesSelectors from '../../redux/finances/financesSelectors';
-import ModalAddTransactions from '../../components/ModalAddTransactions';
 import { fetchFinances } from '../../redux/finances/financesOperations';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
 import {
   selectIsModalAddTransactionOpen,
+  selectIsModalDeleteOpen,
   getIsNewTransaction,
 } from '../../redux/globalSelectors';
+import { openModalDelete } from '../../redux/globalSlice';
 import { reloadTransactionList } from '../../redux/globalSlice';
+import ModalAddTransactions from '../../components/ModalAddTransactions';
+import ModalDelete from '../ModalDelete';
 import CustomPagination from '../CustomPagination';
 import Balance from '../Balance';
 import HomeTabMobile from './HomeTabMobile';
@@ -23,6 +26,7 @@ export default function HomeTab() {
   const dispatch = useDispatch();
   const [page, setPage] = useSearchParams({ page: 1 });
   const [isLoading, setIsLoading] = useState(false);
+  const [transId, setTransId] = useState();
   const finances = useSelector(getFinancesSelectors.getFinances);
   const totalDocuments = useSelector(getFinancesSelectors.getCountDocuments);
   const isNewTransaction = useSelector(getIsNewTransaction);
@@ -41,6 +45,12 @@ export default function HomeTab() {
     setPage({ page: pageNumber });
   };
 
+  const onDelete = id => {
+    setTransId(id);
+    dispatch(openModalDelete());
+  };
+
+  const showModalDelete = useSelector(selectIsModalDeleteOpen);
   const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
   const loading = useSelector(getFinancesSelectors.getLoading);
   return (
@@ -52,7 +62,7 @@ export default function HomeTab() {
             matches ? (
               <HomeTabMobile finances={finances} />
             ) : (
-              <HomeTabTabletDesktop finances={finances} />
+              <HomeTabTabletDesktop finances={finances} onDelete={onDelete} />
             )
           }
         </Media>
@@ -67,6 +77,7 @@ export default function HomeTab() {
           />
         )}
       </Div>
+      {showModalDelete && <ModalDelete id={transId} />}
       {showModalAddTransactions && <ModalAddTransactions />}
     </>
   );
