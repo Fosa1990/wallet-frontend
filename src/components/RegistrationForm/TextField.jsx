@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useField, ErrorMessage } from 'formik';
 import styled from 'styled-components';
 import {
@@ -35,6 +36,11 @@ export const TextField = ({ label, ...props }) => {
       </LabelWrapper>
     </>
   );
+};
+
+TextField.propTypes = {
+  label: PropTypes.object,
+  props: PropTypes.node,
 };
 
 const LabelWrapper = styled.div`
