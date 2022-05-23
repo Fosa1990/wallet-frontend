@@ -14,7 +14,13 @@ import {
 import del from '../../assets/images/delete.svg';
 import edit from '../../assets/images/edit.svg';
 
+import getFinancesSelectors from '../../redux/finances/financesSelectors';
+import { useSelector } from 'react-redux';
+import { selectIsModalDeleteOpen } from '../../redux/globalSelectors';
 export default function HomeTabTabletDesktop({ finances, onDelete }) {
+  const loading = useSelector(getFinancesSelectors.getLoading);
+  const showModalDelete = useSelector(selectIsModalDeleteOpen);
+  console.log(showModalDelete);
   return (
     <Table>
       <Thead>
@@ -59,19 +65,23 @@ export default function HomeTabTabletDesktop({ finances, onDelete }) {
                     minimumFractionDigits: 2,
                   }).format(transaction.balance)}
                 </Td>
-                <Td className="button">
-                  <ActionButton
-                    src={del}
-                    type="button"
-                    onClick={() => onDelete(transaction._id)}
-                  />
-                  <ActionButton
-                    src={edit}
-                    type="button"
-                    onClick={() => {
-                      onDelete(transaction._id);
-                    }}
-                  />
+                <Td>
+                  <Wrap>
+                    <ActionButton
+                      src={del}
+                      type="button"
+                      disable={showModalDelete || loading}
+                      onClick={() => onDelete(transaction._id)}
+                    />
+                    <ActionButton
+                      src={edit}
+                      type="button"
+                      disable={showModalDelete || loading}
+                      onClick={() => {
+                        onDelete(transaction._id);
+                      }}
+                    />
+                  </Wrap>
                 </Td>
               </Tr>
             ))
@@ -135,10 +145,13 @@ const Td = styled.td`
   ${size.tablet} {
     text-align: center;
   }
-  &.button {
+  /* &.button {
+    max-width: 86px;
+    display: flex;
+    justify-content: space-between;
     border-bottom: none;
     box-shadow: none;
-  }
+  } */
 `;
 
 const Income = styled(Td)`
@@ -146,4 +159,11 @@ const Income = styled(Td)`
 `;
 const Spend = styled(Td)`
   color: ${accentNegativeCl};
+`;
+const Wrap = styled.div`
+  max-width: 86px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: none;
+  box-shadow: none;
 `;

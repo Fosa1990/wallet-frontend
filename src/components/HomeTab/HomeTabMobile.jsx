@@ -49,9 +49,25 @@ export default function HomeTabMobile({ finances, onDelete }) {
               }).format(transaction.balance)}
             </Td>
           </Tr>
+          <Tr className="button">
+            <Td className="buttons">
+              <ButtonWrap>
+                <ActionButton
+                  src={del}
+                  type="button"
+                  onClick={() => onDelete(transaction._id)}
+                />
+                <ActionButton
+                  src={edit}
+                  type="button"
+                  onClick={() => onDelete(transaction._id)}
+                />
+              </ButtonWrap>
+            </Td>
+          </Tr>
         </Tbody>
       </MobileTable>
-      <ButtonWrap>
+      {/* <ButtonWrap>
         <ActionButton
           src={del}
           type="button"
@@ -62,7 +78,7 @@ export default function HomeTabMobile({ finances, onDelete }) {
           type="button"
           onClick={() => onDelete(transaction._id)}
         />
-      </ButtonWrap>
+      </ButtonWrap> */}
     </Wrap>
   ));
 }
@@ -111,6 +127,9 @@ const Tr = styled.tr`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  &.button {
+    justify-content: center;
+  }
 `;
 
 const Th = styled.th`
@@ -127,6 +146,9 @@ const Td = styled.td`
   text-align: right;
   max-width: 135px;
   word-wrap: break-word;
+  &.buttons {
+    width: 100%;
+  }
 `;
 
 const Wrap = styled.div`
@@ -141,6 +163,8 @@ const Wrap = styled.div`
   }
 `;
 const ButtonWrap = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 `;
