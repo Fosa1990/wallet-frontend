@@ -9,7 +9,7 @@ import { colors, optionModalTransuction } from '../../utils/constants';
 import {
   size,
   tableRowBorderCl,
-  tableBoxShadowCl,
+  tableShadow,
 } from '../../stylesheet/utils/stylesVars';
 export default function Table({ categories, transactionType }) {
   return (
@@ -139,7 +139,7 @@ const TableData = styled.td`
 `;
 const TableRow = styled.tr`
   border-bottom: 1px solid ${tableRowBorderCl};
-  box-shadow: 0px 1px 0px ${tableBoxShadowCl};
+  box-shadow: 0px 1px 0px ${tableShadow};
 `;
 const ColorBlock = styled.div`
   height: 24px;

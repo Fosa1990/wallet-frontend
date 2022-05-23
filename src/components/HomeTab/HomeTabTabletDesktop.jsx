@@ -2,15 +2,19 @@ import Moment from 'react-moment';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Comment from './Comment';
+import ActionButton from '../ActionButton';
 import {
   size,
   circleFont,
   accentBgCl,
   accentNegativeCl,
   accentPositiveCl,
+  tableShadow,
 } from '../../stylesheet/utils/stylesVars';
+import del from '../../assets/images/delete.svg';
+import edit from '../../assets/images/edit.svg';
 
-export default function HomeTabTabletDesktop({ finances }) {
+export default function HomeTabTabletDesktop({ finances, onDelete }) {
   return (
     <Table>
       <Thead>
@@ -55,6 +59,20 @@ export default function HomeTabTabletDesktop({ finances }) {
                     minimumFractionDigits: 2,
                   }).format(transaction.balance)}
                 </Td>
+                <Td className="button">
+                  <ActionButton
+                    src={del}
+                    type="button"
+                    onClick={() => onDelete(transaction._id)}
+                  />
+                  <ActionButton
+                    src={edit}
+                    type="button"
+                    onClick={() => {
+                      onDelete(transaction._id);
+                    }}
+                  />
+                </Td>
               </Tr>
             ))
           : null}
@@ -83,10 +101,7 @@ const Thead = styled.thead`
   background-color: ${accentBgCl};
 `;
 
-const Tr = styled.tr`
-  border-bottom: 1px solid #dcdcdf;
-  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
-`;
+const Tr = styled.tr``;
 
 const Th = styled.th`
   font-family: ${circleFont};
@@ -114,9 +129,15 @@ const Td = styled.td`
   padding: 14px 0;
   max-width: 140px;
   word-wrap: break-word;
+  border-bottom: 1px solid #dcdcdf;
+  box-shadow: 0px 1px 0px ${tableShadow};
 
   ${size.tablet} {
     text-align: center;
+  }
+  &.button {
+    border-bottom: none;
+    box-shadow: none;
   }
 `;
 
