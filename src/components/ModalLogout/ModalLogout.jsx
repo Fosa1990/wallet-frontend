@@ -12,6 +12,7 @@ import {
   accentTextCl,
   borderBtnCl,
   poppinsFont,
+  modalBgCl,
 } from '../../stylesheet/utils/stylesVars';
 import styled from 'styled-components';
 
@@ -37,6 +38,7 @@ export default function ModalLogout() {
       width="320px"
       padding="20px 10px"
       paddingTab="40px 73px"
+      color={modalBgCl}
     >
       <Wrapper>
         <Text>{name ?? 'User'} are you sure you want to log out?</Text>
