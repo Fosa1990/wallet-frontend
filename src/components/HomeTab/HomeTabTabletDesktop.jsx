@@ -1,5 +1,6 @@
 import Moment from 'react-moment';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Comment from './Comment';
 import {
   size,
@@ -61,6 +62,10 @@ export default function HomeTabTabletDesktop({ finances }) {
     </Table>
   );
 }
+
+HomeTabTabletDesktop.propTypes = {
+  finances: PropTypes.array,
+};
 
 const Table = styled.table`
   border-collapse: collapse;

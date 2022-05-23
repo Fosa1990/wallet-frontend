@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { size } from '../../stylesheet/utils/stylesVars';
 import { months } from '../../utils/constants';
 
@@ -31,6 +32,13 @@ export default function Select({ year, month, onYear, onMonth }) {
     </SelectWrap>
   );
 }
+
+Select.propTypes = {
+  year: PropTypes.string.isRequired,
+  month: PropTypes.string.isRequired,
+  onYear: PropTypes.func.isRequired,
+  onMonth: PropTypes.func.isRequired,
+};
 
 const SelectWrap = styled.div`
   display: flex;
