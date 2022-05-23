@@ -1,5 +1,6 @@
 import Moment from 'react-moment';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Comment from './Comment';
 import {
   circleFont,
@@ -48,6 +49,11 @@ export default function HomeTabMobile({ finances }) {
     </MobileTable>
   ));
 }
+
+HomeTabMobile.propTypes = {
+  finances: PropTypes.array,
+};
+
 const MobileTable = styled.table`
   background-color: ${accentBgCl};
   border-collapse: collapse;
