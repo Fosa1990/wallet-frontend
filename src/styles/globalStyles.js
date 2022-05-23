@@ -54,13 +54,21 @@ html {
 }
 
 body {
-   display: flex;
-   flex-direction: column;
+  display: flex;
+  flex-direction: column;
   margin: 0;
   font-family: 'Circle', sans-serif;
   font-size: 12px;
   background-color: #e7eaf2;
   min-height: 100vh;
+
+  &::-webkit-scrollbar {
+   width: 1em;
+}
+  &::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(#24cca7, #4a56e2);
+  border-radius: 10px;
+}
 }
 
 

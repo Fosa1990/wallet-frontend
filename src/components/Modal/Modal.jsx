@@ -104,8 +104,8 @@ const Content = styled.div`
   background-color: ${accentBgCl};
   overflow-y: auto;
   ${size.tablet} {
+    overflow-y: unset;
     width: 540px;
-    height: auto;
     padding: ${p => p.paddingTab || '40px 73px 0px'};
     border-radius: 20px;
   }
