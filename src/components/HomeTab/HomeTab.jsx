@@ -26,6 +26,7 @@ export default function HomeTab() {
   const dispatch = useDispatch();
   const [page, setPage] = useSearchParams({ page: 1 });
   const [isLoading, setIsLoading] = useState(false);
+  const [disable, setDisable] = useState(false);
   const [transId, setTransId] = useState();
   const finances = useSelector(getFinancesSelectors.getFinances);
   const totalDocuments = useSelector(getFinancesSelectors.getCountDocuments);
@@ -46,6 +47,7 @@ export default function HomeTab() {
   };
 
   const onDelete = id => {
+    // setDisable(true);
     setTransId(id);
     dispatch(openModalDelete());
   };
