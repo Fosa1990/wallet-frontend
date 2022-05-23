@@ -22,6 +22,7 @@ export default function Modal({
   width,
   padding,
   paddingTab,
+  color,
 }) {
   const dispatch = useDispatch();
 
@@ -47,7 +48,7 @@ export default function Modal({
   };
 
   return createPortal(
-    <Overlay onClick={handleBackdropClick} height={height}>
+    <Overlay onClick={handleBackdropClick} height={height} color={color}>
       <Content
         heightContent={heightContent}
         width={width}
@@ -84,7 +85,7 @@ const Overlay = styled.div`
   bottom: 0;
   left: 0;
   width: 100vw;
-  background-color: ${accentBgCl};
+  background-color: ${p => p.color || accentBgCl};
   height: ${p => p.height || 'calc(100vh - 60px)'};
   ${size.tablet} {
     height: 100vh;
@@ -138,4 +139,5 @@ Modal.propTypes = {
   width: PropTypes.string,
   padding: PropTypes.string,
   paddingTab: PropTypes.string,
+  color: PropTypes.string,
 };

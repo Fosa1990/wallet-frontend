@@ -10,14 +10,15 @@ import Table from '../Table';
 import Chart from '../Chart';
 import Select from '../Select';
 import BalanceSum from '../Balance/BalanceSum';
+import { size } from '../../stylesheet/utils/stylesVars';
+import { NAMES } from '../../utils/constants';
 import nodata from '../../assets/images/nodata.jpg';
 
-import { size } from '../../stylesheet/utils/stylesVars';
-
 export default function DiagramTab() {
+  const currentDate = new Date();
   const [searchParams, setSearchParams] = useSearchParams({
-    year: '2022',
-    month: '05',
+    year: currentDate.getFullYear(),
+    month: currentDate.getMonth() + 1,
   });
 
   const categories = useSelector(categoriesSelectors.getCategories);
@@ -26,8 +27,8 @@ export default function DiagramTab() {
   useEffect(() => {
     dispatch(
       getCategories({
-        year: searchParams.get('year'),
-        month: searchParams.get('month'),
+        year: searchParams.get(NAMES.YEAR),
+        month: searchParams.get(NAMES.MONTH),
       }),
     );
   }, [dispatch, searchParams]);
@@ -35,8 +36,8 @@ export default function DiagramTab() {
   const onYear = e => {
     setSearchParams({
       ...{
-        year: searchParams.get('year'),
-        month: searchParams.get('month'),
+        year: searchParams.get(NAMES.YEAR),
+        month: searchParams.get(NAMES.MONTH),
       },
       year: e.target.value,
     });
@@ -45,8 +46,8 @@ export default function DiagramTab() {
   const onMonth = e => {
     setSearchParams({
       ...{
-        year: searchParams.get('year'),
-        month: searchParams.get('month'),
+        year: searchParams.get(NAMES.YEAR),
+        month: searchParams.get(NAMES.MONTH),
       },
       month: e.target.value,
     });
@@ -64,7 +65,7 @@ export default function DiagramTab() {
   return (
     <>
       <DiagramTabWrapper>
-        <RoundWrap>
+        <div>
           <DiagramTabHeader>Statistics</DiagramTabHeader>
 
           <ChartWrapper>
@@ -79,11 +80,11 @@ export default function DiagramTab() {
               </>
             )}
           </ChartWrapper>
-        </RoundWrap>
+        </div>
         <div>
           <Select
-            year={searchParams.get('year')}
-            month={searchParams.get('month')}
+            year={searchParams.get(NAMES.YEAR)}
+            month={searchParams.get(NAMES.MONTH)}
             onYear={onYear}
             onMonth={onMonth}
           />
@@ -118,14 +119,7 @@ const DiagramTabHeader = styled.h2`
   line-height: 1.5;
   margin-bottom: 8px;
 `;
-const RoundWrap = styled.div`
-  / ${size.desktop} {
-    /* margin-bottom: 32px; */
-    /* margin-right: 32px; */
-    /* width: 288px;
-    height: 288px; */
-  }
-`;
+
 const ChartWrapper = styled.div`
   position: relative;
   margin-bottom: 32px;

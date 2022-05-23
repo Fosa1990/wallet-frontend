@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import {
   textPlcholderCl,
   size,
-  iconBgCl,
+  borderBtnCl,
+  timingFunc,
 } from '../../stylesheet/utils/stylesVars';
 
 export default function LogoutButton({ children, onClick, ...props }) {
@@ -16,23 +17,24 @@ const StyledLogoutBtn = styled.button`
   align-items: center;
   height: 28px;
   font-size: 18px;
-  line-height: 1, 47;
+  line-height: 1.47;
   color: ${props => props.color || textPlcholderCl};
   background-color: transparent;
   border: none;
-  padding-left: 12px;
+  padding-left: 8px;
+  transition: transform 0.25s ${timingFunc};
 
   ${size.tablet} {
     border: none;
     max-width: 100%;
-    padding-right: 8px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    height: 30px;
+    padding-left: 12px;
+    height: 24px;
   }
-  &:hover {
-    border-radius: 6px;
-    box-shadow: inset 0px 0px 18px ${iconBgCl};
+  &:hover,
+  &:focus {
+    color: ${borderBtnCl};
+    stroke: ${borderBtnCl};
+    transform: scale(1.1);
   }
 `;
 
