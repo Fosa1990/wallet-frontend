@@ -9,7 +9,7 @@ import {
 
 export default function ActionButton({ src, onClick, disabled = false }) {
   return (
-    <Button type="submit" onClick={onClick} disabled={disabled}>
+    <Button type="button" onClick={onClick} disabled={disabled}>
       <DelIcon src={src} />
     </Button>
   );
