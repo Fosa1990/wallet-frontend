@@ -145,7 +145,7 @@ const FormWrapper = styled.div`
     width: 533px;
     padding: 40px 59px 62px 65px;
     margin: 0 auto;
-    background: #fff;
+    background: ${accentBgCl};
     border-radius: 20px;
   }
 
