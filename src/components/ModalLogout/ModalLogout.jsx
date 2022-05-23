@@ -41,7 +41,7 @@ export default function ModalLogout() {
       color={modalBgCl}
     >
       <Wrapper>
-        <Text>{name ?? 'User'} are you sure you want to log out?</Text>
+        <Text>{name ?? 'User'}, are you sure you want to log out?</Text>
         <ButtonWrap>
           <Button
             primary
