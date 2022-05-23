@@ -10,14 +10,14 @@ import Table from '../Table';
 import Chart from '../Chart';
 import Select from '../Select';
 import BalanceSum from '../Balance/BalanceSum';
+import { size } from '../../stylesheet/utils/stylesVars';
 import nodata from '../../assets/images/nodata.jpg';
 
-import { size } from '../../stylesheet/utils/stylesVars';
-
 export default function DiagramTab() {
+  const currentDate = new Date();
   const [searchParams, setSearchParams] = useSearchParams({
-    year: '2022',
-    month: '05',
+    year: currentDate.getFullYear(),
+    month: currentDate.getMonth() + 1,
   });
 
   const categories = useSelector(categoriesSelectors.getCategories);

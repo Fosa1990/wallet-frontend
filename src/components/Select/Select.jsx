@@ -4,15 +4,17 @@ import { size } from '../../stylesheet/utils/stylesVars';
 import { months } from '../../utils/constants';
 
 export default function Select({ year, month, onYear, onMonth }) {
+  const currentDate = new Date();
   let years = [];
-  let yearForSelect = null;
-  for (let i = 2020; i <= 2025; i++) {
-    yearForSelect = i;
-    years.push(yearForSelect);
+  for (let year = 2020; year <= currentDate.getFullYear(); year += 1) {
+    years.push(year);
   }
-
   const optionsMonths = months.map((text, index) => {
-    return <option key={index}>{text}</option>;
+    return (
+      <option key={index} value={index + 1}>
+        {text}
+      </option>
+    );
   });
   const optionsYears = years.map((text, index) => {
     return <option key={index}>{text}</option>;
