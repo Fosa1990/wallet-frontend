@@ -57,4 +57,5 @@ export const {
   useGetTransactionsQuery,
   useCreateTransactionsMutation,
   useDeleteTransactionsMutation,
+  useUpdateTransactionMutation,
 } = transactionApi;
