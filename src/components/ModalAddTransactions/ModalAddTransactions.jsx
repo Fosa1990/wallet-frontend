@@ -133,6 +133,7 @@ const Title = styled.h2`
   text-align: center;
   height: 31px;
   ${size.tablet} {
+    height: 40px;
     font-size: 30px;
     line-height: 1.5;
   }
@@ -175,6 +176,7 @@ const Label = styled.label`
 `;
 const ContainerStyle = styled.div`
   width: 280px;
+  height: 72px;
   svg {
     position: absolute;
     top: 2px;
@@ -196,6 +198,7 @@ const ContainerStyle = styled.div`
     }
     input {
       width: 100%;
+      height: 32px;
     }
     svg {
       right: 20px;
