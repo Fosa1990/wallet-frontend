@@ -184,7 +184,7 @@ const FromStyle = styled.div`
     height: 100%;
     padding: 40px 59px 66px 65px;
     margin: 0 auto;
-    background: #fff;
+    background: ${accentBgCl};
     border-radius: 20px;
   }
   ${size.desktop} {
