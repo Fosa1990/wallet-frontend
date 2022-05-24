@@ -120,12 +120,10 @@ const Table = styled.table`
   ${size.mobile} {
     background-image: url(${wave});
     width: 280px;
-    height: 174px;
   }
   ${size.tablet} {
     background-image: url(${wave});
     width: 336px;
-    height: 182px;
   }
   ${size.desktop} {
     background-image: none;
@@ -147,6 +145,12 @@ const Thead = styled.thead`
 `;
 const Tr = styled.tr`
   vertical-align: middle;
+  ${size.mobile} {
+    height: 50px;
+  }
+  ${size.tablet} {
+    height: 50px;
+  }
 `;
 const Th = styled.th`
   font-family: ${poppinsFont};
