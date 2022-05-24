@@ -72,6 +72,12 @@ const months = [
   'December',
 ];
 
+const USER_LIMIT = {
+  NAME: { MIN: 1, MAX: 12 },
+  EMAIL: { MIN: 10, MAX: 63 },
+  PASSWORD: { MIN: 6, MAX: 16 },
+};
+
 export {
   BASE_URL,
   ROUTES,
@@ -80,4 +86,5 @@ export {
   TIME_MS,
   NAMES,
   months,
+  USER_LIMIT,
 };
