@@ -110,14 +110,15 @@ const Content = styled.div`
   width: ${p => p.width || '100%'};
   height: ${p => p.heightContent || 'calc(100vh - 60px)'};
   transform: translate(-50%, -50%);
-  padding: ${p => p.padding || '20px 10px 0px'};
+  padding: ${p => p.padding || '20px 10px 40px'};
   background-color: ${accentBgCl};
   border-radius: 20px;
   overflow-y: auto;
   ${size.tablet} {
+    height: auto;
     overflow-y: unset;
     width: 540px;
-    padding: ${p => p.paddingTab || '40px 73px 0px'};
+    padding: ${p => p.paddingTab || '40px 73px 52px'};
   }
 `;
 

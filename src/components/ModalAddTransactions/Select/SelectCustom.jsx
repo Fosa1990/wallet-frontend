@@ -44,7 +44,9 @@ export default function SelectCustom({ select }) {
       {selectOpen && (
         <Ul onClick={e => handleChange(e.target.textContent)}>
           {array.map(({ category }) => (
-            <Li key={category}>{category}</Li>
+            <Li key={category}>
+              {category.split('')[0].toUpperCase() + category.slice(1)}
+            </Li>
           ))}
         </Ul>
       )}

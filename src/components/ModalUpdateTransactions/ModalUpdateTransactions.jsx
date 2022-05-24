@@ -156,7 +156,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 40px 0;
+  margin-top: 40px;
 `;
 
 const Label = styled.label`

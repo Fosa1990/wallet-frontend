@@ -53,11 +53,6 @@ export default function HomeTabMobile({ finances, onDelete, onEdit }) {
             <Td className="buttons">
               <ButtonWrap>
                 <ActionButton
-                  src={del}
-                  type="button"
-                  onClick={() => onDelete(transaction._id)}
-                />
-                <ActionButton
                   src={edit}
                   type="button"
                   onClick={() =>
@@ -69,6 +64,11 @@ export default function HomeTabMobile({ finances, onDelete, onEdit }) {
                       comment: transaction.comment,
                     })
                   }
+                />
+                <ActionButton
+                  src={del}
+                  type="button"
+                  onClick={() => onDelete(transaction._id)}
                 />
               </ButtonWrap>
             </Td>
