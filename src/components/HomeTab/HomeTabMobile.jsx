@@ -12,7 +12,7 @@ import {
 import del from '../../assets/images/delete.svg';
 import edit from '../../assets/images/edit.svg';
 
-export default function HomeTabMobile({ finances, onDelete }) {
+export default function HomeTabMobile({ finances, onDelete, onEdit }) {
   return finances.map(transaction => (
     <Wrap key={transaction._id}>
       <MobileTable>
@@ -60,31 +60,29 @@ export default function HomeTabMobile({ finances, onDelete }) {
                 <ActionButton
                   src={edit}
                   type="button"
-                  onClick={() => onDelete(transaction._id)}
+                  onClick={() =>
+                    onEdit(transaction._id, {
+                      transactionType: transaction.transactionType,
+                      category: transaction.category,
+                      sum: transaction.sum,
+                      date: transaction.date,
+                      comment: transaction.comment,
+                    })
+                  }
                 />
               </ButtonWrap>
             </Td>
           </Tr>
         </Tbody>
       </MobileTable>
-      {/* <ButtonWrap>
-        <ActionButton
-          src={del}
-          type="button"
-          onClick={() => onDelete(transaction._id)}
-        />
-        <ActionButton
-          src={edit}
-          type="button"
-          onClick={() => onDelete(transaction._id)}
-        />
-      </ButtonWrap> */}
     </Wrap>
   ));
 }
 
 HomeTabMobile.propTypes = {
-  finances: PropTypes.array,
+  finances: PropTypes.array.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
 };
 
 const MobileTable = styled.table`

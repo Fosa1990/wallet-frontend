@@ -41,13 +41,15 @@ export const transactionApi = createApi({
       invalidatesTags: ['Post'],
     }),
 
-    updateTransaction: builder.mutation({
-      query: ({ transactionId, ...patch }) => ({
-        url: `/${API}/${TRANSACTIONS}/${transactionId}`,
-        method: 'PATCH',
-        body: patch,
-      }),
-      transformResponse: (response, meta, arg) => response.data,
+    updateTransactions: builder.mutation({
+      query: data => {
+        const { transactionId, ...body } = data;
+        return {
+          url: `/${API}/${TRANSACTIONS}/${transactionId}`,
+          method: 'PUT',
+          data: body,
+        };
+      },
       invalidatesTags: ['Post'],
     }),
   }),
@@ -57,5 +59,5 @@ export const {
   useGetTransactionsQuery,
   useCreateTransactionsMutation,
   useDeleteTransactionsMutation,
-  useUpdateTransactionMutation,
+  useUpdateTransactionsMutation,
 } = transactionApi;

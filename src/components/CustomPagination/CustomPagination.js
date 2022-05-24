@@ -95,8 +95,8 @@ const StylePagination = createGlobalStyle`
 `;
 
 CustomPagination.propTypes = {
-  page: PropTypes.number,
-  itemsPerPage: PropTypes.number,
-  totalResults: PropTypes.number,
-  onPageСhange: PropTypes.func,
+  page: PropTypes.number.isRequired,
+  itemsPerPage: PropTypes.number.isRequired,
+  totalResults: PropTypes.number.isRequired,
+  onPageСhange: PropTypes.func.isRequired,
 };

@@ -20,19 +20,19 @@ export const fetchFinances = createAsyncThunk(
   },
 );
 
-export const fetchBalance = createAsyncThunk(
-  'finances/getBalance',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await axios.get(
-        `${BASE_URL.SERVER}/${API}/${TRANSACTIONS}`,
-      );
-      return response.data.payload.transactions[
-        response.data.payload.transactions.length - 1
-      ]?.balance;
-    } catch (error) {
-      console.log('error.message', error.message);
-      return rejectWithValue(error.message);
-    }
-  },
-);
+// export const fetchBalance = createAsyncThunk(
+//   'finances/getBalance',
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       const response = await axios.get(
+//         `${BASE_URL.SERVER}/${API}/${TRANSACTIONS}`,
+//       );
+//       return response.data.payload.transactions[
+//         response.data.payload.transactions.length - 1
+//       ]?.balance;
+//     } catch (error) {
+//       console.log('error.message', error.message);
+//       return rejectWithValue(error.message);
+//     }
+//   },
+// );
