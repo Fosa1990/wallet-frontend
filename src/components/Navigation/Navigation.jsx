@@ -49,12 +49,14 @@ const NavWrap = styled.div`
   margin-bottom: 31px;
   ${size.tablet} {
     flex-direction: column;
+    width: 336px;
     justify-content: ${props => props.justify || 'start'};
     margin-top: 40px;
     margin-bottom: 28px;
   }
   ${size.desktop} {
     margin-top: 0px;
+    width: 395px;
   }
 `;
 
