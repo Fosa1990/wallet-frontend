@@ -21,7 +21,6 @@ const DelIcon = styled(SVG)`
     width: 20px;
     height: 20px;
     border-radius: 2px;
-    margin-right: 23px;
   }
 `;
 const Button = styled.button`

@@ -31,6 +31,7 @@ export default function HomeTabTabletDesktop({ finances, onDelete, onEdit }) {
           <Th>Comment</Th>
           <Th>Sum</Th>
           <Th>Balance</Th>
+          <Th>Actions</Th>
         </tr>
       </Thead>
       <Tbody>
@@ -45,7 +46,10 @@ export default function HomeTabTabletDesktop({ finances, onDelete, onEdit }) {
                 ) : (
                   <Td>-</Td>
                 )}
-                <Td>{transaction.category}</Td>
+                <Td>
+                  {transaction.category.split('')[0].toUpperCase() +
+                    transaction.category.slice(1)}
+                </Td>
                 <Td>{<Comment transactionComment={transaction.comment} />}</Td>
                 {transaction.transactionType === 'income' ? (
                   <Income>
@@ -68,12 +72,6 @@ export default function HomeTabTabletDesktop({ finances, onDelete, onEdit }) {
                 <Td>
                   <Wrap>
                     <ActionButton
-                      src={del}
-                      type="button"
-                      // disable={showModalDelete || loading}
-                      onClick={() => onDelete(transaction._id)}
-                    />
-                    <ActionButton
                       src={edit}
                       type="button"
                       // disable={showModalDelete || loading}
@@ -86,6 +84,12 @@ export default function HomeTabTabletDesktop({ finances, onDelete, onEdit }) {
                           comment: transaction.comment,
                         })
                       }
+                    />
+                    <ActionButton
+                      src={del}
+                      type="button"
+                      // disable={showModalDelete || loading}
+                      onClick={() => onDelete(transaction._id)}
                     />
                   </Wrap>
                 </Td>
@@ -156,7 +160,7 @@ const Spend = styled(Td)`
 const Wrap = styled.div`
   max-width: 86px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   border-bottom: none;
   box-shadow: none;
 `;

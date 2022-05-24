@@ -145,7 +145,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 40px 0;
+  margin-top: 40px;
 `;
 const Label = styled.label`
   position: relative;
@@ -174,7 +174,6 @@ const Label = styled.label`
 `;
 const ContainerStyle = styled.div`
   width: 280px;
-  height: 72px;
   svg {
     position: absolute;
     top: 2px;
