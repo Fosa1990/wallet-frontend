@@ -48,7 +48,9 @@ export default function SelectCustom({ select, setSelect }) {
       {selectOpen && (
         <Ul onClick={e => handleChange(e.target.textContent)}>
           {array.map(({ category }) => (
-            <Li key={category}>{category}</Li>
+            <Li key={category}>
+              {category.split('')[0].toUpperCase() + category.slice(1)}
+            </Li>
           ))}
         </Ul>
       )}
@@ -101,11 +103,21 @@ const Ul = styled.ul`
   position: absolute;
   left: 0;
   width: 100%;
+  height: 352px;
   z-index: 1000;
   background: rgba(255, 255, 255, 0.7);
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(50px);
   border-radius: 20px;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 0.3em;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(#24cca7, #e0e0e0);
+    border-radius: 10px;
+  }
 `;
 
 const Li = styled.li`
