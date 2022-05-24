@@ -23,6 +23,7 @@ export default function Currency() {
 
   useEffect(() => {
     getRates();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getRates = async () => {
