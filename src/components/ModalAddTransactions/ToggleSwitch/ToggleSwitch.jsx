@@ -41,6 +41,7 @@ export default function ToggleSwitch({ check }) {
     </ToggleSwitchWraper>
   );
 }
+
 ToggleSwitch.propTypes = {
   check: PropTypes.func.isRequired,
 };
@@ -52,12 +53,14 @@ const ToggleSwitchWraper = styled.div`
   justify-content: center;
   gap: 20px;
 `;
+
 const Span = styled.span`
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
   color: ${props => props.color};
 `;
+
 const Switch = styled.div`
   position: relative;
   width: 80px;
@@ -68,6 +71,7 @@ const Switch = styled.div`
   padding: 4px;
   cursor: pointer;
 `;
+
 const Svg = styled.svg`
   position: absolute;
   width: 20px;

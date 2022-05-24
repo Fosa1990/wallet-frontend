@@ -75,6 +75,7 @@ const Wrapper = styled.div`
     width: 350px;
   }
 `;
+
 const Text = styled.h3`
   font-family: ${poppinsFont};
   font-weight: 400;
@@ -88,6 +89,7 @@ const Text = styled.h3`
     margin-bottom: 40px;
   }
 `;
+
 const ButtonWrap = styled.div`
   display: flex;
   justify-content: space-around;

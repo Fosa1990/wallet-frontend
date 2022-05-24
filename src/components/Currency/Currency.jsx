@@ -23,7 +23,7 @@ export default function Currency() {
 
   useEffect(() => {
     getRates();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getRates = async () => {
@@ -103,8 +103,8 @@ const Space = styled.td`
     background-size: contain;
   }
 `;
+
 const Wrapper = styled.div`
-  position: relative;
   ${size.tablet} {
     margin-top: 32px;
   }
@@ -112,6 +112,7 @@ const Wrapper = styled.div`
     margin-top: 32px;
   }
 `;
+
 const Table = styled.table`
   background-color: ${iconBgValueCl};
   background-repeat: no-repeat;
@@ -122,20 +123,18 @@ const Table = styled.table`
   ${size.mobile} {
     background-image: url(${wave});
     width: 280px;
-    height: 174px;
   }
   ${size.tablet} {
     background-image: url(${wave});
     width: 336px;
-    height: 182px;
   }
   ${size.desktop} {
     background-image: none;
     width: 393px;
-    height: 347px;
     text-align: center;
   }
 `;
+
 const Thead = styled.thead`
   background-color: ${iconBgCl};
   ${size.mobile} {
@@ -148,9 +147,17 @@ const Thead = styled.thead`
     height: 60px;
   }
 `;
+
 const Tr = styled.tr`
   vertical-align: middle;
+  ${size.mobile} {
+    height: 50px;
+  }
+  ${size.tablet} {
+    height: 50px;
+  }
 `;
+
 const Th = styled.th`
   font-family: ${poppinsFont};
   font-size: 18px;
@@ -172,9 +179,11 @@ const Th = styled.th`
     }
   }
 `;
+
 const Tbody = styled.tbody`
   padding-top: 20px;
 `;
+
 const Td = styled.td`
   font-family: ${circleFont};
   font-size: 16px;

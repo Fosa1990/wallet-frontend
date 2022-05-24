@@ -21,6 +21,7 @@ const ErrorWrap = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 const ErrorText = styled.div`
   color: ${accentTextCl};
   font-family: ${circleFont};

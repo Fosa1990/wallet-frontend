@@ -55,7 +55,6 @@ export default function SelectCustom({ select }) {
 }
 
 SelectCustom.propTypes = {
-  options: PropTypes.array,
   select: PropTypes.func.isRequired,
 };
 
@@ -86,11 +85,13 @@ const Div = styled.div`
   width: 100%;
   padding: 0 20px 0 20px;
 `;
+
 const H2 = styled.h2`
   font-weight: 400;
   font-size: 18px;
   color: ${p => (p.select ? accentTextCl : accentDisableCl)};
 `;
+
 const Ul = styled.ul`
   margin-top: 4px;
   position: absolute;
@@ -112,6 +113,7 @@ const Ul = styled.ul`
     border-radius: 10px;
   }
 `;
+
 const Li = styled.li`
   height: 44px;
   display: flex;

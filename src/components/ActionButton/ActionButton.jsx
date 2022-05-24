@@ -10,6 +10,13 @@ export default function ActionButton({ src, onClick, disabled = false }) {
     </Button>
   );
 }
+
+ActionButton.propTypes = {
+  src: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
+};
+
 const DelIcon = styled(SVG)`
   width: 30px;
   height: 30px;
@@ -23,6 +30,7 @@ const DelIcon = styled(SVG)`
     border-radius: 2px;
   }
 `;
+
 const Button = styled.button`
   cursor: pointer;
   display: flex;
@@ -43,7 +51,3 @@ const Button = styled.button`
     }
   }
 `;
-Button.propTypes = {
-  src: PropTypes.string,
-  onClick: PropTypes.func,
-};

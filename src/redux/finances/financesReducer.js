@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
-import { fetchFinances /*, fetchBalance */ } from './financesOperations';
+import { fetchFinances } from './financesOperations';
 
 const initialState = {
   data: {
@@ -9,7 +9,6 @@ const initialState = {
   },
   loading: false,
   error: null,
-  // balance: null,
 };
 
 const finances = createReducer(initialState.data, {
@@ -22,20 +21,13 @@ const loading = createReducer(initialState.loading, {
   [fetchFinances.rejected]: () => false,
 });
 
-// const balance = createReducer(initialState.balance, {
-//   [fetchBalance.fulfilled]: (_, { payload }) => payload,
-// });
-
 const error = createReducer(initialState.error, {
   [fetchFinances.rejected]: (_, { payload }) => payload,
   [fetchFinances.pending]: () => null,
-  // [fetchBalance.rejected]: (_, { payload }) => payload,
-  // [fetchBalance.pending]: () => null,
 });
 
 export default combineReducers({
   finances,
   loading,
-  // balance,
   error,
 });

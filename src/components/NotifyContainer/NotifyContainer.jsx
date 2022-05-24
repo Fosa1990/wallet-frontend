@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 import {
@@ -11,6 +12,10 @@ import {
 export default function NotifyContainer({ ...props }) {
   return <StyledNotify autoClose={4000} />;
 }
+
+NotifyContainer.propTypes = {
+  props: PropTypes.any,
+};
 
 const StyledNotify = styled(ToastContainer)`
   .Toastify__toast {

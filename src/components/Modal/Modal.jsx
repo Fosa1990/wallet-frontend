@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import Media from 'react-media';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
 import { closeModalWindow } from '../../redux/globalSlice';
 import Icon from '../Icon';
 import {
@@ -79,6 +79,17 @@ export default function Modal({
   );
 }
 
+Modal.propTypes = {
+  children: PropTypes.node,
+  onClick: PropTypes.func,
+  height: PropTypes.string,
+  heightContent: PropTypes.string,
+  width: PropTypes.string,
+  padding: PropTypes.string,
+  paddingTab: PropTypes.string,
+  color: PropTypes.string,
+};
+
 const Overlay = styled.div`
   position: fixed;
   bottom: 0;
@@ -91,6 +102,7 @@ const Overlay = styled.div`
     background-color: ${modalBgCl};
   }
 `;
+
 const Content = styled.div`
   position: absolute;
   top: 50%;
@@ -109,6 +121,7 @@ const Content = styled.div`
     padding: ${p => p.paddingTab || '40px 73px 52px'};
   }
 `;
+
 const Button = styled.button`
   position: absolute;
   top: 8px;
@@ -128,14 +141,3 @@ const Button = styled.button`
     transform: rotateZ(0deg);
   }
 `;
-
-Modal.propTypes = {
-  children: PropTypes.node,
-  onClick: PropTypes.func,
-  height: PropTypes.string,
-  heightContent: PropTypes.string,
-  width: PropTypes.string,
-  padding: PropTypes.string,
-  paddingTab: PropTypes.string,
-  color: PropTypes.string,
-};

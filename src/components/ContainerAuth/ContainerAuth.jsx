@@ -24,31 +24,45 @@ export default function ContainerAuth({
   children,
 }) {
   return (
-    <>
-      <Section>
-        <Container>
-          <DivTop marginTop={marginTop}>
-            <Sidebar
-              imgTab={imgTab}
-              imgTabBest={imgTabBest}
-              img={img}
-              imgBest={imgBest}
-              sizeTab={sizeTab}
-              sizeDes={sizeDes}
-              heightTab={heightTab}
-              widthTab={widthTab}
-              heightDes={heightDes}
-              widthDes={widthDes}
-              marginBot={marginBot}
-            />
-            <Text>Finance App</Text>
-          </DivTop>
-          <LoginFormWrap paddingTop={paddingTop}>{children}</LoginFormWrap>
-        </Container>
-      </Section>
-    </>
+    <Section>
+      <Container>
+        <DivTop marginTop={marginTop}>
+          <Sidebar
+            imgTab={imgTab}
+            imgTabBest={imgTabBest}
+            img={img}
+            imgBest={imgBest}
+            sizeTab={sizeTab}
+            sizeDes={sizeDes}
+            heightTab={heightTab}
+            widthTab={widthTab}
+            heightDes={heightDes}
+            widthDes={widthDes}
+            marginBot={marginBot}
+          />
+          <Text>Finance App</Text>
+        </DivTop>
+        <LoginFormWrap paddingTop={paddingTop}>{children}</LoginFormWrap>
+      </Container>
+    </Section>
   );
 }
+
+ContainerAuth.propTypes = {
+  imgTab: PropTypes.string.isRequired,
+  imgTabBest: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
+  imgBest: PropTypes.string.isRequired,
+  sizeTab: PropTypes.string.isRequired,
+  sizeDes: PropTypes.string.isRequired,
+  heightTab: PropTypes.string.isRequired,
+  widthTab: PropTypes.string.isRequired,
+  heightDes: PropTypes.string.isRequired,
+  widthDes: PropTypes.string.isRequired,
+  marginBot: PropTypes.string,
+  marginTop: PropTypes.string,
+  children: PropTypes.node,
+};
 
 const Section = styled.section`
   height: 100vh;
@@ -57,6 +71,7 @@ const Section = styled.section`
     background-color: transparent;
   }
 `;
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -70,6 +85,7 @@ const Container = styled.div`
     padding: 0;
   }
 `;
+
 const DivTop = styled.div`
   display: none;
   ${size.tablet} {
@@ -84,6 +100,7 @@ const DivTop = styled.div`
     margin: ${props => props.marginTop || '150px'} 38px 0 76px;
   }
 `;
+
 const LoginFormWrap = styled.div`
   ${size.tablet} {
     display: flex;
@@ -100,6 +117,7 @@ const LoginFormWrap = styled.div`
     backdrop-filter: blur(50px);
   }
 `;
+
 const Sidebar = styled.div`
   ${size.tablet} {
     background-image: url(${props => props.imgTab});
@@ -126,6 +144,7 @@ const Sidebar = styled.div`
     }
   }
 `;
+
 const Text = styled.p`
   margin-left: 40px;
   font-family: ${poppinsFont};
@@ -136,19 +155,3 @@ const Text = styled.p`
     margin-left: 0;
   }
 `;
-
-ContainerAuth.propTypes = {
-  imgTab: PropTypes.string.isRequired,
-  imgTabBest: PropTypes.string.isRequired,
-  img: PropTypes.string.isRequired,
-  imgBest: PropTypes.string.isRequired,
-  sizeTab: PropTypes.string.isRequired,
-  sizeDes: PropTypes.string.isRequired,
-  heightTab: PropTypes.string.isRequired,
-  widthTab: PropTypes.string.isRequired,
-  heightDes: PropTypes.string.isRequired,
-  widthDes: PropTypes.string.isRequired,
-  marginBot: PropTypes.string,
-  marginTop: PropTypes.string,
-  children: PropTypes.node,
-};

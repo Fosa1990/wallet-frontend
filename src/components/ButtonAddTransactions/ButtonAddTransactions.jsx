@@ -15,6 +15,7 @@ export default function ButtonAddTransactions() {
     </Button>
   );
 }
+
 const Button = styled.button`
   position: fixed;
   width: 44px;

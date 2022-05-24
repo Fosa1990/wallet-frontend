@@ -34,6 +34,7 @@ const UserAvatarDiv = styled.div`
     margin-right: 15px;
   }
 `;
+
 const AvatarImg = styled.img`
   width: 40px;
   height: 40px;
