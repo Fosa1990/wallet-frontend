@@ -14,13 +14,7 @@ import {
 import del from '../../assets/images/delete.svg';
 import edit from '../../assets/images/edit.svg';
 
-// import getFinancesSelectors from '../../redux/finances/financesSelectors';
-// import { useSelector } from 'react-redux';
-// import { selectIsModalDeleteOpen } from '../../redux/globalSelectors';
-
 export default function HomeTabTabletDesktop({ finances, onDelete, onEdit }) {
-  // const loading = useSelector(getFinancesSelectors.getLoading);
-  // const showModalDelete = useSelector(selectIsModalDeleteOpen);
   return (
     <Table>
       <Thead>
@@ -33,10 +27,10 @@ export default function HomeTabTabletDesktop({ finances, onDelete, onEdit }) {
           <Th>Balance</Th>
         </tr>
       </Thead>
-      <Tbody>
+      <tbody>
         {finances.length
           ? finances.map(transaction => (
-              <Tr key={transaction._id}>
+              <tr key={transaction._id}>
                 <Td>
                   {<Moment format="DD.MM.YYYY">{transaction.date}</Moment>}
                 </Td>
@@ -70,13 +64,11 @@ export default function HomeTabTabletDesktop({ finances, onDelete, onEdit }) {
                     <ActionButton
                       src={del}
                       type="button"
-                      // disable={showModalDelete || loading}
                       onClick={() => onDelete(transaction._id)}
                     />
                     <ActionButton
                       src={edit}
                       type="button"
-                      // disable={showModalDelete || loading}
                       onClick={() =>
                         onEdit(transaction._id, {
                           transactionType: transaction.transactionType,
@@ -89,10 +81,10 @@ export default function HomeTabTabletDesktop({ finances, onDelete, onEdit }) {
                     />
                   </Wrap>
                 </Td>
-              </Tr>
+              </tr>
             ))
           : null}
-      </Tbody>
+      </tbody>
     </Table>
   );
 }
@@ -114,10 +106,11 @@ const Table = styled.table`
     max-height: 312px;
   }
 `;
+
 const Thead = styled.thead`
   background-color: ${accentBgCl};
 `;
-const Tr = styled.tr``;
+
 const Th = styled.th`
   font-family: ${circleFont};
   font-size: 18px;
@@ -133,7 +126,7 @@ const Th = styled.th`
     }
   }
 `;
-const Tbody = styled.tbody``;
+
 const Td = styled.td`
   font-family: ${circleFont};
   font-size: 16px;
@@ -147,12 +140,15 @@ const Td = styled.td`
     text-align: center;
   }
 `;
+
 const Income = styled(Td)`
   color: ${accentPositiveCl};
 `;
+
 const Spend = styled(Td)`
   color: ${accentNegativeCl};
 `;
+
 const Wrap = styled.div`
   max-width: 86px;
   display: flex;

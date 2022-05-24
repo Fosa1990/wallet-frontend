@@ -87,6 +87,7 @@ const Container = styled.div`
     outline: none;
   }
 `;
+
 const LabelWrapper = styled.div`
   margin-bottom: 40px;
   outline: none;
@@ -97,6 +98,7 @@ const LabelWrapper = styled.div`
     fill: ${accentPositiveCl};
   }
 `;
+
 const Label = styled.label`
   position: relative;
   display: flex;
@@ -104,6 +106,7 @@ const Label = styled.label`
   border-bottom: 1px solid ${iconDefaultCl};
   fill: ${accentPositiveCl};
 `;
+
 const Input = styled.input`
   width: 100%;
   height: 32px;
@@ -119,6 +122,7 @@ const Input = styled.input`
     color: ${textPlcholderCl};
   }
 `;
+
 const Error = styled.div`
   position: absolute;
   font-size: 12px;

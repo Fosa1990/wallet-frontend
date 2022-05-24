@@ -44,6 +44,7 @@ const PasswordStrength = ({ password }) => {
     height: '4px',
     marginTop: '-32px',
   });
+
   const changePasswordColor = () => ({
     width: `${num}%`,
     height: '4px',

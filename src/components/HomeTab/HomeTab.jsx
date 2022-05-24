@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Media from 'react-media';
-import { useSelector, useDispatch } from 'react-redux';
 import getFinancesSelectors from '../../redux/finances/financesSelectors';
 import { fetchFinances } from '../../redux/finances/financesOperations';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
@@ -29,15 +29,19 @@ import Loader from '../Loader';
 
 export default function HomeTab() {
   const dispatch = useDispatch();
-  const [page, setPage] = useSearchParams({ page: 1 });
-  const [idTransaction, setIdTransaction] = useState();
-  const [dataTransaction, setDataTransaction] = useState();
+  const { refetch } = useFetchCurrentUserQuery();
   const finances = useSelector(getFinancesSelectors.getFinances);
   const totalDocuments = useSelector(getFinancesSelectors.getCountDocuments);
   const isNewTransaction = useSelector(getIsNewTransaction);
-  const { refetch } = useFetchCurrentUserQuery();
   const showModalDelete = useSelector(selectIsModalDeleteOpen);
   const loading = useSelector(getFinancesSelectors.getLoading);
+  const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
+  const showModalUpdateTransactions = useSelector(
+    selectIsModalUpdateTransactionOpen,
+  );
+  const [page, setPage] = useSearchParams({ page: 1 });
+  const [idTransaction, setIdTransaction] = useState();
+  const [dataTransaction, setDataTransaction] = useState();
 
   useEffect(() => {
     dispatch(fetchFinances(page.get('page')));
@@ -61,11 +65,6 @@ export default function HomeTab() {
     setDataTransaction(data);
     dispatch(openModalUpdateTransaction());
   };
-
-  const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
-  const showModalUpdateTransactions = useSelector(
-    selectIsModalUpdateTransactionOpen,
-  );
 
   return (
     <>

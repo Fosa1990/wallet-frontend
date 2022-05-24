@@ -82,17 +82,20 @@ const PlaceholderWraper = styled.div`
     }
   }
 `;
+
 const Div = styled.div`
   position: relative;
   width: 100%;
   padding: 0 20px 0 20px;
 `;
+
 const H2 = styled.h2`
   font-weight: 400;
   font-size: 18px;
   color: ${p =>
     p.selected || p.select !== 'income' ? accentTextCl : accentDisableCl};
 `;
+
 const Ul = styled.ul`
   margin-top: 4px;
   position: absolute;
@@ -104,6 +107,7 @@ const Ul = styled.ul`
   backdrop-filter: blur(50px);
   border-radius: 20px;
 `;
+
 const Li = styled.li`
   height: 44px;
   display: flex;

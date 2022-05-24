@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 import getFinancesSelectors from '../../redux/finances/financesSelectors';
 import categoriesSelectors from '../../redux/categories/categoriesSelectors';
 import { getCategories } from '../../redux/categories/categoriesOperations';
@@ -21,6 +21,7 @@ export default function DiagramTab() {
   });
 
   const categories = useSelector(categoriesSelectors.getCategories);
+  const loading = useSelector(getFinancesSelectors.getLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -60,40 +61,36 @@ export default function DiagramTab() {
     );
   }
 
-  const loading = useSelector(getFinancesSelectors.getLoading);
   return (
-    <>
-      <DiagramTabWrapper>
-        <div>
-          <DiagramTabHeader>Statistics</DiagramTabHeader>
-
-          <ChartWrapper>
-            {!loading && categories[0]?.category.length === 0 ? (
-              <NoDataImg src={nodata} />
-            ) : (
-              <>
-                <Balance>
-                  {categories[0]?.category?.length > 0 && <BalanceSum />}
-                </Balance>
-                <Chart categories={categories[0]?.category ?? []} />
-              </>
-            )}
-          </ChartWrapper>
-        </div>
-        <div>
-          <Select
-            year={searchParams.get(NAMES.YEAR)}
-            month={searchParams.get(NAMES.MONTH)}
-            onYear={onYear}
-            onMonth={onMonth}
-          />
-          <Table
-            categories={categories[0]?.category ?? []}
-            transactionType={transactionType}
-          />
-        </div>
-      </DiagramTabWrapper>
-    </>
+    <DiagramTabWrapper>
+      <div>
+        <DiagramTabHeader>Statistics</DiagramTabHeader>
+        <ChartWrapper>
+          {!loading && categories[0]?.category.length === 0 ? (
+            <NoDataImg src={nodata} />
+          ) : (
+            <>
+              <Balance>
+                {categories[0]?.category?.length > 0 && <BalanceSum />}
+              </Balance>
+              <Chart categories={categories[0]?.category ?? []} />
+            </>
+          )}
+        </ChartWrapper>
+      </div>
+      <div>
+        <Select
+          year={searchParams.get(NAMES.YEAR)}
+          month={searchParams.get(NAMES.MONTH)}
+          onYear={onYear}
+          onMonth={onMonth}
+        />
+        <Table
+          categories={categories[0]?.category ?? []}
+          transactionType={transactionType}
+        />
+      </div>
+    </DiagramTabWrapper>
   );
 }
 
@@ -110,6 +107,7 @@ const DiagramTabWrapper = styled.div`
     padding-bottom: 44px;
   }
 `;
+
 const DiagramTabHeader = styled.h2`
   font-size: 30px;
   font-weight: 400;
@@ -117,6 +115,7 @@ const DiagramTabHeader = styled.h2`
   line-height: 1.5;
   margin-bottom: 8px;
 `;
+
 const ChartWrapper = styled.div`
   position: relative;
   margin-bottom: 32px;
@@ -131,6 +130,7 @@ const ChartWrapper = styled.div`
     height: 288px;
   }
 `;
+
 const Balance = styled.span`
   position: absolute;
   top: 50%;
@@ -141,6 +141,7 @@ const Balance = styled.span`
   font-size: 18px;
   line-height: 1.5;
 `;
+
 const NoDataImg = styled.img`
   width: 100%;
   max-width: 270px;
