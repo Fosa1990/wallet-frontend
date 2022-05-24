@@ -40,6 +40,13 @@ export default function CustomPagination({
   );
 }
 
+CustomPagination.propTypes = {
+  page: PropTypes.number.isRequired,
+  itemsPerPage: PropTypes.number.isRequired,
+  totalResults: PropTypes.number.isRequired,
+  onPageСhange: PropTypes.func.isRequired,
+};
+
 const StylePagination = createGlobalStyle`
 .custom-root {
   margin-right: auto;
@@ -87,10 +94,3 @@ const StylePagination = createGlobalStyle`
   transition: width ${duration} ${timingFunc};
 }
 `;
-
-CustomPagination.propTypes = {
-  page: PropTypes.number.isRequired,
-  itemsPerPage: PropTypes.number.isRequired,
-  totalResults: PropTypes.number.isRequired,
-  onPageСhange: PropTypes.func.isRequired,
-};

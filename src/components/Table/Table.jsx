@@ -46,7 +46,7 @@ export default function Table({ categories, transactionType }) {
           <TableFootRow>
             <td colSpan={2}>Income:</td>
             <IncomeValue>
-              {categories.length > 1
+              {transactionType.length > 1
                 ? Intl.NumberFormat('ru-Ru', {
                     minimumFractionDigits: 2,
                   }).format(transactionType[0]?.totalSum)
@@ -57,7 +57,7 @@ export default function Table({ categories, transactionType }) {
             <td colSpan={2}>Expence:</td>
             <ExpenceValue>
               {categories.length > 0
-                ? categories.length === 1
+                ? transactionType.length === 1
                   ? Intl.NumberFormat('ru-Ru', {
                       minimumFractionDigits: 2,
                     }).format(transactionType[0]?.totalSum)
@@ -89,6 +89,7 @@ const TableMain = styled.table`
     width: 395px;
   }
 `;
+
 const Thead = styled.thead`
   height: 58px;
   font-weight: bold;
@@ -109,10 +110,8 @@ const Thead = styled.thead`
   ${size.tablet} {
     margin-bottom: 16px;
   }
-  /* ${size.desktop} {
-    width: 395px;
-  } */
 `;
+
 const TableData = styled.td`
   padding: 8px 0;
   font-size: 16px;
@@ -131,20 +130,24 @@ const TableData = styled.td`
     padding: 16px 0;
   }
 `;
+
 const TableRow = styled.tr`
   border-bottom: 1px solid ${tableRowBorderCl};
   box-shadow: 0px 1px 0px ${tableShadow};
 `;
+
 const ColorBlock = styled.div`
   height: 24px;
   width: 24px;
   border-radius: 2px;
 `;
+
 const TableFoot = styled.tfoot`
   font-size: 16px;
   font-weight: bold;
   line-height: 1.5;
 `;
+
 const TableFootRow = styled.tr`
   td {
     padding-top: 14px;
@@ -158,9 +161,11 @@ const TableFootRow = styled.tr`
     padding-right: 20px;
   }
 `;
+
 const ExpenceValue = styled.td`
   color: ${accentNegativeCl};
 `;
+
 const IncomeValue = styled.td`
   color: ${accentPositiveCl};
 `;

@@ -7,7 +7,7 @@ import { useLoginUserMutation } from '../../redux/auth/authReduce';
 import { TextField } from '../RegistrationForm/TextField';
 import PasswordShowHide from '../RegistrationForm/PasswordShowHide';
 import Button from '../Button/Button';
-import { ROUTES } from '../../utils/constants';
+import { ROUTES, USER_LIMIT } from '../../utils/constants';
 import { regexEmail } from '../../utils/regex';
 import {
   iconDefaultCl,
@@ -27,10 +27,24 @@ export default function LoginForm() {
   const validate = Yup.object().shape({
     email: Yup.string()
       .matches(regexEmail, 'E-mail is invalid')
+      .min(
+        USER_LIMIT.EMAIL.MIN,
+        `Email must be at least ${USER_LIMIT.EMAIL.MIN} characters long`,
+      )
+      .max(
+        USER_LIMIT.EMAIL.MAX,
+        `Email must be at most ${USER_LIMIT.EMAIL.MAX} characters long`,
+      )
       .required('E-mail is required'),
     password: Yup.string()
-      .min(6, 'Password must be at least 6 characters')
-      .max(16, 'Password must be 16 characters or less')
+      .min(
+        6,
+        `Password must be at least ${USER_LIMIT.PASSWORD.MIN} characters long`,
+      )
+      .max(
+        16,
+        `Password must be at most ${USER_LIMIT.PASSWORD.MAX} characters long`,
+      )
       .required('Password is required'),
   });
 
@@ -94,6 +108,7 @@ const Logo = styled.div`
   align-items: center;
   margin-bottom: 60px;
 `;
+
 const Icon = styled.img`
   width: 30px;
   height: 30px;
@@ -104,6 +119,7 @@ const Icon = styled.img`
     margin-right: 20px;
   }
 `;
+
 const Title = styled.h1`
   font-family: ${poppinsFont};
   font-size: 25px;
@@ -146,6 +162,7 @@ const FormWrapper = styled.div`
     height: 468px;
   }
 `;
+
 const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -164,7 +181,6 @@ const ButtonWrapper = styled.div`
     border: 1px solid ${iconBgActiveCl};
     border-radius: 20px;
     cursor: pointer;
-
     ${size.tablet},${size.desktop} {
       width: 300px;
     }

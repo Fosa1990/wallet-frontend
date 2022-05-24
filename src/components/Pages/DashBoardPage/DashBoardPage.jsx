@@ -26,7 +26,6 @@ export default function DashBoardPage() {
           </MobSidebar>
           <Media query="(min-width: 768px)" render={() => <Currency />} />
         </SideBar>
-
         <TabWrap>
           <Routes>
             <Route index element={<HomeTab />} />
@@ -72,6 +71,7 @@ const MainWrap = styled.div`
     position: relative;
   }
 `;
+
 const SideBar = styled.div`
   display: flex;
   flex-direction: column;
@@ -91,6 +91,7 @@ const SideBar = styled.div`
     border-right: 1px solid #e7e5f2;
   }
 `;
+
 const TabWrap = styled.div`
   display: flex;
   justify-content: center;
@@ -99,6 +100,7 @@ const TabWrap = styled.div`
     padding-top: 40px;
   }
 `;
+
 const MobSidebar = styled.div`
   display: flex;
   flex-direction: column;

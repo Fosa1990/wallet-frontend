@@ -56,6 +56,7 @@ const NavWrap = styled.div`
     margin-top: 0px;
   }
 `;
+
 const NavIcon = styled(SVG)`
   width: 38px;
   height: 38px;
@@ -70,12 +71,14 @@ const NavIcon = styled(SVG)`
     margin-right: 23px;
   }
 `;
+
 const NavText = styled.p`
   font-size: 18px;
   line-height: 1, 5;
   font-weight: 400;
   font-family: ${poppinsFont};
 `;
+
 const Link = styled(NavLink)`
   display: flex;
   font-weight: 400;

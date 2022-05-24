@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import authSelectors from '../../redux/auth/authSelectors';
-import { closeModalWindow } from '../../redux/globalSlice';
+import {
+  addTransactionSuccess,
+  closeModalWindow,
+} from '../../redux/globalSlice';
 import { useDeleteTransactionsMutation } from '../../redux/transactions/transactionOperation';
-import { addTransactionSuccess } from '../../redux/globalSlice';
 import NotifyContainer from '../NotifyContainer/NotifyContainer';
 import Modal from '../Modal';
 import Button from '../Button';
@@ -19,11 +22,11 @@ import {
   modalBgCl,
 } from '../../styles/stylesVars';
 
-export default function ModalLogout({ id }) {
+export default function ModalDelete({ id }) {
   const dispatch = useDispatch();
   const userName = useSelector(authSelectors.getUserName);
-  const name = userName.split('')[0].toUpperCase() + userName.slice(1);
   const [deleteTransaction, { data }] = useDeleteTransactionsMutation();
+  const name = userName.split('')[0].toUpperCase() + userName.slice(1);
 
   useEffect(() => {
     if (data?.code === 200) {
@@ -75,6 +78,10 @@ export default function ModalLogout({ id }) {
   );
 }
 
+ModalDelete.propTypes = {
+  id: PropTypes.string.isRequired,
+};
+
 const Wrapper = styled.div`
   margin: 0 auto;
   text-align: center;
@@ -83,6 +90,7 @@ const Wrapper = styled.div`
     width: 350px;
   }
 `;
+
 const Text = styled.h3`
   font-family: ${poppinsFont};
   font-weight: 400;
@@ -96,6 +104,7 @@ const Text = styled.h3`
     margin-bottom: 40px;
   }
 `;
+
 const ButtonWrap = styled.div`
   display: flex;
   justify-content: space-around;

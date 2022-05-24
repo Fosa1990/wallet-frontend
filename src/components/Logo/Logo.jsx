@@ -19,6 +19,7 @@ const LogoLink = styled(NavLink)`
   justify-content: ${props => props.justify || 'center'};
   align-items: ${props => props.align || 'center'};
 `;
+
 const Title = styled.div`
   font-family: ${poppinsFont};
   font-size: 25px;
@@ -29,6 +30,7 @@ const Title = styled.div`
     line-height: 1, 5;
   }
 `;
+
 const LogoIcon = styled.img`
   width: 30px;
   height: 30px;

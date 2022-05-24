@@ -9,7 +9,7 @@ import PasswordStrength from './PasswordStrength';
 import PasswordShowHide from './PasswordShowHide';
 import Button from '../Button/Button';
 import { regexName, regexEmail } from '../../utils/regex';
-import { ROUTES } from '../../utils/constants';
+import { ROUTES, USER_LIMIT } from '../../utils/constants';
 import {
   accentPositiveCl,
   accentBgCl,
@@ -22,25 +22,44 @@ import {
 import logo from '../../assets/images/svg/logo.svg';
 import Icons from '../../assets/images/svg/sprite.svg';
 
-const validateName = name => regexName.test(name);
-
 export default function RegistrationForm() {
   const [register] = useRegisterUserMutation();
 
   const validate = Yup.object({
     email: Yup.string()
       .matches(regexEmail, 'E-mail is invalid')
+      .min(
+        USER_LIMIT.EMAIL.MIN,
+        `Email must be at least ${USER_LIMIT.EMAIL.MIN} characters long`,
+      )
+      .max(
+        USER_LIMIT.EMAIL.MAX,
+        `Email must be at most ${USER_LIMIT.EMAIL.MAX} characters long`,
+      )
       .required('E-mail is required'),
     password: Yup.string()
-      .min(6, 'Password must be at least 6 characters')
-      .max(16, 'Password must be 16 characters or less')
+      .min(
+        6,
+        `Password must be at least ${USER_LIMIT.PASSWORD.MIN} characters long`,
+      )
+      .max(
+        16,
+        `Password must be at most ${USER_LIMIT.PASSWORD.MAX} characters long`,
+      )
       .required('Password is required'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Password must match')
       .required('Confirm password is required'),
     name: Yup.string()
-      .min(1, validateName, 'Name must be at least 1 character')
-      .max(12, validateName, 'Must be 12 characters or less')
+      .matches(regexName, 'Name is invalid')
+      .min(
+        USER_LIMIT.NAME.MIN,
+        `Name must be at least ${USER_LIMIT.NAME.MIN} characters long`,
+      )
+      .max(
+        USER_LIMIT.NAME.MAX,
+        `Name must be at most ${USER_LIMIT.NAME.MAX} characters long`,
+      )
       .required('Required'),
   });
 
@@ -136,6 +155,7 @@ const LogoWrapper = styled.div`
   align-items: center;
   margin-bottom: 60px;
 `;
+
 const LogoIcon = styled.img`
   width: 30px;
   height: 30px;
@@ -146,6 +166,7 @@ const LogoIcon = styled.img`
     margin-right: 20px;
   }
 `;
+
 const Title = styled.h1`
   font-family: ${poppinsFont};
   font-size: 25px;
@@ -156,6 +177,7 @@ const Title = styled.h1`
     line-height: 1.5;
   }
 `;
+
 const FromStyle = styled.div`
   font-family: ${poppinsFont};
   .labelIcon {
@@ -190,6 +212,7 @@ const FromStyle = styled.div`
     margin-right: 20px;
   }
 `;
+
 const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;

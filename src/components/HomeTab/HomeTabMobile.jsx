@@ -53,11 +53,6 @@ export default function HomeTabMobile({ finances, onDelete, onEdit }) {
             <Td className="buttons">
               <ButtonWrap>
                 <ActionButton
-                  src={del}
-                  type="button"
-                  onClick={() => onDelete(transaction._id)}
-                />
-                <ActionButton
                   src={edit}
                   type="button"
                   onClick={() =>
@@ -69,6 +64,11 @@ export default function HomeTabMobile({ finances, onDelete, onEdit }) {
                       comment: transaction.comment,
                     })
                   }
+                />
+                <ActionButton
+                  src={del}
+                  type="button"
+                  onClick={() => onDelete(transaction._id)}
                 />
               </ButtonWrap>
             </Td>
@@ -98,6 +98,7 @@ const MobileTable = styled.table`
     margin-bottom: 8px;
   }
 `;
+
 const Tbody = styled.tbody`
   vertical-align: middle;
   width: 100%;
@@ -115,6 +116,7 @@ const Tbody = styled.tbody`
       type === 'income' ? `${accentPositiveCl}` : `${accentNegativeCl}`};
   }
 `;
+
 const Tr = styled.tr`
   border-bottom: 1px solid #dcdcdf;
   width: 100%;
@@ -125,11 +127,13 @@ const Tr = styled.tr`
     justify-content: center;
   }
 `;
+
 const Th = styled.th`
   font-family: ${circleFont};
   font-size: 18px;
   font-weight: 700;
 `;
+
 const Td = styled.td`
   font-family: ${circleFont};
   font-size: 16px;
@@ -142,6 +146,7 @@ const Td = styled.td`
     width: 100%;
   }
 `;
+
 const Wrap = styled.div`
   width: 280px;
   width: 100%;
@@ -153,6 +158,7 @@ const Wrap = styled.div`
     margin-bottom: 8px;
   }
 `;
+
 const ButtonWrap = styled.div`
   width: 100%;
   display: flex;

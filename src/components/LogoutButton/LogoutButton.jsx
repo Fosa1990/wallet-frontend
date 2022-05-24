@@ -11,6 +11,12 @@ export default function LogoutButton({ children, onClick, ...props }) {
   return <StyledLogoutBtn onClick={onClick}>{children}</StyledLogoutBtn>;
 }
 
+LogoutButton.propTypes = {
+  children: PropTypes.node,
+  onClick: PropTypes.func,
+  props: PropTypes.any,
+};
+
 const StyledLogoutBtn = styled.button`
   cursor: pointer;
   display: flex;
@@ -36,9 +42,3 @@ const StyledLogoutBtn = styled.button`
     transform: scale(1.1);
   }
 `;
-
-StyledLogoutBtn.propTypes = {
-  children: PropTypes.node,
-  onClick: PropTypes.func,
-  props: PropTypes.any,
-};

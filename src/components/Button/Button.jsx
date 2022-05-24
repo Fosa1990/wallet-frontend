@@ -8,6 +8,14 @@ import {
   circleFont,
 } from '../../styles/stylesVars';
 
+export default function Button(props) {
+  return <StyledButton type="submit" {...props} />;
+}
+
+Button.propTypes = {
+  props: PropTypes.any,
+};
+
 const StyledButton = styled.button`
   width: ${props => props.width || '280px'};
   height: ${props => props.height || '50px'};
@@ -47,10 +55,3 @@ const StyledButton = styled.button`
     width: ${props => props.width || '300px'};
   }
 `;
-export default function Button(props) {
-  return <StyledButton type="submit" {...props} />;
-}
-Button.propTypes = {
-  type: PropTypes.string,
-  props: PropTypes.any,
-};

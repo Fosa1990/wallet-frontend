@@ -28,15 +28,13 @@ import 'react-datetime/css/react-datetime.css';
 const { add, trTypeRemove, trTypeAdd } = optionModalTransuction;
 
 export default function ModalAddTransactions() {
+  const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
   const [date, setDate] = useState(new Date());
   const [sum, setSum] = useState();
   const [comment, setComment] = useState('');
   const [category, setCategory] = useState('');
-
   const [addTransactions, { data }] = useCreateTransactionsMutation();
-
-  const dispatch = useDispatch();
 
   const toggleChange = e => {
     setChecked(e);
@@ -138,6 +136,7 @@ const Title = styled.h2`
     line-height: 1.5;
   }
 `;
+
 const Form = styled.form`
   font-family: ${circleFont};
   font-style: normal;
@@ -145,8 +144,9 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 40px 0;
+  margin-top: 40px;
 `;
+
 const Label = styled.label`
   position: relative;
   display: block;
@@ -172,9 +172,9 @@ const Label = styled.label`
     width: 394px;
   }
 `;
+
 const ContainerStyle = styled.div`
   width: 280px;
-  height: 72px;
   svg {
     position: absolute;
     top: 2px;
@@ -203,6 +203,7 @@ const ContainerStyle = styled.div`
     }
   }
 `;
+
 const Textarea = styled.textarea`
   font-size: inherit;
   width: 280px;

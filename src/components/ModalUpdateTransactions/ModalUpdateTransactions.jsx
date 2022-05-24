@@ -28,20 +28,18 @@ import sprite from '../../assets/images/svg/sprite.svg';
 
 const { add, trTypeRemove, trTypeAdd } = optionModalTransuction;
 
-export default function ModalAddTransactions({
+export default function ModalUpdateTransactions({
   transactionId,
   dataTransaction,
 }) {
+  const dispatch = useDispatch();
+  const [updateTransactions, { data }] = useUpdateTransactionsMutation();
   const [checked, setChecked] = useState(
     dataTransaction.transactionType === 'income' ? true : false,
   );
   const [sum, setSum] = useState(dataTransaction.sum);
   const [comment, setComment] = useState(dataTransaction.comment);
   const [category, setCategory] = useState(dataTransaction.category);
-
-  const [updateTransactions, { data }] = useUpdateTransactionsMutation();
-
-  const dispatch = useDispatch();
 
   const toggleChange = e => {
     setChecked(e.target.checked);
@@ -126,7 +124,7 @@ export default function ModalAddTransactions({
   );
 }
 
-ModalAddTransactions.propTypes = {
+ModalUpdateTransactions.propTypes = {
   transactionId: PropTypes.string.isRequired,
   dataTransaction: PropTypes.shape({
     category: PropTypes.string.isRequired,
@@ -150,6 +148,7 @@ const Title = styled.h2`
     line-height: 1.5;
   }
 `;
+
 const Form = styled.form`
   font-family: ${circleFont};
   font-style: normal;
@@ -157,8 +156,9 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 40px 0;
+  margin-top: 40px;
 `;
+
 const Label = styled.label`
   position: relative;
   display: block;
@@ -184,6 +184,7 @@ const Label = styled.label`
     width: 394px;
   }
 `;
+
 const LabelStat = styled.label`
   position: relative;
   display: block;
@@ -204,6 +205,7 @@ const LabelStat = styled.label`
     width: 394px;
   }
 `;
+
 const ContainerStyle = styled.div`
   width: 280px;
   svg {
@@ -233,6 +235,7 @@ const ContainerStyle = styled.div`
     }
   }
 `;
+
 const Textarea = styled.textarea`
   font-size: inherit;
   width: 280px;

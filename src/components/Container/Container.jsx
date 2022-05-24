@@ -14,7 +14,6 @@ const ContainerWrap = styled.div`
   position: relative;
   width: 100vw;
   padding: 0 20px;
-  /* margin: 0 auto; */
   ${size.mobile} {
     width: 320px;
   }

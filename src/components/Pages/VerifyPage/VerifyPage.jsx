@@ -29,6 +29,7 @@ const Text = styled.div`
     font-size: 24px;
   }
 `;
+
 const PageWrap = styled.div`
   margin-top: 50px;
   display: flex;
