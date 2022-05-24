@@ -4,13 +4,9 @@ import {
   accentBgCl,
   accentNegativeCl,
   accentPositiveCl,
-} from '../../stylesheet/utils/stylesVars';
+} from '../../styles/stylesVars';
 import { colors, optionModalTransuction } from '../../utils/constants';
-import {
-  size,
-  tableRowBorderCl,
-  tableBoxShadowCl,
-} from '../../stylesheet/utils/stylesVars';
+import { size, tableRowBorderCl, tableShadow } from '../../styles/stylesVars';
 export default function Table({ categories, transactionType }) {
   return (
     <div>
@@ -99,7 +95,6 @@ const Thead = styled.thead`
   font-size: 18px;
   line-height: 1.5;
   background-color: ${accentBgCl};
-
   th:first-child {
     text-align: start;
     padding-left: 20px;
@@ -111,7 +106,6 @@ const Thead = styled.thead`
     border-radius: 0 30px 30px 0;
   }
   margin-bottom: 8px;
-
   ${size.tablet} {
     margin-bottom: 16px;
   }
@@ -139,7 +133,7 @@ const TableData = styled.td`
 `;
 const TableRow = styled.tr`
   border-bottom: 1px solid ${tableRowBorderCl};
-  box-shadow: 0px 1px 0px ${tableBoxShadowCl};
+  box-shadow: 0px 1px 0px ${tableShadow};
 `;
 const ColorBlock = styled.div`
   height: 24px;

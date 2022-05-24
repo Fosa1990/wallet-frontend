@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { iconBgCl } from '../../stylesheet/utils/stylesVars';
+import { iconBgCl } from '../../styles/stylesVars';
 
 export default function Comment({ transactionComment }) {
   const [showMore, setShowMore] = useState(true);
@@ -30,7 +30,6 @@ const Button = styled.button`
   color: ${iconBgCl};
   background-color: transparent;
   cursor: pointer;
-
   :hover {
     text-decoration: underline;
   }

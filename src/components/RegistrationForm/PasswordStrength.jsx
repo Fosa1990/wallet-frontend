@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import zxcvbn from 'zxcvbn';
 
 const PasswordStrength = ({ password }) => {
@@ -43,11 +44,9 @@ const PasswordStrength = ({ password }) => {
     height: '4px',
     marginTop: '-32px',
   });
-
   const changePasswordColor = () => ({
     width: `${num}%`,
     height: '4px',
-
     background: progressColor(),
     boxShadow: '0px 1px 8px rgba(36, 204, 167, 0.5)',
     borderRadius: '4px',
@@ -70,6 +69,10 @@ const PasswordStrength = ({ password }) => {
       </p>
     </>
   );
+};
+
+PasswordStrength.propTypes = {
+  password: PropTypes.string,
 };
 
 export default PasswordStrength;

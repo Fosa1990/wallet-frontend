@@ -17,7 +17,7 @@ import {
   size,
   poppinsFont,
   accentTextCl,
-} from '../../stylesheet/utils/stylesVars';
+} from '../../styles/stylesVars';
 import logo from '../../assets/images/svg/logo.svg';
 import Icons from '../../assets/images/svg/sprite.svg';
 
@@ -94,25 +94,21 @@ const Logo = styled.div`
   align-items: center;
   margin-bottom: 60px;
 `;
-
 const Icon = styled.img`
   width: 30px;
   height: 30px;
   margin-right: 15px;
-
   ${size.tablet} {
     width: 40px;
     height: 40px;
     margin-right: 20px;
   }
 `;
-
 const Title = styled.h1`
   font-family: ${poppinsFont};
   font-size: 25px;
   font-weight: 700;
   color: ${accentTextCl};
-
   ${size.tablet} {
     font-size: 30px;
     line-height: 1.5;
@@ -121,13 +117,11 @@ const Title = styled.h1`
 
 const FormWrapper = styled.div`
   font-family: ${poppinsFont};
-
   .labelIcon {
     position: absolute;
     left: 10px;
     fill: ${iconDefaultCl};
     cursor: pointer;
-
     &:focus,
     &:hover {
       fill: ${accentPositiveCl};
@@ -140,26 +134,22 @@ const FormWrapper = styled.div`
     padding: 107px 20px;
     margin: 0 auto;
   }
-
   ${size.tablet} {
     width: 533px;
     padding: 40px 59px 62px 65px;
     margin: 0 auto;
-    background: #fff;
+    background: ${accentBgCl};
     border-radius: 20px;
   }
-
   ${size.desktop} {
     width: 533px;
     height: 468px;
   }
 `;
-
 const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   .RegisterButton {
     display: flex;
     align-items: center;

@@ -7,7 +7,7 @@ import {
   poppinsFont,
   iconBgValueCl,
   size,
-} from '../../stylesheet/utils/stylesVars';
+} from '../../styles/stylesVars';
 import home from '../../assets/images/svg/home.svg';
 import diagram from '../../assets/images/svg/diagram.svg';
 import currency from '../../assets/images/svg/currency.svg';
@@ -56,7 +56,6 @@ const NavWrap = styled.div`
     margin-top: 0px;
   }
 `;
-
 const NavIcon = styled(SVG)`
   width: 38px;
   height: 38px;
@@ -71,21 +70,18 @@ const NavIcon = styled(SVG)`
     margin-right: 23px;
   }
 `;
-
 const NavText = styled.p`
   font-size: 18px;
   line-height: 1, 5;
   font-weight: 400;
   font-family: ${poppinsFont};
 `;
-
 const Link = styled(NavLink)`
   display: flex;
   font-weight: 400;
   line-height: 1.5;
   cursor: pointer;
   transition: font-weight 300ms;
-
   ${size.tablet} {
     justify-content: ${props => props.justify || 'flex-start'};
     align-items: center;

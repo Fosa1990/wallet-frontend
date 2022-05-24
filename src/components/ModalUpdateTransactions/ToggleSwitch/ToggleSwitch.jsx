@@ -1,6 +1,5 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { optionModalTransuction } from '../../../utils/constants';
 import {
   accentPositiveCl,
@@ -10,14 +9,7 @@ import {
 } from '../../../styles/stylesVars';
 import sprite from '../../../assets/images/svg/sprite.svg';
 
-export default function ToggleSwitch({ check }) {
-  const [checked, setChecked] = useState(false);
-
-  const handleChange = ({ target: { checked } }) => {
-    setChecked(checked);
-    check(checked);
-  };
-
+export default function ToggleSwitch({ checked, handleChange }) {
   return (
     <ToggleSwitchWraper>
       <Span color={!checked ? accentDisableCl : accentPositiveCl}>
@@ -42,7 +34,8 @@ export default function ToggleSwitch({ check }) {
   );
 }
 ToggleSwitch.propTypes = {
-  check: PropTypes.func.isRequired,
+  checked: PropTypes.bool.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 const ToggleSwitchWraper = styled.div`

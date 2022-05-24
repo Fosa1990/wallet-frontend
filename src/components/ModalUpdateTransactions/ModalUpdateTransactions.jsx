@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import Datetime from 'react-datetime';
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
+import moment from 'moment';
 import styled from 'styled-components';
-import { useCreateTransactionsMutation } from '../../redux/transactions/transactionOperation';
+import { useUpdateTransactionsMutation } from '../../redux/transactions/transactionOperation';
 import {
   closeModalWindow,
   addTransactionSuccess,
@@ -14,7 +15,6 @@ import SelectCustom from './Select/SelectCustom';
 import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
 import Modal from '../Modal/Modal';
 import { optionModalTransuction } from '../../utils/constants';
-import sprite from '../../assets/images/svg/sprite.svg';
 import {
   accentDisableCl,
   accentNegativeCl,
@@ -24,41 +24,46 @@ import {
   poppinsFont,
 } from '../../styles/stylesVars';
 import 'react-datetime/css/react-datetime.css';
+import sprite from '../../assets/images/svg/sprite.svg';
 
 const { add, trTypeRemove, trTypeAdd } = optionModalTransuction;
 
-export default function ModalAddTransactions() {
-  const [checked, setChecked] = useState(false);
-  const [date, setDate] = useState(new Date());
-  const [sum, setSum] = useState();
-  const [comment, setComment] = useState('');
-  const [category, setCategory] = useState('');
+export default function ModalAddTransactions({
+  transactionId,
+  dataTransaction,
+}) {
+  const [checked, setChecked] = useState(
+    dataTransaction.transactionType === 'income' ? true : false,
+  );
+  const [sum, setSum] = useState(dataTransaction.sum);
+  const [comment, setComment] = useState(dataTransaction.comment);
+  const [category, setCategory] = useState(dataTransaction.category);
 
-  const [addTransactions, { data }] = useCreateTransactionsMutation();
+  const [updateTransactions, { data }] = useUpdateTransactionsMutation();
 
   const dispatch = useDispatch();
 
   const toggleChange = e => {
-    setChecked(e);
+    setChecked(e.target.checked);
     e ? setCategory(add) : setCategory('');
   };
 
   useEffect(() => {
-    if (data?.code === 201) {
+    if (data?.code === 200) {
       NotifyContainer(toast(data?.payload?.message || 'Done!'));
-      dispatch(addTransactionSuccess());
       dispatch(closeModalWindow());
+      dispatch(addTransactionSuccess());
     }
   }, [data, dispatch]);
 
   const handleSubmit = e => {
     const transactionType = checked ? trTypeAdd : trTypeRemove;
     e.preventDefault();
-    addTransactions({
+    updateTransactions({
+      transactionId,
       category,
       comment,
       sum,
-      date,
       transactionType,
     });
   };
@@ -66,14 +71,14 @@ export default function ModalAddTransactions() {
   return (
     <Modal>
       <div>
-        <Title>Add transaction</Title>
+        <Title>Update transaction</Title>
         <Form onSubmit={handleSubmit}>
           <Label border>
-            <ToggleSwitch check={toggleChange} />
+            <ToggleSwitch checked={checked} handleChange={toggleChange} />
           </Label>
           {!checked && (
             <Label>
-              <SelectCustom select={setCategory} />
+              <SelectCustom select={category} setSelect={setCategory} />
             </Label>
           )}
           <ContainerStyle>
@@ -90,18 +95,15 @@ export default function ModalAddTransactions() {
                 required
               />
             </Label>
-            <Label>
-              <Datetime
-                timeFormat={false}
-                closeOnSelect={true}
-                dateFormat={'DD.MM.YYYY'}
-                value={date}
-                onChange={date => setDate(date?._d)}
+            <LabelStat>
+              <input
+                readOnly={true}
+                defaultValue={moment(dataTransaction.date).format('DD.MM.YYYY')}
               />
               <svg>
                 <use href={`${sprite}#icon-calendar`} />
               </svg>
-            </Label>
+            </LabelStat>
           </ContainerStyle>
           <Label>
             <Textarea
@@ -113,7 +115,7 @@ export default function ModalAddTransactions() {
             />
           </Label>
           <Button primary type="submit">
-            ADD
+            EDIT
           </Button>
           <Button outlined onClick={() => dispatch(closeModalWindow())}>
             CANCEL
@@ -124,6 +126,17 @@ export default function ModalAddTransactions() {
   );
 }
 
+ModalAddTransactions.propTypes = {
+  transactionId: PropTypes.string.isRequired,
+  dataTransaction: PropTypes.shape({
+    category: PropTypes.string.isRequired,
+    comment: PropTypes.string.isRequired,
+    sum: PropTypes.number.isRequired,
+    transactionType: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+  }),
+};
+
 const Title = styled.h2`
   font-family: ${poppinsFont};
   font-style: normal;
@@ -133,7 +146,6 @@ const Title = styled.h2`
   text-align: center;
   height: 31px;
   ${size.tablet} {
-    height: 40px;
     font-size: 30px;
     line-height: 1.5;
   }
@@ -172,9 +184,28 @@ const Label = styled.label`
     width: 394px;
   }
 `;
+const LabelStat = styled.label`
+  position: relative;
+  display: block;
+  margin-bottom: 40px;
+  font-weight: ${p => p.fontWeight || '400'};
+  border-bottom: ${p => (!p.border ? `1px solid ${accentDisableCl}` : 'none')};
+  width: 280px;
+  line-height: 0;
+  input,
+  textarea {
+    padding: 0 20px;
+    border: none;
+    font-weight: inherit;
+    line-height: 1.5;
+    cursor: initial;
+  }
+  ${size.tablet} {
+    width: 394px;
+  }
+`;
 const ContainerStyle = styled.div`
   width: 280px;
-  height: 72px;
   svg {
     position: absolute;
     top: 2px;
@@ -196,7 +227,6 @@ const ContainerStyle = styled.div`
     }
     input {
       width: 100%;
-      height: 32px;
     }
     svg {
       right: 20px;

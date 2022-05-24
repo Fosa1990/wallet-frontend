@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { openModalAddTransaction } from '../../redux/globalSlice';
-import { accentPositiveCl, size } from '../../stylesheet/utils/stylesVars';
+import { accentPositiveCl, size } from '../../styles/stylesVars';
 import sprite from '../../assets/images/svg/sprite.svg';
 
 export default function ButtonAddTransactions() {
@@ -26,16 +26,13 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-
   box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
   background: ${accentPositiveCl};
-
   &:hover,
   &:focus {
     cursor: pointer;
     box-shadow: inset 0px 0px 45px rgba(255, 255, 255, 0.7);
   }
-
   ${size.tablet} {
     right: 40px;
     bottom: 40px;

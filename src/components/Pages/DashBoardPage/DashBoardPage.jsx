@@ -9,11 +9,11 @@ import Navigation from '../../Navigation';
 import Balance from '../../Balance';
 import ButtonAddTransactions from '../../ButtonAddTransactions';
 import { ROUTES } from '../../../utils/constants';
-import { size } from '../../../stylesheet/utils/stylesVars';
+import { size } from '../../../styles/stylesVars';
 
 export default function DashBoardPage() {
   const { pathname } = useLocation();
-  const route = `${'/' + ROUTES.DASHBOARD + '/' + ROUTES.HOME}`;
+  const route = `/${ROUTES.DASHBOARD}/${ROUTES.HOME}`;
 
   return (
     <>

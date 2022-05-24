@@ -1,11 +1,11 @@
-import BalanceSum from './BalanceSum';
 import styled from 'styled-components';
+import BalanceSum from './BalanceSum';
 import {
   size,
   circleFont,
   accentBgCl,
   balanceCl,
-} from '../../stylesheet/utils/stylesVars';
+} from '../../styles/stylesVars';
 
 export default function Balance() {
   return (
@@ -28,7 +28,6 @@ const BalanceWrapper = styled.div`
   width: 280px;
   padding-left: 32px;
   margin-bottom: 32px;
-
   ${size.tablet} {
     width: 336px;
     padding: 8px 40px 11px;

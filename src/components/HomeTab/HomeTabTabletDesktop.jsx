@@ -2,15 +2,25 @@ import Moment from 'react-moment';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Comment from './Comment';
+import ActionButton from '../ActionButton';
 import {
   size,
   circleFont,
   accentBgCl,
   accentNegativeCl,
   accentPositiveCl,
-} from '../../stylesheet/utils/stylesVars';
+  tableShadow,
+} from '../../styles/stylesVars';
+import del from '../../assets/images/delete.svg';
+import edit from '../../assets/images/edit.svg';
 
-export default function HomeTabTabletDesktop({ finances }) {
+// import getFinancesSelectors from '../../redux/finances/financesSelectors';
+// import { useSelector } from 'react-redux';
+// import { selectIsModalDeleteOpen } from '../../redux/globalSelectors';
+
+export default function HomeTabTabletDesktop({ finances, onDelete, onEdit }) {
+  // const loading = useSelector(getFinancesSelectors.getLoading);
+  // const showModalDelete = useSelector(selectIsModalDeleteOpen);
   return (
     <Table>
       <Thead>
@@ -55,6 +65,30 @@ export default function HomeTabTabletDesktop({ finances }) {
                     minimumFractionDigits: 2,
                   }).format(transaction.balance)}
                 </Td>
+                <Td>
+                  <Wrap>
+                    <ActionButton
+                      src={del}
+                      type="button"
+                      // disable={showModalDelete || loading}
+                      onClick={() => onDelete(transaction._id)}
+                    />
+                    <ActionButton
+                      src={edit}
+                      type="button"
+                      // disable={showModalDelete || loading}
+                      onClick={() =>
+                        onEdit(transaction._id, {
+                          transactionType: transaction.transactionType,
+                          category: transaction.category,
+                          sum: transaction.sum,
+                          date: transaction.date,
+                          comment: transaction.comment,
+                        })
+                      }
+                    />
+                  </Wrap>
+                </Td>
               </Tr>
             ))
           : null}
@@ -64,7 +98,9 @@ export default function HomeTabTabletDesktop({ finances }) {
 }
 
 HomeTabTabletDesktop.propTypes = {
-  finances: PropTypes.array,
+  finances: PropTypes.array.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
 };
 
 const Table = styled.table`
@@ -78,21 +114,14 @@ const Table = styled.table`
     max-height: 312px;
   }
 `;
-
 const Thead = styled.thead`
   background-color: ${accentBgCl};
 `;
-
-const Tr = styled.tr`
-  border-bottom: 1px solid #dcdcdf;
-  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
-`;
-
+const Tr = styled.tr``;
 const Th = styled.th`
   font-family: ${circleFont};
   font-size: 18px;
   font-weight: 700;
-
   ${size.tablet} {
     padding: 16px 0 15px;
     text-align: center;
@@ -104,9 +133,7 @@ const Th = styled.th`
     }
   }
 `;
-
 const Tbody = styled.tbody``;
-
 const Td = styled.td`
   font-family: ${circleFont};
   font-size: 16px;
@@ -114,15 +141,22 @@ const Td = styled.td`
   padding: 14px 0;
   max-width: 140px;
   word-wrap: break-word;
-
+  border-bottom: 1px solid #dcdcdf;
+  box-shadow: 0px 1px 0px ${tableShadow};
   ${size.tablet} {
     text-align: center;
   }
 `;
-
 const Income = styled(Td)`
   color: ${accentPositiveCl};
 `;
 const Spend = styled(Td)`
   color: ${accentNegativeCl};
+`;
+const Wrap = styled.div`
+  max-width: 86px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: none;
+  box-shadow: none;
 `;

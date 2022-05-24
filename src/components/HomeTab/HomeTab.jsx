@@ -4,14 +4,22 @@ import styled from 'styled-components';
 import Media from 'react-media';
 import { useSelector, useDispatch } from 'react-redux';
 import getFinancesSelectors from '../../redux/finances/financesSelectors';
-import ModalAddTransactions from '../../components/ModalAddTransactions';
 import { fetchFinances } from '../../redux/finances/financesOperations';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
 import {
   selectIsModalAddTransactionOpen,
+  selectIsModalDeleteOpen,
+  selectIsModalUpdateTransactionOpen,
   getIsNewTransaction,
 } from '../../redux/globalSelectors';
-import { reloadTransactionList } from '../../redux/globalSlice';
+import {
+  openModalDelete,
+  openModalUpdateTransaction,
+  reloadTransactionList,
+} from '../../redux/globalSlice';
+import ModalAddTransactions from '../../components/ModalAddTransactions';
+import ModalUpdateTransactions from '../../components/ModalUpdateTransactions';
+import ModalDelete from '../ModalDelete';
 import CustomPagination from '../CustomPagination';
 import Balance from '../Balance';
 import HomeTabMobile from './HomeTabMobile';
@@ -22,15 +30,17 @@ import Loader from '../Loader';
 export default function HomeTab() {
   const dispatch = useDispatch();
   const [page, setPage] = useSearchParams({ page: 1 });
-  const [isLoading, setIsLoading] = useState(false);
+  const [idTransaction, setIdTransaction] = useState();
+  const [dataTransaction, setDataTransaction] = useState();
   const finances = useSelector(getFinancesSelectors.getFinances);
   const totalDocuments = useSelector(getFinancesSelectors.getCountDocuments);
   const isNewTransaction = useSelector(getIsNewTransaction);
   const { refetch } = useFetchCurrentUserQuery();
+  const showModalDelete = useSelector(selectIsModalDeleteOpen);
+  const loading = useSelector(getFinancesSelectors.getLoading);
 
   useEffect(() => {
     dispatch(fetchFinances(page.get('page')));
-    setIsLoading(true);
     if (isNewTransaction) {
       refetch();
     }
@@ -41,8 +51,22 @@ export default function HomeTab() {
     setPage({ page: pageNumber });
   };
 
+  const onDelete = id => {
+    setIdTransaction(id);
+    dispatch(openModalDelete());
+  };
+
+  const onEdit = (id, data) => {
+    setIdTransaction(id);
+    setDataTransaction(data);
+    dispatch(openModalUpdateTransaction());
+  };
+
   const showModalAddTransactions = useSelector(selectIsModalAddTransactionOpen);
-  const loading = useSelector(getFinancesSelectors.getLoading);
+  const showModalUpdateTransactions = useSelector(
+    selectIsModalUpdateTransactionOpen,
+  );
+
   return (
     <>
       <Div>
@@ -50,15 +74,23 @@ export default function HomeTab() {
         <Media query="(max-width: 767px)">
           {matches =>
             matches ? (
-              <HomeTabMobile finances={finances} />
+              <HomeTabMobile
+                finances={finances}
+                onDelete={onDelete}
+                onEdit={onEdit}
+              />
             ) : (
-              <HomeTabTabletDesktop finances={finances} />
+              <HomeTabTabletDesktop
+                finances={finances}
+                onDelete={onDelete}
+                onEdit={onEdit}
+              />
             )
           }
         </Media>
         {loading && <Loader />}
         {!loading && finances.length === 0 && <NoInfo />}
-        {totalDocuments.totalDocuments > 0 && isLoading && (
+        {totalDocuments.totalDocuments > 0 && (
           <CustomPagination
             page={Number(page.get('page'))}
             itemsPerPage={totalDocuments.limitDocuments}
@@ -67,7 +99,14 @@ export default function HomeTab() {
           />
         )}
       </Div>
+      {showModalDelete && <ModalDelete id={idTransaction} />}
       {showModalAddTransactions && <ModalAddTransactions />}
+      {showModalUpdateTransactions && (
+        <ModalUpdateTransactions
+          transactionId={idTransaction}
+          dataTransaction={dataTransaction}
+        />
+      )}
     </>
   );
 }

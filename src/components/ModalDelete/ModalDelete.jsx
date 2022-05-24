@@ -1,9 +1,12 @@
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 import styled from 'styled-components';
+import { toast } from 'react-toastify';
 import authSelectors from '../../redux/auth/authSelectors';
 import { closeModalWindow } from '../../redux/globalSlice';
-import { useLogoutUserMutation } from '../../redux/auth/authReduce';
+import { useDeleteTransactionsMutation } from '../../redux/transactions/transactionOperation';
+import { addTransactionSuccess } from '../../redux/globalSlice';
+import NotifyContainer from '../NotifyContainer/NotifyContainer';
 import Modal from '../Modal';
 import Button from '../Button';
 import {
@@ -16,19 +19,22 @@ import {
   modalBgCl,
 } from '../../styles/stylesVars';
 
-export default function ModalLogout() {
+export default function ModalLogout({ id }) {
   const dispatch = useDispatch();
   const userName = useSelector(authSelectors.getUserName);
   const name = userName.split('')[0].toUpperCase() + userName.slice(1);
-  const [logout] = useLogoutUserMutation();
-  const onLogout = () => {
-    logout();
-    toast.success('You logged out');
-    onCancelLogout();
-  };
+  const [deleteTransaction, { data }] = useDeleteTransactionsMutation();
 
-  const onCancelLogout = e => {
-    dispatch(closeModalWindow());
+  useEffect(() => {
+    if (data?.code === 200) {
+      NotifyContainer(toast(data?.payload?.message || 'Done!'));
+      dispatch(closeModalWindow());
+      dispatch(addTransactionSuccess());
+    }
+  }, [data, dispatch]);
+
+  const onDeleteHandler = () => {
+    deleteTransaction(id);
   };
 
   return (
@@ -41,7 +47,9 @@ export default function ModalLogout() {
       color={modalBgCl}
     >
       <Wrapper>
-        <Text>{name ?? 'User'}, are you sure you want to log out?</Text>
+        <Text>
+          {name ?? 'User'}, are you sure you want to delete transaction?
+        </Text>
         <ButtonWrap>
           <Button
             primary
@@ -49,7 +57,7 @@ export default function ModalLogout() {
             background={accentPositiveCl}
             width="100px"
             marginBtm="0px"
-            onClick={onLogout}
+            onClick={onDeleteHandler}
           >
             Yes
           </Button>
@@ -57,7 +65,7 @@ export default function ModalLogout() {
             outlined
             color={borderBtnCl}
             width="100px"
-            onClick={onCancelLogout}
+            onClick={() => dispatch(closeModalWindow())}
           >
             No
           </Button>

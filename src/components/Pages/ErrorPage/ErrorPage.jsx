@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-import {
-  accentTextCl,
-  circleFont,
-  size,
-} from '../../../stylesheet/utils/stylesVars';
+import { accentTextCl, circleFont, size } from '../../../styles/stylesVars';
 
 export default function ErrorPage() {
   return (
@@ -25,7 +21,6 @@ const ErrorWrap = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 const ErrorText = styled.div`
   color: ${accentTextCl};
   font-family: ${circleFont};

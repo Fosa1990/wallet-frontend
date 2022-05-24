@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Logo from '../../Logo';
-import { circleFont, size } from '../../../stylesheet/utils/stylesVars';
+import { circleFont, size } from '../../../styles/stylesVars';
 
 export default function VerifyPage() {
   // eslint-disable-next-line no-unused-vars
@@ -33,6 +33,5 @@ const PageWrap = styled.div`
   margin-top: 50px;
   display: flex;
   flex-direction: column;
-
   align-items: center;
 `;

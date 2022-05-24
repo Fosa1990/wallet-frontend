@@ -40,6 +40,18 @@ export const transactionApi = createApi({
       }),
       invalidatesTags: ['Post'],
     }),
+
+    updateTransactions: builder.mutation({
+      query: data => {
+        const { transactionId, ...body } = data;
+        return {
+          url: `/${API}/${TRANSACTIONS}/${transactionId}`,
+          method: 'PUT',
+          data: body,
+        };
+      },
+      invalidatesTags: ['Post'],
+    }),
   }),
 });
 
@@ -47,4 +59,5 @@ export const {
   useGetTransactionsQuery,
   useCreateTransactionsMutation,
   useDeleteTransactionsMutation,
+  useUpdateTransactionsMutation,
 } = transactionApi;
