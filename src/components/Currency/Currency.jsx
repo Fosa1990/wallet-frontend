@@ -23,7 +23,7 @@ export default function Currency() {
 
   useEffect(() => {
     getRates();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getRates = async () => {
@@ -104,7 +104,6 @@ const Space = styled.td`
   }
 `;
 const Wrapper = styled.div`
-  position: relative;
   ${size.tablet} {
     margin-top: 32px;
   }
@@ -122,17 +121,14 @@ const Table = styled.table`
   ${size.mobile} {
     background-image: url(${wave});
     width: 280px;
-    height: 174px;
   }
   ${size.tablet} {
     background-image: url(${wave});
     width: 336px;
-    height: 182px;
   }
   ${size.desktop} {
     background-image: none;
     width: 393px;
-    height: 347px;
     text-align: center;
   }
 `;
@@ -150,6 +146,12 @@ const Thead = styled.thead`
 `;
 const Tr = styled.tr`
   vertical-align: middle;
+  ${size.mobile} {
+    height: 50px;
+  }
+  ${size.tablet} {
+    height: 50px;
+  }
 `;
 const Th = styled.th`
   font-family: ${poppinsFont};
