@@ -23,7 +23,6 @@ export default function Currency() {
 
   useEffect(() => {
     getRates();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getRates = async () => {
@@ -104,7 +103,6 @@ const Space = styled.td`
   }
 `;
 const Wrapper = styled.div`
-  position: relative;
   ${size.tablet} {
     margin-top: 32px;
   }
@@ -132,7 +130,6 @@ const Table = styled.table`
   ${size.desktop} {
     background-image: none;
     width: 393px;
-    height: 347px;
     text-align: center;
   }
 `;
