@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useSelector /*, useDispatch */ } from 'react-redux';
 // import { fetchBalance } from '../../redux/finances/financesOperations';
 import authSelectors from '../../redux/auth/authSelectors';
-import { poppinsFont, accentTextCl } from '../../stylesheet/utils/stylesVars';
+import { poppinsFont, accentTextCl } from '../../styles/stylesVars';
 
 export default function BalanceSum() {
   const balance = useSelector(authSelectors.getBalance);

@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import Media from 'react-media';
 import { useSelector, useDispatch } from 'react-redux';
 import getFinancesSelectors from '../../redux/finances/financesSelectors';
-import ModalAddTransactions from '../../components/ModalAddTransactions';
-import ModalUpdateTransactions from '../../components/ModalUpdateTransactions';
 import { fetchFinances } from '../../redux/finances/financesOperations';
 import { useFetchCurrentUserQuery } from '../../redux/auth/authReduce';
 import {
@@ -14,12 +12,14 @@ import {
   selectIsModalUpdateTransactionOpen,
   getIsNewTransaction,
 } from '../../redux/globalSelectors';
-import ModalDelete from '../ModalDelete';
 import {
   openModalDelete,
   openModalUpdateTransaction,
   reloadTransactionList,
 } from '../../redux/globalSlice';
+import ModalAddTransactions from '../../components/ModalAddTransactions';
+import ModalUpdateTransactions from '../../components/ModalUpdateTransactions';
+import ModalDelete from '../ModalDelete';
 import CustomPagination from '../CustomPagination';
 import Balance from '../Balance';
 import HomeTabMobile from './HomeTabMobile';

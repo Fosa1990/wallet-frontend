@@ -1,19 +1,20 @@
-import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useUpdateTransactionsMutation } from '../../redux/transactions/transactionOperation';
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
-import NotifyContainer from '../NotifyContainer/NotifyContainer';
+import moment from 'moment';
+import styled from 'styled-components';
+import { useUpdateTransactionsMutation } from '../../redux/transactions/transactionOperation';
 import {
   closeModalWindow,
   addTransactionSuccess,
 } from '../../redux/globalSlice';
-import { optionModalTransuction } from '../../utils/constants';
+import NotifyContainer from '../NotifyContainer/NotifyContainer';
 import Button from '../Button/Button';
 import SelectCustom from './Select/SelectCustom';
 import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
 import Modal from '../Modal/Modal';
-import sprite from '../../assets/images/svg/sprite.svg';
+import { optionModalTransuction } from '../../utils/constants';
 import {
   accentDisableCl,
   accentNegativeCl,
@@ -21,10 +22,9 @@ import {
   circleFont,
   size,
   poppinsFont,
-} from '../../stylesheet/utils/stylesVars';
-import styled from 'styled-components';
+} from '../../styles/stylesVars';
 import 'react-datetime/css/react-datetime.css';
-import moment from 'moment';
+import sprite from '../../assets/images/svg/sprite.svg';
 
 const { add, trTypeRemove, trTypeAdd } = optionModalTransuction;
 
@@ -150,7 +150,6 @@ const Title = styled.h2`
     line-height: 1.5;
   }
 `;
-
 const Form = styled.form`
   font-family: ${circleFont};
   font-style: normal;
@@ -160,7 +159,6 @@ const Form = styled.form`
   align-items: center;
   margin: 40px 0;
 `;
-
 const Label = styled.label`
   position: relative;
   display: block;
@@ -186,7 +184,6 @@ const Label = styled.label`
     width: 394px;
   }
 `;
-
 const LabelStat = styled.label`
   position: relative;
   display: block;
@@ -207,7 +204,6 @@ const LabelStat = styled.label`
     width: 394px;
   }
 `;
-
 const ContainerStyle = styled.div`
   width: 280px;
   svg {
@@ -237,7 +233,6 @@ const ContainerStyle = styled.div`
     }
   }
 `;
-
 const Textarea = styled.textarea`
   font-size: inherit;
   width: 280px;

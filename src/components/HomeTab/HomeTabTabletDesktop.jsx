@@ -10,7 +10,7 @@ import {
   accentNegativeCl,
   accentPositiveCl,
   tableShadow,
-} from '../../stylesheet/utils/stylesVars';
+} from '../../styles/stylesVars';
 import del from '../../assets/images/delete.svg';
 import edit from '../../assets/images/edit.svg';
 
@@ -114,18 +114,14 @@ const Table = styled.table`
     max-height: 312px;
   }
 `;
-
 const Thead = styled.thead`
   background-color: ${accentBgCl};
 `;
-
 const Tr = styled.tr``;
-
 const Th = styled.th`
   font-family: ${circleFont};
   font-size: 18px;
   font-weight: 700;
-
   ${size.tablet} {
     padding: 16px 0 15px;
     text-align: center;
@@ -137,9 +133,7 @@ const Th = styled.th`
     }
   }
 `;
-
 const Tbody = styled.tbody``;
-
 const Td = styled.td`
   font-family: ${circleFont};
   font-size: 16px;
@@ -149,12 +143,10 @@ const Td = styled.td`
   word-wrap: break-word;
   border-bottom: 1px solid #dcdcdf;
   box-shadow: 0px 1px 0px ${tableShadow};
-
   ${size.tablet} {
     text-align: center;
   }
 `;
-
 const Income = styled(Td)`
   color: ${accentPositiveCl};
 `;

@@ -5,7 +5,7 @@ import {
   accentBgCl,
   poppinsFont,
   bgTabletWalletCl,
-} from '../../stylesheet/utils/stylesVars';
+} from '../../styles/stylesVars';
 
 export default function ContainerAuth({
   imgTab,
@@ -57,7 +57,6 @@ const Section = styled.section`
     background-color: transparent;
   }
 `;
-
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -71,7 +70,6 @@ const Container = styled.div`
     padding: 0;
   }
 `;
-
 const DivTop = styled.div`
   display: none;
   ${size.tablet} {
@@ -86,7 +84,6 @@ const DivTop = styled.div`
     margin: ${props => props.marginTop || '150px'} 38px 0 76px;
   }
 `;
-
 const LoginFormWrap = styled.div`
   ${size.tablet} {
     display: flex;
@@ -103,7 +100,6 @@ const LoginFormWrap = styled.div`
     backdrop-filter: blur(50px);
   }
 `;
-
 const Sidebar = styled.div`
   ${size.tablet} {
     background-image: url(${props => props.imgTab});
@@ -130,7 +126,6 @@ const Sidebar = styled.div`
     }
   }
 `;
-
 const Text = styled.p`
   margin-left: 40px;
   font-family: ${poppinsFont};

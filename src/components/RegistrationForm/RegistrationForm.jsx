@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { Field, Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
-import { TextField } from './TextField';
 import { useRegisterUserMutation } from '../../redux/auth/authReduce';
-import { regexName, regexEmail } from '../../utils/regex';
+import { TextField } from './TextField';
 import PasswordStrength from './PasswordStrength';
 import PasswordShowHide from './PasswordShowHide';
 import Button from '../Button/Button';
+import { regexName, regexEmail } from '../../utils/regex';
 import { ROUTES } from '../../utils/constants';
 import {
   accentPositiveCl,
@@ -18,7 +18,7 @@ import {
   accentTextCl,
   iconDefaultCl,
   iconBgActiveCl,
-} from '../../stylesheet/utils/stylesVars';
+} from '../../styles/stylesVars';
 import logo from '../../assets/images/svg/logo.svg';
 import Icons from '../../assets/images/svg/sprite.svg';
 
@@ -98,9 +98,7 @@ export default function RegistrationForm() {
                   </svg>
                 }
               ></Field>
-
               <PasswordStrength password={formik.values.password} />
-
               <TextField
                 label={
                   <svg width="18" height="18" className="labelIcon">
@@ -138,7 +136,6 @@ const LogoWrapper = styled.div`
   align-items: center;
   margin-bottom: 60px;
 `;
-
 const LogoIcon = styled.img`
   width: 30px;
   height: 30px;
@@ -149,7 +146,6 @@ const LogoIcon = styled.img`
     margin-right: 20px;
   }
 `;
-
 const Title = styled.h1`
   font-family: ${poppinsFont};
   font-size: 25px;
@@ -160,7 +156,6 @@ const Title = styled.h1`
     line-height: 1.5;
   }
 `;
-
 const FromStyle = styled.div`
   font-family: ${poppinsFont};
   .labelIcon {
@@ -195,7 +190,6 @@ const FromStyle = styled.div`
     margin-right: 20px;
   }
 `;
-
 const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;

@@ -1,13 +1,13 @@
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { optionModalTransuction } from '../../../utils/constants';
 import {
   accentPositiveCl,
   accentBgCl,
   accentNegativeCl,
   accentDisableCl,
-} from '../../../stylesheet/utils/stylesVars';
-import styled from 'styled-components';
+} from '../../../styles/stylesVars';
 import sprite from '../../../assets/images/svg/sprite.svg';
-import { optionModalTransuction } from '../../../utils/constants';
 
 export default function ToggleSwitch({ checked, handleChange }) {
   return (
@@ -45,14 +45,12 @@ const ToggleSwitchWraper = styled.div`
   justify-content: center;
   gap: 20px;
 `;
-
 const Span = styled.span`
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
   color: ${props => props.color};
 `;
-
 const Switch = styled.div`
   position: relative;
   width: 80px;
@@ -63,7 +61,6 @@ const Switch = styled.div`
   padding: 4px;
   cursor: pointer;
 `;
-
 const Svg = styled.svg`
   position: absolute;
   width: 20px;

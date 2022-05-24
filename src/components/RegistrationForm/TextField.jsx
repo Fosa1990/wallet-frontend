@@ -8,7 +8,7 @@ import {
   bgTabletCl,
   textPlcholderCl,
   accentNegativeCl,
-} from '../../stylesheet/utils/stylesVars';
+} from '../../styles/stylesVars';
 
 export const TextField = ({ label, ...props }) => {
   const [field, meta] = useField(props);
@@ -46,7 +46,6 @@ TextField.propTypes = {
 const LabelWrapper = styled.div`
   margin-bottom: 40px;
   outline: none;
-
   &:hover,
   &:focus,
   &:active {
@@ -54,7 +53,6 @@ const LabelWrapper = styled.div`
     fill: ${accentPositiveCl};
   }
 `;
-
 const Label = styled.label`
   position: relative;
   display: flex;
@@ -62,7 +60,6 @@ const Label = styled.label`
   border-bottom: 1px solid ${iconDefaultCl};
   fill: ${accentPositiveCl};
 `;
-
 const Input = styled.input`
   width: 100%;
   height: 32px;
@@ -71,11 +68,9 @@ const Input = styled.input`
   padding-left: 55px;
   border: ${bgTabletCl};
   outline: none;
-
   &:hover {
     outline: ${accentPositiveCl};
   }
-
   ::placeholder {
     color: ${textPlcholderCl};
   }

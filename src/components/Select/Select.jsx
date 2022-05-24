@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { size } from '../../stylesheet/utils/stylesVars';
 import { months } from '../../utils/constants';
+import { size } from '../../styles/stylesVars';
 
 export default function Select({ year, month, onYear, onMonth }) {
   const currentDate = new Date();
@@ -45,7 +45,6 @@ const SelectWrap = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-
   ${size.mobile} {
     height: 120px;
     margin-bottom: 20px;
@@ -61,7 +60,6 @@ const SelectField = styled.select`
   font-size: 16px;
   padding: 13px 20px;
   margin-bottom: 20px;
-
   ${size.tablet} {
     width: 160px;
     margin-bottom: 0px;

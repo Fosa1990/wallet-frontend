@@ -5,7 +5,7 @@ import {
   size,
   borderBtnCl,
   timingFunc,
-} from '../../stylesheet/utils/stylesVars';
+} from '../../styles/stylesVars';
 
 export default function LogoutButton({ children, onClick, ...props }) {
   return <StyledLogoutBtn onClick={onClick}>{children}</StyledLogoutBtn>;
@@ -23,7 +23,6 @@ const StyledLogoutBtn = styled.button`
   border: none;
   padding-left: 8px;
   transition: transform 0.25s ${timingFunc};
-
   ${size.tablet} {
     border: none;
     max-width: 100%;

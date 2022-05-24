@@ -2,18 +2,18 @@ import styled from 'styled-components';
 import Media from 'react-media';
 import { useDispatch, useSelector } from 'react-redux';
 import authSelectors from '../../redux/auth/authSelectors';
+import { openModalLogout } from '../../redux/globalSlice';
 import LogoutButton from '../LogoutButton';
 import Avatar from '../Avatar';
 import Logo from '../Logo';
 import Icon from '../Icon';
-import { openModalLogout } from '../../redux/globalSlice';
 import { ROUTES } from '../../utils/constants';
 import {
   textPlcholderCl,
   accentBgCl,
   circleFont,
   size,
-} from '../../stylesheet/utils/stylesVars';
+} from '../../styles/stylesVars';
 
 export default function Header({ children, onClick, ...props }) {
   const userName = useSelector(authSelectors.getUserName);
@@ -59,7 +59,6 @@ const StyledHeader = styled.div`
     padding: 20px 16px;
   }
 `;
-
 const UserInfo = styled.div`
   display: flex;
   justify-content: ${props => props.justify || 'center'};
@@ -72,7 +71,6 @@ const UserInfo = styled.div`
     align-items: ${props => props.align || 'center'};
   }
 `;
-
 const ExitIcon = styled.div`
   display: flex;
   align-items: center;
@@ -80,7 +78,6 @@ const ExitIcon = styled.div`
     margin-right: ${props => props.mRight || '8px'};
   }
 `;
-
 const UserName = styled.p`
   color: ${textPlcholderCl};
   ${size.tablet} {

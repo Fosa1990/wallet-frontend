@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { circleFont, size } from '../../stylesheet/utils/stylesVars';
+import { circleFont, size } from '../../styles/stylesVars';
 
 export default function NoInfo() {
   return (
@@ -16,13 +16,11 @@ const StyledNoInfo = styled.div`
   font-size: 20px;
   font-weight: 500;
   text-align: center;
-
   ${size.tablet} {
     padding: 5px;
     font-size: 30px;
     width: 704px;
   }
-
   ${size.desktop} {
     width: 715px;
   }

@@ -38,7 +38,6 @@ export default function App() {
   const { isFetching } = useFetchCurrentUserQuery(token, {
     skip: token === null,
   });
-
   return (
     <>
       {isFetching ? (
@@ -59,7 +58,6 @@ export default function App() {
                   </PublicRouteRegin>
                 }
               />
-
               <Route
                 path={LOGIN}
                 element={
@@ -71,7 +69,6 @@ export default function App() {
                   </PublicRouteLogin>
                 }
               />
-
               <Route
                 path={`/${DASHBOARD}/*`}
                 element={
@@ -80,12 +77,10 @@ export default function App() {
                   </PrivateRoute>
                 }
               />
-
               <Route path={VERIFY} element={<VerifyPage />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </Suspense>
-
           {showModalLogout && <ModalLogout />}
         </>
       )}

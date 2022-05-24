@@ -6,7 +6,7 @@ import {
   duration,
   timingFunc,
   accentPositiveCl,
-} from '../../stylesheet/utils/stylesVars';
+} from '../../styles/stylesVars';
 
 export default function CustomPagination({
   page,
@@ -48,14 +48,12 @@ const StylePagination = createGlobalStyle`
   padding-top: 20px;
   padding-bottom: 10px;
 }
-
 .custom-root ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 }
-
 .custom-item {
   width: 35px;
   height: 35px;
@@ -65,7 +63,6 @@ const StylePagination = createGlobalStyle`
   background-color:${accentBgCl};
   transition: all ${duration} ${timingFunc};
 }
-
 .custom-item:hover,
 .custom-item:focus-visible {
   color: ${accentBgCl};
@@ -74,16 +71,13 @@ const StylePagination = createGlobalStyle`
   outline: none;
   cursor: pointer;
 }
-
 .custom-item--active {
   color: ${accentBgCl};
   background-color: ${accentPositiveCl};
 }
-
 .custom-item--disable {
   opacity: 0.4;
 }
-
 .custom-progress-bar {
   max-width: 100%;
   height: 4px;

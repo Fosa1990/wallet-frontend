@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import authSelectors from '../../redux/auth/authSelectors';
-import { size, accentBgCl } from '../../stylesheet/utils/stylesVars';
+import { size, accentBgCl } from '../../styles/stylesVars';
 
 export default function Avatar() {
   const userName = useSelector(authSelectors.getUserName);
@@ -34,7 +34,6 @@ const UserAvatarDiv = styled.div`
     margin-right: 15px;
   }
 `;
-
 const AvatarImg = styled.img`
   width: 40px;
   height: 40px;

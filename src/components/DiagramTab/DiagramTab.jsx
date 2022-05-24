@@ -5,13 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import getFinancesSelectors from '../../redux/finances/financesSelectors';
 import categoriesSelectors from '../../redux/categories/categoriesSelectors';
 import { getCategories } from '../../redux/categories/categoriesOperations';
-
 import Table from '../Table';
 import Chart from '../Chart';
 import Select from '../Select';
 import BalanceSum from '../Balance/BalanceSum';
-import { size } from '../../stylesheet/utils/stylesVars';
 import { NAMES } from '../../utils/constants';
+import { size } from '../../styles/stylesVars';
 import nodata from '../../assets/images/nodata.jpg';
 
 export default function DiagramTab() {
@@ -103,7 +102,6 @@ const DiagramTabWrapper = styled.div`
   justify-content: space-between;
   flex-direction: column;
   padding-bottom: 48px;
-
   ${size.tablet} {
     flex-direction: row;
     padding-bottom: 24px;
@@ -119,13 +117,10 @@ const DiagramTabHeader = styled.h2`
   line-height: 1.5;
   margin-bottom: 8px;
 `;
-
 const ChartWrapper = styled.div`
   position: relative;
   margin-bottom: 32px;
-
   width: 280px;
-
   ${size.tablet} {
     margin-right: 32px;
     width: 336px;

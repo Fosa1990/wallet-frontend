@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useCreateTransactionsMutation } from '../../redux/transactions/transactionOperation';
 import Datetime from 'react-datetime';
 import { toast } from 'react-toastify';
-import NotifyContainer from '../NotifyContainer/NotifyContainer';
+import styled from 'styled-components';
+import { useCreateTransactionsMutation } from '../../redux/transactions/transactionOperation';
 import {
   closeModalWindow,
   addTransactionSuccess,
 } from '../../redux/globalSlice';
-import { optionModalTransuction } from '../../utils/constants';
+import NotifyContainer from '../NotifyContainer/NotifyContainer';
 import Button from '../Button/Button';
 import SelectCustom from './Select/SelectCustom';
 import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
 import Modal from '../Modal/Modal';
+import { optionModalTransuction } from '../../utils/constants';
 import sprite from '../../assets/images/svg/sprite.svg';
 import {
   accentDisableCl,
@@ -21,8 +22,7 @@ import {
   circleFont,
   size,
   poppinsFont,
-} from '../../stylesheet/utils/stylesVars';
-import styled from 'styled-components';
+} from '../../styles/stylesVars';
 import 'react-datetime/css/react-datetime.css';
 
 const { add, trTypeRemove, trTypeAdd } = optionModalTransuction;
@@ -138,7 +138,6 @@ const Title = styled.h2`
     line-height: 1.5;
   }
 `;
-
 const Form = styled.form`
   font-family: ${circleFont};
   font-style: normal;
@@ -148,7 +147,6 @@ const Form = styled.form`
   align-items: center;
   margin: 40px 0;
 `;
-
 const Label = styled.label`
   position: relative;
   display: block;
@@ -205,7 +203,6 @@ const ContainerStyle = styled.div`
     }
   }
 `;
-
 const Textarea = styled.textarea`
   font-size: inherit;
   width: 280px;

@@ -6,7 +6,7 @@ import {
   accentBgCl,
   iconBgActiveCl,
   circleFont,
-} from '../../stylesheet/utils/stylesVars';
+} from '../../styles/stylesVars';
 
 const StyledButton = styled.button`
   width: ${props => props.width || '280px'};
@@ -19,7 +19,6 @@ const StyledButton = styled.button`
   line-height: 1.47;
   text-transform: uppercase;
   cursor: pointer;
-
   ${props =>
     props.primary &&
     css`
@@ -48,11 +47,9 @@ const StyledButton = styled.button`
     width: ${props => props.width || '300px'};
   }
 `;
-
 export default function Button(props) {
   return <StyledButton type="submit" {...props} />;
 }
-
 Button.propTypes = {
   type: PropTypes.string,
   props: PropTypes.any,

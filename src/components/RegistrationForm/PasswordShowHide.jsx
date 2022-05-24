@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import { ErrorMessage } from 'formik';
 import styled from 'styled-components';
 import { IoIosEyeOff, IoIosEye } from 'react-icons/io';
-
 import {
   accentPositiveCl,
   iconDefaultCl,
   bgTabletCl,
   textPlcholderCl,
   accentNegativeCl,
-} from '../../stylesheet/utils/stylesVars';
+} from '../../styles/stylesVars';
 
 const PasswordShowHide = ({ field, form, label }) => {
   const [showHidePassword, changeShowHidePassword] = useState(false);
@@ -64,18 +63,15 @@ PasswordShowHide.propTypes = {
   form: PropTypes.object,
   label: PropTypes.object,
 };
-export default PasswordShowHide;
 
 const Container = styled.div`
   position: relative;
   width: 100%;
   margin-bottom: 15px;
-
   .icon {
     color: ${accentPositiveCl};
     min-width: 50px;
     text-align: center;
-
     .icon-close-eye,
     .icon-open-eye {
       width: 20px;
@@ -85,7 +81,6 @@ const Container = styled.div`
   .icon:hover {
     cursor: pointer;
   }
-
   .input-field {
     width: 100%;
     padding-left: 55px;
@@ -95,7 +90,6 @@ const Container = styled.div`
 const LabelWrapper = styled.div`
   margin-bottom: 40px;
   outline: none;
-
   &:hover,
   &:focus,
   &:active {
@@ -103,7 +97,6 @@ const LabelWrapper = styled.div`
     fill: ${accentPositiveCl};
   }
 `;
-
 const Label = styled.label`
   position: relative;
   display: flex;
@@ -111,7 +104,6 @@ const Label = styled.label`
   border-bottom: 1px solid ${iconDefaultCl};
   fill: ${accentPositiveCl};
 `;
-
 const Input = styled.input`
   width: 100%;
   height: 32px;
@@ -120,11 +112,9 @@ const Input = styled.input`
   padding-left: 55px;
   border: ${bgTabletCl};
   outline: none;
-
   &:hover {
     outline: ${accentPositiveCl};
   }
-
   ::placeholder {
     color: ${textPlcholderCl};
   }
@@ -134,3 +124,5 @@ const Error = styled.div`
   font-size: 12px;
   color: ${accentNegativeCl};
 `;
+
+export default PasswordShowHide;

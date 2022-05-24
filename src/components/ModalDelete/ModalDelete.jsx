@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Modal from '../Modal';
-import Button from '../Button';
+import styled from 'styled-components';
+import { toast } from 'react-toastify';
 import authSelectors from '../../redux/auth/authSelectors';
 import { closeModalWindow } from '../../redux/globalSlice';
 import { useDeleteTransactionsMutation } from '../../redux/transactions/transactionOperation';
 import { addTransactionSuccess } from '../../redux/globalSlice';
+import NotifyContainer from '../NotifyContainer/NotifyContainer';
+import Modal from '../Modal';
+import Button from '../Button';
 import {
   size,
   accentBgCl,
@@ -14,10 +17,7 @@ import {
   borderBtnCl,
   poppinsFont,
   modalBgCl,
-} from '../../stylesheet/utils/stylesVars';
-import styled from 'styled-components';
-import { toast } from 'react-toastify';
-import NotifyContainer from '../NotifyContainer/NotifyContainer';
+} from '../../styles/stylesVars';
 
 export default function ModalLogout({ id }) {
   const dispatch = useDispatch();
@@ -83,7 +83,6 @@ const Wrapper = styled.div`
     width: 350px;
   }
 `;
-
 const Text = styled.h3`
   font-family: ${poppinsFont};
   font-weight: 400;
@@ -97,7 +96,6 @@ const Text = styled.h3`
     margin-bottom: 40px;
   }
 `;
-
 const ButtonWrap = styled.div`
   display: flex;
   justify-content: space-around;

@@ -2,16 +2,16 @@ import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import Media from 'react-media';
+import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import Icon from '../Icon';
 import { closeModalWindow } from '../../redux/globalSlice';
+import Icon from '../Icon';
 import {
   modalBgCl,
   accentBgCl,
   size,
   timingFunc,
-} from '../../stylesheet/utils/stylesVars';
-import styled from 'styled-components';
+} from '../../styles/stylesVars';
 
 const modalRoot = document.querySelector('#root-modal');
 
@@ -72,7 +72,6 @@ export default function Modal({
             </Button>
           )}
         />
-
         {children}
       </Content>
     </Overlay>,
@@ -92,7 +91,6 @@ const Overlay = styled.div`
     background-color: ${modalBgCl};
   }
 `;
-
 const Content = styled.div`
   position: absolute;
   top: 50%;
@@ -110,7 +108,6 @@ const Content = styled.div`
     padding: ${p => p.paddingTab || '40px 73px 0px'};
   }
 `;
-
 const Button = styled.button`
   position: absolute;
   top: 8px;

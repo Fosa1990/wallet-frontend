@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { colors, optionModalTransuction } from '../../../utils/constants';
 import {
   accentNegativeCl,
@@ -5,11 +8,8 @@ import {
   accentTextCl,
   accentBgCl,
   circleFont,
-} from '../../../stylesheet/utils/stylesVars';
-import styled from 'styled-components';
+} from '../../../styles/stylesVars';
 import sprite from '../../../assets/images/svg/sprite.svg';
-import { useState } from 'react';
-import PropTypes from 'prop-types';
 
 export default function SelectCustom({ select, setSelect }) {
   const [selectOpen, setSelectOpen] = useState(false);
@@ -71,11 +71,9 @@ const PlaceholderWraper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 4px;
-
   button {
     border: none;
     background: none;
-
     svg {
       position: relative;
       right: 0;
@@ -84,20 +82,17 @@ const PlaceholderWraper = styled.div`
     }
   }
 `;
-
 const Div = styled.div`
   position: relative;
   width: 100%;
   padding: 0 20px 0 20px;
 `;
-
 const H2 = styled.h2`
   font-weight: 400;
   font-size: 18px;
   color: ${p =>
     p.selected || p.select !== 'income' ? accentTextCl : accentDisableCl};
 `;
-
 const Ul = styled.ul`
   margin-top: 4px;
   position: absolute;
@@ -109,13 +104,11 @@ const Ul = styled.ul`
   backdrop-filter: blur(50px);
   border-radius: 20px;
 `;
-
 const Li = styled.li`
   height: 44px;
   display: flex;
   align-items: center;
   padding: 0 20px 0 20px;
-
   &:hover,
   &:focus {
     cursor: pointer;

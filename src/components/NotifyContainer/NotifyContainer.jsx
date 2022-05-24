@@ -6,7 +6,7 @@ import {
   circleFont,
   toastifyContainerBgc,
   toastifyErrorBgc,
-} from '../../stylesheet/utils/stylesVars';
+} from '../../styles/stylesVars';
 
 export default function NotifyContainer({ ...props }) {
   return <StyledNotify autoClose={4000} />;

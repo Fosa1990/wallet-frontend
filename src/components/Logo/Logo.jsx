@@ -1,15 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import {
-  accentTextCl,
-  poppinsFont,
-  size,
-} from '../../stylesheet/utils/stylesVars';
+import { accentTextCl, poppinsFont, size } from '../../styles/stylesVars';
 import logo from '../../assets/images/svg/logo.svg';
+import { ROUTES } from '../../utils/constants';
 
 export default function Logo() {
   return (
-    <LogoLink to="/">
+    <LogoLink to={ROUTES.LOGIN}>
       <LogoIcon src={logo} />
       <Title>Wallet</Title>
     </LogoLink>
@@ -22,7 +19,6 @@ const LogoLink = styled(NavLink)`
   justify-content: ${props => props.justify || 'center'};
   align-items: ${props => props.align || 'center'};
 `;
-
 const Title = styled.div`
   font-family: ${poppinsFont};
   font-size: 25px;

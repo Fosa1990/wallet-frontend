@@ -19,7 +19,6 @@ export default function Chart({ categories }) {
       }
     }
   }
-
   const data = {
     labels: newCategories.map(category => category._id),
     datasets: [

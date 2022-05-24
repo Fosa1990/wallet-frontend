@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import Modal from '../Modal';
-import Button from '../Button';
+import styled from 'styled-components';
 import authSelectors from '../../redux/auth/authSelectors';
 import { closeModalWindow } from '../../redux/globalSlice';
 import { useLogoutUserMutation } from '../../redux/auth/authReduce';
+import Modal from '../Modal';
+import Button from '../Button';
 import {
   size,
   accentBgCl,
@@ -13,8 +14,7 @@ import {
   borderBtnCl,
   poppinsFont,
   modalBgCl,
-} from '../../stylesheet/utils/stylesVars';
-import styled from 'styled-components';
+} from '../../styles/stylesVars';
 
 export default function ModalLogout() {
   const dispatch = useDispatch();
@@ -75,7 +75,6 @@ const Wrapper = styled.div`
     width: 350px;
   }
 `;
-
 const Text = styled.h3`
   font-family: ${poppinsFont};
   font-weight: 400;
@@ -89,7 +88,6 @@ const Text = styled.h3`
     margin-bottom: 40px;
   }
 `;
-
 const ButtonWrap = styled.div`
   display: flex;
   justify-content: space-around;
