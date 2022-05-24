@@ -43,6 +43,7 @@ export default function Navigation() {
 
 const NavWrap = styled.div`
   display: flex;
+  width: 280px;
   justify-content: ${props => props.justify || 'space-evenly'};
   margin-top: 15px;
   margin-bottom: 31px;

@@ -53,22 +53,39 @@ export default function DashBoardPage() {
     </>
   );
 }
-
+// const Wrap = styled.div`
+//   /* width: 320px;
+//   display: flex;
+//   flex-direction: column; */
+//   /* justify-content: center; */
+//   background-color: rgba(255, 255, 255, 0.4);
+//   backdrop-filter: blur(50px);
+//   flex-grow: 1;
+//   ${size.tablet} {
+//     width: 768px;
+//   }
+//   ${size.desktop} {
+//     width: 1280px;
+//   }
+// `;
 const MainWrap = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(50px);
   flex-grow: 1;
   ${size.tablet} {
     padding: 0px 32px;
     justify-content: start;
+    align-items: center;
   }
   ${size.desktop} {
     padding: 0 16px;
     flex-direction: row;
     position: relative;
+    align-items: flex-start;
   }
 `;
 
@@ -76,6 +93,7 @@ const SideBar = styled.div`
   display: flex;
   flex-direction: column;
   ${size.tablet} {
+    width: 704px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -83,6 +101,7 @@ const SideBar = styled.div`
   }
   ${size.desktop} {
     display: flex;
+    width: 715px;
     padding-right: 69px;
     padding-top: 40px;
     flex-direction: column;
@@ -104,4 +123,5 @@ const TabWrap = styled.div`
 const MobSidebar = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
