@@ -1,5 +1,5 @@
-import { toast } from 'react-toastify';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { toast } from 'react-toastify';
 import { tokenService } from '../../services/tokenService';
 import { BASE_URL, ROUTES } from '../../utils/constants';
 

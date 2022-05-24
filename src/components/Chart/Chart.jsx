@@ -36,5 +36,5 @@ export default function Chart({ categories }) {
 }
 
 Chart.propTypes = {
-  categories: PropTypes.array,
+  categories: PropTypes.array.isRequired,
 };

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { iconBgCl } from '../../styles/stylesVars';
 
 export default function Comment({ transactionComment }) {
@@ -22,6 +23,10 @@ export default function Comment({ transactionComment }) {
     </div>
   );
 }
+
+Comment.propTypes = {
+  transactionComment: PropTypes.string.isRequired,
+};
 
 const Button = styled.button`
   display: inline;

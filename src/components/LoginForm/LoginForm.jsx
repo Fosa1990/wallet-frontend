@@ -94,6 +94,7 @@ const Logo = styled.div`
   align-items: center;
   margin-bottom: 60px;
 `;
+
 const Icon = styled.img`
   width: 30px;
   height: 30px;
@@ -104,6 +105,7 @@ const Icon = styled.img`
     margin-right: 20px;
   }
 `;
+
 const Title = styled.h1`
   font-family: ${poppinsFont};
   font-size: 25px;
@@ -146,6 +148,7 @@ const FormWrapper = styled.div`
     height: 468px;
   }
 `;
+
 const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -164,7 +167,6 @@ const ButtonWrapper = styled.div`
     border: 1px solid ${iconBgActiveCl};
     border-radius: 20px;
     cursor: pointer;
-
     ${size.tablet},${size.desktop} {
       width: 300px;
     }
