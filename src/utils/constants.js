@@ -13,7 +13,7 @@ const ROUTES = {
   LOGOUT: 'logout',
   REGISTRATION: 'registration',
   VERIFY: 'verify',
-  DASHBOARD: 'statistics',
+  STATISTICS: 'statistics',
   CURRENCY: 'currency',
   CURRENT: 'current',
   DIAGRAM: 'diagram',
@@ -26,7 +26,7 @@ const ROUTES = {
   SIGNOUT: 'signout',
 };
 
-const colors = [
+const statisticColors = [
   { category: 'basic spend', color: '#FED057' },
   { category: 'products', color: '#FFD8D0' },
   { category: 'car', color: '#FD9498' },
@@ -81,7 +81,7 @@ const USER_LIMIT = {
 export {
   BASE_URL,
   ROUTES,
-  colors,
+  statisticColors,
   optionModalTransuction,
   TIME_MS,
   NAMES,

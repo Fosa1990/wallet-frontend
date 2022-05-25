@@ -111,11 +111,9 @@ const Table = styled.table`
     max-height: 312px;
   }
 `;
-
 const Thead = styled.thead`
   background-color: ${accentBgCl};
 `;
-
 const Th = styled.th`
   font-family: ${circleFont};
   font-size: 18px;
@@ -131,13 +129,12 @@ const Th = styled.th`
     }
   }
 `;
-
 const Td = styled.td`
+  max-width: 140px;
+  padding: 14px 0;
   font-family: ${circleFont};
   font-size: 16px;
   font-weight: 400;
-  padding: 14px 0;
-  max-width: 140px;
   word-wrap: break-word;
   border-bottom: 1px solid #dcdcdf;
   box-shadow: 0px 1px 0px ${tableShadow};
@@ -145,15 +142,12 @@ const Td = styled.td`
     text-align: center;
   }
 `;
-
 const Income = styled(Td)`
   color: ${accentPositiveCl};
 `;
-
 const Spend = styled(Td)`
   color: ${accentNegativeCl};
 `;
-
 const Wrap = styled.div`
   max-width: 86px;
   display: flex;

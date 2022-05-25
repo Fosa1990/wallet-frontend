@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { statisticColors, optionModalTransuction } from '../../utils/constants';
 import {
   accentBgCl,
   accentNegativeCl,
   accentPositiveCl,
+  size,
+  tableRowBorderCl,
+  tableShadow,
 } from '../../styles/stylesVars';
-import { colors, optionModalTransuction } from '../../utils/constants';
-import { size, tableRowBorderCl, tableShadow } from '../../styles/stylesVars';
+
 export default function Table({ categories, transactionType }) {
   return (
     <div>
@@ -23,7 +26,7 @@ export default function Table({ categories, transactionType }) {
             .map(category => (
               <TableRow key={category._id}>
                 <TableData>
-                  {colors.map(
+                  {statisticColors.map(
                     color =>
                       color.category === category._id && (
                         <ColorBlock
@@ -80,8 +83,8 @@ Table.propTypes = {
 
 const TableMain = styled.table`
   width: 280px;
-  border-collapse: collapse;
   margin: 0 auto;
+  border-collapse: collapse;
   ${size.tablet} {
     width: 336px;
   }
@@ -89,21 +92,20 @@ const TableMain = styled.table`
     width: 395px;
   }
 `;
-
 const Thead = styled.thead`
   height: 58px;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 18px;
   line-height: 1.5;
   background-color: ${accentBgCl};
   th:first-child {
-    text-align: start;
     padding-left: 20px;
+    text-align: start;
     border-radius: 30px 0 0 30px;
   }
   th:last-child {
-    text-align: end;
     padding-right: 20px;
+    text-align: end;
     border-radius: 0 30px 30px 0;
   }
   margin-bottom: 8px;
@@ -111,7 +113,6 @@ const Thead = styled.thead`
     margin-bottom: 16px;
   }
 `;
-
 const TableData = styled.td`
   padding: 8px 0;
   font-size: 16px;
@@ -130,24 +131,20 @@ const TableData = styled.td`
     padding: 16px 0;
   }
 `;
-
 const TableRow = styled.tr`
   border-bottom: 1px solid ${tableRowBorderCl};
   box-shadow: 0px 1px 0px ${tableShadow};
 `;
-
 const ColorBlock = styled.div`
   height: 24px;
   width: 24px;
   border-radius: 2px;
 `;
-
 const TableFoot = styled.tfoot`
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 700;
   line-height: 1.5;
 `;
-
 const TableFootRow = styled.tr`
   td {
     padding-top: 14px;
@@ -161,11 +158,9 @@ const TableFootRow = styled.tr`
     padding-right: 20px;
   }
 `;
-
 const ExpenceValue = styled.td`
   color: ${accentNegativeCl};
 `;
-
 const IncomeValue = styled.td`
   color: ${accentPositiveCl};
 `;

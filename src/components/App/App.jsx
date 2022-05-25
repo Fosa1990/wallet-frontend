@@ -19,14 +19,14 @@ import 'react-toastify/dist/ReactToastify.css';
 const Login = lazy(() =>
   import('../../pages/LoginPage' /* webpackChunkName: "Login" */),
 );
-const Dashboard = lazy(() =>
-  import('../../pages/DashBoardPage' /* webpackChunkName: "DashBoard" */),
+const Statistics = lazy(() =>
+  import('../../pages/StatisticsPage' /* webpackChunkName: "Statistics" */),
 );
 const Registration = lazy(() =>
   import('../../pages/RegistrationPage' /* webpackChunkName: "Registration" */),
 );
 
-const { REGISTRATION, LOGIN, HOME, DASHBOARD, VERIFY } = ROUTES;
+const { REGISTRATION, LOGIN, HOME, STATISTICS, VERIFY } = ROUTES;
 
 export default function App() {
   const showModalLogout = useSelector(selectIsModalLogoutOpen);
@@ -51,7 +51,7 @@ export default function App() {
                 path={REGISTRATION}
                 element={
                   <PublicRouteRegin
-                    redirectTo={`/${DASHBOARD}/${HOME}`}
+                    redirectTo={`/${STATISTICS}/${HOME}`}
                     restricted
                   >
                     <Registration />
@@ -62,7 +62,7 @@ export default function App() {
                 path={LOGIN}
                 element={
                   <PublicRouteLogin
-                    redirectTo={`/${DASHBOARD}/${HOME}`}
+                    redirectTo={`/${STATISTICS}/${HOME}`}
                     restricted
                   >
                     <Login />
@@ -70,10 +70,10 @@ export default function App() {
                 }
               />
               <Route
-                path={`/${DASHBOARD}/*`}
+                path={`/${STATISTICS}/*`}
                 element={
                   <PrivateRoute redirectTo={LOGIN}>
-                    <Dashboard />
+                    <Statistics />
                   </PrivateRoute>
                 }
               />

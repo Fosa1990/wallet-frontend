@@ -1,6 +1,12 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import zxcvbn from 'zxcvbn';
+import {
+  passwordProgressBarLow,
+  passwordProgressBarWeak,
+  passwordProgressBarExpected,
+  passwordProgressBarGood,
+  passwordProgressBarStrong,
+} from '../../styles/stylesVars';
 
 const PasswordStrength = ({ password }) => {
   const testResult = zxcvbn(password);
@@ -8,15 +14,15 @@ const PasswordStrength = ({ password }) => {
   const progressColor = () => {
     switch (testResult.score) {
       case 0:
-        return '#FF6596';
+        return { passwordProgressBarLow };
       case 1:
-        return '#FF6596';
+        return { passwordProgressBarWeak };
       case 2:
-        return '#FF6596';
+        return { passwordProgressBarExpected };
       case 3:
-        return '#24CCA7';
+        return { passwordProgressBarGood };
       case 4:
-        return '#24CCA7';
+        return { passwordProgressBarStrong };
       default:
         return 'none';
     }

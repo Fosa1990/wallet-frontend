@@ -83,28 +83,26 @@ ModalDelete.propTypes = {
 };
 
 const Wrapper = styled.div`
+  width: 280px;
   margin: 0 auto;
   text-align: center;
-  width: 280px;
   ${size.tablet} {
     width: 350px;
   }
 `;
-
 const Text = styled.h3`
+  margin-bottom: 20px;
+  padding: 0 20px;
   font-family: ${poppinsFont};
   font-weight: 400;
   font-size: 30px;
   line-height: 1.5;
   color: ${accentTextCl};
-  padding: 0 20px;
-  margin-bottom: 20px;
   ${size.tablet} {
     padding: 0;
     margin-bottom: 40px;
   }
 `;
-
 const ButtonWrap = styled.div`
   display: flex;
   justify-content: space-around;

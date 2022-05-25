@@ -8,6 +8,7 @@ import LogoutButton from '../LogoutButton';
 import Avatar from '../Avatar';
 import Logo from '../Logo';
 import Icon from '../Icon';
+import Container from '../Container';
 import { ROUTES } from '../../utils/constants';
 import {
   textPlcholderCl,
@@ -27,20 +28,24 @@ export default function Header({ children, onClick, ...props }) {
 
   return (
     <StyledHeader>
-      <Logo to={`/${ROUTES.HOME}`} />
-      <UserInfo>
-        <Media query="(min-width: 768px)" render={() => <Avatar />} />
-        <UserName>{name || 'User'} </UserName>
-        <LogoutButton type="button" onClick={handleClick}>
-          <ExitIcon>
-            <Icon width="18px" height="18px" iconName="logout" />
-          </ExitIcon>
-          <Media
-            query="(min-width: 768px)"
-            render={() => <span>Logout</span>}
-          />
-        </LogoutButton>
-      </UserInfo>
+      <Container>
+        <Wrap>
+          <Logo to={`/${ROUTES.HOME}`} />
+          <UserInfo>
+            <Media query="(min-width: 768px)" render={() => <Avatar />} />
+            <UserName>{name || 'User'} </UserName>
+            <LogoutButton type="button" onClick={handleClick}>
+              <ExitIcon>
+                <Icon width="18px" height="18px" iconName="logout" />
+              </ExitIcon>
+              <Media
+                query="(min-width: 768px)"
+                render={() => <span>Logout</span>}
+              />
+            </LogoutButton>
+          </UserInfo>
+        </Wrap>
+      </Container>
     </StyledHeader>
   );
 }
@@ -52,21 +57,20 @@ Header.propTypes = {
 };
 
 const StyledHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 60px;
-  padding: 15px 20px;
+  justify-content: center;
+  background-color: ${accentBgCl};
+  backdrop-filter: none;
   background: ${accentBgCl};
   ${size.tablet} {
     height: 80px;
-    padding: 20px 32px;
-  }
-  ${size.desktop} {
-    padding: 20px 16px;
   }
 `;
-
+const Wrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 20px;
+`;
 const UserInfo = styled.div`
   display: flex;
   justify-content: ${props => props.justify || 'center'};
@@ -79,7 +83,6 @@ const UserInfo = styled.div`
     align-items: ${props => props.align || 'center'};
   }
 `;
-
 const ExitIcon = styled.div`
   display: flex;
   align-items: center;
@@ -87,7 +90,6 @@ const ExitIcon = styled.div`
     margin-right: ${props => props.mRight || '8px'};
   }
 `;
-
 const UserName = styled.p`
   color: ${textPlcholderCl};
   ${size.tablet} {

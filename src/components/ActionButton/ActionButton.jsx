@@ -30,15 +30,14 @@ const DelIcon = styled(SVG)`
     border-radius: 2px;
   }
 `;
-
 const Button = styled.button`
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  width: 30px;
-  height: 30px;
   align-items: center;
   justify-content: center;
+  width: 30px;
+  height: 30px;
   border: none;
   background: transparent;
   ${size.tablet} {

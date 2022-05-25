@@ -6,6 +6,8 @@ import {
   accentBgCl,
   accentNegativeCl,
   accentDisableCl,
+  accentBtnShadowPositiveCl,
+  accentBtnShadowNegativeCl,
 } from '../../../styles/stylesVars';
 import sprite from '../../../assets/images/svg/sprite.svg';
 
@@ -41,38 +43,35 @@ ToggleSwitch.propTypes = {
 
 const ToggleSwitchWraper = styled.div`
   display: flex;
-  display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
 `;
-
 const Span = styled.span`
   font-weight: 700;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 1.5;
   color: ${props => props.color};
 `;
-
 const Switch = styled.div`
   position: relative;
   width: 80px;
   height: 40px;
+  padding: 4px;
   background: ${accentBgCl};
   border-radius: 30px;
   border: 1px solid ${accentDisableCl};
-  padding: 4px;
   cursor: pointer;
 `;
 
 const Svg = styled.svg`
   position: absolute;
+  top: 50%;
+  left: -4px;
   width: 20px;
   height: 20px;
   padding: 12px;
   border-radius: 44px;
-  left: -4px;
-  top: 50%;
   box-sizing: content-box;
   transition: 300ms transform;
   transform: ${p =>
@@ -80,6 +79,6 @@ const Svg = styled.svg`
   background-color: ${p => (p.checked ? accentPositiveCl : accentNegativeCl)};
   box-shadow: ${p =>
     p.checked
-      ? '0px 6px 15px rgba(36, 204, 167, 0.5)'
-      : '0px 6px 15px rgba(255, 101, 150, 0.5)'};
+      ? `0px 6px 15px ${accentBtnShadowPositiveCl}`
+      : `0px 6px 15px ${accentBtnShadowNegativeCl}`};
 `;

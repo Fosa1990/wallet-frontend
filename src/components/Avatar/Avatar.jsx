@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import authSelectors from '../../redux/auth/authSelectors';
-import { size, accentBgCl } from '../../styles/stylesVars';
+import { size, accentBgCl, avatarBgCl } from '../../styles/stylesVars';
 
 export default function Avatar() {
   const userName = useSelector(authSelectors.getUserName);
@@ -26,7 +26,7 @@ const UserAvatarDiv = styled.div`
   align-items: center;
   width: 40px;
   height: 40px;
-  background-color: #ddd4d2;
+  background-color: ${avatarBgCl};
   color: ${accentBgCl};
   border-radius: 50%;
   margin-right: 5px;
@@ -34,7 +34,6 @@ const UserAvatarDiv = styled.div`
     margin-right: 15px;
   }
 `;
-
 const AvatarImg = styled.img`
   width: 40px;
   height: 40px;

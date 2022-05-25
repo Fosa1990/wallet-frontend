@@ -102,7 +102,6 @@ const Overlay = styled.div`
     background-color: ${modalBgCl};
   }
 `;
-
 const Content = styled.div`
   position: absolute;
   top: 50%;
@@ -116,26 +115,25 @@ const Content = styled.div`
   overflow-y: auto;
   ${size.tablet} {
     height: auto;
-    overflow-y: unset;
     width: 540px;
     padding: ${p => p.paddingTab || '40px 73px 52px'};
+    overflow-y: unset;
   }
 `;
-
 const Button = styled.button`
   position: absolute;
   top: 8px;
   right: 8px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   background-color: transparent;
   border: none;
-  width: 40px;
-  height: 40px;
   transform: rotateZ(360deg);
   transition: transform 0.25s ${timingFunc};
+  cursor: pointer;
   &:hover,
   &:focus {
     transform: rotateZ(0deg);
