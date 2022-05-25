@@ -57,16 +57,14 @@ Header.propTypes = {
 };
 
 const StyledHeader = styled.div`
+  justify-content: center;
   background-color: ${accentBgCl};
   backdrop-filter: none;
-  justify-content: center;
   background: ${accentBgCl};
-
   ${size.tablet} {
     height: 80px;
   }
 `;
-
 const Wrap = styled.div`
   display: flex;
   justify-content: space-between;
@@ -85,7 +83,6 @@ const UserInfo = styled.div`
     align-items: ${props => props.align || 'center'};
   }
 `;
-
 const ExitIcon = styled.div`
   display: flex;
   align-items: center;
@@ -93,7 +90,6 @@ const ExitIcon = styled.div`
     margin-right: ${props => props.mRight || '8px'};
   }
 `;
-
 const UserName = styled.p`
   color: ${textPlcholderCl};
   ${size.tablet} {

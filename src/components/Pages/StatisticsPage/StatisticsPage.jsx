@@ -10,7 +10,11 @@ import Balance from '../../Balance';
 import Container from '../../Container';
 import ButtonAddTransactions from '../../ButtonAddTransactions';
 import { ROUTES } from '../../../utils/constants';
-import { size } from '../../../styles/stylesVars';
+import {
+  size,
+  statisticsWrapperBgCl,
+  statisticsSidebarBorderCl,
+} from '../../../styles/stylesVars';
 
 const { STATISTICS, HOME, DIAGRAM, CURRENCY } = ROUTES;
 
@@ -65,29 +69,28 @@ export default function StatisticsPage() {
 const WrapBackground = styled.div`
   ${size.tablet} {
     flex-grow: 1;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: ${statisticsWrapperBgCl};
     backdrop-filter: blur(50px);
   }
 `;
 const MainWrap = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
   ${size.desktop} {
     position: relative;
+    padding: 0 16px;
     flex-direction: row;
     align-items: flex-start;
-    padding: 0 16px;
   }
 `;
-
 const SideBar = styled.div`
   display: flex;
   flex-direction: column;
   ${size.tablet} {
+    padding-bottom: 20px;
     flex-direction: row;
     justify-content: space-between;
-    padding-bottom: 20px;
   }
   ${size.desktop} {
     flex-direction: column;
@@ -95,10 +98,9 @@ const SideBar = styled.div`
     align-items: flex-start;
     padding-right: 69px;
     padding-top: 40px;
-    border-right: 1px solid #e7e5f2;
+    border-right: 1px solid ${statisticsSidebarBorderCl};
   }
 `;
-
 const TabWrap = styled.div`
   display: flex;
   justify-content: center;
@@ -107,7 +109,6 @@ const TabWrap = styled.div`
     padding-top: 40px;
   }
 `;
-
 const MobSidebar = styled.div`
   display: flex;
   flex-direction: column;

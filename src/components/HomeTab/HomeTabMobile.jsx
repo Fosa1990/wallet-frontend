@@ -86,19 +86,17 @@ HomeTabMobile.propTypes = {
 };
 
 const MobileTable = styled.table`
-  background-color: ${accentBgCl};
-  border-collapse: collapse;
-  border-radius: 10px;
-  width: 280px;
+  position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
-  position: relative;
+  border-collapse: collapse;
+  border-radius: 10px;
+  background-color: ${accentBgCl};
   :not(:last-child) {
     margin-bottom: 8px;
   }
 `;
-
 const Tbody = styled.tbody`
   vertical-align: middle;
   width: 100%;
@@ -118,47 +116,42 @@ const Tbody = styled.tbody`
 `;
 
 const Tr = styled.tr`
-  border-bottom: 1px solid #dcdcdf;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid #dcdcdf;
   &.button {
     justify-content: center;
   }
 `;
-
 const Th = styled.th`
   font-family: ${circleFont};
   font-size: 18px;
   font-weight: 700;
 `;
-
 const Td = styled.td`
+  max-width: 135px;
+  padding: 14px 0;
   font-family: ${circleFont};
   font-size: 16px;
   font-weight: 400;
-  padding: 14px 0;
   text-align: right;
-  max-width: 135px;
   word-wrap: break-word;
   &.buttons {
     width: 100%;
   }
 `;
-
 const Wrap = styled.div`
-  width: 280px;
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative;
   :not(:last-child) {
     margin-bottom: 8px;
   }
 `;
-
 const ButtonWrap = styled.div`
   width: 100%;
   display: flex;

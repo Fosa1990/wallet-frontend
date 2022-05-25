@@ -42,9 +42,9 @@ Select.propTypes = {
 
 const SelectWrap = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   ${size.mobile} {
     height: 120px;
     margin-bottom: 20px;
@@ -53,14 +53,13 @@ const SelectWrap = styled.div`
     flex-direction: row;
   }
 `;
-
 const SelectField = styled.select`
   width: 280px;
   height: 50px;
-  border-radius: 20px;
-  font-size: 16px;
-  padding: 13px 20px;
   margin-bottom: 20px;
+  padding: 13px 20px;
+  font-size: 16px;
+  border-radius: 20px;
   ${size.tablet} {
     width: 160px;
     margin-bottom: 0px;

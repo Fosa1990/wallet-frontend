@@ -31,7 +31,7 @@ Comment.propTypes = {
 const Button = styled.button`
   display: inline;
   border: none;
-  font-weight: bold;
+  font-weight: 700;
   color: ${iconBgCl};
   background-color: transparent;
   cursor: pointer;

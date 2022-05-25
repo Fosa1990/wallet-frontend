@@ -41,7 +41,6 @@ export default function Currency() {
       ) {
         return setTimeout(getRates, TIME_MS.HOUR);
       }
-
       setExchangeRates(currencyFromLocalStorage.data);
     }
   };
@@ -62,7 +61,7 @@ export default function Currency() {
             <Th>Sell</Th>
           </Tr>
         </Thead>
-        <Tbody>
+        <tbody>
           {exchangeRates
             ?.filter(item => item.ccy !== 'RUR')
             .map(
@@ -88,7 +87,7 @@ export default function Currency() {
           <tr>
             <Space colSpan="3"></Space>
           </tr>
-        </Tbody>
+        </tbody>
       </Table>
     </Wrapper>
   );
@@ -103,13 +102,11 @@ const Space = styled.td`
     background-size: contain;
   }
 `;
-
 const Wrapper = styled.div`
   ${size.tablet} {
     padding-top: 32px;
   }
 `;
-
 const Table = styled.table`
   background-color: ${iconBgValueCl};
   background-repeat: no-repeat;
@@ -130,7 +127,6 @@ const Table = styled.table`
     text-align: center;
   }
 `;
-
 const Thead = styled.thead`
   background-color: ${iconBgCl};
   ${size.mobile} {
@@ -140,19 +136,17 @@ const Thead = styled.thead`
     height: 60px;
   }
 `;
-
 const Tr = styled.tr`
   vertical-align: middle;
   ${size.mobile} {
     height: 50px;
   }
 `;
-
 const Th = styled.th`
   font-family: ${poppinsFont};
   font-size: 18px;
   font-weight: 700;
-  line-height: 26px;
+  line-height: 1.5;
   color: ${accentBgCl};
   :first-child {
     border-radius: 30px 0 0 0;
@@ -169,16 +163,11 @@ const Th = styled.th`
     }
   }
 `;
-
-const Tbody = styled.tbody`
-  padding-top: 20px;
-`;
-
 const Td = styled.td`
   font-family: ${circleFont};
   font-size: 16px;
   font-weight: 400;
-  line-height: 23px;
+  line-height: 1.5;
   color: white;
   padding-left: 20px;
   padding-right: 20px;

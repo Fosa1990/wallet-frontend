@@ -15,9 +15,6 @@ const ContainerWrap = styled.div`
   width: 100vw;
   padding: 0 20px;
   margin: 0 auto;
-  /* display: flex;
-  justify-content: center; */
-
   ${size.mobile} {
     width: 320px;
   }
@@ -25,9 +22,6 @@ const ContainerWrap = styled.div`
     width: 768px;
     padding: 0 32px;
     margin: 0 auto;
-    /* background-color: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(50px);
-    flex-grow: 1; */
   }
   ${size.desktop} {
     width: 1280px;

@@ -22,7 +22,7 @@ const BalanceWrapper = styled.div`
   font-family: ${circleFont};
   font-weight: 400;
   font-size: 12px;
-  line-height: 18px;
+  line-height: 1.5;
   text-transform: uppercase;
   color: ${balanceCl};
   width: 280px;

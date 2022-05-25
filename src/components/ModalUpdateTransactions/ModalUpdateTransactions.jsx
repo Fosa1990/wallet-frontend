@@ -136,36 +136,34 @@ ModalUpdateTransactions.propTypes = {
 };
 
 const Title = styled.h2`
+  height: 31px;
   font-family: ${poppinsFont};
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
   line-height: 1.5;
   text-align: center;
-  height: 31px;
   ${size.tablet} {
     font-size: 30px;
     line-height: 1.5;
   }
 `;
-
 const Form = styled.form`
-  font-family: ${circleFont};
-  font-style: normal;
-  font-size: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 40px;
+  font-family: ${circleFont};
+  font-style: normal;
+  font-size: 18px;
 `;
-
 const Label = styled.label`
   position: relative;
+  width: 280px;
   display: block;
   margin-bottom: 40px;
   font-weight: ${p => p.fontWeight || '400'};
   border-bottom: ${p => (!p.border ? `1px solid ${accentDisableCl}` : 'none')};
-  width: 280px;
   line-height: 0;
   input,
   textarea {
@@ -184,15 +182,14 @@ const Label = styled.label`
     width: 394px;
   }
 `;
-
 const LabelStat = styled.label`
   position: relative;
+  width: 280px;
   display: block;
   margin-bottom: 40px;
   font-weight: ${p => p.fontWeight || '400'};
-  border-bottom: ${p => (!p.border ? `1px solid ${accentDisableCl}` : 'none')};
-  width: 280px;
   line-height: 0;
+  border-bottom: ${p => (!p.border ? `1px solid ${accentDisableCl}` : 'none')};
   input,
   textarea {
     padding: 0 20px;
@@ -205,7 +202,6 @@ const LabelStat = styled.label`
     width: 394px;
   }
 `;
-
 const ContainerStyle = styled.div`
   width: 280px;
   svg {
@@ -235,12 +231,11 @@ const ContainerStyle = styled.div`
     }
   }
 `;
-
 const Textarea = styled.textarea`
-  font-size: inherit;
-  width: 280px;
   height: 84px;
+  width: 280px;
   max-height: 150px;
+  font-size: inherit;
   resize: none;
   ${size.tablet} {
     width: 394px;

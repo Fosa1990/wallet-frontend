@@ -6,6 +6,7 @@ import {
   accentTextCl,
   poppinsFont,
   iconBgValueCl,
+  iconBgCl,
   size,
 } from '../../styles/stylesVars';
 import home from '../../assets/images/svg/home.svg';
@@ -42,52 +43,49 @@ export default function Navigation() {
 }
 
 const NavWrap = styled.div`
-  display: flex;
   width: 280px;
+  padding-top: 15px;
+  padding-bottom: 31px;
+  display: flex;
   justify-content: ${props => props.justify || 'space-evenly'};
-  margin-top: 15px;
-  margin-bottom: 31px;
   ${size.tablet} {
-    flex-direction: column;
     width: 336px;
+    padding-top: 40px;
+    padding-bottom: 28px;
+    flex-direction: column;
     justify-content: ${props => props.justify || 'start'};
-    margin-top: 40px;
-    margin-bottom: 28px;
   }
   ${size.desktop} {
-    margin-top: 0px;
     width: 395px;
+    padding-top: 0px;
   }
 `;
-
 const NavIcon = styled(SVG)`
   width: 38px;
   height: 38px;
   border-radius: 6px;
   & path {
-    fill: #6e78e8;
+    fill: ${iconBgCl};
   }
   ${size.tablet} {
     width: 18px;
     height: 18px;
-    border-radius: 2px;
     margin-right: 23px;
+    border-radius: 2px;
   }
 `;
-
 const NavText = styled.p`
-  font-size: 18px;
-  line-height: 1, 5;
-  font-weight: 400;
   font-family: ${poppinsFont};
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: 18px;
 `;
-
 const Link = styled(NavLink)`
   display: flex;
   font-weight: 400;
   line-height: 1.5;
-  cursor: pointer;
   transition: font-weight 300ms;
+  cursor: pointer;
   ${size.tablet} {
     justify-content: ${props => props.justify || 'flex-start'};
     align-items: center;

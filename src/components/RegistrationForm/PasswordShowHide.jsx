@@ -69,9 +69,9 @@ const Container = styled.div`
   width: 100%;
   margin-bottom: 15px;
   .icon {
-    color: ${accentPositiveCl};
     min-width: 50px;
     text-align: center;
+    color: ${accentPositiveCl};
     .icon-close-eye,
     .icon-open-eye {
       width: 20px;
@@ -87,7 +87,6 @@ const Container = styled.div`
     outline: none;
   }
 `;
-
 const LabelWrapper = styled.div`
   margin-bottom: 40px;
   outline: none;
@@ -98,7 +97,6 @@ const LabelWrapper = styled.div`
     fill: ${accentPositiveCl};
   }
 `;
-
 const Label = styled.label`
   position: relative;
   display: flex;
@@ -106,13 +104,12 @@ const Label = styled.label`
   border-bottom: 1px solid ${iconDefaultCl};
   fill: ${accentPositiveCl};
 `;
-
 const Input = styled.input`
   width: 100%;
   height: 32px;
+  padding-left: 55px;
   font-size: 18px;
   line-height: 1.5;
-  padding-left: 55px;
   border: ${bgTabletCl};
   outline: none;
   &:hover {
@@ -122,7 +119,6 @@ const Input = styled.input`
     color: ${textPlcholderCl};
   }
 `;
-
 const Error = styled.div`
   position: absolute;
   font-size: 12px;
