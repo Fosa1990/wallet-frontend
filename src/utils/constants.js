@@ -13,7 +13,7 @@ const ROUTES = {
   LOGOUT: 'logout',
   REGISTRATION: 'registration',
   VERIFY: 'verify',
-  DASHBOARD: 'statistics',
+  STATISTICS: 'statistics',
   CURRENCY: 'currency',
   CURRENT: 'current',
   DIAGRAM: 'diagram',

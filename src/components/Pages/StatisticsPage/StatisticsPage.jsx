@@ -12,9 +12,11 @@ import ButtonAddTransactions from '../../ButtonAddTransactions';
 import { ROUTES } from '../../../utils/constants';
 import { size } from '../../../styles/stylesVars';
 
-export default function DashBoardPage() {
+const { STATISTICS, HOME, DIAGRAM, CURRENCY } = ROUTES;
+
+export default function StatisticsPage() {
   const { pathname } = useLocation();
-  const route = `/${ROUTES.DASHBOARD}/${ROUTES.HOME}`;
+  const route = `/${STATISTICS}/${HOME}`;
 
   return (
     <>
@@ -32,15 +34,17 @@ export default function DashBoardPage() {
             <TabWrap>
               <Routes>
                 <Route index element={<HomeTab />} />
-                <Route path={ROUTES.HOME} element={<HomeTab />} />
-                <Route path={ROUTES.DIAGRAM} element={<DiagramTab />} />
+                <Route path={HOME} element={<HomeTab />} />
+                <Route path={DIAGRAM} element={<DiagramTab />} />
                 <Route
-                  path={ROUTES.CURRENCY}
+                  path={CURRENCY}
                   element={
                     <>
                       <Media
                         query="(min-width: 768px)"
-                        render={() => <Navigate to="/statistics/home" />}
+                        render={() => (
+                          <Navigate to={`/${STATISTICS}/${HOME}`} />
+                        )}
                       />
                       <Media
                         query="(max-width: 767px)"
@@ -60,25 +64,20 @@ export default function DashBoardPage() {
 }
 const WrapBackground = styled.div`
   ${size.tablet} {
+    flex-grow: 1;
     background-color: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(50px);
-    flex-grow: 1;
   }
 `;
 const MainWrap = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   height: 100%;
-  ${size.tablet} {
-    justify-content: start;
-    align-items: center;
-  }
   ${size.desktop} {
-    padding: 0 16px;
-    flex-direction: row;
     position: relative;
+    flex-direction: row;
     align-items: flex-start;
+    padding: 0 16px;
   }
 `;
 
@@ -86,17 +85,16 @@ const SideBar = styled.div`
   display: flex;
   flex-direction: column;
   ${size.tablet} {
-    display: flex;
     flex-direction: row;
-    margin-bottom: 20px;
+    justify-content: space-between;
+    padding-bottom: 20px;
   }
   ${size.desktop} {
-    display: flex;
-    padding-right: 69px;
-    padding-top: 40px;
     flex-direction: column;
     justify-content: start;
     align-items: flex-start;
+    padding-right: 69px;
+    padding-top: 40px;
     border-right: 1px solid #e7e5f2;
   }
 `;
@@ -111,7 +109,6 @@ const TabWrap = styled.div`
 `;
 
 const MobSidebar = styled.div`
-  padding-right: 32px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
