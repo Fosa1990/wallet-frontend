@@ -53,7 +53,6 @@ const LabelWrapper = styled.div`
     fill: ${accentPositiveCl};
   }
 `;
-
 const Label = styled.label`
   position: relative;
   display: flex;
@@ -61,13 +60,12 @@ const Label = styled.label`
   border-bottom: 1px solid ${iconDefaultCl};
   fill: ${accentPositiveCl};
 `;
-
 const Input = styled.input`
   width: 100%;
   height: 32px;
+  padding-left: 55px;
   font-size: 18px;
   line-height: 1.5;
-  padding-left: 55px;
   border: ${bgTabletCl};
   outline: none;
   &:hover {
@@ -77,7 +75,6 @@ const Input = styled.input`
     color: ${textPlcholderCl};
   }
 `;
-
 const Error = styled.div`
   position: absolute;
   font-size: 12px;

@@ -96,8 +96,8 @@ export default function DiagramTab() {
 
 const DiagramTabWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
+  justify-content: space-between;
   padding-bottom: 48px;
   ${size.tablet} {
     flex-direction: row;
@@ -107,19 +107,17 @@ const DiagramTabWrapper = styled.div`
     padding-bottom: 44px;
   }
 `;
-
 const DiagramTabHeader = styled.h2`
+  margin-bottom: 8px;
   font-size: 30px;
   font-weight: 400;
   font-style: normal;
   line-height: 1.5;
-  margin-bottom: 8px;
 `;
-
 const ChartWrapper = styled.div`
   position: relative;
-  margin-bottom: 32px;
   width: 280px;
+  margin-bottom: 32px;
   ${size.tablet} {
     margin-right: 32px;
     width: 336px;
@@ -130,18 +128,15 @@ const ChartWrapper = styled.div`
     height: 288px;
   }
 `;
-
 const Balance = styled.span`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-
-  font-weight: bold;
+  font-weight: 700;
   font-size: 18px;
   line-height: 1.5;
+  transform: translate(-50%, -50%);
 `;
-
 const NoDataImg = styled.img`
   width: 100%;
   max-width: 270px;

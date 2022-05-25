@@ -20,11 +20,11 @@ export default function BalanceSum() {
 }
 
 const Sum = styled.div`
+  display: flex;
+  align-items: center;
   font-family: ${poppinsFont};
   font-weight: 900;
   font-size: 30px;
-  line-height: 45px;
-  display: flex;
-  align-items: center;
+  line-height: 1.5;
   color: ${accentTextCl};
 `;

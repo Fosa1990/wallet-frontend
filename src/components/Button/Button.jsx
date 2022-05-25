@@ -6,6 +6,8 @@ import {
   accentBgCl,
   iconBgActiveCl,
   circleFont,
+  accentBtnShadowLightCl,
+  accentBtnShadowDarkCl,
 } from '../../styles/stylesVars';
 
 export default function Button(props) {
@@ -30,27 +32,26 @@ const StyledButton = styled.button`
   ${props =>
     props.primary &&
     css`
+      margin-bottom: ${props => props.marginBtm || '20px'};
       color: ${props => props.color || accentBgCl};
       background: ${props => props.background || accentPositiveCl};
       border: none;
-      margin-bottom: ${props => props.marginBtm || '20px'};
       &:hover,
       &:focus {
-        box-shadow: inset 0px 0px 45px rgba(255, 255, 255, 0.7);
+        box-shadow: inset 0px 0px 45px ${accentBtnShadowLightCl};
       }
     `}
   ${props =>
     props.outlined &&
     css`
       color: ${props => props.color || iconBgActiveCl};
-      border: 1px solid ${props => props.color || iconBgActiveCl};
       background: transparent;
+      border: 1px solid ${props => props.color || iconBgActiveCl};
       &:hover,
       &:focus {
-        box-shadow: inset 0px 0px 45px rgba(36, 204, 167, 0.711);
+        box-shadow: inset 0px 0px 45px ${accentBtnShadowDarkCl};
       }
     `}
-
   ${size.tablet} {
     width: ${props => props.width || '300px'};
   }

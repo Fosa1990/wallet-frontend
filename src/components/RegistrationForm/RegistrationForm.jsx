@@ -155,7 +155,6 @@ const LogoWrapper = styled.div`
   align-items: center;
   margin-bottom: 60px;
 `;
-
 const LogoIcon = styled.img`
   width: 30px;
   height: 30px;
@@ -166,7 +165,6 @@ const LogoIcon = styled.img`
     margin-right: 20px;
   }
 `;
-
 const Title = styled.h1`
   font-family: ${poppinsFont};
   font-size: 25px;
@@ -177,7 +175,6 @@ const Title = styled.h1`
     line-height: 1.5;
   }
 `;
-
 const FromStyle = styled.div`
   font-family: ${poppinsFont};
   .labelIcon {
@@ -199,8 +196,8 @@ const FromStyle = styled.div`
   ${size.tablet} {
     width: 533px;
     height: 100%;
-    padding: 40px 59px 66px 65px;
     margin: 0 auto;
+    padding: 40px 59px 66px 65px;
     background: ${accentBgCl};
     border-radius: 20px;
   }
@@ -212,22 +209,21 @@ const FromStyle = styled.div`
     margin-right: 20px;
   }
 `;
-
 const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   .ButtonLogin {
+    width: 280px;
+    padding: 10px 65px 10px 71px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 280px;
     font-size: 18px;
     line-height: 1.5;
     text-align: center;
-    padding: 10px 65px 10px 71px;
-    color: ${iconBgActiveCl};
     text-transform: uppercase;
+    color: ${iconBgActiveCl};
     border: 1px solid ${iconBgActiveCl};
     border-radius: 20px;
     cursor: pointer;

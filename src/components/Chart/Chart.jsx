@@ -1,7 +1,7 @@
 import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import PropTypes from 'prop-types';
-import { colors, optionModalTransuction } from '../../utils/constants';
+import { statisticColors, optionModalTransuction } from '../../utils/constants';
 
 ChartJS.register(ArcElement, Tooltip);
 export default function Chart({ categories }) {
@@ -13,7 +13,7 @@ export default function Chart({ categories }) {
       return category;
     });
   for (let category of newCategories) {
-    for (let color of colors) {
+    for (let color of statisticColors) {
       if (color.category === category._id) {
         category.color = color.color;
       }

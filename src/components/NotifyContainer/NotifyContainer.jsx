@@ -7,6 +7,7 @@ import {
   circleFont,
   toastifyContainerBgc,
   toastifyErrorBgc,
+  toastifyErrorCl,
 } from '../../styles/stylesVars';
 
 export default function NotifyContainer({ ...props }) {
@@ -21,18 +22,18 @@ const StyledNotify = styled(ToastContainer)`
   .Toastify__toast {
     max-width: 280px;
     height: 50px;
-    border-radius: 20px;
+    font-family: ${circleFont};
+    color: ${accentTextCl};
     background-color: ${toastifyContainerBgc};
     backdrop-filter: blur(5px);
-    color: ${accentTextCl};
-    font-family: ${circleFont};
+    border-radius: 20px;
   }
   .Toastify__progress-bar {
     background-color: ${iconBgCl};
   }
   .Toastify__error {
     background-color: ${toastifyErrorBgc};
-    color: black;
+    color: ${toastifyErrorCl};
   }
   .Toastify__toast-icon svg {
     fill: ${iconBgCl};

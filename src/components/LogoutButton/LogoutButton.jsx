@@ -18,22 +18,22 @@ LogoutButton.propTypes = {
 };
 
 const StyledLogoutBtn = styled.button`
-  cursor: pointer;
+  height: 28px;
+  padding-left: 8px;
   display: flex;
   align-items: center;
-  height: 28px;
   font-size: 18px;
   line-height: 1.47;
   color: ${props => props.color || textPlcholderCl};
   background-color: transparent;
   border: none;
-  padding-left: 8px;
   transition: transform 0.25s ${timingFunc};
+  cursor: pointer;
   ${size.tablet} {
-    border: none;
     max-width: 100%;
-    padding-left: 12px;
     height: 24px;
+    padding-left: 12px;
+    border: none;
   }
   &:hover,
   &:focus {

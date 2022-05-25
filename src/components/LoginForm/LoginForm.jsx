@@ -103,12 +103,11 @@ export default function LoginForm() {
 }
 
 const Logo = styled.div`
+  margin-bottom: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 60px;
 `;
-
 const Icon = styled.img`
   width: 30px;
   height: 30px;
@@ -119,7 +118,6 @@ const Icon = styled.img`
     margin-right: 20px;
   }
 `;
-
 const Title = styled.h1`
   font-family: ${poppinsFont};
   font-size: 25px;
@@ -130,7 +128,6 @@ const Title = styled.h1`
     line-height: 1.5;
   }
 `;
-
 const FormWrapper = styled.div`
   font-family: ${poppinsFont};
   .labelIcon {
@@ -144,16 +141,15 @@ const FormWrapper = styled.div`
       outline: ${accentPositiveCl};
     }
   }
-
   ${size.mobile} {
     width: 320px;
-    padding: 107px 20px;
     margin: 0 auto;
+    padding: 107px 20px;
   }
   ${size.tablet} {
     width: 533px;
-    padding: 40px 59px 62px 65px;
     margin: 0 auto;
+    padding: 40px 59px 62px 65px;
     background: ${accentBgCl};
     border-radius: 20px;
   }
@@ -162,22 +158,21 @@ const FormWrapper = styled.div`
     height: 468px;
   }
 `;
-
 const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   .RegisterButton {
+    width: 280px;
+    padding: 10px 65px 10px 71px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 280px;
     font-size: 18px;
     line-height: 1.5;
     text-align: center;
-    padding: 10px 65px 10px 71px;
-    color: ${iconBgActiveCl};
     text-transform: uppercase;
+    color: ${iconBgActiveCl};
     border: 1px solid ${iconBgActiveCl};
     border-radius: 20px;
     cursor: pointer;

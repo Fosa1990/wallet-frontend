@@ -49,17 +49,17 @@ CustomPagination.propTypes = {
 
 const StylePagination = createGlobalStyle`
 .custom-root {
+  width: 280px;
   margin-right: auto;
   margin-left: auto;
-  width: 280px;
   padding-top: 20px;
   padding-bottom: 10px;
 }
 .custom-root ul {
+  margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
 }
 .custom-item {
   width: 35px;

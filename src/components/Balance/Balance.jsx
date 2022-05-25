@@ -10,7 +10,7 @@ import {
 export default function Balance() {
   return (
     <BalanceWrapper>
-      Your balance
+      <BalanceTextWrapper>Your balance</BalanceTextWrapper>
       <BalanceSum />
     </BalanceWrapper>
   );
@@ -22,7 +22,7 @@ const BalanceWrapper = styled.div`
   font-family: ${circleFont};
   font-weight: 400;
   font-size: 12px;
-  line-height: 18px;
+  line-height: 1.5;
   text-transform: uppercase;
   color: ${balanceCl};
   width: 280px;
@@ -36,4 +36,7 @@ const BalanceWrapper = styled.div`
   ${size.desktop} {
     width: 395px;
   }
+`;
+const BalanceTextWrapper = styled.p`
+  padding-top: 8px;
 `;

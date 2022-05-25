@@ -11,15 +11,15 @@ export default function NoInfo() {
 }
 
 const StyledNoInfo = styled.div`
-  font-family: ${circleFont};
   margin-top: 30px;
+  font-family: ${circleFont};
   font-size: 20px;
   font-weight: 500;
   text-align: center;
   ${size.tablet} {
+    width: 704px;
     padding: 5px;
     font-size: 30px;
-    width: 704px;
   }
   ${size.desktop} {
     width: 715px;
