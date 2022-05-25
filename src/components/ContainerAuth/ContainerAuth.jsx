@@ -66,6 +66,7 @@ ContainerAuth.propTypes = {
 
 const Section = styled.section`
   height: 100vh;
+  margin: 0 auto;
   background: ${props => props.color || accentBgCl};
   ${size.tablet} {
     background-color: transparent;
@@ -94,8 +95,8 @@ const DivTop = styled.div`
   }
   ${size.desktop} {
     width: 435px;
-    flex-direction: column;
     margin: ${props => props.marginTop || '150px'} 38px 0 76px;
+    flex-direction: column;
   }
 `;
 const LoginFormWrap = styled.div`
@@ -106,21 +107,21 @@ const LoginFormWrap = styled.div`
   ${size.desktop} {
     width: 100%;
     height: 100vh;
-    justify-content: center;
+    padding-top: ${props => props.paddingTop || '136px'};
     padding-left: 107px;
     padding-right: 91px;
-    padding-top: ${props => props.paddingTop || '136px'};
+    justify-content: center;
     background-color: ${props => props.color || bgTabletWalletCl};
     backdrop-filter: blur(50px);
   }
 `;
 const Sidebar = styled.div`
   ${size.tablet} {
+    width: ${props => props.widthTab};
+    height: ${props => props.heightTab};
     background-image: url(${props => props.imgTab});
     background-repeat: no-repeat;
     background-size: ${props => props.sizeTab};
-    height: ${props => props.heightTab};
-    width: ${props => props.widthTab};
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
@@ -128,11 +129,11 @@ const Sidebar = styled.div`
     }
   }
   ${size.desktop} {
+    height: ${props => props.heightDes};
+    width: ${props => props.widthDes};
     margin-bottom: ${props => props.marginBot || '28px'};
     background-image: url(${props => props.img});
     background-size: ${props => props.sizeDes};
-    height: ${props => props.heightDes};
-    width: ${props => props.widthDes};
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
