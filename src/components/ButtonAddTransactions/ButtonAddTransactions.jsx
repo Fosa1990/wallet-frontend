@@ -22,8 +22,8 @@ export default function ButtonAddTransactions() {
 }
 
 const Button = styled.button`
-  position: fixed;
-  right: 20px;
+  position: sticky;
+  float: right;
   bottom: 20px;
   display: flex;
   justify-content: center;
@@ -40,7 +40,6 @@ const Button = styled.button`
     cursor: pointer;
   }
   ${size.tablet} {
-    right: 40px;
     bottom: 40px;
   }
 `;

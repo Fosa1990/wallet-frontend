@@ -58,9 +58,9 @@ export default function StatisticsPage() {
                   }
                 />
               </Routes>
-              {pathname === route && <ButtonAddTransactions />}
             </TabWrap>
           </MainWrap>
+          {pathname === route && <ButtonAddTransactions />}
         </Container>
       </WrapBackground>
     </>
