@@ -1,8 +1,8 @@
 const BASE_URL = {
   FRONT: 'http://localhost:3000',
   BACK: 'http://localhost:8081',
-  SERVER: 'https://amazing-wallet.herokuapp.com',
-  HOST: 'https://wallet-backend-alpha.vercel.app',
+  SERVER: 'https://amazing-wallet.onrender.com',
+  HEROKU: 'https://amazing-wallet.herokuapp.com',
 };
 
 const ROUTES = {
