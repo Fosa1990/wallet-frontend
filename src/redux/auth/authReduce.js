@@ -8,7 +8,7 @@ const { API, AUTH, SIGNUP, SIGNIN, SIGNOUT, USERS, CURRENT } = ROUTES;
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: BASE_URL.HOST,
+    baseUrl: BASE_URL.SERVER,
 
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
