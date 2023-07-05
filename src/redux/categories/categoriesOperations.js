@@ -7,7 +7,7 @@ export const getCategories = createAsyncThunk(
   async ({ year, month }, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `${BASE_URL.SERVER}/api/categories?year=${year}&month=${month}`,
+        `${BASE_URL.HOST}/api/categories?year=${year}&month=${month}`,
       );
       return response.data.payload.categories;
     } catch (error) {

@@ -7,7 +7,7 @@ const { API, TRANSACTIONS } = ROUTES;
 export const transactionApi = createApi({
   reducerPath: 'transactionApi',
   baseQuery: axiosBaseQuery({
-    baseUrl: BASE_URL.SERVER,
+    baseUrl: BASE_URL.HOST,
     refetchOnReconnect: true,
   }),
 
