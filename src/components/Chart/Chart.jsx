@@ -1,12 +1,12 @@
 import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import PropTypes from 'prop-types';
-import { statisticColors, optionModalTransuction } from '../../utils/constants';
+import { statisticColors, optionModalTransaction } from '../../utils/constants';
 
 ChartJS.register(ArcElement, Tooltip);
 export default function Chart({ categories }) {
   let newCategories = categories
-    .filter(item => item._id !== optionModalTransuction.trTypeAdd)
+    .filter(item => item._id !== optionModalTransaction.trTypeAdd)
     .map(function (current) {
       let category = Object.assign({}, current);
       category.color = '';

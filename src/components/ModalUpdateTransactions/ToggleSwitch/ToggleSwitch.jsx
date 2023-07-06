@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { optionModalTransuction } from '../../../utils/constants';
+import { optionModalTransaction } from '../../../utils/constants';
 import {
   accentPositiveCl,
   accentBgCl,
@@ -15,7 +15,7 @@ export default function ToggleSwitch({ checked, handleChange }) {
   return (
     <ToggleSwitchWraper>
       <Span color={!checked ? accentDisableCl : accentPositiveCl}>
-        {optionModalTransuction.add}
+        {optionModalTransaction.add}
       </Span>
       <input
         checked={checked}
@@ -30,7 +30,7 @@ export default function ToggleSwitch({ checked, handleChange }) {
         </Svg>
       </Switch>
       <Span color={checked ? accentDisableCl : accentNegativeCl}>
-        {optionModalTransuction.spend}
+        {optionModalTransaction.spend}
       </Span>
     </ToggleSwitchWraper>
   );
