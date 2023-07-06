@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { statisticColors, optionModalTransuction } from '../../utils/constants';
+import { statisticColors, optionModalTransaction } from '../../utils/constants';
 import {
   accentBgCl,
   accentNegativeCl,
@@ -22,7 +22,7 @@ export default function Table({ categories, transactionType }) {
         </Thead>
         <tbody>
           {categories
-            .filter(item => item._id !== optionModalTransuction.trTypeAdd)
+            .filter(item => item._id !== optionModalTransaction.trTypeAdd)
             .map(category => (
               <TableRow key={category._id}>
                 <TableData>

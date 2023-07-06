@@ -29,11 +29,27 @@ export const authApi = createApi({
           method: 'POST',
           body: newUser,
         });
+        // if (res?.data?.code === 201) {
+        //   toast.warn(
+        //     `You need to confirm your ${res?.data?.payload?.user?.email} email to access the Amazing Wallet`,
+        //     {
+        //       className: 'Toastify__error',
+        //       position: 'top-right',
+        //       autoClose: false,
+        //       hideProgressBar: false,
+        //       closeOnClick: true,
+        //       pauseOnHover: true,
+        //       draggable: true,
+        //       progress: undefined,
+        //     },
+        //   );
+        // }
+
+        // TODO: тимчасове сповіщення, поки виправляється email-сервіс.
         if (res?.data?.code === 201) {
-          toast.warn(
-            `You need to confirm your ${res?.data?.payload?.user?.email} email to access the Amazing Wallet`,
+          toast.success(
+            `You are registered successfully as ${res?.data?.payload?.user?.email}, please log in.`,
             {
-              className: 'Toastify__error',
               position: 'top-right',
               autoClose: false,
               hideProgressBar: false,

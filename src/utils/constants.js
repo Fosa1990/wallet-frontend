@@ -40,7 +40,7 @@ const statisticColors = [
   { category: 'income', color: '#3B74B4' },
 ];
 
-const optionModalTransuction = {
+const optionModalTransaction = {
   add: 'income',
   spend: 'spend',
   trTypeAdd: 'income',
@@ -83,7 +83,7 @@ export {
   BASE_URL,
   ROUTES,
   statisticColors,
-  optionModalTransuction,
+  optionModalTransaction,
   TIME_MS,
   NAMES,
   months,

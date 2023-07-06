@@ -14,7 +14,7 @@ import Button from '../Button/Button';
 import SelectCustom from './Select/SelectCustom';
 import ToggleSwitch from './ToggleSwitch/ToggleSwitch';
 import Modal from '../Modal/Modal';
-import { optionModalTransuction } from '../../utils/constants';
+import { optionModalTransaction } from '../../utils/constants';
 import {
   accentDisableCl,
   accentNegativeCl,
@@ -26,7 +26,7 @@ import {
 import 'react-datetime/css/react-datetime.css';
 import sprite from '../../assets/images/svg/sprite.svg';
 
-const { add, trTypeRemove, trTypeAdd } = optionModalTransuction;
+const { add, trTypeRemove, trTypeAdd } = optionModalTransaction;
 
 export default function ModalUpdateTransactions({
   transactionId,

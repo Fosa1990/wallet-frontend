@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {
   statisticColors,
-  optionModalTransuction,
+  optionModalTransaction,
 } from '../../../utils/constants';
 import {
   accentBtnShadowLightCl,
@@ -25,7 +25,7 @@ export default function SelectCustom({ select, setSelect }) {
   const [selected, setSelected] = useState(false);
 
   const array = statisticColors.filter(
-    e => optionModalTransuction.trTypeAdd !== e['category'],
+    e => optionModalTransaction.trTypeAdd !== e['category'],
   );
 
   const handleChange = e => {
@@ -38,7 +38,7 @@ export default function SelectCustom({ select, setSelect }) {
 
   return (
     <Div>
-      <PlaceholderWraper>
+      <PlaceholderWrapper>
         <H2 selected={selected} select={select}>
           {selectedOption}
         </H2>
@@ -50,7 +50,7 @@ export default function SelectCustom({ select, setSelect }) {
             <use href={`${sprite}#icon-select-modal`} />
           </svg>
         </button>
-      </PlaceholderWraper>
+      </PlaceholderWrapper>
       {selectOpen && (
         <Ul onClick={e => handleChange(e.target.textContent)}>
           {array.map(({ category }) => (
@@ -69,7 +69,7 @@ SelectCustom.propTypes = {
   setSelect: PropTypes.func.isRequired,
 };
 
-const PlaceholderWraper = styled.div`
+const PlaceholderWrapper = styled.div`
   margin-bottom: 4px;
   display: flex;
   justify-content: space-between;
